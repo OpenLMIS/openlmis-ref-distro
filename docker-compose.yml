@@ -1,0 +1,27 @@
+version: "2"
+services:
+  requisition:
+    image: openlmis/requisition
+    links:
+      - db
+      - log
+      - nginx-proxy
+    env_file: .env
+    environment:
+      JAVA_OPTS: '-Dlogging.config=/logback.xml'
+    volumes:
+      - '../logback.xml:/logback.xml'
+  db:
+    image: openlmis/postgres
+    env_file: .env
+  log:
+    image: openlmis/rsyslog
+    volumes:
+      - './logs:/var/log'
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
