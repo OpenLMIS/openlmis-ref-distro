@@ -8,11 +8,14 @@ services:
       - nginx-proxy
     env_file: .env
     environment:
+      VIRTUAL_HOST: 'localhost'
       JAVA_OPTS: '-Dlogging.config=/logback.xml'
     volumes:
-      - '../logback.xml:/logback.xml'
+      - './logback.xml:/logback.xml'
   db:
     image: openlmis/postgres
+    ports:
+      - "5432"
     env_file: .env
   log:
     image: openlmis/rsyslog
@@ -20,7 +23,6 @@ services:
       - './logs:/var/log'
   nginx-proxy:
     image: jwilder/nginx-proxy
-    container_name: nginx-proxy
     ports:
       - "80:80"
     volumes:
