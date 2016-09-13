@@ -10,6 +10,7 @@ Developer docs of services in OpenLMIS v3.
    requisition
    auth
    templateService
+   requisitionUI
    codeStyleguide
    testing
    contributeDocs
