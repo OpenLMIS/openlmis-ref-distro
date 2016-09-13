@@ -1,6 +1,6 @@
-================
+==============
 Developer docs
-================
+==============
 
 Developer docs of services in OpenLMIS v3.
 
@@ -12,3 +12,4 @@ Developer docs of services in OpenLMIS v3.
    templateService
    codeStyleguide
    testing
+   contributeDocs
