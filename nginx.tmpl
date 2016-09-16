@@ -202,7 +202,7 @@ server {
         {{ if $container.Env.VIRTUAL_LOCATION }}
             {{ $location := $container.Env.VIRTUAL_LOCATION }}
             location /{{ $location }}/ {
-                rewrite /{{ $location }}(.*)$ /$1 break;
+                rewrite /{{ $location }}(.*)$ $1 break;
 		        proxy_pass {{ trim $proto }}://{{ trim $location }};
             }
         {{ end }}
