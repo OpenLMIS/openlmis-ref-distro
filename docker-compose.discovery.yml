@@ -39,6 +39,13 @@ services:
       - VIRTUAL_HOST=localhost
       - VIRTUAL_LOCATION=auth
 
+  notification:
+    image: openlmis/notification
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_LOCATION=notification
+
   db:
     image: openlmis/postgres
     env_file: .env
