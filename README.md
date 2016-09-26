@@ -17,7 +17,7 @@ http://openlmis.readthedocs.io
 > openlmis-blue and fierce debate is encouraged.  (most of the previous sentence is meant to convey levity!)
 https://openlmis.atlassian.net/wiki/x/SwCwAw
 
-##Running Service Discovery PoC
+## Running Service Discovery PoC
 To run the complete application, first add an environment file called `.env` to the root folder of the project, with the required 
 project settings and credentials. For a starter environment file, you can use [this one](https://github.com/OpenLMIS/openlmis-config/blob/master/.env).
 
@@ -29,3 +29,9 @@ see [openlmis-example repository](https://github.com/OpenLMIS/openlmis-example/)
 
 When the application is up and running, you should be able to access requisition service with
 http://localhost/requisition and the example service with http://localhost/example
+
+## Demo Data
+You can use a standard data set for demonstration purposes.
+To do so, generate a sql input files using instructions from each microservice (e.g. [this one](https://github.com/OpenLMIS/openlmis-referencedata#demo-data)).
+Then for each sql file, with openlmis-blue running, in separate terminal run:
+`docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < input.sql`
