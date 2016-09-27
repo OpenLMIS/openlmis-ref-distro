@@ -1,29 +1,65 @@
 version: "2"
 services:
+
+  consul:
+    command: -server -bootstrap
+    image: gliderlabs/consul-server
+    ports:
+      - "8300"
+      - "8400"
+      - "8500:8500"
+      - "53"
+
+  registrator:
+    image: gliderlabs/registrator
+    command: -internal consul://consul:8500
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    links:
+      - consul
+
   requisition:
     image: openlmis/requisition
-    links:
-      - db
-      - log
-      - nginx-proxy
     env_file: .env
     environment:
-      VIRTUAL_HOST: 'localhost'
-      JAVA_OPTS: '-Dlogging.config=/logback.xml'
-    volumes:
-      - './logback.xml:/logback.xml'
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_LOCATION=requisition
+
+  referencedata:
+    image: openlmis/referencedata
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_LOCATION=referencedata
+
+  auth:
+    image: openlmis/auth
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_LOCATION=auth
+
+  notification:
+    image: openlmis/notification
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_LOCATION=notification
+
   db:
     image: openlmis/postgres
-    ports:
-      - "5432"
     env_file: .env
+
   log:
     image: openlmis/rsyslog
     volumes:
-      - './logs:/var/log'
+      - '../logs/requisition:/var/log'
+
   nginx-proxy:
     image: jwilder/nginx-proxy
+    container_name: nginx-proxy
     ports:
       - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx.tmpl:/app/nginx.tmpl:ro
