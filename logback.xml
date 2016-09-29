@@ -7,7 +7,19 @@
         <suffixPattern>[%15.15thread] %level %logger %msg</suffixPattern>
     </appender>
 
+    <logger name="org.openlmis.auth" level="DEBUG" additivity="false">
+        <appender-ref ref="SYSLOG"/>
+    </logger>
+
+    <logger name="org.openlmis.notification" level="DEBUG" additivity="false">
+        <appender-ref ref="SYSLOG"/>
+    </logger>
+
     <logger name="org.openlmis.referencedata" level="DEBUG" additivity="false">
+        <appender-ref ref="SYSLOG"/>
+    </logger>
+
+    <logger name="org.openlmis.requisition" level="DEBUG" additivity="false">
         <appender-ref ref="SYSLOG"/>
     </logger>
 

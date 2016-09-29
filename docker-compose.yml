@@ -22,29 +22,41 @@ services:
     image: openlmis/requisition
     env_file: .env
     environment:
-      - VIRTUAL_HOST=localhost
-      - VIRTUAL_LOCATION=requisition
+      VIRTUAL_HOST: localhost
+      VIRTUAL_LOCATION: requisition
+      JAVA_OPTS: '-Dlogging.config=/logback.xml'
+    volumes:
+      - './logback.xml:/logback.xml'
 
   referencedata:
     image: openlmis/referencedata
     env_file: .env
     environment:
-      - VIRTUAL_HOST=localhost
-      - VIRTUAL_LOCATION=referencedata
+      VIRTUAL_HOST: localhost
+      VIRTUAL_LOCATION: referencedata
+      JAVA_OPTS: '-Dlogging.config=/logback.xml'
+    volumes:
+      - './logback.xml:/logback.xml'
 
   auth:
     image: openlmis/auth
     env_file: .env
     environment:
-      - VIRTUAL_HOST=localhost
-      - VIRTUAL_LOCATION=auth
+      VIRTUAL_HOST: localhost
+      VIRTUAL_LOCATION: auth
+      JAVA_OPTS: '-Dlogging.config=/logback.xml'
+    volumes:
+      - './logback.xml:/logback.xml'
 
   notification:
     image: openlmis/notification
     env_file: .env
     environment:
-      - VIRTUAL_HOST=localhost
-      - VIRTUAL_LOCATION=notification
+      VIRTUAL_HOST: localhost
+      VIRTUAL_LOCATION: notification
+      JAVA_OPTS: '-Dlogging.config=/logback.xml'
+    volumes:
+      - './logback.xml:/logback.xml'
 
   db:
     image: openlmis/postgres
