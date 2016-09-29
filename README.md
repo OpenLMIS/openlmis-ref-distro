@@ -26,11 +26,8 @@ Next, edit the .env file and replace VIRTUAL_HOST and BASE_URL with your machine
 Then, run the service with command
 > docker-compose up
 
-(please note, that as of today's state, the example service is not published to dockerhub and needs to be built locally - in order to do this,
-see [openlmis-example repository](https://github.com/OpenLMIS/openlmis-example/)).
-
 When the application is up and running, you should be able to access requisition service with
-http://<your ip-address>/requisition and the example service with http://<your ip-address>/example
+http://<your ip-address>/requisition
 
 ## Demo Data
 You can use a standard data set for demonstration purposes.
