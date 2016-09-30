@@ -24,7 +24,7 @@
     </logger>
 
     <!-- Define the root logger log level -->
-    <root level="INFO">
+    <root level="WARN">
         <appender-ref ref="SYSLOG"/>
     </root>
 </configuration>
