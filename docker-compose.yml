@@ -18,6 +18,13 @@ services:
     links:
       - consul
 
+  requisition-refui:
+    image: openlmis/requisition-refui
+    env_file: .env
+    environment:
+      # Changing the virtual location affects loading of the assets on UI. Handle with care.
+      - VIRTUAL_LOCATION=public
+
   requisition:
     image: openlmis/requisition
     env_file: .env
