@@ -33,12 +33,13 @@ and [Docker for Windows](https://www.docker.com/products/docker#/windows).  If y
 
 ### Quick Setup
 
-1. Pull the environment file template, edit `VIRTUAL_HOST` and `BASE_URL` to be your IP address (if you're behind a NAT, then don't mistakenly use the router's address)
+1. Pull the environment file template, edit `VIRTUAL_HOST` and `BASE_URL` to be your IP address (if you're behind a NAT, then don't mistakenly use the router's address),
+You __should only need to do this once__, though as this is an actively developed application, you may need to check the environment file template for new additions.
   ```
   $ curl -LO https://raw.githubusercontent.com/OpenLMIS/openlmis-config/master/.env
   ```
 
-2. Pull all the services, and bring the reference distribution up.
+2. Pull all the services, and bring the reference distribution up.  Since this is actively developed, you __should pull the services frequently__.
   ```
   $ docker-compose pull
   $ docker-compose up
