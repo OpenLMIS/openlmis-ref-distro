@@ -42,22 +42,28 @@ You __should only need to do this once__, though as this is an actively develope
 2. Pull all the services, and bring the reference distribution up.  Since this is actively developed, you __should pull the services frequently__.
   ```
   $ docker-compose pull
-  $ docker-compose up
+  $ docker-compose up -d  # drop the -d here to see console messages
   ```
 
-When the application is up and running, you should be able to access the Reference Distribution at:
+3. When the application is up and running, you should be able to access the Reference Distribution at:
 
-```
-http://<your ip-address>/
-```
+	```
+	http://<your ip-address>/
+	```
 
-_note if_ you get a `HTTP 502: Bad Gateway`, that's probably okay.  Just wait a few minutes as not everything has started yet.
+	_note if_ you get a `HTTP 502: Bad Gateway`, that's probably okay.  Just wait a few minutes as not everything has started yet.
 
-Since this is under active development, note that the above may give you a 404.  This is okay, some reachable endpoints:
+	Since this is under active development, note that the above may give you a 404.  This is okay, some reachable endpoints:
 
-* `http://<your ip-address>/requisition`
-* `http://<your ip-address>/auth`
-* `http://<your ip-address>/referencedata`
+	* `http://<your ip-address>/requisition`
+	* `http://<your ip-address>/auth`
+	* `http://<your ip-address>/referencedata`
+
+4. To stop the application & cleanup:
+
+	* if you ran `docker-compose up -d`, stop the application with `docker-compose down -v`
+	* if you ran `docker-compose up` _note_ the absence of `-d`, then interupt the application with `Ctrl-C`, and perform cleanup by removing containers.  See
+	our [docker cheat sheet](https://openlmis.atlassian.net/wiki/x/PwBIAw) for help on manually removing containers.
 
 ## Demo Data
 You can use a standard data set for demonstration purposes.
