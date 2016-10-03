@@ -51,6 +51,12 @@ When the application is up and running, you should be able to access the Referen
 http://<your ip-address>/
 ```
 
+Since this is under active development, note that the above may give you a 404.  This is okay, some reachable endpoints:
+
+* `http://<your ip-address>/requisition`
+* `http://<your ip-address>/auth`
+* `http://<your ip-address>/referencedata`
+
 ## Demo Data
 You can use a standard data set for demonstration purposes.
 To do so, generate a sql input files using instructions from each microservice (e.g. [this one](https://github.com/OpenLMIS/openlmis-referencedata#demo-data)).
