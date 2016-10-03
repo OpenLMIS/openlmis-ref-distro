@@ -33,6 +33,7 @@ services:
       JAVA_OPTS: '-Dlogging.config=/logback.xml'
     volumes:
       - './logback.xml:/logback.xml'
+    depends_on: [log]
 
   referencedata:
     image: openlmis/referencedata
@@ -42,6 +43,7 @@ services:
       JAVA_OPTS: '-Dlogging.config=/logback.xml'
     volumes:
       - './logback.xml:/logback.xml'
+    depends_on: [log]
 
   auth:
     image: openlmis/auth
@@ -51,6 +53,7 @@ services:
       JAVA_OPTS: '-Dlogging.config=/logback.xml'
     volumes:
       - './logback.xml:/logback.xml'
+    depends_on: [log]
 
   notification:
     image: openlmis/notification
@@ -60,6 +63,7 @@ services:
       JAVA_OPTS: '-Dlogging.config=/logback.xml'
     volumes:
       - './logback.xml:/logback.xml'
+    depends_on: [log]
 
   db:
     image: openlmis/postgres
