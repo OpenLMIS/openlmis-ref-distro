@@ -1,8 +1,14 @@
 # openlmis-blue
 Temporary location for the OpenLMIS v3+ Reference Distribution
 
-This will hold the future Reference Distribution.  i.e. docker compose files to compose all services together for a OpenLMIS deployment.
-This is a work in progress.
+The Reference Distribution utilizes Docker Compose to gather the published OpenLMIS Docker Images together and
+launch a running application.  These official OpenLMIS images are updated frequently and published to 
+[our](https://hub.docker.com/u/openlmis/) Docker Hub. These images cover all aspects of OpenLMIS: from server-side
+Services and infrastructure to the reference UI modules that a client's browser will consume.
+
+The docker-compose files within this repository should be considered the authoritative OpenLMIS Reference Distribution,
+as well as a template for how OpenLMIS' services and UI modules should be put together in a deployed instance of
+OpenLMIS following our architecture.
 
 **Blue?**
 > Regarding the open-lmis repo, the code name for the repository that will hold the OpenLMIS Reference Distribution is openlmis-blue.
@@ -11,26 +17,47 @@ This is a work in progress.
 > openlmis-blue and fierce debate is encouraged.  (most of the previous sentence is meant to convey levity!)
 https://openlmis.atlassian.net/wiki/x/SwCwAw
 
-## Documentation
-Documentation is built using Sphinx. Documents from other OpenLMIS repositories are collected and published on readthedocs.org nightly.
+## Starting the Reference Distribution
 
-Documentation is available at:
-http://openlmis.readthedocs.io
+## Tech Requirements
 
-##Running with Service Discovery
-To run the complete application, first add an environment file called `.env` to the root folder of the project, with the required 
-project settings and credentials. For a starter environment file, you can use [this one](https://github.com/OpenLMIS/openlmis-config/blob/master/.env).
+* Docker Engine: 1.12+
+* Docker Compose: 1.8+
 
-Next, edit the .env file and replace VIRTUAL_HOST and BASE_URL with your machine's IP address. 
+Note that Docker on Mac and Windows hasn't always been as native as it is now with [Docker for Mac](https://www.docker.com/products/docker#/mac) 
+and [Docker for Windows](https://www.docker.com/products/docker#/windows).  If you're using one of these, please note that there are some known issues:
 
-Then, run the service with command
-> docker-compose up
+* docker compose on Windows hasn't supported our development environment setup
+* if you're on a Virtual Machine, finding your correct IP may have some caveats - esp for development
 
-When the application is up and running, you should be able to access requisition service with
-http://<your ip-address>/requisition
+
+### Quick Setup
+
+1. Pull the environment file template, edit `VIRTUAL_HOST` and `BASE_URL` to be your IP address (if you're behind a NAT, then don't mistakenly use the router's address)
+  ```
+  $ curl -LO https://raw.githubusercontent.com/OpenLMIS/openlmis-config/master/.env
+  ```
+
+2. Pull all the services, and bring the reference distribution up.
+  ```
+  $ docker-compose pull
+  $ docker-compose up
+  ```
+
+When the application is up and running, you should be able to access the Reference Distribution at:
+
+```
+http://<your ip-address>/
+```
 
 ## Demo Data
 You can use a standard data set for demonstration purposes.
 To do so, generate a sql input files using instructions from each microservice (e.g. [this one](https://github.com/OpenLMIS/openlmis-referencedata#demo-data)).
 Then for each sql file, with openlmis-blue running, in separate terminal run:
 `docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < input.sql`
+
+## Documentation
+Documentation is built using Sphinx. Documents from other OpenLMIS repositories are collected and published on readthedocs.org nightly.
+
+Documentation is available at:
+http://openlmis.readthedocs.io
