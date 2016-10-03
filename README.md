@@ -51,6 +51,8 @@ When the application is up and running, you should be able to access the Referen
 http://<your ip-address>/
 ```
 
+_note if_ you get a `HTTP 502: Bad Gateway`, that's probably okay.  Just wait a few minutes as not everything has started yet.
+
 Since this is under active development, note that the above may give you a 404.  This is okay, some reachable endpoints:
 
 * `http://<your ip-address>/requisition`
