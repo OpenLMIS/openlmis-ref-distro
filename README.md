@@ -48,16 +48,10 @@ You __should only need to do this once__, though as this is an actively develope
 3. When the application is up and running, you should be able to access the Reference Distribution at:
 
 	```
-	http://<your ip-address>/
+	http://<your ip-address>/public
 	```
 
 	_note if_ you get a `HTTP 502: Bad Gateway`, that's probably okay.  Just wait a few minutes as not everything has started yet.
-
-	Since this is under active development, note that the above may give you a 404.  This is okay, some reachable endpoints:
-
-	* `http://<your ip-address>/requisition`
-	* `http://<your ip-address>/auth`
-	* `http://<your ip-address>/referencedata`
 
 4. To stop the application & cleanup:
 
