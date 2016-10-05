@@ -9,6 +9,7 @@ Developer docs of services in OpenLMIS v3.
 
    requisition
    auth
+   referencedata
    templateService
    requisitionUI
    codeStyleguide
