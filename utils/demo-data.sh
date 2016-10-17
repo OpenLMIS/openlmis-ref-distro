@@ -7,9 +7,13 @@ for arg in "$@"; do
   shift
   case "$arg" in
     "--update") 
-    	UPDATE=true ;;
+        UPDATE=true ;;
     "-u")	
-	UPDATE=true ;;
+        UPDATE=true ;;
+    "--home")
+        OPENLMIS_HOME=`readlink -f $@` ;;
+    "-h")
+        OPENLMIS_HOME=`readlink -f $@` ;;
   esac
 done
 
