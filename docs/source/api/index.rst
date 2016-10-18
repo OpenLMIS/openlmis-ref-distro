@@ -1,10 +1,36 @@
 =================
 API documentation
 =================
+************
+Auth Service
+************
 
-The Requisition Service API documentation is available under the following link:
-`API_DOCUMENTATION <http://build.openlmis.org/job/OpenLMIS-requisition-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+Security credentials - Authentication and Authorization.
 
-.. raw:: html
+`Auth Service API Documentation <http://build.openlmis.org/job/OpenLMIS-auth-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
-   <iframe style="width:100%;height:500px;" src="http://build.openlmis.org/job/OpenLMIS-requisition-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html" frameborder="0" allowfullscreen></iframe>
+**********************
+Reference Data Service
+**********************
+
+The reference data for the rest of the processes:  facilities, programs, products, etc
+
+`Reference Data Service API Documentation <http://build.openlmis.org/job/OpenLMIS-referencedata-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+
+*******************
+Requisition Service
+*******************
+
+Requisition (pull) based replenishment process.  Also currently includes the basics of fulfillment.
+
+
+`Requisition Service API Documentation <http://build.openlmis.org/job/OpenLMIS-requisition-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+
+********************
+Notification Service
+********************
+
+Notifying user's when their attention is needed.
+
+`Notification Service API Documentation <http://build.openlmis.org/job/OpenLMIS-notification-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+
