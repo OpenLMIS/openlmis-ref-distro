@@ -18,9 +18,12 @@ for arg in "$@"; do
 done
 
 if [ "$UPDATE" = true ] ; then
-   git -c $OPENLMIS_HOME/openlmis-referencedata pull
-   git -c $OPENLMIS_HOME/openlmis-requisition pull
-   git -c $OPENLMIS_HOME/openlmis-auth pull
+   cd $OPENLMIS_HOME/openlmis-referencedata
+   git pull
+   cd $OPENLMIS_HOME/openlmis-requisition
+   git pull
+   cd $OPENLMIS_HOME/openlmis-auth
+   git pull
 
    sudo docker-compose -f $OPENLMIS_HOME/openlmis-referencedata/docker-compose.builder.yml run demo-data
    sudo docker-compose -f $OPENLMIS_HOME/openlmis-requisition/docker-compose.builder.yml run demo-data
