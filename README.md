@@ -39,6 +39,10 @@ You __should only need to do this once__, though as this is an actively develope
   $ curl -LO https://raw.githubusercontent.com/OpenLMIS/openlmis-config/master/.env
   ```
 
+  Note that 'localhost' will not work here—-it must be an actual IP address (like aaa.bbb.yyy.zzz). This is because localhost would be interpreted
+  relative to each container, but providing your workstation's IP address gives an absolute outside location that is reachable from each container.
+  Also note that your BASE_URL will not need the port ":8080" that may be in the environment file template.
+
 2. Pull all the services, and bring the reference distribution up.  Since this is actively developed, you __should pull the services frequently__.
   ```
   $ docker-compose pull
@@ -52,6 +56,10 @@ You __should only need to do this once__, though as this is an actively develope
 	```
 
 	_note if_ you get a `HTTP 502: Bad Gateway`, that's probably okay.  Just wait a few minutes as not everything has started yet.
+  
+  With a fresh installation, you can log in with the username 'admin' and password 'password'. The demo data (below) also provides
+  a username 'administrator' with the same password. These are initial accounts that should be immediately used to create a specific
+  new administrator login and then deactivated. See the Configuration Guide for more about the OpenLMIS setup process.
 
 4. To stop the application & cleanup:
 
@@ -60,8 +68,8 @@ You __should only need to do this once__, though as this is an actively develope
 	our [docker cheat sheet](https://openlmis.atlassian.net/wiki/x/PwBIAw) for help on manually removing containers.
 
 ## Demo Data
-You can use a standard data set for demonstration purposes.
-To do so, generate a sql input files using instructions from each microservice (e.g. [this one](https://github.com/OpenLMIS/openlmis-referencedata#demo-data)).
+You can use a standard data set for demonstration purposes. See the script at utils/demo-data.sh for this purpose, or manually
+prepare your data. To do so, generate a sql input file using instructions from each microservice (e.g. [this one](https://github.com/OpenLMIS/openlmis-referencedata#demo-data)).
 Then for each sql file, with openlmis-blue running, in separate terminal run:
 `docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < input.sql`
 
