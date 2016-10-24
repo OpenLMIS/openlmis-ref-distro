@@ -27,7 +27,7 @@ https://openlmis.atlassian.net/wiki/x/SwCwAw
 Note that Docker on Mac and Windows hasn't always been as native as it is now with [Docker for Mac](https://www.docker.com/products/docker#/mac) 
 and [Docker for Windows](https://www.docker.com/products/docker#/windows).  If you're using one of these, please note that there are some known issues:
 
-* docker compose on Windows hasn't supported our development environment setup
+* docker compose on Windows hasn't supported our development environment setup, so you _can_ use Docker for Windows to run Blue, but not to develop
 * if you're on a Virtual Machine, finding your correct IP may have some caveats - esp for development
 
 
