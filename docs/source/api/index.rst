@@ -7,8 +7,9 @@ Auth Service
 
 Security credentials, Authentication and Authorization. Uses OAuth2.
 
-`Auth Service API Live Documentation <http://test.openlmis.org/auth/index.html#/default>`_
-`Auth Service API Static Documentation <http://build.openlmis.org/job/OpenLMIS-auth-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+`Live Documentation for Auth API <http://test.openlmis.org/auth/index.html#/default>`_
+
+`Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 **********************
 Reference Data Service
@@ -16,8 +17,9 @@ Reference Data Service
 
 Provides the reference data for the rest of the processes: facilities, programs, products, etc.
 
-`Reference Data Service API Live Documentation <http://test.openlmis.org/referencedata/index.html#/default>`_
-`Reference Data Service API Static Documentation <http://build.openlmis.org/job/OpenLMIS-referencedata-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+`Live Documentation for Reference Data API <http://test.openlmis.org/referencedata/index.html#/default>`_
+
+`Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Requisition Service
@@ -25,8 +27,9 @@ Requisition Service
 
 Requisition (pull) based replenishment process. Also currently includes the basics of fulfillment.
 
-`Requisition Service API Live Documentation <http://test.openlmis.org/requisition/index.html#/default>`_
-`Requisition Service API Static Documentation <http://build.openlmis.org/job/OpenLMIS-requisition-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+`Live Documentation for Requisition API <http://test.openlmis.org/requisition/index.html#/default>`_
+
+`Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 ********************
 Notification Service
@@ -34,5 +37,5 @@ Notification Service
 
 Notifying users when their attention is needed.
 
-`Notification Service API Static Documentation <http://build.openlmis.org/job/OpenLMIS-notification-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
