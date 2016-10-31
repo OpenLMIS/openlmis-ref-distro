@@ -76,9 +76,9 @@ server {
 {{ end }}
 
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
-{{ range $location, $ctns := groupByMulti $ "Env.VIRTUAL_LOCATION" "," }}
+{{ range $location, $ctns := groupByMulti $containers "Env.VIRTUAL_LOCATION" "," }}
 
-upstream {{ $location }} {
+upstream {{ $host }}.{{ $location }} {
 {{ range $container := $ctns }}
     {{ $addrLen := len $container.Addresses }}
 
@@ -203,7 +203,7 @@ server {
             {{ $location := $container.Env.VIRTUAL_LOCATION }}
             location /{{ $location }}/ {
                 rewrite /{{ $location }}(.*)$ $1 break;
-		        proxy_pass {{ trim $proto }}://{{ trim $location }};
+		        proxy_pass {{ trim $proto }}://{{ $host }}.{{ $location }};
             }
         {{ end }}
     {{ end }}
