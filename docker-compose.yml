@@ -30,7 +30,7 @@ services:
     env_file: .env
     environment:
       VIRTUAL_LOCATION: requisition
-      JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=file:///demo-data/data.sql'
+      JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
       - './logback.xml:/logback.xml'
     depends_on: [log]
@@ -40,7 +40,7 @@ services:
     env_file: .env
     environment:
       VIRTUAL_LOCATION: referencedata
-      JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=file:///demo-data/data.sql'
+      JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
       - './logback.xml:/logback.xml'
     depends_on: [log]
@@ -50,7 +50,7 @@ services:
     env_file: .env
     environment:
       VIRTUAL_LOCATION: auth
-      JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=file:///demo-data/data.sql'
+      JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
       - './logback.xml:/logback.xml'
     depends_on: [log]
