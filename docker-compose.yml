@@ -15,8 +15,7 @@ services:
     command: -internal consul://consul:8500
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
-    links:
-      - consul
+    depends_on: [consul]
 
   requisition-refui:
     image: openlmis/requisition-refui:3.0.0-SNAPSHOT
@@ -24,6 +23,7 @@ services:
     environment:
       # Changing the virtual location affects loading of the assets on UI. Handle with care.
       - VIRTUAL_LOCATION=public
+    depends_on: [consul]
 
   requisition:
     image: openlmis/requisition:3.0.0-SNAPSHOT
@@ -68,11 +68,13 @@ services:
   db:
     image: openlmis/postgres
     env_file: .env
+    depends_on: [consul]
 
   log:
     image: openlmis/rsyslog
     volumes:
       - '../logs/requisition:/var/log'
+    depends_on: [consul]
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -82,3 +84,4 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./nginx.tmpl:/app/nginx.tmpl:ro
+    depends_on: [consul]
