@@ -1,7 +1,7 @@
 #!/bin/bash
 
 UPDATE=false
-OPENLMIS_HOME=$HOME/OpenLMIS
+OPENLMIS_HOME=${OPENLMIS_HOME:-$HOME/OpenLMIS}
 
 for arg in "$@"; do
   shift
@@ -30,6 +30,6 @@ if [ "$UPDATE" = true ] ; then
    sudo docker-compose -f $OPENLMIS_HOME/openlmis-auth/docker-compose.builder.yml run demo-data
 fi
 
-sudo docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-referencedata/demo-data/input.sql
-sudo docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-auth/demo-data/input.sql
-sudo docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-requisition/demo-data/input.sql
+sudo docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-referencedata/build/demo-data/data.sql
+sudo docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-auth/build/demo-data/data.sql
+sudo docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-requisition/build/demo-data/data.sql
