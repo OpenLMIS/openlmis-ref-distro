@@ -68,10 +68,27 @@ You __should only need to do this once__, though as this is an actively develope
 	our [docker cheat sheet](https://openlmis.atlassian.net/wiki/x/PwBIAw) for help on manually removing containers.
 
 ## Demo Data
-You can use a standard data set for demonstration purposes. See the script at utils/demo-data.sh for this purpose, or manually
-prepare your data. To do so, generate a sql input file using instructions from each microservice (e.g. [this one](https://github.com/OpenLMIS/openlmis-referencedata#demo-data)).
-Then for each sql file, with openlmis-blue running, in separate terminal run:
-`docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < input.sql`
+You can use a standard data set for demonstration purposes. Each service that has demo data, has 
+it stored in its Docker image. The docker-compose.yml file is configured to automatically load the 
+demo data through a setting in the JAVA_OPTS environment variable. If you wish to not load demo 
+data, or load custom data, you can modify this setting.
+
+In the docker-compose.yml file for each service, look for a line like:
+  ```
+  JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
+  ```
+
+If you wish to not load demo data, you can remove the demo data load entry:
+  ```
+  JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql'
+  ```
+
+Or, you can replace it with your own by mounting a volume into the Docker container when it starts 
+and replacing the demo data entry. Be sure to prefix it with `file://`; otherwise, the service 
+will look in the classpath for the file.
+
+*NOTE:* be careful not to remove the `bootstrap.sql` entry, as that file must be loaded for the 
+service to function properly.
 
 ## Documentation
 Documentation is built using Sphinx. Documents from other OpenLMIS repositories are collected and published on readthedocs.org nightly.
