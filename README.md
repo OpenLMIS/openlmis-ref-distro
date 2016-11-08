@@ -73,7 +73,7 @@ it stored in its Docker image. The docker-compose.yml file is configured to auto
 demo data through a setting in the JAVA_OPTS environment variable. If you wish to not load demo 
 data, or load custom data, you can modify this setting.
 
-In the docker-compose.yml file for each service, look for a line like:
+In the docker-compose.yml file, look for a line like the following for each service with demo data:
   ```
   JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
   ```
