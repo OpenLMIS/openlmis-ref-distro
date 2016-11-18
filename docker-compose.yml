@@ -65,6 +65,16 @@ services:
       - './logback.xml:/logback.xml'
     depends_on: [log]
 
+  fulfillment:
+    image: openlmis/fulfillment:3.0.0-SNAPSHOT
+    env_file: .env
+    environment:
+      VIRTUAL_LOCATION: fulfillment
+      JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
+    volumes:
+      - './logback.xml:/logback.xml'
+    depends_on: [log]
+
   db:
     image: openlmis/postgres
     env_file: .env
