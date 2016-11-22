@@ -68,10 +68,16 @@ You __should only need to do this once__, though as this is an actively develope
 	our [docker cheat sheet](https://openlmis.atlassian.net/wiki/x/PwBIAw) for help on manually removing containers.
 
 ## Demo Data
-You can use a standard data set for demonstration purposes. Each service that has demo data, has 
-it stored in its Docker image. The docker-compose.yml file is configured to automatically load the 
-demo data through a setting in the JAVA_OPTS environment variable. If you wish to not load demo 
-data, or load custom data, you can modify this setting.
+You can use a standard data set for demonstration purposes. Each service that has demo data, has
+it stored in its Docker image. The demo data is built from JSON sources in each service's repo:
+* [Auth Service Demo Data](https://github.com/OpenLMIS/openlmis-auth/tree/master/demo-data)
+* [Reference Data Demo Data](https://github.com/OpenLMIS/openlmis-referencedata/tree/master/demo-data)
+* [Requisition Demo Data](https://github.com/OpenLMIS/openlmis-requisition/tree/master/demo-data)
+* [Fulfillment Demo Data](https://github.com/OpenLMIS/openlmis-fulfillment/tree/master/demo-data)
+
+The docker-compose.yml file is configured to automatically load the demo data through a setting in
+the JAVA_OPTS environment variable. If you wish to not load demo data, or load custom data, you can
+modify this setting.
 
 In the docker-compose.yml file, look for a line like the following for each service with demo data:
   ```
