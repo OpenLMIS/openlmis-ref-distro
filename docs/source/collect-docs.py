@@ -1,5 +1,6 @@
 import urllib
 
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillment/master/README.md", "developer-docs/fulfillment.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-requisition/master/README.md", "developer-docs/requisition.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth/master/README.md", "developer-docs/auth.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata/master/README.md", "developer-docs/referencedata.md")
