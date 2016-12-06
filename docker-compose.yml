@@ -10,12 +10,13 @@ services:
       - "8500:8500"
       - "53"
 
-  registrator:
-    image: gliderlabs/registrator
-    command: -internal consul://consul:8500
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
+  nginx:
+    image: openlmis/nginx
+    ports:
+      - "80:80"
+    env_file: .env
     depends_on: [consul]
+    network_mode: host
 
   requisition-refui:
     image: openlmis/requisition-refui:3.0.0-SNAPSHOT
@@ -29,7 +30,6 @@ services:
     image: openlmis/requisition:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      VIRTUAL_LOCATION: requisition
       JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
       - './logback.xml:/logback.xml'
@@ -39,7 +39,6 @@ services:
     image: openlmis/referencedata:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      VIRTUAL_LOCATION: referencedata
       JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
       - './logback.xml:/logback.xml'
@@ -49,7 +48,6 @@ services:
     image: openlmis/auth:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      VIRTUAL_LOCATION: auth
       JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
       - './logback.xml:/logback.xml'
@@ -59,7 +57,6 @@ services:
     image: openlmis/notification:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      VIRTUAL_LOCATION: notification
       JAVA_OPTS: '-Dlogging.config=/logback.xml'
     volumes:
       - './logback.xml:/logback.xml'
@@ -69,7 +66,6 @@ services:
     image: openlmis/fulfillment:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      VIRTUAL_LOCATION: fulfillment
       JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
       - './logback.xml:/logback.xml'
@@ -86,19 +82,10 @@ services:
       - '../logs/requisition:/var/log'
     depends_on: [consul]
 
-  nginx-proxy:
-    image: jwilder/nginx-proxy
-    container_name: nginx-proxy
-    ports:
-      - "80:80"
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./nginx.tmpl:/app/nginx.tmpl:ro
-    depends_on: [consul]
-
   ftp:
     image: hauptmedia/proftpd
     ports:
       - "21:21"
       - "20:20"
     env_file: .env
+    depends_on: [consul]
