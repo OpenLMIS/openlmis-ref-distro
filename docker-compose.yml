@@ -24,7 +24,7 @@ services:
     environment:
       # Changing the virtual location affects loading of the assets on UI. Handle with care.
       - VIRTUAL_LOCATION=public
-    depends_on: [consul]
+    depends_on: [consul,requisition,referencedata,auth,notification,fulfillment]
 
   requisition:
     image: openlmis/requisition:3.0.0-SNAPSHOT
