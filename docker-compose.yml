@@ -15,8 +15,10 @@ services:
     ports:
       - "80:80"
     env_file: .env
+    volumes:
+      - 'nginx-log:/var/log/nginx'
+      - 'consul-template-log:/var/log/consul-template'
     depends_on: [consul]
-    network_mode: host
 
   requisition-refui:
     image: openlmis/requisition-refui:3.0.0-SNAPSHOT
@@ -89,3 +91,9 @@ services:
       - "20:20"
     env_file: .env
     depends_on: [consul]
+
+volumes:
+  nginx-log:
+    external: false
+  consul-template-log:
+    external: false
