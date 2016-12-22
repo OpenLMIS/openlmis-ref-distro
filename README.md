@@ -81,12 +81,12 @@ modify this setting.
 
 In the docker-compose.yml file, look for a line like the following for each service with demo data:
   ```
-  JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
+  JAVA_OPTS: '-Dlogging.config=/logback/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
   ```
 
 If you wish to not load demo data, you can remove the demo data load entry:
   ```
-  JAVA_OPTS: '-Dlogging.config=/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql'
+  JAVA_OPTS: '-Dlogging.config=/logback/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql'
   ```
 
 Or, you can replace it with your own by mounting a volume into the Docker container when it starts 
