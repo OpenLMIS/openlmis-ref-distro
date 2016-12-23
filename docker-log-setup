@@ -1,0 +1,6 @@
+FROM gliderlabs/alpine:3.4
+
+COPY logback.xml /etc/logback/logback.xml
+
+CMD cp /etc/logback/logback.xml /logback/logback.xml
+
