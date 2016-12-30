@@ -85,7 +85,6 @@ services:
   service-configuration:
     build:
       context: ./config
-      dockerfile: Dockerfile.config
     volumes:
       - service-log-config:/log
 

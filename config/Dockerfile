@@ -2,5 +2,5 @@ FROM gliderlabs/alpine:3.4
 
 COPY log/logback.xml /log/logback.xml
 
-CMD /bin/bash
+CMD /bin/true
 
