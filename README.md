@@ -99,6 +99,9 @@ service to function properly.
 ## Logging
 The default way to configure application logging is by using docker named volumes. In order to pass logging configuration into services, an additional container is built on-the-fly to collect given host files, and pass them into logging setup volume. Then, other services obtain the logging info from this volume. The `docker-log-setup` file is simply a dockerfile for this service, and it is built automatically if it does not exist, creating the default named volume. Please be aware, that in case of changes in config files, the container needs to be rebuilt, as it does not happen automatically with docker-compose.
 
+To rebuild the image during startup, run:
+`docker-compose up --build`
+
 ## Documentation
 Documentation is built using Sphinx. Documents from other OpenLMIS repositories are collected and published on readthedocs.org nightly.
 

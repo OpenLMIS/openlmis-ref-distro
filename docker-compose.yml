@@ -78,14 +78,16 @@ services:
     image: openlmis/rsyslog
     volumes:
       - 'syslog:/var/log'
-    depends_on: [log-setup, consul]
+    depends_on:
+      - service-configuration
+      - consul
 
-  log-setup:
+  service-configuration:
     build:
-      context: .
-      dockerfile: docker-log-setup
+      context: ./config
+      dockerfile: Dockerfile.config
     volumes:
-      - service-log-config:/logback
+      - service-log-config:/log
 
   ftp:
     image: hauptmedia/proftpd
