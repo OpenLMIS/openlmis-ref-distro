@@ -52,7 +52,7 @@ You __should only need to do this once__, though as this is an actively develope
 3. When the application is up and running, you should be able to access the Reference Distribution at:
 
 	```
-	http://<your ip-address>/public
+	http://<your ip-address>/
 	```
 
 	_note if_ you get a `HTTP 502: Bad Gateway`, that's probably okay.  Just wait a few minutes as not everything has started yet.
