@@ -57,9 +57,24 @@ You __should only need to do this once__, though as this is an actively develope
 
 	_note if_ you get a `HTTP 502: Bad Gateway`, that's probably okay.  Just wait a few minutes as not everything has started yet.
   
-  With a fresh installation, you can log in with the username 'admin' and password 'password'. The demo data (below) also provides
-  a username 'administrator' with the same password. These are initial accounts that should be immediately used to create a specific
-  new administrator login and then deactivated. See the Configuration Guide for more about the OpenLMIS setup process.
+  By default the demo configuration (facilities, geographies, users, etc) is loaded on startup. To use that demo you may start 
+  with a demo account:
+  
+  ```
+  Username:  administrator
+  Password: password
+  ```
+  
+  If you opted not to load the demo data, and instead need a bare-bones account to configure your system, de-activate the 
+  demo data and use the bootstrap account:
+  
+  ```
+  Username: admin
+  Password: password
+  ```
+  
+  If you are configuring a production instance, be sure to secure these accounts ASAP and refer to the Configuration Guide 
+  for more about the OpenLMIS setup process.
 
 4. To stop the application & cleanup:
 
