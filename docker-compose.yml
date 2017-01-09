@@ -23,6 +23,7 @@ services:
   requisition-refui:
     image: openlmis/requisition-refui:3.0.0-SNAPSHOT
     env_file: .env
+    depends_on: [consul]
 
   requisition:
     image: openlmis/requisition:3.0.0-SNAPSHOT
