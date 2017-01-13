@@ -38,6 +38,9 @@ Links:
    - `Product Comittee Forum <https://groups.google.com/forum/#!forum/openlmis_product_committee>`_
    - `Governance Comittee Forum <https://groups.google.com/forum/#!forum/openlmis-governance>`_
 - Development
+   - `GitHub <https://github.com/openlmis>`_
+   - `DockerHub <https://hub.docker.com/u/openlmis>`_ (Published Docker Images)
+   - `OSS Sonatype <https://oss.sonatype.org/#nexus-search;quick~org.openlmis>`_ (Maven Publishing)
    - `Code Review <https://review.openlmis.org>`_
    - `Code Quality Analysis <http://sonar.openlmis.org>`_ (SonarQube)
    - `CI Server <http://build.openlmis.org>`_ (Jenkins)
