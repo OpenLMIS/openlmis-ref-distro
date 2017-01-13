@@ -11,6 +11,7 @@ Developer docs of services in OpenLMIS v3.
    fulfillment
    auth
    referencedata
+   stockmanagement
    templateService
    requisitionUI
    codeStyleguide
