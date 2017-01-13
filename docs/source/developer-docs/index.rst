@@ -15,4 +15,5 @@ Developer docs of services in OpenLMIS v3.
    requisitionUI
    codeStyleguide
    testing
+   errorHandling
    contributeDocs
