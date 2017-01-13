@@ -15,6 +15,17 @@ OpenLMIS (Open Logistics Management Information System) is software for a
 shared, open source solution for managing medical commodity distribution 
 in low- and middle-income countries. For more information, see OpenLMIS.org_.
 
+Contents:
+=========
+
+.. toctree::
+   :maxdepth: 1
+
+   developer-docs/index
+   erd/index
+   styleguide/index
+   api/index
+
 Links:
 ======
 
@@ -32,16 +43,5 @@ Links:
    - `CI Server <http://build.openlmis.org>`_ (Jenkins)
    - `CD Server <http://test.openlmis.org>`_
    - `UAT Server <http://uat.openlmis.org>`_
-
-Contents:
-=========
-
-.. toctree::
-   :maxdepth: 1
-
-   developer-docs/index
-   erd/index
-   styleguide/index
-   api/index
 
 .. _OpenLMIS.org: http://openlmis.org
