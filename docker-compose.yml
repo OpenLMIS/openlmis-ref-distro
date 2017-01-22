@@ -29,54 +29,54 @@ services:
     image: openlmis/requisition:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/logback/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
+      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
-      - 'service-log-config:/logback'
+      - 'service-config:/config'
     depends_on: [log]
 
   referencedata:
     image: openlmis/referencedata:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/logback/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
+      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
-      - 'service-log-config:/logback'
+      - 'service-config:/config'
     depends_on: [log]
 
   auth:
     image: openlmis/auth:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/logback/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
+      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
-      - 'service-log-config:/logback'
+      - 'service-config:/config'
     depends_on: [log]
 
   notification:
     image: openlmis/notification:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/logback/logback.xml'
+      JAVA_OPTS: '-Dlogging.config=/log/logback.xml'
     volumes:
-      - 'service-log-config:/logback'
+      - 'service-config:/config'
     depends_on: [log]
 
   fulfillment:
     image: openlmis/fulfillment:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/logback/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
+      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
-      - 'service-log-config:/logback'
+      - 'service-config:/config'
     depends_on: [log]
 
   stockmanagement:
     image: openlmis/stockmanagement:1.0.0-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/logback/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
+      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
     volumes:
-      - 'service-log-config:/logback'
+      - 'service-config:/config'
     depends_on: [log]
 
   db:
@@ -96,7 +96,7 @@ services:
     build:
       context: ./config
     volumes:
-      - service-log-config:/log
+      - service-config:/config
 
   ftp:
     image: hauptmedia/proftpd
@@ -113,5 +113,5 @@ volumes:
     external: false
   consul-template-log:
     external: false
-  service-log-config:
+  service-config:
     external: false
