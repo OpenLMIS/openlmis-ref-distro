@@ -15,8 +15,10 @@ services:
     ports:
       - "80:80"
     env_file: .env
+    environment:
+      NGINX_LOG_DIR: '/var/log/nginx/log'
     volumes:
-      - 'nginx-log:/var/log/nginx'
+      - 'nginx-log:/var/log/nginx/log'
       - 'consul-template-log:/var/log/consul-template'
     depends_on: [consul]
 
@@ -56,7 +58,7 @@ services:
     image: openlmis/notification:3.0.0-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/log/logback.xml'
+      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
     depends_on: [log]

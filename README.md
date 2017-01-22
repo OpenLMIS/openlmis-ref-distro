@@ -112,10 +112,52 @@ will look in the classpath for the file.
 service to function properly.
 
 ## Logging
-The default way to configure application logging is by using docker named volumes. In order to pass logging configuration into services, an additional container is built on-the-fly to collect given host files, and pass them into logging setup volume. Then, other services obtain the logging info from this volume. The `docker-log-setup` file is simply a dockerfile for this service, and it is built automatically if it does not exist, creating the default named volume. Please be aware, that in case of changes in config files, the container needs to be rebuilt, as it does not happen automatically with docker-compose.
 
-To rebuild the image during startup, run:
-`docker-compose up --build`
+Logging configuration is "passed" to each service as a file (logback.config) through a named docker volume:
+`service-config`.  To change the logging configuration:
+
+1. update `config/log/logback.xml`
+2. bring the application up with `docker-compose up --build`.  The `--build` option will re-build the
+configuration image.
+
+Most logging is collected by way of rsyslog (in the `log` container) which writes to the named volume: `log`.
+However not every docker container logs via rsyslog to this named volume.  For these services they log either
+via docker logging or to a file for which a named-volume approach works well.
+
+### Log container
+
+The `log` container runs rsyslog which Services running in their own containers may forward their logging
+messages to.  This helps centralize all the various Service logging into one location.  This container writes
+all of these messages to the file `/var/log/messages` of the named volume `syslog`.
+
+To read this file, you may mount this filesystem via:
+
+```shell
+$ docker run -it --rm -v openlmisblue_syslog:/var/log openlmis/dev bash
+> tail /var/log/messages
+```
+
+### Nginx container
+
+The `nginx` container runs the nginx and consul-template processes.  These two log to the named volumes:
+
+* `nginx-log` under `/var/log/nginx/log`
+* `consul-template-log` under `/var/log/consul/template`
+
+e.g to see Nginx's access log:
+
+```shell
+$ docker run -it --rm -v openlmisblue_nginx-log:/var/log/nginx/log openlmis/dev bash
+> tail /var/log/nginx/log/access.log
+```
+
+With Nginx it's also possible to use Docker's logging so that both logs are accessible via `docker logs <nginx>`.  
+This is owed to the configuration of the official Nginx image.  To use this configuration, change the environment
+variable `NGINX_LOG_DIR` to `NGINX_LOG_DIR=/var/log/nginx`.
+
+### Postgres container
+
+If using the postgres container, the logging is accessible via:  `docker logs openlmisblue_db_1`.
 
 ## Documentation
 Documentation is built using Sphinx. Documents from other OpenLMIS repositories are collected and published on readthedocs.org nightly.
