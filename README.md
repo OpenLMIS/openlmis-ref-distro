@@ -111,6 +111,37 @@ will look in the classpath for the file.
 *NOTE:* be careful not to remove the `bootstrap.sql` entry, as that file must be loaded for the 
 service to function properly.
 
+## Configuring Services
+
+When a container needs configuration via a file (as opposed to an environment variable for example), then
+there is a special Docker image that's built as part of this Reference Distribution from the Dockerfile of 
+the `config/` directory.  This image, which will also be deployed as a container, is only a vessel for 
+providing a named volume from which each container may mount the `/config` directory in order to self-configure.
+
+To add configuration:
+
+1. Create a new directory under `config/`.  Use a unique and clear name. e.g. *kannel*.
+2. Add the configuration files in this directory.  e.g. `config/kannel/kannel.config`.
+3. Add a COPY statement to `config/Dockerfile` which copies the configuration file to the container's `/config`.
+e.g. `COPY kannel/kannel.config /config/kanel/kannel.config`.
+4. Ensure that the container which will use this configuration file mounts the named-volume `service-config` to
+`/config.  e.g.
+  
+  ```shell
+  kannel:
+    image: ...
+    volumes:
+      - 'service-config:/config'
+  ```
+5. Ensure the container uses/copies the configuration file from `/config/...`.
+6. When you add new configuration, or change it, ensure you bring this Reference Distribution with the `--build`
+flag.  e.g. `docker-compose up --build`.
+
+The logging configuration utilizes this method.
+
+_NOTE:_ that the configuration container that's built here doesn't _run_.  It is normal for it's Status to be 
+Exited.
+
 ## Logging
 
 Logging configuration is "passed" to each service as a file (logback.config) through a named docker volume:
