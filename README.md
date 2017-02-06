@@ -204,7 +204,7 @@ the command:
  ```shell
  docker run -it --rm --env-file=.env --network=openlmisblue_default -v $(pwd)/cleanDb.sh:/cleanDb.sh openlmis/dev /cleanDb.sh
  ```
- Replace `openlmisblue_default` with the proper network name if your's has changed.
+ Replace `openlmisblue_default` with the proper network name if yours has changed.
  
  *Note that using this script against a remote Docker host is possible, though not advised*
  
