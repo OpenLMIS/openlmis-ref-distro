@@ -190,6 +190,25 @@ variable `NGINX_LOG_DIR` to `NGINX_LOG_DIR=/var/log/nginx`.
 
 If using the postgres container, the logging is accessible via:  `docker logs openlmisblue_db_1`.
 
+## Cleaning the Database
+
+Sometimes it's useful to drop the database completely, for this there is a script included that 
+is able to do just that.
+
+*Note this should never be used in production, nor should it ever be deployed*
+
+To run this script, you'll first need the name of the Docker network that the database is using. 
+If you're using this repository, it's usually the name `openlmisblue_default`.  With this run 
+the command:
+ 
+ ```shell
+ docker run -it --rm --env-file=.env --network=openlmisblue_default -v $(pwd)/cleanDb.sh:/cleanDb.sh openlmis/dev /cleanDb.sh
+ ```
+ Replace `openlmisblue_default` with the proper network name if your's has changed.
+ 
+ *Note that using this script against a remote Docker host is possible, though not advised*
+ 
+
 ## Documentation
 Documentation is built using Sphinx. Documents from other OpenLMIS repositories are collected and published on readthedocs.org nightly.
 
