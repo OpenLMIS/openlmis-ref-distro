@@ -208,6 +208,15 @@ the command:
  
  *Note that using this script against a remote Docker host is possible, though not advised*
  
+## Production
+
+When deploying Blue as a production instance, you'll need to remember to set the following 
+environment variable so the production database isn't first wiped when starting:
+
+```
+export spring_profiles_active="production"
+docker-compose up --build -d
+```
 
 ## Documentation
 Documentation is built using Sphinx. Documents from other OpenLMIS repositories are collected and published on readthedocs.org nightly.
