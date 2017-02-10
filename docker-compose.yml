@@ -78,7 +78,7 @@ services:
     depends_on: [log]
 
   stockmanagement:
-    image: openlmis/stockmanagement:1.0.0-SNAPSHOT
+    image: openlmis/stockmanagement:1.0.0-BETA-SNAPSHOT
     env_file: .env
     environment:
       JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
