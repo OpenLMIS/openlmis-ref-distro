@@ -1,5 +1,5 @@
-# openlmis-blue
-Temporary location for the OpenLMIS v3+ Reference Distribution
+# OpenLMIS Reference Distribution
+Location for the OpenLMIS v3+ Reference Distribution
 
 The Reference Distribution utilizes Docker Compose to gather the published OpenLMIS Docker Images together and
 launch a running application.  These official OpenLMIS images are updated frequently and published to 
@@ -9,13 +9,6 @@ Services and infrastructure to the reference UI modules that a client's browser 
 The docker-compose files within this repository should be considered the authoritative OpenLMIS Reference Distribution,
 as well as a template for how OpenLMIS' services and UI modules should be put together in a deployed instance of
 OpenLMIS following our architecture.
-
-**Blue?**
-> Regarding the open-lmis repo, the code name for the repository that will hold the OpenLMIS Reference Distribution is openlmis-blue.
-> Why?  Blue as in water, water as it has surface tension, surface tension such as holding things loosely together, loosely held together
-> as this is NOT "core"...  Most importantly it's a color and easy to remember, so until we can agree on the new repository name, it's
-> openlmis-blue and fierce debate is encouraged.  (most of the previous sentence is meant to convey levity!)
-https://openlmis.atlassian.net/wiki/x/SwCwAw
 
 ## Starting the Reference Distribution
 
@@ -27,7 +20,7 @@ https://openlmis.atlassian.net/wiki/x/SwCwAw
 Note that Docker on Mac and Windows hasn't always been as native as it is now with [Docker for Mac](https://www.docker.com/products/docker#/mac) 
 and [Docker for Windows](https://www.docker.com/products/docker#/windows).  If you're using one of these, please note that there are some known issues:
 
-* docker compose on Windows hasn't supported our development environment setup, so you _can_ use Docker for Windows to run Blue, but not to develop
+* docker compose on Windows hasn't supported our development environment setup, so you _can_ use Docker for Windows to run the Reference Distribution, but not to develop
 * if you're on a Virtual Machine, finding your correct IP may have some caveats - esp for development
 
 
@@ -43,7 +36,7 @@ You __should only need to do this once__, though as this is an actively develope
   relative to each container, but providing your workstation's IP address gives an absolute outside location that is reachable from each container.
   Also note that your BASE_URL will not need the port ":8080" that may be in the environment file template.
 
-2. Pull all the services, and bring the reference distribution up.  Since this is actively developed, you __should pull the services frequently__.
+2. Pull all the services, and bring the Reference Distribution up.  Since this is actively developed, you __should pull the services frequently__.
   ```
   $ docker-compose pull
   $ docker-compose up -d  # drop the -d here to see console messages
@@ -164,7 +157,7 @@ all of these messages to the file `/var/log/messages` of the named volume `syslo
 To read this file, you may mount this filesystem via:
 
 ```shell
-$ docker run -it --rm -v openlmisblue_syslog:/var/log openlmis/dev bash
+$ docker run -it --rm -v openlmisrefdistro_syslog:/var/log openlmis/dev bash
 > tail /var/log/messages
 ```
 
@@ -178,7 +171,7 @@ The `nginx` container runs the nginx and consul-template processes.  These two l
 e.g to see Nginx's access log:
 
 ```shell
-$ docker run -it --rm -v openlmisblue_nginx-log:/var/log/nginx/log openlmis/dev bash
+$ docker run -it --rm -v openlmisrefdistro_nginx-log:/var/log/nginx/log openlmis/dev bash
 > tail /var/log/nginx/log/access.log
 ```
 
@@ -188,7 +181,7 @@ variable `NGINX_LOG_DIR` to `NGINX_LOG_DIR=/var/log/nginx`.
 
 ### Postgres container
 
-If using the postgres container, the logging is accessible via:  `docker logs openlmisblue_db_1`.
+If using the postgres container, the logging is accessible via:  `docker logs openlmisrefdistro_db_1`.
 
 ## Cleaning the Database
 
@@ -198,19 +191,19 @@ is able to do just that.
 *Note this should never be used in production, nor should it ever be deployed*
 
 To run this script, you'll first need the name of the Docker network that the database is using. 
-If you're using this repository, it's usually the name `openlmisblue_default`.  With this run 
+If you're using this repository, it's usually the name `openlmisrefdistro_default`.  With this run 
 the command:
  
  ```shell
- docker run -it --rm --env-file=.env --network=openlmisblue_default -v $(pwd)/cleanDb.sh:/cleanDb.sh openlmis/dev /cleanDb.sh
+ docker run -it --rm --env-file=.env --network=openlmisrefdistro_default -v $(pwd)/cleanDb.sh:/cleanDb.sh openlmis/dev /cleanDb.sh
  ```
- Replace `openlmisblue_default` with the proper network name if yours has changed.
+ Replace `openlmisrefdistro_default` with the proper network name if yours has changed.
  
  *Note that using this script against a remote Docker host is possible, though not advised*
  
 ## Production
 
-When deploying Blue as a production instance, you'll need to remember to set the following 
+When deploying the Reference Distribution as a production instance, you'll need to remember to set the following 
 environment variable so the production database isn't first wiped when starting:
 
 ```

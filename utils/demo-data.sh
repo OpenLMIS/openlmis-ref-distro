@@ -33,7 +33,7 @@ if [ "$UPDATE" = true ] ; then
    sudo docker-compose -f $OPENLMIS_HOME/openlmis-auth/docker-compose.builder.yml run demo-data
 fi
 
-sudo docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-referencedata/build/demo-data/data.sql
-sudo docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-auth/build/demo-data/data.sql
-sudo docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-requisition/build/demo-data/data.sql
-sudo docker exec -i openlmisblue_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-fulfillment/build/demo-data/data.sql
+sudo docker exec -i openlmisrefdistro_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-referencedata/build/demo-data/data.sql
+sudo docker exec -i openlmisrefdistro_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-auth/build/demo-data/data.sql
+sudo docker exec -i openlmisrefdistro_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-requisition/build/demo-data/data.sql
+sudo docker exec -i openlmisrefdistro_db_1 psql -Upostgres open_lmis < $OPENLMIS_HOME/openlmis-fulfillment/build/demo-data/data.sql

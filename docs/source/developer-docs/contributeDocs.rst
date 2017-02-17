@@ -13,7 +13,7 @@ of the artifacts are dynamically generated, based on the current codebase. All t
 is collected by a single script. In order to collect a new document to be able to include it in the
 developer documentation, it must be placed in the *collect-docs.py* script. The documentation is built
 daily and is triggered by a Jenkins job. It then gets published under http://openlmis.readthedocs.io.
-The static documentation files and the build configuration is kept on the openlmis-blue repository, in the
+The static documentation files and the build configuration is kept on the openlmis-ref-distro repository, in the
 *docs* directory. It is also possible to rebuild and upload the documentation to Read the Docs manually, by
 running the *OpenLMIS-documentation* Jenkins job.
 
