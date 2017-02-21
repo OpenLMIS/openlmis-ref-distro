@@ -23,6 +23,7 @@ Conventions
    codeStyleguide
    testing
    errorHandling
+   licenseHeader
 
 Component Readme's
 =================
