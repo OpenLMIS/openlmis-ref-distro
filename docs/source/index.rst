@@ -5,9 +5,10 @@
 
 .. image:: header.png
     :align: center
-    :scale: 130%
-    :alt: OPENLMIS
-
+    :scale: 100%
+    :alt: OpenLMIS
+|
+|
 Welcome to OpenLMIS' documentation!
 ====================================
 
