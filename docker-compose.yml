@@ -11,7 +11,7 @@ services:
       - "53"
 
   nginx:
-    image: openlmis/nginx
+    image: openlmis/nginx:1
     ports:
       - "80:80"
     env_file: .env
@@ -93,7 +93,7 @@ services:
     depends_on: [consul]
 
   log:
-    image: openlmis/rsyslog
+    image: openlmis/rsyslog:1
     volumes:
       - 'syslog:/var/log'
     depends_on:

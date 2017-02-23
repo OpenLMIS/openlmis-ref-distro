@@ -157,7 +157,7 @@ all of these messages to the file `/var/log/messages` of the named volume `syslo
 To read this file, you may mount this filesystem via:
 
 ```shell
-$ docker run -it --rm -v openlmisrefdistro_syslog:/var/log openlmis/dev bash
+$ docker run -it --rm -v openlmisrefdistro_syslog:/var/log openlmis/dev:1 bash
 > tail /var/log/messages
 ```
 
@@ -171,7 +171,7 @@ The `nginx` container runs the nginx and consul-template processes.  These two l
 e.g to see Nginx's access log:
 
 ```shell
-$ docker run -it --rm -v openlmisrefdistro_nginx-log:/var/log/nginx/log openlmis/dev bash
+$ docker run -it --rm -v openlmisrefdistro_nginx-log:/var/log/nginx/log openlmis/dev:1 bash
 > tail /var/log/nginx/log/access.log
 ```
 
@@ -195,7 +195,7 @@ If you're using this repository, it's usually the name `openlmisrefdistro_defaul
 the command:
  
  ```shell
- docker run -it --rm --env-file=.env --network=openlmisrefdistro_default -v $(pwd)/cleanDb.sh:/cleanDb.sh openlmis/dev /cleanDb.sh
+ docker run -it --rm --env-file=.env --network=openlmisrefdistro_default -v $(pwd)/cleanDb.sh:/cleanDb.sh openlmis/dev:1 /cleanDb.sh
  ```
  Replace `openlmisrefdistro_default` with the proper network name if yours has changed.
  
