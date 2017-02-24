@@ -2,7 +2,7 @@
 
 ######################################################################
 # Useful for starting a local copy for testing/development.
-
+#
 # Using bash and some simple conventions around ifconfig/ipconfig
 # attempts to find the local IP (not a public IP in case of NAT)
 # to start the Reference Distrubtion on.
