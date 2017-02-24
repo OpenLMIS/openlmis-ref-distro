@@ -161,6 +161,14 @@ $ docker run -it --rm -v openlmisrefdistro_syslog:/var/log openlmis/dev:1 bash
 > tail /var/log/messages
 ```
 
+#### Log format for Services
+
+The default log format for the Services is below:
+
+* `<timestamp> <container ID> <thread ID> <log level> <logger / Java class> <log message>`
+
+The format from the thread ID onwards can be changed in the `config/log/logback.xml` file.
+
 ### Nginx container
 
 The `nginx` container runs the nginx and consul-template processes.  These two log to the named volumes:
