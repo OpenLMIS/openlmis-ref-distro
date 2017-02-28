@@ -103,11 +103,13 @@ There are multiple ways OpenLMIS can be extended, and lots of documentation and 
 
 * The Reference UI supports extension by adding CSS, overriding HTML layouts, adding new screens, or replacing
 existing screens in the UI application. See the [UI Extension Architecture and Guide](https://github.com/OpenLMIS/openlmis-requisition-refUI/blob/master/docs/extention_guide.md).
+* The Reference Distribution is a collection of collaborative **Services**, Services may be added in
+ or swapped out to create custom distributions.
 * The Services can be extended using **extension points** in the Java code. The core team is eager to add more
 extension points as they are requested by implementors. For documentation about this extension mechanism, see
 these 3 READMEs: [openlmis-example-extensions README](https://github.com/OpenLMIS/openlmis-example-extensions/blob/master/README.md), [openlmis-example-extension module README](https://github.com/OpenLMIS/openlmis-example-extension/blob/master/README.md), and [openlmis-example service README](https://github.com/OpenLMIS/openlmis-example/blob/master/README.md#extension-points-and-extension-modules).
-* Customization can also be achieved by adding in or swapping out individual **microservices** in order to
-provide new or altered functionality.
+* Extra Data allows for clients to add additional data to RESTful resources so that the internal
+storage mechanism inside a Service doesn't need to be changed.
 * Some features may require both API and UI extensions/customizations. The Technical Committee worked on a [Requisition Splitting Extension Scenario](https://openlmis.atlassian.net/wiki/display/OP/Requisition+Splitting+-+Extension+Scenario+Analysis)
 that illustrates how multiple extension techniques can be used in parallel.
 
@@ -134,7 +136,7 @@ creating an additional service and adding it in to your OpenLMIS instance. See t
 * Code that breaks the build or disables / removes needed tests to pass
 * Code that doesn't pass our Quality Gate - see the [Style Guide](https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md)
 and [Sonar](http://sonar.openlmis.org/).
-* Code that belongs in an Extension or a New Service but was added to Core or vice versa
+* Code that belongs in an Extension or a New Service
 * Code that might break existing implementations - the software can evolve and change, but the
  community needs to know about it first!
 
@@ -169,7 +171,8 @@ and keep your contribution specific to doing one thing.
 
 ## Automated Testing
 
-OpenLMIS 3 includes new patterns and tools for automated test coverage at all levels. Unit tests continue to be
+OpenLMIS 3 includes new [patterns and tools](https://github.com/OpenLMIS/openlmis-template-service/blob/master/TESTING.md) 
+for automated test coverage at all levels. Unit tests continue to be
 the foundation of our automated testing strategy, as they were in previous versions of OpenLMIS. Version 3
 introduces a new focus on integration tests, component tests, and contract tests (using Cucumber). Test
 coverage for unit and integration tests is being tracked automatically using Sonar. Check the status of test
