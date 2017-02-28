@@ -222,6 +222,10 @@ For complete licensing details be sure to reference the LICENSE file that comes 
 The Living Roadmap can be found here: https://openlmis.atlassian.net/wiki/display/OP/Living+Product+Roadmap
 The backlog can be found here: https://openlmis.atlassian.net/secure/RapidBoard.jspa?rapidView=46&view=planning.nodetail
 
+## Contributing Documentation
+
+Writing documentation is just as helpful as writing code. See [Contribute Documentation](http://docs.openlmis.org/en/latest/developer-docs/contributeDocs.html).
+
 ## References
 
 * Developer Documentation (ReadTheDocs) - [http://docs.openlmis.org/](http://docs.openlmis.org/)
