@@ -193,10 +193,10 @@ Learn more about OpenLMIS CI/CD on the wiki: [CI/CD Documentation](https://openl
 OpenLMIS 3 has translation keys and strings built into each component, including the API services and UI
 components. The community is encouraging the contribution of translations using Transifex, a tool to manage
 the translation process. Because of the micro-service architecture, each component has its own translation file
-and its own Transifex project. See the [OpenLMIS Transifex projects](https://www.transifex.com/openlmis/public/)
-to get started.
+and its own Transifex project.
 
-TODO: document how we can support "global" translations as opposed to project-specific localizations
+See the [OpenLMIS Transifex projects](https://www.transifex.com/openlmis/public/) and the
+[Translations wiki](https://openlmis.atlassian.net/wiki/display/OP/Translations) to get started.
 
 ## Licensing
 
