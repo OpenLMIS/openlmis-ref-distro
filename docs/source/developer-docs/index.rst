@@ -26,7 +26,7 @@ Conventions
    licenseHeader
 
 Component Readme's
-=================
+==================
 
 .. toctree::
    :maxdepth: 1
@@ -39,10 +39,11 @@ Component Readme's
    templateService
    requisitionUI
 
-Contribute to these docs
-========================
+Contribute
+==========
 
 .. toctree::
    :maxdepth: 1
    
+   contributionGuide
    contributeDocs
