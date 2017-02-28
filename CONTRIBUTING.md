@@ -133,7 +133,7 @@ creating an additional service and adding it in to your OpenLMIS instance. See t
 
 * Code that breaks the build or disables / removes needed tests to pass
 * Code that doesn't pass our Quality Gate - see the [Style Guide](https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md)
-and [Sonar](https://sonar.openlmis.org/).
+and [Sonar](http://sonar.openlmis.org/).
 * Code that belongs in an Extension or a New Service but was added to Core or vice versa
 * Code that might break existing implementations - the software can evolve and change, but the
  community needs to know about it first!
@@ -224,7 +224,7 @@ The backlog can be found here: https://openlmis.atlassian.net/secure/RapidBoard.
 
 ## References
 
-* ReadTheDocs developer documentation - [http://openlmis.readthedocs.io/](http://openlmis.readthedocs.io/)
+* Developer Documentation (ReadTheDocs) - [http://docs.openlmis.org/](http://docs.openlmis.org/)
 
 * Developer Guide (in the wiki) - [https://openlmis.atlassian.net/wiki/display/OP/Developer+Guide](https://openlmis.atlassian.net/wiki/display/OP/Developer+Guide)
 
