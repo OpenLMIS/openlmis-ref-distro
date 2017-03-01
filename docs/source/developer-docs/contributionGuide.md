@@ -145,12 +145,11 @@ and [Sonar](http://sonar.openlmis.org/).
 The OpenLMIS community employs several code-management techniques to help develop the software, enable contributions,
 discuss & review and pull the community together. The first is that OpenLMIS code is managed using Git and is always 
 publicly hosted on [GitHub](http://github.com/OpenLMIS/). We encourage everyone working on the codebase to 
-take advantage of GitHub's fork and pull-request model to track what's going on. Second, we follow, as needed, a git 
-branching strategy based on Vincent Driessen's 
-[A Successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/).
+take advantage of GitHub's fork and pull-request model to track what's going on. 
 
-TODO: Update this documentation with more information about the git workflow, feature toggles or any pull request/review
-process that is being adopted for OpenLMIS 3.
+**TODO**: More guidance on working on a micro-service team with fork/pull-requests is forthcoming.  
+It's important to communicate your development effort on the dev forum and always work toward 
+the next release.
 
 The general flow:
 
@@ -162,9 +161,11 @@ The general flow:
 
 4. *Commit* early and often to your branch
 
-5. *Re-base* your branch *often* from OpenLMIS `master` branch
+5. *Re-base* your branch *often* from OpenLMIS `master` branch - keep up to date!
 
-6. Issue a *Pull Request* back to the `master` branch - explain what you did and keep it brief to speed review! Mention the JIRA ticket number (e.g., "OLIMS-34") in the commit and pull request messages to activate the JIRA/GitHub integration.
+6. Issue a *Pull Request* back to the `master` branch - explain what you did and keep it brief to speed review! 
+Mention the JIRA ticket number (e.g., "OLIMS-34") in the commit and pull request messages to activate the 
+JIRA/GitHub integration.
 
 While developing your code, be sure you follow the [Style Guide](https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md)
 and keep your contribution specific to doing one thing.
