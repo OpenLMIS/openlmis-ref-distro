@@ -37,8 +37,8 @@ checkOrFetchEnv() {
 
 setEnvByIp() {
   echo "Replacing VIRTUAL_HOST and BASE_URL of .env file with ${HOST_ADDR}"
-  sed -i '#' -e "s#^VIRTUAL_HOST.*#VIRTUAL_HOST=${HOST_ADDR}#" .env
-  sed -i '#' -e "s#^BASE_URL.*#BASE_URL=http://${HOST_ADDR}#" .env
+  sed -i '' -e "s#^VIRTUAL_HOST.*#VIRTUAL_HOST=${HOST_ADDR}#" .env
+  sed -i '' -e "s#^BASE_URL.*#BASE_URL=http://${HOST_ADDR}#" .env
 }
 
 findHost
