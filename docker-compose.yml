@@ -28,7 +28,7 @@ services:
     depends_on: [consul]
 
   requisition:
-    image: openlmis/requisition:3.1.0
+    image: openlmis/requisition:3.1.2-SNAPSHOT
     env_file: .env
     environment:
       JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
