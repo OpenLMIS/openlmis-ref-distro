@@ -11,4 +11,3 @@ Generated OpenLMIS v3 ERD.
    erd-requisition
    erd-fulfillment
    erd-auth
-   erd-stockmanagement
