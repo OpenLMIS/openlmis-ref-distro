@@ -23,7 +23,7 @@ services:
     depends_on: [consul]
 
   reference-ui:
-    image: openlmis/reference-ui:4.0.0-SNAPSHOT
+    image: openlmis/reference-ui:4.0.0
     env_file: .env
     depends_on: [consul]
 
