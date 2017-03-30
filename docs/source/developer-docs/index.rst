@@ -37,7 +37,7 @@ Component Readme's
    referencedata
    stockmanagement
    templateService
-   requisitionUI
+   referenceUI
 
 Contribute
 ==========
