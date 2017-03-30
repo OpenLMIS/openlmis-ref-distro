@@ -8,6 +8,7 @@ from a modularized Reference UI.  Extension mechanisms in addition to
 microservices and UI modules further allow for components of the architecture 
 to be customized without the need for the community to fork the code base:
 
+- UI modules give flexibility in creating new user experiences or changing existing ones
 - Extension Points & Modules - allows Service functionality to be modified
 - Extra Data - allows for extensions to store data with existing components
 
