@@ -23,7 +23,7 @@ services:
     depends_on: [consul]
 
   reference-ui:
-    image: openlmis/reference-ui:4.0.0-SNAPSHOT
+    image: openlmis/reference-ui:4.0.1-SNAPSHOT
     env_file: .env
     depends_on: [consul]
 
@@ -38,7 +38,7 @@ services:
     depends_on: [log]
 
   referencedata:
-    image: openlmis/referencedata:4.0.0
+    image: openlmis/referencedata:5.0.0-SNAPSHOT
     env_file: .env
     environment:
       JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
@@ -48,7 +48,7 @@ services:
     depends_on: [log]
 
   auth:
-    image: openlmis/auth:3.0.1
+    image: openlmis/auth:3.0.2-SNAPSHOT
     env_file: .env
     environment:
       JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
@@ -58,7 +58,7 @@ services:
     depends_on: [log]
 
   notification:
-    image: openlmis/notification:3.0.0
+    image: openlmis/notification:3.0.1-SNAPSHOT
     env_file: .env
     environment:
       JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml'
@@ -68,7 +68,7 @@ services:
     depends_on: [log]
 
   fulfillment:
-    image: openlmis/fulfillment:3.0.1
+    image: openlmis/fulfillment:3.1.0-SNAPSHOT
     env_file: .env
     environment:
       JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
