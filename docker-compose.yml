@@ -31,7 +31,7 @@ services:
     image: openlmis/requisition:3.1.2-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
       spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
@@ -41,7 +41,7 @@ services:
     image: openlmis/referencedata:5.0.0-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
       spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
@@ -51,7 +51,7 @@ services:
     image: openlmis/auth:3.0.2-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
       spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
@@ -61,7 +61,7 @@ services:
     image: openlmis/notification:3.0.1-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml'
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
       spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
@@ -71,7 +71,7 @@ services:
     image: openlmis/fulfillment:3.1.0-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
       spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
@@ -81,7 +81,7 @@ services:
     image: openlmis/stockmanagement:1.0.0-BETA-SNAPSHOT
     env_file: .env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/config/log/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
       spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
