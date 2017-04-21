@@ -147,9 +147,7 @@ discuss & review and pull the community together. The first is that OpenLMIS cod
 publicly hosted on [GitHub](http://github.com/OpenLMIS/). We encourage everyone working on the codebase to 
 take advantage of GitHub's fork and pull-request model to track what's going on. 
 
-**TODO**: More guidance on working on a micro-service team with fork/pull-requests is forthcoming.  
-It's important to communicate your development effort on the dev forum and always work toward 
-the next release.
+For more about version numbers and releasing, see **versioningReleasing.md**.
 
 The general flow:
 

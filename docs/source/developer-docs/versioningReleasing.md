@@ -1,19 +1,43 @@
 # Versioning and Releasing
 
+## Micro-Services are Versioned Independently
+
+OpenLMIS version 3 introduced a micro-services architecture where each component is versioned and
+released independently. In addition, all the components are packaged together into a Reference
+Distribution. When we refer to OpenLMIS 3.X.Y, we are talking about a release of the Reference
+Distribution. The components inside ref-distro 3.X.Y have their own separate version numbers which
+are listed on the Release Notes.
+
+The components are each [semantically versioned](http://semver.org/), while the ref-distro has
+"milestone" releases that are conducted roughly quarterly (every 3 months we release 3.2, 3.3, etc).
+
+### Where We Publish Releases
+
+All OpenLMIS source code is available on GitHub, and the components have separate repositories.
+Releases are tagged on GitHub. Releases of many components, including the ref-distro, are also
+published to Docker Hub as a docker image. In addition, the Java service components have releases
+published to Maven.
+
 ## Release Numbering
 
-Version 3 follows the [Semantic Versioning](http://semver.org/) standard:
+Version 3 components follow the [Semantic Versioning](http://semver.org/) standard:
 
 * **Patch** releases with bug fixes, small changes and security patches will come out on an
-  as-needed schedule (3.0.1, 3.0.2, etc). Compatibility with past releases under the Major.Minor
+  as-needed schedule (1.0.1, 1.0.2, etc). Compatibility with past releases under the Major.Minor
   is expected.
-* **Minor** releases with new functionality will come out quarterly and will be
-  backwards-compatible (3.1, 3.2, 3.3, etc). Compatibility with past releases under the same
-  Major number is expected.
-* **Major** releases would be for non-backwards-compatible API changes. None is planned at this
-  time (4.0 and above).
+* **Minor** releases with new functionality will be backwards-compatible (1.1, 1.2, 1.3, etc).
+  Compatibility with past releases under the same Major number is expected.
+* **Major** releases would be for non-backwards-compatible API changes. When a new major version
+  of a component is included in a Reference Distribution release, the Release Notes will document
+  any migration or upgrade issues. 
 
-Version 2 also followed the above standards.
+The Version 3 Reference Distribution follows a milestone release schedule with quarterly releases.
+Release Notes for each ref-distro release will include the version numbers of each component
+included in the distribution. If specific components have moved by a Minor or Major version number,
+the Release Notes will describe the changes (such as new features or any non-backwards-compatible
+API changes or migration issues).
+
+Version 2 also followed the semantic versioning standard.
 
 ### Goals
 
@@ -24,7 +48,7 @@ to the open source project, and Country B could use it; and Country B could cont
 that Country A could use. For this to succeed, multiple countries using the OpenLMIS version 3
 series must be upgrading to the latest Patch and Minor releases as they become available. Each
 country shares their bug fixes or new features with the open source community for inclusion in the
-new Patch or Minor release.
+next release.
 
 ### Pre-Releases
 
@@ -55,11 +79,57 @@ thread](https://groups.google.com/forum/#!topic/openlmis-dev/cDV42HOdvCI). The 3
 versioning and schedule were also discussed at the [Product Committee meeting on February 14,
 2017](https://openlmis.atlassian.net/wiki/display/OP/February+14+2017).
 
+### We Prefer Coordination over Branching
+
+Because each component is independently, semantically versioned, the developers working on that
+component need to coordinate so they are working towards the same version (their next release).
+
+Each component's repository has a version file (gradle.properties or version.properties) that
+states which version is currently being developed. By default, we expect components will be working
+on the master branch towards a Patch release. The developers can coordinate any time they are ready
+to work on features (for a Minor release).
+
+If developers propose to break with past API compatibility and make a Major release of the
+component, that should be discussed on the [Dev
+Forum](https://groups.google.com/forum/#!forum/openlmis-dev). They should be ready to articulate a
+clear need, to evaluate other options to avoid breaking backwards-compatibility, and to document a
+migration path for all existing users of the software. Even if the Dev Forum and component lead
+decide to release a Major version, we still require automated schema migrations (using Flyway) so
+existing users will have their data preserved when they upgrade.
+
+Branching in git is discouraged. OpenLMIS does not use git-flow or a branching-based workflow. In
+our typical workflow, developers are all contributing on the master branch to the next release of
+their component. If developers need to work on more than one release at the same time, then they
+could use a branch. For example, if the component is working towards its next Patch, such as
+1.0.1-SNAPSHOT, but a developer is ready to work on a big new feature for a future Minor release,
+that developer may choose to work on a branch. Overall, branching is possible, but we prefer to
+coordinate to work together towards the same version at the same time, and we don't have a
+branch-driven workflow as part of our collaboration or release process.
+
+### Code Reviews and Pull Requests
+
+We expect all code committed to OpenLMIS receives either a review from a second person or goes
+through a pull request workflow on GitHub. Generally, the developers who are dedicated to working
+on OpenLMIS itself have commit access in GitHub. They coordinate in Slack, they plan work using
+JIRA tickets and sprints, and during their ticket workflow a code review is conducted. Code should
+include automated tests, and the ticket workflow also includes a human Quality Assurance (QA) step.
+
+Any other developers are invited to contribute to OpenLMIS using Pull Requests in GitHub at any
+time. This includes developers who are implementing, extending and customizing OpenLMIS for
+different local needs.
+
+For more about the coding standards and how to contribute, see **contributionGuide.md**.
+
+### Future Strategies
+
+As the OpenLMIS version 3 installation base grows, we expect that additional strategies will be
+needed so that new functionality added to the platform will not be a risk or a barrier for existing
+users. Feature Toggles is one strategy the technical community is considering.
+
 ## Rolling a Release
 
-Below is the process used for creating and publishing a release of OpenLMIS 3.x. These steps are
-being documented for 3.0 Beta, and this page should be used and updated for 3.0, 3.1, and subsequent
-3.x releases.
+Below is the process used for creating and publishing a release of each component as well as the
+Reference Distribution (OpenLMIS 3.x.y). 
 
 ### Goals
 
@@ -71,18 +141,47 @@ wiped and updated each time a new Git commit is made.
 
 ### Prerequisites
 
-Before you tag and publish the release, make sure the following are in place:
+Before you release, make sure the following are in place:
 
 * Demo data and seed data: make sure you have demo data that is sufficient to demonstrate the
   features of this release. Your demo data might be built into the repositories and used in the
   build process OR be prepared to run a one-time database load script/command.
 * Features are completed for this release and are checked in.
 * All automated tests pass.
-* Release notes and other documentation/publicity is ready for distribution.
-* The Release Manager has certifications for remote UAT environment and a docker client installed
-  on the machine he or she will be releasing to.
+* Documentation is ready. For components, this is the CHANGELOG.md file, and for the ref-distro
+  this is a Release Notes page in the wiki.
 
-### Steps
+### Releasing a Component (or Updating the Version SNAPSHOT)
+
+Each component is always working towards some future release, version X.Y.Z-SNAPSHOT. A component
+may change what version it is working towards, and when you update the serviceVersion of that
+component, the other items below need to change.
+
+These steps apply when you change a component's serviceVersion (changing which -SNAPSHOT the
+codebase is working towards):
+
+- Within the component, set the **serviceVersion** property in the **gradle.properties** file to
+  the new -SNAPSHOT you've chosen.
+  - See Step 3 below for details.
+- Update **openlmis-ref-distro** to set **docker-compose.yml** to use the new -SNAPSHOT this
+  component is working towards.
+  - See Step 5 below for details.
+  - Use a commit message that explains your change. EG, "Upgrade to 3.1.0-SNAPSHOT of
+    openlmis-requisition component."
+- Update **openlmis-deployment** to set each **docker-compose.yml** file in the deployment/ folder
+  for the relevant environments, probably uat_env/, test_env/, but not demo_env/
+  - See Step 7 below for details.
+  - Similar to above, please include a helpful commit message. (You do not need to tag this repo
+    because it is only used by Jenkins, not external users.)
+- Update **openlmis-contract-tests** to set each **docker-compose...yml** file that includes your
+  component to use the new -SNAPSHOT version.
+  - Similar to the previous steps, see the lines under "services:" and change its version to the new
+    snapshot.
+  - You do not need to tag this repo. It will be used by Jenkins for subsequent contract test runs.
+- (If your component, such as the openlmis-service-util library, publishes to Maven, then other
+  steps will be needed here.)
+
+### Releasing the Reference Distribution (openlmis-ref-distro)
 
 When you are ready to create and publish a release (Note that version modifiers should not be used
 in these steps - e.g. SNAPSHOT):
@@ -138,6 +237,8 @@ in these steps - e.g. SNAPSHOT):
       serviceName → "image: openlmis/requisition-refui:3.0.0-beta-SNAPSHOT" and change that last part
       to the new version tag for each service.
    1. Commit this change and tag the openlmis-ref-distro repo with the release being made.
+      Note: There is consideration underway about using a git branch to coordinate the ref-distro
+      release.
 1. In order to publish the openlmis-ref-distro documentation to ReadTheDocs:
    1. Edit **collect-docs.py** to change links to pull in specific version tags of README files. In that
       script, change a line like
@@ -165,32 +266,3 @@ can conduct communication tasks such as sharing the URL and Release Announcement
 Congratulations!
 
 
-### Updating a Component ServiceVersion
-
-Each component is always working towards some future release, version X.Y.Z-SNAPSHOT. A component
-may change what version it is working towards, and when you update the serviceVersion of that
-component, the other items below need to change.
-
-These steps apply when you change a component's serviceVersion (changing which -SNAPSHOT the
-codebase is working towards):
-
-- Within the component, set the **serviceVersion** property in the **gradle.properties** file to
-  the new -SNAPSHOT you've chosen.
-  - See Step 3 above for details.
-- Update **openlmis-ref-distro** to set **docker-compose.yml** to use the new -SNAPSHOT this
-  component is working towards.
-  - See Step 5 above for details.
-  - Use a commit message that explains your change. EG, "Upgrade to 3.1.0-SNAPSHOT of
-    openlmis-requisition component."
-- Update **openlmis-deployment** to set each **docker-compose.yml** file in the deployment/ folder
-  for the relevant environments, probably uat_env/, test_env/, but not demo_env/
-  - See Step 7 above for details.
-  - Similar to above, please include a helpful commit message. (You do not need to tag this repo
-    because it is only used by Jenkins, not external users.)
-- Update **openlmis-contract-tests** to set each **docker-compose...yml** file that includes your
-  component to use the new -SNAPSHOT version.
-  - Similar to the steps above, see the lines under "services:" and change its version to the new
-    snapshot.
-  - You do not need to tag this repo. It will be used by Jenkins for subsequent contract test runs.
-- (If your component, such as the openlmis-service-util library, publishes to Maven, then other
-  steps will be needed here.)
