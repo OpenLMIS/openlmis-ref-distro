@@ -25,6 +25,7 @@ Conventions
    testing
    errorHandling
    licenseHeader
+   versioningReleasing
 
 Component Readme's
 ==================
