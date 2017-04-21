@@ -132,7 +132,7 @@ in these steps - e.g. SNAPSHOT):
       Finally, on Jenkins, identify which build was the one that built and published to Docker/Maven
       the release. Press the Keep the build forever button.
 1. In **openlmis-config**, tag the most recent commit with the tag version (including the 'v').
-1. Update docker-compose.yml in openlmis-ref-distro with the release chosen
+1. Update **docker-compose.yml** in **openlmis-ref-distro** with the release chosen
    1. For each of the services deployed as the new version on DockerHub, update the version in the
       **docker-compose.yml** file to the version you're releasing. See the lines under "services:" →
       serviceName → "image: openlmis/requisition-refui:3.0.0-beta-SNAPSHOT" and change that last part
@@ -177,18 +177,18 @@ codebase is working towards):
 - Within the component, set the **serviceVersion** property in the **gradle.properties** file to
   the new -SNAPSHOT you've chosen.
   - See Step 3 above for details.
-- Update **openlmis-ref-distro** to set **docker-compose.yml** to use the new -SNAPSHOT this component is
-  working towards.
+- Update **openlmis-ref-distro** to set **docker-compose.yml** to use the new -SNAPSHOT this
+  component is working towards.
   - See Step 5 above for details.
   - Use a commit message that explains your change. EG, "Upgrade to 3.1.0-SNAPSHOT of
     openlmis-requisition component."
-- Update **openlmis-deployment** to set each **docker-compose.yml** file in the deployment/ folder for the
-  relevant environments, probably uat_env/, test_env/, but not demo_env/
+- Update **openlmis-deployment** to set each **docker-compose.yml** file in the deployment/ folder
+  for the relevant environments, probably uat_env/, test_env/, but not demo_env/
   - See Step 7 above for details.
   - Similar to above, please include a helpful commit message. (You do not need to tag this repo
     because it is only used by Jenkins, not external users.)
-- Update openlmis-contract-tests to set each docker-compose...yml file that includes your component
-  to use the new -SNAPSHOT version.
+- Update **openlmis-contract-tests** to set each **docker-compose...yml** file that includes your
+  component to use the new -SNAPSHOT version.
   - Similar to the steps above, see the lines under "services:" and change its version to the new
     snapshot.
   - You do not need to tag this repo. It will be used by Jenkins for subsequent contract test runs.
