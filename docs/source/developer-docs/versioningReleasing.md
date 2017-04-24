@@ -5,18 +5,22 @@
 OpenLMIS version 3 introduced a micro-services architecture where each component is versioned and
 released independently. In addition, all the components are packaged together into a Reference
 Distribution. When we refer to OpenLMIS 3.X.Y, we are talking about a release of the Reference
-Distribution. The components inside ref-distro 3.X.Y have their own separate version numbers which
-are listed on the Release Notes.
+Distribution, called the [ref-distro in GitHub](https://github.com/OpenLMIS/openlmis-ref-distro).
+The components inside ref-distro 3.X.Y have their own separate version numbers which are listed on
+the Release Notes.
 
 The components are each [semantically versioned](http://semver.org/), while the ref-distro has
 "milestone" releases that are conducted roughly quarterly (every 3 months we release 3.2, 3.3, etc).
+Each ref-distro release includes specific versions of the other components, both service components
+and UI components.
 
 ### Where We Publish Releases
 
 All OpenLMIS source code is available on GitHub, and the components have separate repositories.
-Releases are tagged on GitHub. Releases of many components, including the ref-distro, are also
-published to Docker Hub as a docker image. In addition, the Java service components have releases
-published to Maven.
+Releases are tagged on GitHub for all components including the ref-distro. Releases of some
+components, such as the service components and UI components, are also published to Docker Hub as
+versioned docker images. In addition, we publish releases to Maven for the service components
+written in Java Spring along with their service utility library.
 
 ## Release Numbering
 
@@ -29,7 +33,7 @@ Version 3 components follow the [Semantic Versioning](http://semver.org/) standa
   Compatibility with past releases under the same Major number is expected.
 * **Major** releases would be for non-backwards-compatible API changes. When a new major version
   of a component is included in a Reference Distribution release, the Release Notes will document
-  any migration or upgrade issues. 
+  any migration or upgrade issues.
 
 The Version 3 Reference Distribution follows a milestone release schedule with quarterly releases.
 Release Notes for each ref-distro release will include the version numbers of each component
@@ -129,7 +133,7 @@ users. Feature Toggles is one strategy the technical community is considering.
 ## Rolling a Release
 
 Below is the process used for creating and publishing a release of each component as well as the
-Reference Distribution (OpenLMIS 3.x.y). 
+Reference Distribution (OpenLMIS 3.X.Y).
 
 ### Goals
 
