@@ -17,10 +17,10 @@ and UI components.
 ### Where We Publish Releases
 
 All OpenLMIS source code is available on GitHub, and the components have separate repositories.
-Releases are tagged on GitHub for all components including the ref-distro. Releases of some
+Releases are tagged on GitHub for all components as well as the ref-distro. Releases of some
 components, such as the service components and UI components, are also published to Docker Hub as
-versioned docker images. In addition, we publish releases to Maven for the service components
-written in Java Spring along with their service utility library.
+versioned docker images. In addition, we publish releases of the [service utility
+library](https://github.com/OpenLMIS/openlmis-service-util) to Maven.
 
 ## Release Numbering
 
