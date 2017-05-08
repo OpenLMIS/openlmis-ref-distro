@@ -34,7 +34,7 @@ Reference Data Service
 
 Provides the reference data for the rest of the processes: facilities, programs, products, etc.
 
-`Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/701/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Requisition Service
