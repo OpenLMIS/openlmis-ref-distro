@@ -50,7 +50,7 @@ Fulfillment Service
 
 Includes the basics of fulfillment.
 
-`Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/263/artifact/build/resources/main/api-definition.html>`_
 
 ********************
 Notification Service
