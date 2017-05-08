@@ -164,9 +164,32 @@ component, the other items below need to change.
 These steps apply when you change a component's serviceVersion (changing which -SNAPSHOT the
 codebase is working towards):
 
-- Within the component, set the **serviceVersion** property in the **gradle.properties** file to
-  the new -SNAPSHOT you've chosen.
-  - See Step 3 below for details.
+1. Update your CHANGELOG.md with all of the changes that will make it into this release since the previous release.
+Ideally this is done while you are making those changes.
+1. Wait for all tests (including contract tests) to pass.
+1. Within the component, set the **serviceVersion** property in the **gradle.properties** 
+(version.properties for UI components) file to remove the -SNAPSHOT.  Create a commit that
+has _only_ this change, and push to GitHub.
+1. Wait until the [Jenkin's](http://build.openlmis.org) job to build this component has 
+_finished_ and all down-stream contract-tests have also completed successfully.  If it's 
+still in the queue, and not actually building, keep waiting.
+1. Check the release is available.  Services and UI components will be on 
+[DockerHub](http://hub.docker.com/u/openlmis).
+  - If it's the service-util, see the Maven Publishing section.
+1. Tag & Publish the release in [GitHub](https://github.com/openlmis)
+1. For a Service, ensure the build is always kept by clicking the "Keep This Build Forever" button on the Jenkin's Job.
+  - If it's a Service that has a database connection, also keep the ERD generation job.  This is easiest
+  to do by following the Service's pipeline to see which ERD job was the result of the Job that published
+  the Release.
+1. Choose the next version to release, and update the **serviceVersion** to that version's SNAPSHOT.  e.g.
+if I just released v1.0.0, and I know I'm working on bug-fixes for my next planned release (which is a safe bet),
+then I'd set the **serviceVersion** to *1.0.0-SNAPSHOT*.
+  - **important**: you want to do this, increment the release version, before any new work is done on the 
+  component, so that there is only one commit, which is the release, that ties back to one image and one build.
+
+-- WIP BREAK --
+
+
 - Update **openlmis-ref-distro** to set **docker-compose.yml** to use the new -SNAPSHOT this
   component is working towards.
   - See Step 5 below for details.
@@ -189,6 +212,8 @@ codebase is working towards):
 
 When you are ready to create and publish a release (Note that version modifiers should not be used
 in these steps - e.g. SNAPSHOT):
+
+*Prerequisite*: Each component should be released prior to a ref-distro release.
 
 1. Select a tag name such as '3.0.0-beta' based on the numbering guidelines above.
 1. The service utility library should be released prior to the Services. Publishing to the central
