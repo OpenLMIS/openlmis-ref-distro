@@ -58,7 +58,7 @@ Notification Service
 
 Notifying users when their attention is needed.
 
-`Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-service/101/artifact/build/resources/main/api-definition.html>`_
 
 ********************
 Stock Management Service
