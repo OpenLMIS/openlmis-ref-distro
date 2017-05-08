@@ -68,7 +68,7 @@ services:
     depends_on: [log]
 
   fulfillment:
-    image: openlmis/fulfillment:3.1.0-SNAPSHOT
+    image: openlmis/fulfillment:3.0.2-SNAPSHOT
     env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
