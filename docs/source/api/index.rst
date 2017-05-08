@@ -42,7 +42,7 @@ Requisition Service
 
 Requisition (pull) based replenishment process.
 
-`Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/1463/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Fulfillment Service
