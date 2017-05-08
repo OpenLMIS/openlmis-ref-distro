@@ -26,7 +26,7 @@ Auth Service
 
 Security credentials, Authentication and Authorization. Uses OAuth2.
 
-`Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/229/artifact/build/resources/main/api-definition.html>`_
 
 **********************
 Reference Data Service
