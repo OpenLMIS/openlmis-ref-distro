@@ -3,7 +3,7 @@ services:
 
   consul:
     command: -server -bootstrap
-    image: gliderlabs/consul-server
+    image: gliderlabs/consul-server:0.6
     ports:
       - "8300"
       - "8400"
@@ -23,12 +23,12 @@ services:
     depends_on: [consul]
 
   reference-ui:
-    image: openlmis/reference-ui:4.0.1-SNAPSHOT
+    image: openlmis/reference-ui:5.0.0
     env_file: .env
     depends_on: [consul]
 
   requisition:
-    image: openlmis/requisition:3.1.2-SNAPSHOT
+    image: openlmis/requisition:3.1.2
     env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
@@ -38,7 +38,7 @@ services:
     depends_on: [log]
 
   referencedata:
-    image: openlmis/referencedata:5.0.0-SNAPSHOT
+    image: openlmis/referencedata:5.0.1
     env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
@@ -48,7 +48,7 @@ services:
     depends_on: [log]
 
   auth:
-    image: openlmis/auth:3.0.2-SNAPSHOT
+    image: openlmis/auth:3.0.2
     env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
@@ -58,7 +58,7 @@ services:
     depends_on: [log]
 
   notification:
-    image: openlmis/notification:3.0.1-SNAPSHOT
+    image: openlmis/notification:3.0.1
     env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
@@ -68,20 +68,10 @@ services:
     depends_on: [log]
 
   fulfillment:
-    image: openlmis/fulfillment:3.0.2-SNAPSHOT
+    image: openlmis/fulfillment:3.0.2
     env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
-      spring_profiles_active: ${spring_profiles_active}
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log]
-
-  stockmanagement:
-    image: openlmis/stockmanagement:1.0.0-BETA-SNAPSHOT
-    env_file: .env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
       spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
