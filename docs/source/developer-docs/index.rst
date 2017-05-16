@@ -22,6 +22,7 @@ Conventions
    :maxdepth: 1
    
    codeStyleguide
+   uiCodeConventions
    testing
    errorHandling
    licenseHeader
