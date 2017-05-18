@@ -7,12 +7,15 @@
 # attempts to find the local IP (not a public IP in case of NAT)
 # to start the Reference Distrubtion on.
 #
+# Pass to script your network interface if using multiple.
+#
 # WARNING:  this is expiremental, you should back-up your .env
 # file first before running this script.
 ######################################################################
 
 set -e
 HOST_ADDR=''
+INTERFACE="$1"
 
 findHost() {
   if command -v ipconfig >/dev/null 2>&1; then
@@ -20,7 +23,7 @@ findHost() {
     HOST_ADDR=`ipconfig getifaddr en0`
   else
     echo '... getting Host IP from ifconfig'
-    HOST_ADDR=`ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'`
+    HOST_ADDR=`ifconfig $INTERFACE | grep 'inet addr:' | grep -v '127.0.0.1' | grep -v 'Bcast:0.0.0.0' | cut -d: -f2 | awk '{ print $1}'`
   fi
 
   echo "IP: ${HOST_ADDR}"
@@ -37,8 +40,8 @@ checkOrFetchEnv() {
 
 setEnvByIp() {
   echo "Replacing VIRTUAL_HOST and BASE_URL of .env file with ${HOST_ADDR}"
-  sed -i '' -e "s#^VIRTUAL_HOST.*#VIRTUAL_HOST=${HOST_ADDR}#" .env
-  sed -i '' -e "s#^BASE_URL.*#BASE_URL=http://${HOST_ADDR}#" .env
+  sed -i '' -e "s#^VIRTUAL_HOST.*#VIRTUAL_HOST=${HOST_ADDR}#" .env 2>/dev/null || true
+  sed -i '' -e "s#^BASE_URL.*#BASE_URL=http://${HOST_ADDR}#" .env 2>/dev/null || true
 }
 
 findHost
