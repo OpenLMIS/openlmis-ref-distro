@@ -88,7 +88,7 @@ services:
     depends_on: [log]
 
   db:
-    image: openlmis/postgres:9.6
+    image: openlmis/postgres:9.6-postgis
     env_file: .env
     depends_on: [consul]
 
