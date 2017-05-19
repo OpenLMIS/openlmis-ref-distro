@@ -12,8 +12,8 @@
 Welcome to OpenLMIS' documentation!
 ====================================
 
-OpenLMIS (Open Logistics Management Information System) is software for a
-shared, open source solution for managing medical commodity distribution
+OpenLMIS (Open Logistics Management Information System) is software for a 
+shared, open source solution for managing medical commodity distribution 
 in low- and middle-income countries. For more information, see OpenLMIS.org_.
 
 Contents:
@@ -26,7 +26,6 @@ Contents:
    erd/index
    styleguide/index
    api/index
-   deployment/index
 
 Links:
 ======
