@@ -25,7 +25,7 @@ Contents:
    :maxdepth: 1
 
    architecture/index
-   developer-docs/index
+   components/index
    erd/index
    styleguide/index
    api/index
