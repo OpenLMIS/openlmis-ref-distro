@@ -69,9 +69,9 @@ Notifying users when their attention is needed.
 - `Live Documentation for Notification API <http://test.openlmis.org/notification/docs/#/default>`_
 - `Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
-********************
+*************************
 Stock Management Service
-********************
+*************************
 
 Electronic stock cards.
 

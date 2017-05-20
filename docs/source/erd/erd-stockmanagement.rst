@@ -1,6 +1,6 @@
-===============
+=====================
 Stock Management ERD
-===============
+=====================
 
 ERD schema of Stock Management service:
 
