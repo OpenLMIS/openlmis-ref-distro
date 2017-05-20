@@ -28,7 +28,9 @@ Contents:
    components/index
    erd/index
    styleguide/index
+   conventions/index
    deployment/index
+   conventions/versioningReleasing
 
 Links:
 ======

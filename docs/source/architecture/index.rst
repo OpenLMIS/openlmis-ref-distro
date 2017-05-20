@@ -15,6 +15,26 @@ to be customized without the need for the community to fork the code base:
 Combined these components allow the OpenLMIS community to customize and
 contribute to a shared LMIS.
 
+Docker
+=======
+
+Docker Engine and Docker Compose is utilized throughout the tech stack to
+provide consistent builds, quicken environment setup and ensure that there are
+clean boundaries between components.  Each deployable component is versioned
+and published as a Docker Image to the public Docker Hub.  From this repository
+of ready-to-run images on Docker Hub anyone may pull the image down to run the
+component.
+
+Development environments are typically started by running a single Service or
+UI module's development docker compose.  Using docker compose allows the
+component's author to specify the tooling and test runtime (e.g. PostgreSQL)
+that's needed to compile, test and build and package the production docker
+image that all implementation's are intended to use.
+
+After a production docker image is produced, docker compose is used once again
+in the Reference Distribution to combine the desired deployment images with the
+needed configuration to produce an OpenLMIS deployment.
+
 UI
 ===
 
