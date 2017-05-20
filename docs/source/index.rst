@@ -24,6 +24,7 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
+   architecture/index
    developer-docs/index
    erd/index
    styleguide/index

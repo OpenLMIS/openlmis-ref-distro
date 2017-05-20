@@ -18,7 +18,7 @@ UI Technical Guides
 
 .. toctree::
    :maxdepth: 1
-   
+
    applicationStructure
    buildProcess
    extentionGuide
