@@ -1,5 +1,11 @@
 import urllib
 
+#architecture
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/application_structure.md", "architecture/applicationStructure.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/build_process.md", "architecture/buildProcess.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/extention_guide.md", "architecture/extentionGuide.md")
+
+#components
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillment/master/README.md", "components/fulfillmentService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-requisition/master/README.md", "components/requisitionService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth/master/README.md", "components/authService.md")
@@ -7,15 +13,14 @@ urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referenc
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-stockmanagement/master/README.md", "components/stockmanagementService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/README.md", "components/templateServiceService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-reference-ui/master/README.md", "components/referenceUI.md")
+
+#conventions
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/STYLE-GUIDE.md", "conventions/codeStyleguide.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/TESTING.md", "conventions/testing.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/ERROR_HANDLING.md", "conventions/errorHandling.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/LICENSE-HEADER.md", "conventions/licenseHeader.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/coding_conventions.md", "conventions/uiCodeConventions.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/application_structure.md", "styleguide/applicationStructure.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/build_process.md", "styleguide/buildProcess.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/extention_guide.md", "styleguide/extentionGuide.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/styleguide.md", "styleguide/styleguide.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/styleguide.md", "conventions/styleguide.md")
 
 # deployment
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/README.md", "deployment/introAndTopology.md")
