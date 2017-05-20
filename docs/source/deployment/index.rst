@@ -9,8 +9,9 @@ repository.  Documentation from that repository is listed below:
 
 .. toctree::
    :maxdepth: 1
-   deploymentIntroAndTopology
-   deploymentProvisionSingleHost
-   deploymentProvisionSwarmWithELB
-   deploymentProvisionSwarmWithElasticIp
-   deploymentDemoAndCiThroughJenkins
+
+   introAndTopology
+   provisionSingleHost
+   provisionSwarmWithELB
+   provisionSwarmWithElasticIp
+   demoAndCiJenkins

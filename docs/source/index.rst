@@ -7,8 +7,10 @@
     :align: center
     :scale: 100%
     :alt: OpenLMIS
+
 |
 |
+
 Welcome to OpenLMIS' documentation!
 ====================================
 
