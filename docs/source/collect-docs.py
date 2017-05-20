@@ -23,7 +23,7 @@ urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/doc
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/styleguide.md", "conventions/styleguide.md")
 
 # deployment
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/README.md", "deployment/introAndTopology.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/deploymentTopology.md", "deployment/topology.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/provision/Provision-single-host.md", "deployment/provisionSingleHost.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/provision/Provision-swarm-With-ELB.md", "deployment/provisionSwarmWithELB.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/provision/Provision-swarm-With-Elastic-ip.md", "deployment/provisionSwarmWithElasticIp.md")

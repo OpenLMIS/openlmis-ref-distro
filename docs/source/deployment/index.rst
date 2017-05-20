@@ -10,7 +10,7 @@ repository.  Documentation from that repository is listed below:
 .. toctree::
    :maxdepth: 1
 
-   introAndTopology
+   topology
    provisionSingleHost
    provisionSwarmWithELB
    provisionSwarmWithElasticIp

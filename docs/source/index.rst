@@ -28,7 +28,6 @@ Contents:
    components/index
    erd/index
    styleguide/index
-   api/index
    deployment/index
 
 Links:
