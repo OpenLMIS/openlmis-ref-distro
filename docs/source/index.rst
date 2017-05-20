@@ -31,6 +31,7 @@ Contents:
    conventions/index
    deployment/index
    conventions/versioningReleasing
+   contribute/index
 
 Links:
 ======

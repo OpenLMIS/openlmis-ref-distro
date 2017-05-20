@@ -18,7 +18,6 @@ urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referenc
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/STYLE-GUIDE.md", "conventions/codeStyleguide.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/TESTING.md", "conventions/testing.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/ERROR_HANDLING.md", "conventions/errorHandling.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/LICENSE-HEADER.md", "conventions/licenseHeader.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/coding_conventions.md", "conventions/uiCodeConventions.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/styleguide.md", "conventions/styleguide.md")
 
@@ -28,3 +27,6 @@ urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployme
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/provision/Provision-swarm-With-ELB.md", "deployment/provisionSwarmWithELB.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/provision/Provision-swarm-With-Elastic-ip.md", "deployment/provisionSwarmWithElasticIp.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/deployment/README.md", "deployment/demoAndCiJenkins.md")
+
+# contribute
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/LICENSE-HEADER.md", "contribute/licenseHeader.md")
