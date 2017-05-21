@@ -22,6 +22,7 @@ Provides the reference data for the rest of the processes: facilities, programs,
 
 - `Reference Data Service <referencedataService>`_
 - `Reference Data UI <https://github.com/OpenLMIS/openlmis-referencedata-ui>`_
+- `Reference Data ERD <erd-referencedata>`_
 - `Live Documentation for Reference Data API <http://test.openlmis.org/referencedata/docs/#/default>`_
 - `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
@@ -31,7 +32,8 @@ Requisition Service
 
 Requisition (pull) based replenishment process.
 
-- .. _requisitionService:
+- `Requisition Service <requisitionService>`_
+- `Requisition ERD <erd-requisition>`_
 - `Live Documentation for Requisition API <http://test.openlmis.org/requisition/docs/#/default>`_
 - `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
@@ -41,7 +43,8 @@ Fulfillment Service
 
 Includes the basics of fulfillment.
 
-- .. _fulfillmentService:
+- `Fulfillment Service <fulfillmentService>`_
+- `Fulfillment ERD <erd-fulfillment>`_
 - `Live Documentation for Fulfillment API <http://test.openlmis.org/fulfillment/docs/#/default>`_
 - `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
@@ -60,7 +63,8 @@ Stock Management Service
 
 Electronic stock cards.
 
-- .. _stockmanagementService:
+- `Stock Management Service <stockmanagementService>`_
+- `Stock Management ERD <erd-stockmanagement>`_
 - `Live Documentation for Stock Management API <http://test.openlmis.org/stockmanagement/docs/#/default>`_
 - `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
