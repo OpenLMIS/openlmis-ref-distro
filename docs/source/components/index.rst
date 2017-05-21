@@ -35,6 +35,27 @@ Security credentials, Authentication and Authorization. Uses OAuth2.
 - `Live Documentation for Auth API <http://test.openlmis.org/auth/docs/#/default>`_
 - `Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
+*******************
+Fulfillment Service
+*******************
+
+Includes the basics of fulfillment.
+
+- `Fulfillment Service <fulfillmentService.html>`_
+- `Fulfillment UI <fulfillmentUI.html>`_
+- `Fulfillment ERD <erd-fulfillment.html>`_
+- `Live Documentation for Fulfillment API <http://test.openlmis.org/fulfillment/docs/#/default>`_
+- `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+
+********************
+Notification Service
+********************
+
+Notifying users when their attention is needed.
+
+- `Live Documentation for Notification API <http://test.openlmis.org/notification/docs/#/default>`_
+- `Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+
 **********************
 Reference Data Service
 **********************
@@ -42,10 +63,21 @@ Reference Data Service
 Provides the reference data for the rest of the processes: facilities, programs, products, etc.
 
 - `Reference Data Service <referencedataService.html>`_
-- `Reference Data UI <https://github.com/OpenLMIS/openlmis-referencedata-ui.html>`_
+- `Reference Data UI <referencedataUI.html>`_
 - `Reference Data ERD <erd-referencedata.html>`_
 - `Live Documentation for Reference Data API <http://test.openlmis.org/referencedata/docs/#/default>`_
 - `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+
+************
+Reference UI
+************
+
+The Reference UI compiles together all the assets that make up the OpenLMIS-UI.
+
+- `Reference UI <referenceUI.html>`_
+- `UI Layout <uiLayout.html>`_
+- `UI Components <uiComponents.html>`_
+- `Dev UI <devUI.html>`_
 
 *******************
 Requisition Service
@@ -59,36 +91,15 @@ Requisition (pull) based replenishment process.
 - `Live Documentation for Requisition API <http://test.openlmis.org/requisition/docs/#/default>`_
 - `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
-*******************
-Fulfillment Service
-*******************
-
-Includes the basics of fulfillment.
-
-- `Fulfillment Service <fulfillmentService>`_
-- `Fulfillment UI <fulfillmentUI>`_
-- `Fulfillment ERD <erd-fulfillment>`_
-- `Live Documentation for Fulfillment API <http://test.openlmis.org/fulfillment/docs/#/default>`_
-- `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
-
-********************
-Notification Service
-********************
-
-Notifying users when their attention is needed.
-
-- `Live Documentation for Notification API <http://test.openlmis.org/notification/docs/#/default>`_
-- `Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
-
 *************************
 Stock Management Service
 *************************
 
 Electronic stock cards.
 
-- `Stock Management Service <stockmanagementService>`_
-- `Stock Management UI <stockmanagementUI>`_
-- `Stock Management ERD <erd-stockmanagement>`_
+- `Stock Management Service <stockmanagementService.html>`_
+- `Stock Management UI <stockmanagementUI.html>`_
+- `Stock Management ERD <erd-stockmanagement.html>`_
 - `Live Documentation for Stock Management API <http://test.openlmis.org/stockmanagement/docs/#/default>`_
 - `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
