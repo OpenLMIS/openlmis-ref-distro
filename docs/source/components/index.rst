@@ -8,7 +8,7 @@ Auth
 
 Security credentials, Authentication and Authorization. Uses OAuth2.
 
-- .. _authService:
+- :ref:`authService`
 - `Live Documentation for Auth API <http://test.openlmis.org/auth/docs/#/default>`_
 - `Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
@@ -18,7 +18,8 @@ Reference Data Service
 
 Provides the reference data for the rest of the processes: facilities, programs, products, etc.
 
-- .. _referencedataService:
+- :ref:`Reference Data Service <referencedataService>`
+- :ref:`Reference Data UI <https://github.com/OpenLMIS/openlmis-referencedata-ui>`
 - `Live Documentation for Reference Data API <http://test.openlmis.org/referencedata/docs/#/default>`_
 - `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
