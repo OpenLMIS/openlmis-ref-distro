@@ -13,6 +13,8 @@ urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referenc
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-stockmanagement/master/README.md", "components/stockmanagementService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/README.md", "components/templateServiceService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-reference-ui/master/README.md", "components/referenceUI.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth-ui/master/README.md", "components/authUI.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata-ui/master/README.md", "components/referencedataUI.md")
 
 #conventions
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/STYLE-GUIDE.md", "conventions/codeStyleguide.md")
