@@ -5,8 +5,24 @@ Conventions
 .. toctree::
    :maxdepth: 1
 
+   licenseHeader
+
+Service Conventions:
+====================
+
+.. toctree::
+   :maxdepth: 1
+
    codeStyleguide
-   uiCodeConventions
    testing
    errorHandling
-   licenseHeader
+
+UI Conventions:
+===============
+
+.. toctreee::
+   :maxdepth: 1
+   
+   uiStyleguide
+   uiCodeConventions
+

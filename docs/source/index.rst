@@ -27,7 +27,6 @@ Contents:
    architecture/index
    components/index
    erd/index
-   styleguide/index
    conventions/index
    deployment/index
    conventions/versioningReleasing
