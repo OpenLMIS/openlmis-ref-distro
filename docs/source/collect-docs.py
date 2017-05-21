@@ -29,4 +29,4 @@ urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployme
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/deployment/README.md", "deployment/demoAndCiJenkins.md")
 
 # contribute
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/LICENSE-HEADER.md", "contribute/licenseHeader.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/LICENSE-HEADER.md", "conventions/licenseHeader.md")
