@@ -20,7 +20,7 @@ Service Conventions
 UI Conventions
 ==============
 
-.. toctreee::
+.. toctree::
    :maxdepth: 1
    
    uiStyleguide
