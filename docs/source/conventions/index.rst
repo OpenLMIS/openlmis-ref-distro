@@ -23,5 +23,5 @@ UI Conventions
 .. toctree::
    :maxdepth: 1
    
-   uiStyleguide
+   UI Styleguide <build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/styleguide/index.html>
    uiCodeConventions
