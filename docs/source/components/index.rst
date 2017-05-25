@@ -75,7 +75,7 @@ Reference UI
 The Reference UI compiles together all the assets that make up the OpenLMIS-UI. See the `build process documentation <../architecture/buildProcess.html>`_ to understand exactly how the UI is compiled.
 
 - `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/styleguide/index.html#!/login>`_
-- `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/docs/index.html#/api>_`
+- `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/docs/index.html#/api>`_
 - `Reference UI <referenceUI.html>`_
 - `UI Layout <uiLayout.html>`_
 - `UI Components <uiComponents.html>`_
