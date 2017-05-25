@@ -27,6 +27,7 @@ urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/TESTING.md", "conventions/testing.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/ERROR_HANDLING.md", "conventions/errorHandling.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/coding_conventions.md", "conventions/uiCodeConventions.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/styleguide.md", "conventions/uiStyleguide.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/LICENSE-HEADER.md", "conventions/licenseHeader.md")
 
 # deployment
