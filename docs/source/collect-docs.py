@@ -1,25 +1,25 @@
 import urllib
 
 #architecture
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/application_structure.md", "architecture/applicationStructure.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/build_process.md", "architecture/buildProcess.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/extention_guide.md", "architecture/extentionGuide.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/v4/docs/application_structure.md", "architecture/applicationStructure.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/v4/docs/build_process.md", "architecture/buildProcess.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/v4/docs/extention_guide.md", "architecture/extentionGuide.md")
 
 #components
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillment/master/README.md", "components/fulfillmentService.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-requisition/master/README.md", "components/requisitionService.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth/master/README.md", "components/authService.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata/master/README.md", "components/referencedataService.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-stockmanagement/master/README.md", "components/stockmanagementService.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillment/v4.0.0/README.md", "components/fulfillmentService.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-requisition/v5.0.2/README.md", "components/requisitionService.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth/v3.0.3/README.md", "components/authService.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata/v7.0.0/README.md", "components/referencedataService.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-stockmanagement/v1.0.0-beta/README.md", "components/stockmanagementService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-template-service/master/README.md", "components/templateServiceService.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-reference-ui/master/README.md", "components/referenceUI.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth-ui/master/README.md", "components/authUI.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata-ui/master/README.md", "components/referencedataUI.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-requisition-ui/master/README.md", "components/requisitionUI.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillment-ui/master/README.md", "components/fulfillmentUI.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-stockmanagement-ui/master/README.md", "components/stockmanagementUI.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-dev-ui/master/README.md", "components/devUI.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-ui-components/master/README.md", "components/uiComponents.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-reference-ui/v5.0.2/README.md", "components/referenceUI.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth-ui/v5.0.2/README.md", "components/authUI.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata-ui/v5.2.0/README.md", "components/referencedataUI.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-requisition-ui/v5.1.0/README.md", "components/requisitionUI.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillment-ui/v5.0.2/README.md", "components/fulfillmentUI.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-stockmanagement-ui/v1.0.0-beta/README.md", "components/stockmanagementUI.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/v4/README.md", "components/devUI.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-ui-components/v5.1.0/README.md", "components/uiComponents.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-ui-layout/master/README.md", "components/uiLayout.md")
 
 #conventions
