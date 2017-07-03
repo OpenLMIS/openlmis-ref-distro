@@ -51,7 +51,7 @@ Includes the basics of fulfillment.
 CCE Service
 *******************
 
-Includes the basics of CCE.
+Allows managing Cold Chain Equipment.
 
 - `CCE Service <cceService.html>`_
 - `CCE ERD <cce-fulfillment.html>`_
