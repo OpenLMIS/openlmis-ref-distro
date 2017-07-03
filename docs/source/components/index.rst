@@ -47,6 +47,17 @@ Includes the basics of fulfillment.
 - `Live Documentation for Fulfillment API <http://test.openlmis.org/fulfillment/docs/#/default>`_
 - `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
+*******************
+CCE Service
+*******************
+
+Includes the basics of CCE.
+
+- `CCE Service <cceService.html>`_
+- `CCE ERD <cce-fulfillment.html>`_
+- `Live Documentation for CCE API <http://test.openlmis.org/cce/docs/#/default>`_
+- `Static Documentation for CCE API <http://build.openlmis.org/job/OpenLMIS-cce-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+
 ********************
 Notification Service
 ********************
