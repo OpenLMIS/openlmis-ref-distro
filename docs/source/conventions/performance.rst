@@ -142,6 +142,7 @@ a collection of a resource:
       - include-scenario: get-user-token
       - url: ${__P(base-uri)}/api/users/search?page=1&size=10
         method: POST
+        label: GetAUserPageOfTen
         body: '{}'
         headers:
           Authorization: Bearer ${access_token}
@@ -175,6 +176,7 @@ A complex workflow might be:
     requests:
       - url: ${__P(base-uri)}/api/oauth/token
         method: POST
+        label: GetUserToken
         headers:
           Authorization: Basic ${__base64Encode(${__P(user-auth)})}
         body:
@@ -187,6 +189,7 @@ A complex workflow might be:
       # program = family planning, facility = comfort health clinic
       - url: ${__P(base-uri)}/api/requisitions/periodsForInitiate?programId=10845cb9-d365-4aaa-badd-b4fa39c6a26a&facilityId=e6799d64-d10d-4011-b8c2-0e4d4a3f65ce&emergency=false
         method: GET
+        label: GetPeriodsForInitiate
         headers:
           Authorization: Bearer ${access_token}
         extract-jsonpath:
@@ -199,6 +202,7 @@ A complex workflow might be:
             vars.put("periodUuid", uuid);
       - url: ${__P(base-uri)}/api/requisitions/initiate?program=10845cb9-d365-4aaa-badd-b4fa39c6a26a&facility=e6799d64-d10d-4011-b8c2-0e4d4a3f65ce&suggestedPeriod=${periodUuid}&emergency=false
         method: POST
+        label: InitiateNewRequisition
         headers:
           Authorization: Bearer ${access_token}
           Content-Type: application/json
@@ -212,6 +216,7 @@ A complex workflow might be:
             vars.put("reqUuid", uuid);
       - url: ${__P(base-uri)}/api/requisitions/${reqUuid}
         method: DELETE
+        label: DeleteRequisition
         headers:
           Authorization: Bearer ${access_token}
 
@@ -248,6 +253,7 @@ used repeatedly in all our previous examples.  Lets stress test it.
       requests:
         - url: ${__P(base-uri)}/api/oauth/token
           method: POST
+          label: GetUserToken
           headers:
             Authorization: Basic ${__base64Encode(${__P(user-auth)})}
           body:
@@ -258,6 +264,7 @@ used repeatedly in all our previous examples.  Lets stress test it.
       requests:
         - url: ${__P(base-uri)}/api/oauth/token
           method: POST
+          label: GetServiceToken
           headers:
             Authorization: Basic ${__base64Encode(${__P(service-auth)})}
           body:
