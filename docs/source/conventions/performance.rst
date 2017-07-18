@@ -239,6 +239,9 @@ used repeatedly in all our previous examples.  Lets stress test it.
 
 .. code-block:: yaml
 
+  modules:
+    local:
+      sequential: true
 
   execution:
     - concurrency: 10
@@ -297,6 +300,8 @@ Summary:
 - you can define multiple execution definitions for the same scenario, so the
   first might give us the basic performance characteristics, the second might
   be a stress test.
+- By default the tests defined in the `execution` block are run in parallel.
+  This can be changed to by ran sequential with `sequential: true`.
 - choose a reasonable number of concurrent users.  Typically less than a dozen
   is enough.
 - choose a reasonable time to hold the test for.  Typically 1-2 minutes is
