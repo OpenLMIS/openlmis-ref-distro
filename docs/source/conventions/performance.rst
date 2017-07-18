@@ -340,7 +340,7 @@ retrieve 10 users, and we'd add a pass-fail criteria such as:
         criteria:
           - p90 of Get10Users>500ms, stop as failed
 
-Read the `Taurus Passfail doc` for more.
+Read the `Taurus Passfail doc`_ for more.
 
 ============
 Coming next
