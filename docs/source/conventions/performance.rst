@@ -321,7 +321,7 @@ Summary:
 
 * write the pass-fail criteria within the test definition.
 
-
+================================
 Performance Acceptance Criteria
 ================================
 
@@ -342,6 +342,7 @@ retrieve 10 users, and we'd add a pass-fail criteria such as:
 
 Read the `Taurus Passfail doc` for more.
 
+============
 Coming next
 ============
 
