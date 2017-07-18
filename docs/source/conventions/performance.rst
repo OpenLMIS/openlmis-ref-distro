@@ -63,8 +63,8 @@ server*.
 The reports are presented using `Performance Plugin`_.  When looking at this
 report you'll see:
 
-* a graph that shows all of the endpoints (requests) over time
-* a report for a build which includes an average over time, as well as a table
+* A graph that shows all of the endpoints (requests) over time.
+* A report for a build which includes an average over time, as well as a table
   showing KPIs of each request.
 
 A simple Scenario (with authentication)
@@ -121,12 +121,12 @@ Next notice that we have two scenarios defined:
 
 Summary:
 
-* first test the most basic of environments:  1 user, enough times to get an
-  average
-* re-use the scenario to obtain an access_token using `include-scenario`
-* it's generally OK to use demo-data identifiers (the user's UUID) - though it
+* First test the most basic of environments:  1 user, enough times to get an
+  average.
+* Re-use the scenario to obtain an access_token using `include-scenario`.
+* It's generally OK to use demo-data identifiers (the user's UUID) - though it
   couples the test to the demo-data, it will provide consistent results.
-* give each request a clear, semantic `label`.  This will be used later in
+* Give each request a clear, semantic `label`.  This will be used later in
   pass-fail criteria.
 
 Testing collections
@@ -222,7 +222,7 @@ A complex workflow might be:
 
 Summary:
 
-* when creating a new RESTful resource (e.g. PUT or POST), we may need to
+* When creating a new RESTful resource (e.g. PUT or POST), we may need to
   clean-up after ourselves in order to run more than one test.
 * JSR223 blocks allow us to execute basic Groovy (default).  This can be
   especially useful when you need to clean-up a JSON result from a previous
@@ -275,8 +275,8 @@ used repeatedly in all our previous examples.  Lets stress test it.
 
 Here we've defined 2 tests:
 
-#. authenticate as if you're a person
-#. authenticate as if you're another Service (a Service token)
+#. Authenticate as if you're a person.
+#. Authenticate as if you're another Service (a Service token).
 
 The stress testing here introduces important changes in our `execution` block:
 
@@ -297,16 +297,16 @@ hosts.
 
 Summary:
 
-- you can define multiple execution definitions for the same scenario, so the
+- You can define multiple execution definitions for the same scenario, so the
   first might give us the basic performance characteristics, the second might
   be a stress test.
 - By default the tests defined in the `execution` block are run in parallel.
   This can be changed to by ran sequential with `sequential: true`.
-- choose a reasonable number of concurrent users.  Typically less than a dozen
+- Choose a reasonable number of concurrent users.  Typically less than a dozen
   is enough.
-- choose a reasonable time to hold the test for.  Typically 1-2 minutes is
+- Choose a reasonable time to hold the test for.  Typically 1-2 minutes is
   enough, and no more than 5 minutes unless justifiable.
-- remember that we don't have a performance testing infrastructure in place
+- Remember that we don't have a performance testing infrastructure in place
   that can concurrently send requests to our application from multiple hosts.
   OpenLMIS performance testing typically only requires the most basic stress
   testing.
@@ -331,7 +331,7 @@ two tests was greater than 300ms.  See the `Taurus Passfail doc` for more.
 
 Summary:
 
-* write the pass-fail criteria within the test definition.
+* Write the pass-fail criteria within the test definition.
 
 ================================
 Performance Acceptance Criteria
@@ -354,21 +354,21 @@ retrieve 10 users, and we'd add a pass-fail criteria such as:
 
 Read the `Taurus Passfail doc`_ for more.
 
-============
-Coming next
-============
+================
+Next Steps (WIP)
+================
 
 We've covered basic performance testing, stress testing, and pass-fail criteria.
 Next we'll be adding:
 
-* loading performance-oriented data sets (e.g. what happens to these requests
-  when there are 10,000 products)
+* Loading performance-oriented data sets (e.g. what happens to these requests
+  when there are 10,000 products).
 
-* using Selenium to mimic browser interactions, to give us:
-  * how many http requests does a page incur.
-  * network payload size
+* Using Selenium to mimic browser interactions, to give us:
+  * How many http requests does a page incur.
+  * Network payload size.
 
-* failing deployments based on performance results
+* Failing deployments based on performance results.
 
 
 .. _Taurus: http://gettaurus.org/
