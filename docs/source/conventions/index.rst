@@ -23,6 +23,14 @@ See the `OpenLMIS-UI Styleguide <build.openlmis.org/job/OpenLMIS-reference-ui/la
 
 .. toctree::
    :maxdepth: 1
-   
+
    uiStyleguide
    uiCodeConventions
+
+Performance
+===========
+
+.. toctree::
+   :maxdepth: 1
+
+  performance
