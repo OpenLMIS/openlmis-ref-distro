@@ -119,7 +119,8 @@ Next notice that we have two scenarios defined:
    exercise the `/api/users/{a specific users uuid}`.  We pass the previously
    obtained `access_token` through the HTTP request's headers.
 
-Summary:
+Summary
+--------
 
 * First test the most basic of environments:  1 user, enough times to get an
   average.
@@ -150,7 +151,8 @@ a collection of a resource:
 
 Here we're testing the Users resource by asking for 1 page of 10 users.
 
-Summary:
+Summary
+-------
 
 * When testing the performance of collections, the result will be influenced
   by the number of results returned.  Due to this prefer to test a paginated
@@ -220,7 +222,8 @@ A complex workflow might be:
         headers:
           Authorization: Bearer ${access_token}
 
-Summary:
+Summary
+-------
 
 * When creating a new RESTful resource (e.g. PUT or POST), we may need to
   clean-up after ourselves in order to run more than one test.
@@ -295,7 +298,8 @@ useful, and only slows down the test.  Nor do we presently have a
 test infrastructure in place that allows for tests to originate from multiple
 hosts.
 
-Summary:
+Summary
+-------
 
 - You can define multiple execution definitions for the same scenario, so the
   first might give us the basic performance characteristics, the second might
@@ -329,7 +333,8 @@ what we've defined.
 This allows us to fail the test if the average response time for either of the
 two tests was greater than 300ms.  See the `Taurus Passfail doc` for more.
 
-Summary:
+Summary
+-------
 
 * Write the pass-fail criteria within the test definition.
 
