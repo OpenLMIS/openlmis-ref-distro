@@ -327,8 +327,8 @@ what we've defined.
   reporting:
       - module: passfail
         criteria:
-          - avg-rt of GetUserToken>300ms, stop as failed
-          - avg-rt of GetServiceToken>300ms, stop as failed
+          - avg-rt of GetUserToken>300ms, continue as failed
+          - avg-rt of GetServiceToken>300ms, continue as failed
 
 This allows us to fail the test if the average response time for either of the
 two tests was greater than 300ms.  See the `Taurus Passfail doc` for more.
@@ -355,7 +355,7 @@ retrieve 10 users, and we'd add a pass-fail criteria such as:
   reporting:
       - module: passfail
         criteria:
-          - p90 of Get10Users>500ms, stop as failed
+          - p90 of Get10Users>500ms, continue as failed
 
 Read the `Taurus Passfail doc`_ for more.
 
@@ -370,6 +370,7 @@ Next we'll be adding:
   when there are 10,000 products).
 
 * Using Selenium to mimic browser interactions, to give us:
+
   * How many http requests does a page incur.
   * Network payload size.
 
