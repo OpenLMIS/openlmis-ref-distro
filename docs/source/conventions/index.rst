@@ -33,4 +33,4 @@ Performance
 .. toctree::
    :maxdepth: 1
 
-  performance
+   performance
