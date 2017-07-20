@@ -58,6 +58,17 @@ Allows managing Cold Chain Equipment.
 - `Live Documentation for CCE API <http://test.openlmis.org/cce/docs/#/default>`_
 - `Static Documentation for CCE API <http://build.openlmis.org/job/OpenLMIS-cce-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
+*******************
+Repor Service
+*******************
+
+Allows managing reports.
+
+- `Report Service <reportService.html>`_
+- `Report ERD <erd-report.html>`_
+- `Live Documentation for Report API <http://test.openlmis.org/report/docs/#/default>`_
+- `Static Documentation for Report API <http://build.openlmis.org/job/OpenLMIS-report-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+
 ********************
 Notification Service
 ********************
