@@ -34,4 +34,5 @@ Performance
    :maxdepth: 1
 
    performance
+   performanceData
    performanceTips
