@@ -1,6 +1,6 @@
-====================
+####################
 Performance Testing
-====================
+####################
 
 OpenLMIS focuses on performance metrics that are typical in web-applications:
 
@@ -28,7 +28,7 @@ focus as much on:
   serve those users.
 
 Getting Started
-================
+----------------
 
 OpenLMIS uses Apache JMeter_ to test RESTful endpoints.  We use Taurus_, and
 it's YAML format, to write our test scenarios and generate reports which our CI
@@ -54,7 +54,7 @@ performance metrics.  Files of note when developing test scenarios:
 
 
 Running in CI
-=============
+--------------
 
 Tests run in a Jenkin's Job that ends in `-performance`.  This job is run as
 part of each Service's build pipeline *that results in a deployment to the test
@@ -68,7 +68,7 @@ report you'll see:
   showing KPIs of each request.
 
 A simple Scenario (with authentication)
-========================================
+----------------------------------------
 
 Nearly all of our RESTful resources require authentication, in this example
 we'll show a basic test scenario that includes authentication.  The syntax and
@@ -120,7 +120,7 @@ Next notice that we have two scenarios defined:
    obtained `access_token` through the HTTP request's headers.
 
 Summary
---------
+^^^^^^^^
 
 * First test the most basic of environments:  1 user, enough times to get an
   average.
@@ -131,7 +131,7 @@ Summary
   pass-fail criteria.
 
 Testing collections
-====================
+--------------------
 
 To the simple Scenario we're going to now test the performance of returning
 a collection of a resource:
@@ -152,7 +152,7 @@ a collection of a resource:
 Here we're testing the Users resource by asking for 1 page of 10 users.
 
 Summary
--------
+^^^^^^^
 
 * When testing the performance of collections, the result will be influenced
   by the number of results returned.  Due to this prefer to test a paginated
@@ -162,7 +162,7 @@ Summary
   the URL.
 
 Testing complex workflows
-=========================
+-------------------------
 
 A complex workflow might be:
 
@@ -223,7 +223,7 @@ A complex workflow might be:
           Authorization: Bearer ${access_token}
 
 Summary
--------
+^^^^^^^
 
 * When creating a new RESTful resource (e.g. PUT or POST), we may need to
   clean-up after ourselves in order to run more than one test.
@@ -232,7 +232,7 @@ Summary
   response, such as a UUID, to use in the next request.
 
 Simple stress testing
-=====================
+---------------------
 
 As mentioned, OpenLMIS performance tests tend to focus first on basic
 execution environments where we're only testing 1 user interaction at a time.
@@ -299,7 +299,7 @@ test infrastructure in place that allows for tests to originate from multiple
 hosts.
 
 Summary
--------
+^^^^^^^
 
 - You can define multiple execution definitions for the same scenario, so the
   first might give us the basic performance characteristics, the second might
@@ -316,7 +316,7 @@ Summary
   testing.
 
 Pass-fail criteria
-==================
+------------------
 
 With the above tests defined, we can now write pass-fail criteria.  This is
 especially useful if we want our test to fail when the performance is less than
@@ -334,11 +334,10 @@ This allows us to fail the test if the average response time for either of the
 two tests was greater than 300ms.  See the `Taurus Passfail doc` for more.
 
 Summary
--------
+^^^^^^^
 
 * Write the pass-fail criteria within the test definition.
 
-================================
 Performance Acceptance Criteria
 ================================
 
@@ -359,7 +358,6 @@ retrieve 10 users, and we'd add a pass-fail criteria such as:
 
 Read the `Taurus Passfail doc`_ for more.
 
-================
 Next Steps (WIP)
 ================
 
