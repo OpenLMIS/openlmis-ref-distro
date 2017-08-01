@@ -2,7 +2,7 @@
 Location for the OpenLMIS v3+ Reference Distribution
 
 The Reference Distribution utilizes Docker Compose to gather the published OpenLMIS Docker Images together and
-launch a running application.  These official OpenLMIS images are updated frequently and published to 
+launch a running application.  These official OpenLMIS images are updated frequently and published to
 [our](https://hub.docker.com/u/openlmis/) Docker Hub. These images cover all aspects of OpenLMIS: from server-side
 Services and infrastructure to the reference UI modules that a client's browser will consume.
 
@@ -17,7 +17,7 @@ OpenLMIS following our architecture.
 * Docker Engine: 1.12+
 * Docker Compose: 1.8+
 
-Note that Docker on Mac and Windows hasn't always been as native as it is now with [Docker for Mac](https://www.docker.com/products/docker#/mac) 
+Note that Docker on Mac and Windows hasn't always been as native as it is now with [Docker for Mac](https://www.docker.com/products/docker#/mac)
 and [Docker for Windows](https://www.docker.com/products/docker#/windows).  If you're using one of these, please note that there are some known issues:
 
 * docker compose on Windows hasn't supported our development environment setup, so you _can_ use Docker for Windows to run the Reference Distribution, but not to develop
@@ -49,24 +49,24 @@ You __should only need to do this once__, though as this is an actively develope
 	```
 
 	_note if_ you get a `HTTP 502: Bad Gateway`, that's probably okay.  Just wait a few minutes as not everything has started yet.
-  
-  By default the demo configuration (facilities, geographies, users, etc) is loaded on startup. To use that demo you may start 
+
+  By default the demo configuration (facilities, geographies, users, etc) is loaded on startup. To use that demo you may start
   with a demo account:
-  
+
   ```
   Username:  administrator
   Password: password
   ```
-  
-  If you opted not to load the demo data, and instead need a bare-bones account to configure your system, de-activate the 
+
+  If you opted not to load the demo data, and instead need a bare-bones account to configure your system, de-activate the
   demo data and use the bootstrap account:
-  
+
   ```
   Username: admin
   Password: password
   ```
-  
-  If you are configuring a production instance, be sure to secure these accounts ASAP and refer to the Configuration Guide 
+
+  If you are configuring a production instance, be sure to secure these accounts ASAP and refer to the Configuration Guide
   for more about the OpenLMIS setup process.
 
 4. To stop the application & cleanup:
@@ -75,7 +75,20 @@ You __should only need to do this once__, though as this is an actively develope
 	* if you ran `docker-compose up` _note_ the absence of `-d`, then interupt the application with `Ctrl-C`, and perform cleanup by removing containers.  See
 	our [docker cheat sheet](https://openlmis.atlassian.net/wiki/x/PwBIAw) for help on manually removing containers.
 
-## Demo Data
+## Demo Data (new way)
+
+For some services it's possible to load demo data using an environment variable.
+This variable is called `spring.profiles.active`.  When this environment
+has as one of it's values `demo-data`, then the demo data for the service will
+be loaded.  This variable may be set in the
+[.env file](https://github.com/OpenLMIS/openlmis-config/blob/master/.env) or in your shell with:
+
+```shell
+$ export spring_profiles_active=demo-data
+$ docker-compose up -d
+```
+
+## Demo Data (old way)
 You can use a standard data set for demonstration purposes. Each service that has demo data, has
 it stored in its Docker image. The demo data is built from JSON sources in each service's repo:
 * [Auth Service Demo Data](https://github.com/OpenLMIS/openlmis-auth/tree/master/demo-data)
@@ -97,18 +110,24 @@ If you wish to not load demo data, you can remove the demo data load entry:
   JAVA_OPTS: '-Dlogging.config=/logback/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql'
   ```
 
-Or, you can replace it with your own by mounting a volume into the Docker container when it starts 
-and replacing the demo data entry. Be sure to prefix it with `file://`; otherwise, the service 
+Or, you can replace it with your own by mounting a volume into the Docker container when it starts
+and replacing the demo data entry. Be sure to prefix it with `file://`; otherwise, the service
 will look in the classpath for the file.
 
-*NOTE:* be careful not to remove the `bootstrap.sql` entry, as that file must be loaded for the 
+*NOTE:* be careful not to remove the `bootstrap.sql` entry, as that file must be loaded for the
 service to function properly.
+
+## Performance data
+
+Performance data may also be optionally loaded and is defined by some Services.
+See http://docs.openlmis.org/en/latest/conventions/performanceData.html for
+more.
 
 ## Configuring Services
 
 When a container needs configuration via a file (as opposed to an environment variable for example), then
-there is a special Docker image that's built as part of this Reference Distribution from the Dockerfile of 
-the `config/` directory.  This image, which will also be deployed as a container, is only a vessel for 
+there is a special Docker image that's built as part of this Reference Distribution from the Dockerfile of
+the `config/` directory.  This image, which will also be deployed as a container, is only a vessel for
 providing a named volume from which each container may mount the `/config` directory in order to self-configure.
 
 To add configuration:
@@ -119,7 +138,7 @@ To add configuration:
 e.g. `COPY kannel/kannel.config /config/kanel/kannel.config`.
 4. Ensure that the container which will use this configuration file mounts the named-volume `service-config` to
 `/config.  e.g.
-  
+
   ```shell
   kannel:
     image: ...
@@ -132,7 +151,7 @@ flag.  e.g. `docker-compose up --build`.
 
 The logging configuration utilizes this method.
 
-_NOTE:_ that the configuration container that's built here doesn't _run_.  It is normal for it's Status to be 
+_NOTE:_ that the configuration container that's built here doesn't _run_.  It is normal for it's Status to be
 Exited.
 
 ## Logging
@@ -193,25 +212,25 @@ If using the postgres container, the logging is accessible via:  `docker logs op
 
 ## Cleaning the Database
 
-Sometimes it's useful to drop the database completely, for this there is a script included that 
+Sometimes it's useful to drop the database completely, for this there is a script included that
 is able to do just that.
 
 *Note this should never be used in production, nor should it ever be deployed*
 
-To run this script, you'll first need the name of the Docker network that the database is using. 
-If you're using this repository, it's usually the name `openlmisrefdistro_default`.  With this run 
+To run this script, you'll first need the name of the Docker network that the database is using.
+If you're using this repository, it's usually the name `openlmisrefdistro_default`.  With this run
 the command:
- 
+
  ```shell
  docker run -it --rm --env-file=.env --network=openlmisrefdistro_default -v $(pwd)/cleanDb.sh:/cleanDb.sh openlmis/dev:1 /cleanDb.sh
  ```
  Replace `openlmisrefdistro_default` with the proper network name if yours has changed.
- 
+
  *Note that using this script against a remote Docker host is possible, though not advised*
- 
+
 ## Production
 
-When deploying the Reference Distribution as a production instance, you'll need to remember to set the following 
+When deploying the Reference Distribution as a production instance, you'll need to remember to set the following
 environment variable so the production database isn't first wiped when starting:
 
 ```
