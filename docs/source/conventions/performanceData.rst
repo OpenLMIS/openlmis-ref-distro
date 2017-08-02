@@ -87,6 +87,9 @@ Don't
   data already has a few Programs, you're time is better spent setting up one
   of those programs to have 10k facility type approved products than you are
   generating 100 programs.
+- Don't build performance tests off of generated IDs.  While Mockaroo makes it
+  easy to build sets of data with referential integrity, using generated IDs
+  hardcoded in performance tests will result in more brittle tests.
 
 .. _Mockaroo: http://mockaroo.com
 .. _Mockaroo dataset video: https://youtu.be/XATDlwG1azU
