@@ -21,7 +21,7 @@ findHost() {
     HOST_ADDR=`ipconfig getifaddr en0`
   else
     echo '... getting Host IP from ifconfig'
-    HOST_ADDR=`ifconfig $INTERFACE | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
+    HOST_ADDR=`ifconfig $INTERFACE | grep 'inet ' | cut -d: -f2 | awk '{ print $2}'`
   fi
 
   echo "IP: ${HOST_ADDR}"
