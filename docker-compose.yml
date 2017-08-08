@@ -11,7 +11,7 @@ services:
       - "53"
 
   nginx:
-    image: openlmis/nginx:3
+    image: openlmis/nginx:4
     ports:
       - "80:80"
     env_file: .env
