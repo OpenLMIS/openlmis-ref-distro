@@ -196,11 +196,11 @@ as:
     throw new ValidationMessageException(ProgramMessageKeys.ERROR_NOT_FOUND);
   }
 
-The important part here is the use of the repositories :code:`existsByCode(...)`, which is a Spring
-Data _projection. This will avoid pulling the row, avoid turning a row into a Java object, and in
-general can save upwards of 100ms as well as the extra memory overhead.  If the
-column is indexed (and well indexed), the database may even avoid a trip to
-disk, which typically can bring this check in under a millisecond.
+The important part here is the use of the repositories :code:`existsByCode(...)`, which is a 
+`Spring Data projection`_. This will avoid pulling the row, avoid turning a row into a Java object, 
+and in general can save upwards of 100ms as well as the extra memory overhead.  If the column is 
+indexed (and well indexed), the database may even avoid a trip to disk, which typically can bring 
+this check in under a millisecond.
 
 Use Database Paging
 --------------------
