@@ -77,22 +77,24 @@ Java.  In Java pulling a page of only 10 Orderables out of a set of 10k Orderabl
 seconds, after, this same operation took only 2 seconds (10x more performant) and of that 95% of
 those 2 seconds are spent in an unrelated permission check.
 
-The _`database paging pattern` was established and as of this writing is not well enough adopted.
+The `database paging pattern`_ was established and as of this writing is not well enough adopted.
 Remember when paging to:
 
-#. Follow the _`pagination API conventions`.
-#. Use _`Spring's Pageable` all the way to the query.
-#. Spring Data has great projection support (more so in 1.11+). So code like this just works:
+#. Follow the `pagination API conventions`_.
+#. Use `Spring Data Pageable`_ all the way to the query.
+#. `Spring Data projection`_ makes this easy (more so in 1.11+). So code like this just works:
+    
     .. code-block:: Java
     
       @Query("SELECT o FROM Orderable o WHERE o.id in ?1")
       Page<Orderable> findAllById(Iterable<UUID> ids, Pageable pageable);
 
-#. If it's a Query, you'll need to run 2 queries:  one for a count() and one for the (sub) list.
+#. If it's a Query, you'll need to run 2 queries:  one for a :code:`count()` and one for the (sub) 
+   list.
 #. If you're a client, *use* the query parameters to page the results - otherwise our convention
-   will be to return the largest page we can to you.
+   will be to return the largest page we can to you, which is slower.
 
-Follow the pattern in _`Orderable search`.
+Follow the pattern in `Orderable search`_.
 
 
 eager / lazy loading
@@ -151,6 +153,9 @@ HTTP Cache
   audit based)
 
 
-_'pagination API conventions`: https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md#pagination
-_projection
-_database paging pattern
+.. _pagination API conventions: https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md#pagination
+.. _Spring Data Pageable: 
+.. _database paging pattern: https://groups.google.com/d/msg/openlmis-dev/WniSS9ZIdY4/B7vNXcchBgAJ
+.. _Spring Data projection: https://docs.spring.io/spring-data/rest/docs/current/reference/html/#projections-excerpts.projections 
+.. _Orderable search: https://github.com/OpenLMIS/openlmis-referencedata/blob/8de4c200aaf7ccb3dc1e450eb606185a953a8448/src/main/java/org/openlmis/referencedata/web/OrderableController.java#L157
+
