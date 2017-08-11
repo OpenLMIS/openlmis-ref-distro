@@ -4,6 +4,31 @@ Performance Tips
 
 Testing and Profiling
 ======================
+
+Knowing where to invest time and resources into optimization is always the first step.  This 
+document will briefly cover the highlights of two of them, and then dive into specific strategies
+for increasing performance.
+
+To see how to test HTTP based services see `performance testing`_.
+
+After we've identified that a HTTP operation is slow, there are two simple tools that can help us
+in understanding why:
+
+- `SLF4J Profiler`_: useful to print latency meassurements to our log.  It's cheap and a bit dirty,
+  though highly-effective and it works in remote production environments in real-world scenarios.
+- `VisualVM`_: perhaps the most well known Java profiling tool can give great information about
+  what the code is doing, however since it needs to connect directly to the JVM running that
+  Service's code, it's better suited for local development environments rather than debugging
+  production servers.
+
+The usefulness of basic profiling metrics from production environments can't be understated.
+Performance issues rarely occur in local development environments and the people most impacted by
+slow performance are people using production systems.  Just as our performance tests operate against
+a deployment topology that tries to match what most of our customers use, so to must we know about
+how that code is performing in real-usage.  For these reasons this document will focus more on 
+logging performance metrics with SLF4J Profiler rather than VisualVM.
+
+
 - intro with how to identify server calls that are a problem (testing) and
   how to find bottlenecks
 - demo SLF4J Profiler, give pattern for profiler names and where to place them
@@ -153,6 +178,9 @@ HTTP Cache
   audit based)
 
 
+.. _Performance Testing: performanceTesting
+.. _SLF4J Profiler: https://www.slf4j.org/extensions.html#profiler
+.. _VisualVM: https://visualvm.github.io/
 .. _pagination API conventions: https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md#pagination
 .. _Spring Data Pageable: 
 .. _database paging pattern: https://groups.google.com/d/msg/openlmis-dev/WniSS9ZIdY4/B7vNXcchBgAJ
