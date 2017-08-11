@@ -21,7 +21,7 @@ RESTful representations and the JPA to avoid
 =============================================
 
 Avoid loading entities unnecessarily
----------------------------------
+-------------------------------------
 
 Don't load an entity object if you don't have to; use Spring Data JPA
 :code:`exists()` instead. A good example of this is in the RightService for
@@ -62,18 +62,57 @@ as:
     throw new ValidationMessageException(ProgramMessageKeys.ERROR_NOT_FOUND);
   }
 
-This will avoid pulling the row, avoid turning a row into a Java object, and in
+The important part here is the use of the repositories :code:`existsByCode(...)`, which is a Spring
+Data _projection. This will avoid pulling the row, avoid turning a row into a Java object, and in
 general can save upwards of 100ms as well as the extra memory overhead.  If the
 column is indexed (and well indexed), the database may even avoid a trip to
 disk, which typically can bring this check in under a millisecond.
 
-- eager / lazy loading - favor the common case
+Use Database Paging
+--------------------
+
+Database paging is vastly more performant and efficient than Java paging or not paging at all.
+How much more?  Before the Orderable's search resource was paged in the database, it was paged in
+Java.  In Java pulling a page of only 10 Orderables out of a set of 10k Orderables took around 20
+seconds, after, this same operation took only 2 seconds (10x more performant) and of that 95% of
+those 2 seconds are spent in an unrelated permission check.
+
+The _`database paging pattern` was established and as of this writing is not well enough adopted.
+Remember when paging to:
+
+#. Follow the _`pagination API conventions`.
+#. Use _`Spring's Pageable` all the way to the query.
+#. Spring Data has great projection support (more so in 1.11+). So code like this just works:
+    .. code-block:: Java
+    
+      @Query("SELECT o FROM Orderable o WHERE o.id in ?1")
+      Page<Orderable> findAllById(Iterable<UUID> ids, Pageable pageable);
+
+#. If it's a Query, you'll need to run 2 queries:  one for a count() and one for the (sub) list.
+#. If you're a client, *use* the query parameters to page the results - otherwise our convention
+   will be to return the largest page we can to you.
+
+Follow the pattern in _`Orderable search`.
+
+
+eager / lazy loading
+---------------------
+
+WIP - favor the common case
   (this needs to talk about our biggest mistake to date: overly deep resource
   representations - bad for JPA, bad for network, bad for caching)
-- N+1 loading
-- database joins are expensive
-- primary keys, indexes, and foreign keys
-  (prefer primary key, index and what are good/bad ones, foreign keys
+
+N+1 loading
+------------
+WIP
+
+database joins are expensive
+-----------------------------
+WIP
+
+primary keys, indexes, and foreign keys
+----------------------------------------
+WIP(prefer primary key, index and what are good/bad ones, foreign keys
   aren't indexed)
 
 Flatten complex structures
@@ -110,3 +149,8 @@ HTTP Cache
 - example of where server cycles are still expended - permission strings
 - future example of where server cycles are avoided (etag stored/cached or
   audit based)
+
+
+_'pagination API conventions`: https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md#pagination
+_projection
+_database paging pattern
