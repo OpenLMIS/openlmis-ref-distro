@@ -353,16 +353,81 @@ further discussion about permission strings.
 HTTP Cache
 ==========
 
+E-tag and if-none-match
+------------------------
 
+`HTTP Caching`_ in a nut-shell is supporting the use of fields in an HTTP header that can help
+identify if a previous result is no longer valid.  This can be very useful for the typical OpenLMIS
+user that is often in an environment with low network bandwidth.
 
+In our Spring services this can be as simple as:
 
-- list out etag, if-none-match
+.. code-block:: Java
 
+  @RequestMapping(value = "/someResource", method = RequestMapping.GET)
+  public ResponseEntity<SomeEntity> getSomeResource(@PathVariable("id") UUID resourceId) {
+    ...
+    // do work
+    ...
 
-- example of where server cycles are still expended - permission strings
-- future example of where server cycles are avoided (etag stored/cached or
-  audit based)
+    return ResponseEntity
+      .ok()
+      .eTag(Integer.toString(someResource.hashCode()))
+      .body(someResource);
+  }
 
+The key points here are:
+
+- someResource must accurately implement hashCode().
+- The Object's hashCode is returned to the HTTP client (browser) in the :code`etag` header.
+- On subsequent calls the HTTP client should include the HTTP header `if-none-match` with the
+  previously returned `etag` value.  If the etag value is the same, a HTTP 304 is returned, without
+  a body, saving network bandwidth.
+
+This simple implementation won't however save the server from processing the request and generating
+the :code:`etag` from the Object's hashCode().  If this server operation is particularly expensive,
+further optimization should be done in the controller to use a field other than the 
+:code:`hashCode()` and to return early:
+
+.. code-block:: Java
+
+  @RequestMapping(value = "/someResource", method = RequestMapping.GET)
+  public ResponseEntity<SomeEntity> getSomeResource(@RequestHeader(value="if-none-match") String ifNoneMatch, @PathVariable("id") UUID resourceId) {
+    
+    if (false == StringUtils.isBlank(ifNoneMatch)) {
+      long versionEtag = NumberUtils.toLong(ifNoneMatch, -1);
+      if (someResourceRepo.existsByIdAndVersion(resourceId, versionEtag)) {
+        return ResourceEntity
+          .ok()
+          .etag(ifNoneMatch);
+      }
+    }
+
+    ...
+    // do work
+    ...
+
+    return ResponseEntity
+      .ok()
+      .eTag(Integer.toString(someResource.getVersion())
+      .body(someResource);
+  }
+
+The key to the above is using a property of an entity that changes every time the object changes,
+such as one marked with :code:`@Version`, to use as the resource's etag.  By storing the basis of 
+the etag in the database, we can run a query which simply goes and sees if that entity still has 
+that version, and if it does we can return a HTTP 304.  The property used here could be anything, 
+so long as we can search for it in a way that saves processing time (hint:  a good choice with 
+high-cardinality would be a multi-column index on the id and the version).  
+Another good choice could be a LastModifiedDate_.
+
+Cache-control
+--------------
+WIP:
+
+- no-cache
+- private
+- max-age
 
 .. _Performance Testing: performanceTesting
 .. _SLF4J Profiler: https://www.slf4j.org/extensions.html#profiler
@@ -378,4 +443,6 @@ HTTP Cache
 .. _No FETCH JOINS: http://learningviacode.blogspot.nl/2012/08/fetch-join-and-cartesian-product-problem.html
 .. _low cardinality indexes negatively impact performance: https://www.ibm.com/developerworks/data/library/techarticle/dm-1309cardinal/
 .. _More indexing tips: https://devcenter.heroku.com/articles/postgresql-indexes
+.. _Http Caching: https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-
+.. _LastModifiedDate: https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#auditing.basics
 
