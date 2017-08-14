@@ -392,7 +392,9 @@ further optimization should be done in the controller to use a field other than 
 .. code-block:: Java
 
   @RequestMapping(value = "/someResource", method = RequestMapping.GET)
-  public ResponseEntity<SomeEntity> getSomeResource(@RequestHeader(value="if-none-match") String ifNoneMatch, @PathVariable("id") UUID resourceId) {
+  public ResponseEntity<SomeEntity> getSomeResource(
+    @RequestHeader(value="if-none-match") String ifNoneMatch,
+    @PathVariable("id") UUID resourceId) {
     
     if (false == StringUtils.isBlank(ifNoneMatch)) {
       long versionEtag = NumberUtils.toLong(ifNoneMatch, -1);
@@ -434,7 +436,7 @@ WIP:
 .. _VisualVM: https://visualvm.github.io/
 .. _Nginx access log: https://github.com/OpenLMIS/openlmis-nginx#nginx-access-log-format
 .. _pagination API conventions: https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md#pagination
-.. _Spring Data Pageable: 
+.. _Spring Data Pageable: https://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html#repositories.special-parameters
 .. _database paging pattern: https://groups.google.com/d/msg/openlmis-dev/WniSS9ZIdY4/B7vNXcchBgAJ
 .. _Spring Data projection: https://docs.spring.io/spring-data/rest/docs/current/reference/html/#projections-excerpts.projections 
 .. _environment variables to show what SQL: https://stackoverflow.com/questions/30118683/how-to-log-sql-statements-in-spring-boot
@@ -443,6 +445,6 @@ WIP:
 .. _No FETCH JOINS: http://learningviacode.blogspot.nl/2012/08/fetch-join-and-cartesian-product-problem.html
 .. _low cardinality indexes negatively impact performance: https://www.ibm.com/developerworks/data/library/techarticle/dm-1309cardinal/
 .. _More indexing tips: https://devcenter.heroku.com/articles/postgresql-indexes
-.. _Http Caching: https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-
+.. _Http Caching: https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching
 .. _LastModifiedDate: https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#auditing.basics
 
