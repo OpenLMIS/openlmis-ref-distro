@@ -289,6 +289,8 @@ Summary
 - `No FETCH JOINS`_
 - Don't use eager loads unless it's really safe to do so, they might seem to solve the above 
   problem, but they can go awry quickly.  Just use lazy loading.
+- During development you can set `environment variables to show what SQL`_ is actually being run by
+  Hibernate.
 
 Database JOINs are expensive
 -----------------------------
@@ -370,6 +372,7 @@ HTTP Cache
 .. _Spring Data Pageable: 
 .. _database paging pattern: https://groups.google.com/d/msg/openlmis-dev/WniSS9ZIdY4/B7vNXcchBgAJ
 .. _Spring Data projection: https://docs.spring.io/spring-data/rest/docs/current/reference/html/#projections-excerpts.projections 
+.. _environment variables to show what SQL: https://stackoverflow.com/questions/30118683/how-to-log-sql-statements-in-spring-boot
 .. _Orderable search: https://github.com/OpenLMIS/openlmis-referencedata/blob/8de4c200aaf7ccb3dc1e450eb606185a953a8448/src/main/java/org/openlmis/referencedata/web/OrderableController.java#L157
 .. _Services should not denormalize: https://stackoverflow.com/questions/173726/when-and-why-are-database-joins-expensive
 .. _No FETCH JOINS: http://learningviacode.blogspot.nl/2012/08/fetch-join-and-cartesian-product-problem.html
