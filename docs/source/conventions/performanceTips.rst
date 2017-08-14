@@ -54,7 +54,7 @@ Using SLF4J Profiler in Java code is as simple as:
 
 This will generate log statements that look like the following:
 
-.. code-block::
+.. code-block:: none
   
   2017-07-24T19:49:45+00:00 e2f424e5b617 [nio-8080-exec-5] DEBUG 
   org.openlmis.referencedata.web.OrderableController #012+ Profiler 
@@ -123,7 +123,7 @@ Lets look at an example of a call seen by Nginx and the Profiler.
 
 Service's Profiler (again):
 
-.. code-block::
+.. code-block:: none
   
   2017-07-24T19:49:45+00:00 e2f424e5b617 [nio-8080-exec-5] DEBUG 
   org.openlmis.referencedata.web.OrderableController #012+ Profiler 
@@ -135,7 +135,7 @@ Service's Profiler (again):
 
 Nginx access log:
 
-.. code-block::
+.. code-block:: none
 
   10.0.0.238 - - [24/Jul/2017:19:49:45 +0000] "POST /api/orderables/search HTTP/1.1" 200 18455 "-" "Java/1.8.0_92" 1.401 0.000 1.401 1.401 . 
 
