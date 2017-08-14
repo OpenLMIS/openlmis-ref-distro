@@ -293,7 +293,7 @@ Summary
 Database JOINs are expensive
 -----------------------------
 
-Simply put a database join is expensive.  While our Service's `should not de-normalize`_ to avoid
+Simply put a database join is expensive.  While our `Services should not denormalize`_ to avoid
 many joins, we should consider the advice in the FlattenComplexStructures_ section, especially
 when such a representation is used frequently by other clients.
 
@@ -306,7 +306,8 @@ Done wrong and a plethora of indexes can eat up memory and not prevent disk oper
 
 Some tips (PostgreSQL):
 
-- The primary key is indexed.  When you know what you want, using it's primary key, a UUID, is usually the most effecient.
+- The primary key is indexed.  When you know what you want, using it's primary key, a UUID, is 
+  usually the most effecient.
 - Foreign keys are not automatically indexed in PostgreSQL, however they almost always should be.
 - You almost always want a B-tree index (the default).
 - Unique columns are some of the best indicies, when it's not a unique column, keep in mind that
@@ -349,7 +350,13 @@ further discussion about permission strings.
 
 HTTP Cache
 ==========
+
+
+
+
 - list out etag, if-none-match
+
+
 - example of where server cycles are still expended - permission strings
 - future example of where server cycles are avoided (etag stored/cached or
   audit based)
@@ -364,6 +371,7 @@ HTTP Cache
 .. _database paging pattern: https://groups.google.com/d/msg/openlmis-dev/WniSS9ZIdY4/B7vNXcchBgAJ
 .. _Spring Data projection: https://docs.spring.io/spring-data/rest/docs/current/reference/html/#projections-excerpts.projections 
 .. _Orderable search: https://github.com/OpenLMIS/openlmis-referencedata/blob/8de4c200aaf7ccb3dc1e450eb606185a953a8448/src/main/java/org/openlmis/referencedata/web/OrderableController.java#L157
+.. _Services should not denormalize: https://stackoverflow.com/questions/173726/when-and-why-are-database-joins-expensive
 .. _No FETCH JOINS: http://learningviacode.blogspot.nl/2012/08/fetch-join-and-cartesian-product-problem.html
 .. _low cardinality indexes negatively impact performance: https://www.ibm.com/developerworks/data/library/techarticle/dm-1309cardinal/
 .. _More indexing tips: https://devcenter.heroku.com/articles/postgresql-indexes
