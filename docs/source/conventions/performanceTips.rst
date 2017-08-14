@@ -231,8 +231,24 @@ Remember when paging to:
 Follow the pattern in `Orderable search`_.
 
 
-eager / lazy loading
----------------------
+Eager Fetching & Lazy Loading
+------------------------------
+
+Eager fetching and lazy loading refer to the loading strategy an ORM takes when loading related 
+Entities to the one that you're interested in.  When done right, eager fetching can eliminate the
+N+1 problem in the next section.  When done wrong, your service can consume all it's available
+memory and stall out.
+
+Most often eager loading is not the right strategy to choose, and while Hibernate's default is to
+always use lazy loading, we should remember that Hibernate uses the JPA recommendation to lazily
+load all *ToMany relationships and eagerly fetch *ToOne relationships.
+
+Eagerly fetching *ToOne relationships is not wrong, however we can't talk about eager fetch and 
+lazy load without discussing what the typical uses of retrieving data/entities is.
+
+RESTful verbs such as GET and POST are a helpful guide - most of the time:
+- GET:  we're only going to be retrieving data.  
+
 
 WIP - favor the common case
   (this needs to talk about our biggest mistake to date: overly deep resource
@@ -240,19 +256,71 @@ WIP - favor the common case
 
 N+1 loading
 ------------
-WIP
 
-database joins are expensive
+In the simplest terms, N+1 loading occurs when an entity is loaded, related entities are marked as
+lazily loaded, and then the Java code (service, controller, etc) navigates to the related entity
+causing the JPA implementation to go load that related entity, which typically is an IO event back
+to the database.  This is especially egregious when the related entity is actually some sort of 
+collection (*ToMany relationship).  For each element that's navigated to in the relationship, often
+another IO call occurs back to the database.
+
+Avoiding N+1 loading is best done through designing for the common case.  Take for example a User
+entity, which has a lazily loaded OneToMany relationship with RoleAssignments.  We might think that 
+the common case we should design for is when we update a user and their RoleAssignments, so we put 
+the full RollAssignment resource in the representation for GET and PUT a User.  Since the relation
+is lazily loaded we'll incur N+1 loads:  1 for the User and N for the # of RoleAssignments.  If we 
+changed the relation to be eagerly fetched, then we'd pull all N RollAssignments when any bit of 
+Java code loaded the User - even if we just needed the User's ID or name.
+
+The simplest solution therefore is use a lazily loaded relation, and remove the full representations 
+of RoleAssignments from the User resource.  Afterall updating a User is actually pretty uncommon 
+compared to retrieving a User.  And if we need a User's RoleAssignments, we don't actually want to 
+retrieve them with the User, rather we'll likely want a specific sub Resource of a User for managing 
+their RoleAssignments.  This sub-resource would typically look like:
+
+- :code:`/api/users/{id}`
+- :code:`/api/users/{id}/roleAssignments`
+
+Summary
+^^^^^^^
+
+- Build RESTful resource representations that are shallow:  that is don't load more than just the
+  single entity being asked for.
+- `No FETCH JOINS`_
+- Don't use eager loads unless it's really safe to do so, they might seem to solve the above 
+  problem, but they can go awry quickly.  Just use lazy loading.
+
+Database JOINs are expensive
 -----------------------------
-WIP
 
-primary keys, indexes, and foreign keys
-----------------------------------------
-WIP(prefer primary key, index and what are good/bad ones, foreign keys
-  aren't indexed)
+Simply put a database join is expensive.  While our Service's `should not de-normalize`_ to avoid
+many joins, we should consider the advice in the FlattenComplexStructures_ section, especially
+when such a representation is used frequently by other clients.
+
+
+Indexes
+--------
+
+When done right an index can prevent the database from ever having to go to disk - a slow operation.
+Done wrong and a plethora of indexes can eat up memory and not prevent disk operations.
+
+Some tips (PostgreSQL):
+
+- The primary key is indexed.  When you know what you want, using it's primary key, a UUID, is usually the most effecient.
+- Foreign keys are not automatically indexed in PostgreSQL, however they almost always should be.
+- You almost always want a B-tree index (the default).
+- Unique columns are some of the best indicies, when it's not a unique column, keep in mind that
+  `low cardinality indexes negatively impact performance`_
+- Don't over-index, each index takes up memory.  Choose them based on the common search (i.e. WHERE 
+  clause) and prefer to search based on high-cardinality columns with indexes.
+- `More indexing tips`_
+
+
+.. _FlattenComplexStructures:
 
 Flatten complex structures
 --------------------------
+
 We should take complex structures that do not change often, flattening and
 storing them in the database. This would create a higher expense in writes, but
 improve performance in reads. Since reads would be more common than writes, the
@@ -296,4 +364,7 @@ HTTP Cache
 .. _database paging pattern: https://groups.google.com/d/msg/openlmis-dev/WniSS9ZIdY4/B7vNXcchBgAJ
 .. _Spring Data projection: https://docs.spring.io/spring-data/rest/docs/current/reference/html/#projections-excerpts.projections 
 .. _Orderable search: https://github.com/OpenLMIS/openlmis-referencedata/blob/8de4c200aaf7ccb3dc1e450eb606185a953a8448/src/main/java/org/openlmis/referencedata/web/OrderableController.java#L157
+.. _No FETCH JOINS: http://learningviacode.blogspot.nl/2012/08/fetch-join-and-cartesian-product-problem.html
+.. _low cardinality indexes negatively impact performance: https://www.ibm.com/developerworks/data/library/techarticle/dm-1309cardinal/
+.. _More indexing tips: https://devcenter.heroku.com/articles/postgresql-indexes
 
