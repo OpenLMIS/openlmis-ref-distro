@@ -246,16 +246,9 @@ load all *ToMany relationships and eagerly fetch *ToOne relationships.
 Eagerly fetching *ToOne relationships is not wrong, however we can't talk about eager fetch and 
 lazy load without discussing what the typical uses of retrieving data/entities is.
 
-RESTful verbs such as GET and POST are a helpful guide - most of the time:
-- GET:  we're only going to be retrieving data.  
-
-
-WIP - favor the common case
-  (this needs to talk about our biggest mistake to date: overly deep resource
-  representations - bad for JPA, bad for network, bad for caching)
 
 N+1 loading
-------------
+^^^^^^^^^^^^
 
 In the simplest terms, N+1 loading occurs when an entity is loaded, related entities are marked as
 lazily loaded, and then the Java code (service, controller, etc) navigates to the related entity
@@ -287,7 +280,7 @@ Summary
 - Build RESTful resource representations that are shallow:  that is don't load more than just the
   single entity being asked for.
 - `No FETCH JOINS`_
-- Don't use eager loads unless it's really safe to do so, they might seem to solve the above 
+- Don't use eager fetching unless it's really safe to do so, they might seem to solve the above 
   problem, but they can go awry quickly.  Just use lazy loading.
 - During development you can set `environment variables to show what SQL`_ is actually being run by
   Hibernate.
