@@ -214,15 +214,15 @@ to `copyright VillageReach, <insert name here>`
 
 ### Adding new code in a new file
 
-* Copy the license file header template, [LICENSE-HEADER](LICENSE-HEADER), to the top of the new file.
+* Copy the license file header template, [LICENSE-HEADER](https://github.com/OpenLMIS/openlmis-ref-distro/blob/master/LICENSE-HEADER), to the top of the new file.
 * Add the year and your name or your organization's name to the license header. e.g. if it reads `Copyright © <INSERT YEAR AND COPYRIGHT HOLDER HERE>`, update it to `Copyright © 2017 MyOrganization`
 
 For complete licensing details be sure to reference the LICENSE file that comes with this project.
 
 ## Feature Roadmap
 
-The Living Roadmap can be found here: https://openlmis.atlassian.net/wiki/display/OP/Living+Product+Roadmap
-The backlog can be found here: https://openlmis.atlassian.net/secure/RapidBoard.jspa?rapidView=46&view=planning.nodetail
+The Living Roadmap can be found [here](https://openlmis.atlassian.net/wiki/display/OP/Living+Product+Roadmap)
+The backlog can be found [here](https://openlmis.atlassian.net/secure/RapidBoard.jspa?rapidView=46&view=planning.nodetail)
 
 ## Contributing Documentation
 
