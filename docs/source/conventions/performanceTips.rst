@@ -9,7 +9,7 @@ Knowing where to invest time and resources into optimization is always the first
 document will briefly cover the highlights of two tools which help us determine where we should
 invest our time, and then we'll dive into specific strategies for making our performance better.
 
-To see how to test HTTP based services see :doc:`performanceTips`.
+To see how to test HTTP based services see :doc:`performance`.
 
 Profiling
 ----------
