@@ -16,6 +16,7 @@ Service Conventions
    codeStyleguide
    testing
    errorHandling
+   serviceHealth
 
 UI Conventions
 ==============
