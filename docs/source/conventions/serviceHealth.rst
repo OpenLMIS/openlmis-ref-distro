@@ -29,11 +29,11 @@ As simple as adding it as a dependency:
 
 .. code-block:: none
 
-	dependencies {
-		...
-		compile "org.springframework.boot:spring-boot-starter-actuator"
-		...
-	}
+  dependencies {
+    ...
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    ...
+  }
 
 Enabling the :code:`/health` endpoint 
 -------------------------------------
@@ -62,21 +62,21 @@ First we must allow non-authenticated access to this resource:
 	.antMatchers(
             "/referencedata",
             "/health",
-						"/referencedata/docs/**"
+            "/referencedata/docs/**"
 	).permitAll()
 
 Next we need to tell Consul that this endpoint should be used for a health check:
 
 **config.json**:
 
-.. code-block: json
+.. code-block:: json
 
-	"service": {
-  	"Name": "referencedata",
+  "service": {
+    "Name": "referencedata",
     "Port": 8080,
     "Tags": ["openlmis-service"],
     "check": {
-    	"interval": "10s",
+      "interval": "10s",
       "http": "http://HOST:PORT/health"
     }
   },
@@ -92,18 +92,18 @@ And finally we'll need to ensure that the registration script replaces :code:`HO
 
 .. code-block:: javascript
 
-	function registerService() {
-		service.ID = generateServiceId(service.Name);
+  function registerService() {
+    service.ID = generateServiceId(service.Name);
 
-		if (service.check) {
-			var checkHttp = service.check.http;
-			checkHttp = checkHttp.replace("HOST", service.Address);
-			checkHttp = checkHttp.replace("PORT", service.Port);
-			service.check.http = checkHttp;
-		}
+    if (service.check) {
+      var checkHttp = service.check.http;
+      checkHttp = checkHttp.replace("HOST", service.Address);
+      checkHttp = checkHttp.replace("PORT", service.Port);
+      service.check.http = checkHttp;
+    }
 
-		...
-	}
+    ...
+  }
 
 This `commit has the change`_.
 
@@ -115,8 +115,8 @@ path for Consul.  This means that our reverse proxy will never try to take a HTT
 and try to access it through the network at the host and port which the Service registered itself 
 with.  No client to our reverse proxy will be able to directly access a Service's health endpoint.
 
-.. Consul: https://www.consul.io/
-.. Nginx: https://nginx.org/
-.. Spring Boot Actuator: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
-.. Consul check directive: https://www.consul.io/docs/agent/checks.html
-.. commit has the change: https://github.com/OpenLMIS/openlmis-referencedata/commit/3bcd75f24dbe60702083771d2c947c713725e15e#diff-426e2baf3a14662065832f6c45702da6
+.. _Consul: https://www.consul.io/
+.. _Nginx: https://nginx.org/
+.. _Spring Boot Actuator: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
+.. _Consul check directive: https://www.consul.io/docs/agent/checks.html
+.. _commit has the change: https://github.com/OpenLMIS/openlmis-referencedata/commit/3bcd75f24dbe60702083771d2c947c713725e15e#diff-426e2baf3a14662065832f6c45702da6
