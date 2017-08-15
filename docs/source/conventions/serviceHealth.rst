@@ -115,8 +115,26 @@ path for Consul.  This means that our reverse proxy will never try to take a HTT
 and try to access it through the network at the host and port which the Service registered itself 
 with.  No client to our reverse proxy will be able to directly access a Service's health endpoint.
 
+Health and HTTP Status
+-----------------------
+
+The `Consul check directive`_ is looking for the following HTTP statuses:
+
+- 2xx: Everything is okay, send more requests
+- 429: Warning, too many requests.  There is a problem, but still send more requests.
+- Anything else: failed, not available for servicing requests
+
+The :code:`/health` endpoint naturally fulfills HTTP :code:`200` when the Service is ready and also
+has the basics of how to report when a service is down (e.g. if the database connection is 
+down the endpoint will return a 5xx level error).  This endpoint can do more however.
+`Spring Boot Actuator Health Information`_ has more details about how custom code can be written
+that modifies the health status returned.  This could be especially useful if a Service has a
+dependancy on another system (e.g. integration with ODK or DHIS2), another Service (e.g. Requisition 
+needs Reference Data) or another piece of infrastructure (e.g. sending emails, SMS, etc).
+
 .. _Consul: https://www.consul.io/
 .. _Nginx: https://nginx.org/
 .. _Spring Boot Actuator: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
 .. _Consul check directive: https://www.consul.io/docs/agent/checks.html
 .. _commit has the change: https://github.com/OpenLMIS/openlmis-referencedata/commit/3bcd75f24dbe60702083771d2c947c713725e15e#diff-426e2baf3a14662065832f6c45702da6
+.. _Spring Boot Actuator Health Information: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health
