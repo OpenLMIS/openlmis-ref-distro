@@ -7,7 +7,7 @@ Registry (`Consul`_) when it's ready to accept new work and when it's not.  If t
 inform our Service Registry accurately, then new requests for work might be routed to that service 
 from the reverse proxy (`Nginx`_) which won't be fulfilled.
 
-Spring Boot Actuater
+Spring Boot Actuator
 ====================
 
 In our Spring Boot based services there is a very handy project named `Spring Boot Actuator`_ that 
@@ -16,7 +16,7 @@ endpoint.
 
 To make use of this in OpenLMIS v3 architecture we will:
 
-#. Add Spring Boot Actuater to our Service.
+#. Add Spring Boot Actuator to our Service.
 #. Enable the :code:`/health` endpoint.
 #. Register this endpoint with Consul as a health check.
 
@@ -47,7 +47,7 @@ May be done through our default configuration:
 	endpoints.enabled=false
 	endpoints.health.enabled=true
 
-Note that we first disable all of the endpoints that Spring Boot Actuater adds to be conservative,
+Note that we first disable all of the endpoints that Spring Boot Actuator adds to be conservative,
 we don't need them (yet).  Next we ensure that the :code:`/health` endpoint is enabled.
 
 Registering :code:`/health` with Consul (Service Registry)
