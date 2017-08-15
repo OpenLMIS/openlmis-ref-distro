@@ -6,10 +6,10 @@ Testing and Profiling
 ======================
 
 Knowing where to invest time and resources into optimization is always the first step.  This 
-document will briefly cover the highlights of two of them, and then dive into specific strategies
-for increasing performance.
+document will briefly cover the highlights of two tools which help us determine where we should
+invest our time, and then we'll dive into specific strategies for making our performance better.
 
-To see how to test HTTP based services see `performance testing`_.
+To see how to test HTTP based services see :doc:`performanceTips`.
 
 Profiling
 ----------
@@ -17,8 +17,8 @@ Profiling
 After we've identified that a HTTP operation is slow, there are two simple tools that can help us
 in understanding why:
 
-- `SLF4J Profiler`_: useful to print latency meassurements to our log.  It's cheap and a bit dirty,
-  though highly-effective and it works in remote production environments in real-world scenarios.
+- `SLF4J Profiler`_: useful in printing latency meassurements to our log.  It's cheap and a bit 
+  inaccurate, though quite effective and it works in all production environments.
 - `VisualVM`_: perhaps the most well known Java profiling tool can give great information about
   what the code is doing, however since it needs to connect directly to the JVM running that
   Service's code, it's better suited for local development environments rather than debugging
@@ -27,9 +27,9 @@ in understanding why:
 The usefulness of basic profiling metrics from production environments can't be understated.
 Performance issues rarely occur in local development environments and the people most impacted by
 slow performance are people using production systems.  Just as our performance tests operate against
-a deployment topology that tries to match what most of our customers use, so to must we know about
-how that code is performing in real-usage.  For these reasons this document will focus more on 
-logging performance metrics with SLF4J Profiler rather than VisualVM.
+a :doc:`../deployment/topology` that tries to match what most of our customers use, so to is it 
+useful to know how that code is performing in customer implementations.  For these reasons this 
+document will focus more on logging performance metrics with SLF4J Profiler rather than VisualVM.
 
 Using SLF4J Profiler in Java code is as simple as:
 
@@ -66,16 +66,17 @@ This will generate log statements that look like the following:
 
 Placed in the Controller for this HTTP operation we can tell:
 
-#. Most of the time for this innvocation is spent checking if the user has the right: more than 
+#. Most of the time for this innvocation is spent checking if the user has a right: more than 
    1 second.
 #. Fetching the entities from the database took about 14% of the time
 #. Turning them into DTOs used up *less* than a millisecond.
 #. We'd have to look at the Service's access log to find where additional latency is introduced that
    we can't meassure here:  serialization, IO overhead, Spring Boot magic, etc
 
-This lets us know easily that improving the performance of the permission check might be well worth
+This easily lets us know that improving the performance of the permission check might be well worth
 the effort. Since this information is in the logs we can also monitor and graph the performance of 
-the data retrievel latency in real-time with a well crafted search on our logs.
+the data retrievel latency (ORDERABLE_SERVICE_SEARCH) in real-time with a well crafted search on our 
+logs.
 
 SLF4J Profile Conventions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -149,7 +150,7 @@ comparing these two is that:
   we were suffering from a 200ms delay due to a TCP configuration being off previously).
 - Our user must be on a fast network connection, as Nginx spent the same time serving the response
   as it did getting the results from the upstream server. (a bit oversimplified).
-- Approx 18.5KB we're returned in this Orderables Search.
+- Approx 18.5KB was returned in this Orderables Search.
 
 RESTful representations and the JPA to avoid
 =============================================
@@ -166,7 +167,7 @@ info (using findOne()). Spring Data JPA's :code:`CrudRepository` supports this
 through the method :code:`exists()`.
 
 In Spring Data JPA 1.11's (shipped in Spring Boot 1.5+) `CrudRepository`
-ships with :code:`exists()` support for more than just the primary key column.
+ships with :code:`exists()` support for more than just the primary key column using Projections.
 
 For example, take this bit of code that was found when searching for Orderables
 by a Program's code:
@@ -183,9 +184,9 @@ by a Program's code:
     }
 
 This requires a trip to the database, which will need to pull the entire Program
-row, back to the Service which will then turn it into a Java object, which then,
-checks if the Program is null.  Using an exists check, we can write code such
-as:
+entity, back to the Service which will then turn it into a Java object... which wil finally
+do what we actually wanted and check if the Program is null.  Using an exists check, we can write 
+code such as:
 
 .. code-block:: Java
 
@@ -223,8 +224,8 @@ Remember when paging to:
       @Query("SELECT o FROM Orderable o WHERE o.id in ?1")
       Page<Orderable> findAllById(Iterable<UUID> ids, Pageable pageable);
 
-#. If it's a Query, you'll need to run 2 queries:  one for a :code:`count()` and one for the (sub) 
-   list.
+#. If it's an :code:`EntityManager.createQuery()`, you'll need to run 2 queries:  one for a 
+   :code:`count()` and one for the (sub) list.
 #. If you're a client, *use* the query parameters to page the results - otherwise our convention
    will be to return the largest page we can to you, which is slower.
 
@@ -243,8 +244,9 @@ Most often eager loading is not the right strategy to choose, and while Hibernat
 always use lazy loading, we should remember that Hibernate uses the JPA recommendation to lazily
 load all *ToMany relationships and eagerly fetch *ToOne relationships.
 
-Eagerly fetching *ToOne relationships is not wrong, however we can't talk about eager fetch and 
-lazy load without discussing what the typical uses of retrieving data/entities is.
+Eagerly fetching *ToOne relationships is not wrong, however we can't talk about eager fetching and 
+lazy loading without analyzing what the typical uses of retrieving data/entities is.  For that
+we'll look at the N+1 problem.
 
 
 N+1 loading
@@ -259,20 +261,26 @@ another IO call occurs back to the database.
 
 Avoiding N+1 loading is best done through designing for the common case.  Take for example a User
 entity, which has a lazily loaded OneToMany relationship with RoleAssignments.  We might think that 
-the common case we should design for is when we update a user and their RoleAssignments, so we put 
-the full RollAssignment resource in the representation for GET and PUT a User.  Since the relation
-is lazily loaded we'll incur N+1 loads:  1 for the User and N for the # of RoleAssignments.  If we 
-changed the relation to be eagerly fetched, then we'd pull all N RollAssignments when any bit of 
-Java code loaded the User - even if we just needed the User's ID or name.
+the common case we should design for is updating a user and their RoleAssignments. If we design for 
+this we'll likely place the full RollAssignment resource in the representation for GET and PUT of a 
+User.  Since the relation is lazily loaded we'll incur N+1 loads:  1 for the User and N for the # 
+of RoleAssignments.  If we changed the relation to be eagerly fetched, then we'd pull all N 
+RollAssignments when any bit of Java code loaded the User - even if we just needed the User's ID or 
+name.
 
-The simplest solution therefore is use a lazily loaded relation, and remove the full representations 
-of RoleAssignments from the User resource.  Afterall updating a User is actually pretty uncommon 
-compared to retrieving a User.  And if we need a User's RoleAssignments, we don't actually want to 
-retrieve them with the User, rather we'll likely want a specific sub Resource of a User for managing 
-their RoleAssignments.  This sub-resource would typically look like:
+The simplest solution therefore is to use a lazily loaded relation, and remove the full 
+representations of RoleAssignments from the User resource.  Afterall updating a User is actually 
+pretty uncommon compared to retrieving a User, or even retriving the User with RoleAssignments to
+check that user's rights.  If we do actually need a User's RoleAssignments, we don't actually want 
+to retrieve them with the User, rather we'll likely want a specific sub Resource of a User for 
+managing their RoleAssignments.  This sub-resource would typically look like:
 
 - :code:`/api/users/{id}`
 - :code:`/api/users/{id}/roleAssignments`
+
+This would optimize the common case (just load a User to get their name/profile), and provide a
+seperate resource which could be optimized for pulling that User's RoleAssigments in one trip to the
+database.
 
 Summary
 ^^^^^^^
@@ -424,7 +432,6 @@ WIP:
 - private
 - max-age
 
-.. _Performance Testing: performanceTesting
 .. _SLF4J Profiler: https://www.slf4j.org/extensions.html#profiler
 .. _VisualVM: https://visualvm.github.io/
 .. _Nginx access log: https://github.com/OpenLMIS/openlmis-nginx#nginx-access-log-format
