@@ -108,7 +108,7 @@ And finally we'll need to ensure that the registration script replaces :code:`HO
 This `commit has the change`_.
 
 At this point you might be wondering why we left this endpoint unsecured and not mapped to some
-name which is service specific - afterall every running service will use :code:`/health`.  What we
+name which is service specific. After all, every running service will use :code:`/health`.  What we
 did not do however is make this endpoint routable by adding it to our RAML or registering it as a
 path for Consul.  This means that our reverse proxy will never try to take a HTTP request to 
 :code:`/health` and route it to any particular service.  Only Consul will know of this endpoint
