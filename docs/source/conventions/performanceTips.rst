@@ -83,7 +83,7 @@ SLF4J Profile Conventions
 
 - Use the Profiler in Controller methods for code that's released to production.  While in
   development you can use a Profiler anywhere you wish, it tends to clutter the code and the logs
-  longer term.  A few we'll placed Profiler.start() statements, left in the Controller however,
+  longer term.  A few well placed Profiler.start() statements, left in the Controller however,
   can pay dividends longer term when performance issues need to be diagnosed in implementations.
 - Prepend the HTTP operation to the beginning of the name.  So :code:`GET_ORDERABLES_SEARCH` and
   not `ORDERABLES_SEARCH`.
@@ -184,7 +184,7 @@ by a Program's code:
     }
 
 This requires a trip to the database, which will need to pull the entire Program
-entity, back to the Service which will then turn it into a Java object... which wil finally
+entity, back to the Service which will then turn it into a Java object... which will finally
 do what we actually wanted and check if the Program is null.  Using an exists check, we can write 
 code such as:
 
@@ -209,8 +209,8 @@ Use Database Paging
 Database paging is vastly more performant and efficient than Java paging or not paging at all.
 How much more?  Before the Orderable's search resource was paged in the database, it was paged in
 Java.  In Java pulling a page of only 10 Orderables out of a set of 10k Orderables took around 20
-seconds, after, this same operation took only 2 seconds (10x more performant) and of that 95% of
-those 2 seconds are spent in an unrelated permission check.
+seconds. After switching to database paging, this same operation took only 2 seconds (10x more 
+performant) and of that 95% of those 2 seconds are spent in an unrelated permission check.
 
 The `database paging pattern`_ was established and as of this writing is not well enough adopted.
 Remember when paging to:
@@ -242,9 +242,9 @@ memory and stall out.
 
 Most often eager loading is not the right strategy to choose, and while Hibernate's default is to
 always use lazy loading, we should remember that Hibernate uses the JPA recommendation to lazily
-load all *ToMany relationships and eagerly fetch *ToOne relationships.
+load all \*ToMany relationships and eagerly fetch \*ToOne relationships.
 
-Eagerly fetching *ToOne relationships is not wrong, however we can't talk about eager fetching and 
+Eagerly fetching \*ToOne relationships is not wrong, however we can't talk about eager fetching and 
 lazy loading without analyzing what the typical uses of retrieving data/entities is.  For that
 we'll look at the N+1 problem.
 
@@ -256,7 +256,7 @@ In the simplest terms, N+1 loading occurs when an entity is loaded, related enti
 lazily loaded, and then the Java code (service, controller, etc) navigates to the related entity
 causing the JPA implementation to go load that related entity, which typically is an IO event back
 to the database.  This is especially egregious when the related entity is actually some sort of 
-collection (*ToMany relationship).  For each element that's navigated to in the relationship, often
+collection (\*ToMany relationship).  For each element that's navigated to in the relationship, often
 another IO call occurs back to the database.
 
 Avoiding N+1 loading is best done through designing for the common case.  Take for example a User
@@ -269,7 +269,7 @@ RollAssignments when any bit of Java code loaded the User - even if we just need
 name.
 
 The simplest solution therefore is to use a lazily loaded relation, and remove the full 
-representations of RoleAssignments from the User resource.  Afterall updating a User is actually 
+representations of RoleAssignments from the User resource.  After all, updating a User is actually 
 pretty uncommon compared to retrieving a User, or even retriving the User with RoleAssignments to
 check that user's rights.  If we do actually need a User's RoleAssignments, we don't actually want 
 to retrieve them with the User, rather we'll likely want a specific sub Resource of a User for 
@@ -288,8 +288,8 @@ Summary
 - Build RESTful resource representations that are shallow:  that is don't load more than just the
   single entity being asked for.
 - `No FETCH JOINS`_
-- Don't use eager fetching unless it's really safe to do so, they might seem to solve the above 
-  problem, but they can go awry quickly.  Just use lazy loading.
+- Don't use eager fetching unless it's really safe to do so. It might seem to solve the above 
+  problem, but it can go awry quickly.  Just use lazy loading.
 - During development you can set `environment variables to show what SQL`_ is actually being run by
   Hibernate.
 
