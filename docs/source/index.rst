@@ -24,12 +24,13 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
+   releases/index
    architecture/index
    components/index
+   contribute/index
    conventions/index
    deployment/index
    conventions/versioningReleasing
-   contribute/index
 
 Links:
 ======
