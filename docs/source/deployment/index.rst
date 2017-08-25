@@ -15,3 +15,4 @@ repository.  Documentation from that repository is listed below:
    provisionSwarmWithELB
    provisionSwarmWithElasticIp
    demoAndCiJenkins
+   rdsConfiguration
