@@ -164,7 +164,7 @@ contributors again, or at least since 3.1.0.
 Further Resources
 =================
 
-View all `JIRA Tickets in 3.1.2 <https://openlmis.atlassian.net/issues/?jql=statusCategory%20%3D%20d
+View all `JIRA Tickets in 3.2.0 <https://openlmis.atlassian.net/issues/?jql=statusCategory%20%3D%20d
 one%20AND%20project%20%3D%2011100%20AND%20fixVersion%20%3D%203.2%20ORDER%20BY%20type%20ASC%2C%20prio
 rity%20DESC%2C%20key%20ASC>`_.
 
