@@ -1,6 +1,6 @@
-==============================
-3.2.0 Release - 31 August 2017
-==============================
+======================================
+3.2.0 Release Notes - 1 September 2017
+======================================
 
 Status: Stable
 ==============
@@ -18,26 +18,25 @@ This release represents another major milestone in the version 3 series, which i
 software `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_ that
 allows more functionality to be shared among the community of OpenLMIS users.
 
-3.2.0 includes a new **Cold Chain Equipment** (CCE) service and other improvements for Vaccine/EPI
-programs. This represents the first milestone towards the `Vaccines MVP
+3.2.0 includes a beta version of the new **Cold Chain Equipment** (CCE) service and other
+improvements for Vaccine/EPI programs. This represents the first milestone towards the `Vaccines MVP
 <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_ feature set. 3.2.0
 also contains more contributions from the **Malawi implementation**, a national implementation that
-is now live on OpenLMIS version 3. The latest contributions include a new Batch Requisition View
-feature as well as performance improvements.
+is now live on OpenLMIS version 3.
 
 After 3.2.0, there are further planned `milestone releases and patch releases
 <http://docs.openlmis.org/en/latest/conventions/versioningReleasing.html>`_ that will continue
-towards the vision of providing a full-featured electronic logistics management information system
-(LMIS). Please reference the `Living Product Roadmap
-<https://openlmis.atlassian.net/wiki/display/OP/Living+Product+Roadmap>`_ for the upcoming release
-priorities. Patch releases will continue to include bug fixes, performance improvements, and pull
-requests are welcomed.
+adding features to support Vaccine/EPI programs and continue making OpenLMIS a full-featured
+electronic logistics management information system (LMIS). Please reference the `Living Product
+Roadmap <https://openlmis.atlassian.net/wiki/display/OP/Living+Product+Roadmap>`_ for the upcoming
+release priorities. Patch releases will continue to include bug fixes, performance improvements, and
+pull requests are welcomed.
 
 Compatibility
 -------------
 
 All changes are backwards-compatible. Any changes to data include automated migrations from previous
-versions back to 3.0.1. Any exceptions are identified in the Components sections below.
+versions back to version 3.0.1. Any exceptions are identified in the Components sections below.
 
 For background information on OpenLMIS version 3's new micro-service architecture,
 extensions/customizations, and upgrade paths for OpenLMIS versions 1 and 2, see the `3.0.0 Release
