@@ -177,10 +177,17 @@ Bug fixes and improvements (backwards-compatible):
 Source: `Fulfillment CHANGELOG
 <https://github.com/OpenLMIS/openlmis-fulfillment/blob/master/CHANGELOG.md>`_
 
-nginx
+nginx v4
 --------
 
-**TBD**
+Improves stability and reliability of the application when individual services stop and start in
+their lifecycle. Also performance is improved by reducing latency under load between nginx and
+Services through configuration tuning.
+
+- `OLMIS-2840 <https://openlmis.atlassian.net/browse/OLMIS-2840>`_: Allow services to stop and start
+  without crashing consul-template.
+- `OLMIS-2957 <https://openlmis.atlassian.net/browse/OLMIS-2957>`_: Reduce nginx latency.
+
 
 Notification Service 3.1.0
 --------------------------
@@ -194,7 +201,7 @@ Bug fixes, security and performance improvements (backwards-compatible):
 Source: `Notification CHANGELOG
 <https://github.com/OpenLMIS/openlmis-notification/blob/master/CHANGELOG.md>`_
 
-Postgres
+Postgres 9.6-postgis
 --------
 
 The postgres image in OpenLMIS 3.2.0 has changed slightly to include the **uuid-ossp** extension,
