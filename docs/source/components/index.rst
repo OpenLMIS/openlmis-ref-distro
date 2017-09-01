@@ -61,8 +61,7 @@ Provides the reference data for the rest of the processes: facilities, programs,
 - `Reference Data Service <referencedataService.html>`_
 - `Reference Data UI <referencedataUI.html>`_
 - `Reference Data ERD <erd-referencedata.html>`_
-- `Live Documentation for Reference Data API <http://test.openlmis.org/referencedata/docs/#/default>`_
-- `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/939/artifact/build/resources/main/api-definition.html>`_
 
 ************
 Reference UI
