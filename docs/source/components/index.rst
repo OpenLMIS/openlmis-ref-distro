@@ -54,7 +54,7 @@ CCE Service
 Allows managing Cold Chain Equipment.
 
 - `CCE Service <cceService.html>`_
-- `CCE ERD <cce-fulfillment.html>`_
+- `CCE ERD <erd-cce.html>`_
 - `Live Documentation for CCE API <http://test.openlmis.org/cce/docs/#/default>`_
 - `Static Documentation for CCE API <http://build.openlmis.org/job/OpenLMIS-cce-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
@@ -126,4 +126,3 @@ Electronic stock cards.
 - `Stock Management ERD <erd-stockmanagement.html>`_
 - `Live Documentation for Stock Management API <http://test.openlmis.org/stockmanagement/docs/#/default>`_
 - `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
-
