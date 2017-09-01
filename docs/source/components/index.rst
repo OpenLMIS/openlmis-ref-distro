@@ -96,5 +96,4 @@ Electronic stock cards.
 - `Stock Management Service <stockmanagementService.html>`_
 - `Stock Management UI <stockmanagementUI.html>`_
 - `Stock Management ERD <erd-stockmanagement.html>`_
-- `Live Documentation for Stock Management API <http://test.openlmis.org/stockmanagement/docs/#/default>`_
-- `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-service/403/artifact/build/resources/main/api-definition.html>`_
