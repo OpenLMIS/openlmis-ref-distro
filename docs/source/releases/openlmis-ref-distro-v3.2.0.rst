@@ -84,10 +84,19 @@ New Features
 
 This is a new section to flag all the new features. 
 
-- **Stock Management**: is not an official release and added a notification and new support for recording VVM status.
-- **Administrative Screens**: view supply lines, geogrphic zones, requisition groups and program settings.
-- beta version of the new **Cold Chain Equipment (CCE)** service: which includes the support to upload a catalog of cold chain equipment, add equpiment inventory (from the catalog) to facilities, and manually update the functional status of that equipment.  Review the `wiki <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113145252/Cold+Chain+Equipment+Management>`_ for details on the upcoming features.
-- **Performance** - targeted improvements were made based on the first implementation's use and results. Improvements were made in server response times, which impacts load time, and memory utilization. In addition, new tooling was introduced to provide the ability to track performance improvements and bottlenecks. 
+- **Stock Management**: is not an official release and added a notification and new support for
+  recording VVM status.
+- **Administrative Screens**: view supply lines, geogrphic zones, requisition groups and program
+  settings.
+- beta version of the new **Cold Chain Equipment (CCE)** service: which includes the support to
+  upload a catalog of cold chain equipment, add equpiment inventory (from the catalog) to
+  facilities, and manually update the functional status of that equipment. Review the `wiki
+  <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113145252/Cold+Chain+Equipment+Management>`_
+  for details on the upcoming features.
+- **Performance**: targeted improvements were made based on the first implementation's use and
+  results. Improvements were made in server response times, which impacts load time, and memory
+  utilization. In addition, new tooling was introduced to provide the ability to track performance
+  improvements and bottlenecks. 
 - Reference data
 - Report service is now a separate component (see Report component below)
 
@@ -100,7 +109,7 @@ changes which may require informing end-users and/or updating your customization
 - Requisition Service now uses Stock Management to handle adjustment reasons and to store
   stock data in stock cards. This change does not alter end-user functionality in Requisitions,
   but it does allow users with Stock Management rights to begin viewing stock cards with data
-  populated from requisitions. This change also requires a data migration script to upgrade olderx
+  populated from requisitions. This change also requires a data migration script to upgrade older
   version 3 systems to 3.2.0. (See Requisition component below.)
 
 API Changes
@@ -156,9 +165,9 @@ medical supply chains. This API service component has an accompanying beta CCE U
 
 CCE 1.0.0-beta includes many new features:
 
-- Configuring a cold chain equipment catalog
-- Managing cold chain equipment inventory
-- Capturing functionality status of equipment
+- Create and update a cold chain equipment catalog
+- Add equipment inventory to facilities
+- Update the functional status of equipment inventory
 
 For details, see the functional documentation: `Cold Chain Equipment Management
 <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113145252/Cold+Chain+Equipment+Management>`_
@@ -463,6 +472,10 @@ Reid, Josh Zamor
 A special thanks to the implementers working in Malawi who contributed features and improvements:
 Sebastian Brudziński, Weronika Ciecierska, Łukasz Lewczyński, Klaudia Pałkowska, Ben Leibert,
 Christine Lenihan.
+
+Since version 3.1.2, we have received `40 pull requests
+<https://github.com/pulls?page=2&q=is%3Apr+user%3AOpenLMIS+is%3Aclosed>`_ from outside implementers
+and contributors.
 
 Special thanks to community members: Kaleb Brownlow, Lindabeth Doby, Tenly Snow, Jake Watson, Ashraf
 Islam, Parambir Gill, and all who attended the Product Committee, Technical Committee and Governance
