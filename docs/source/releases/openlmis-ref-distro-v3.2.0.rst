@@ -18,11 +18,10 @@ This release represents another major milestone in the version 3 series, which i
 software `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_ that
 allows more functionality to be shared among the community of OpenLMIS users.
 
-3.2.0 includes a beta version of the new **Cold Chain Equipment** (CCE) service and other
-improvemen ts for Vaccine/EPI programs. This represents the first milestone towards the `Vaccines MVP
-<https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_ feature set. 3.2.0
-also contains more contributions from the **Malawi implementation**, a national implementation that
-is now live on OpenLMIS version 3.
+3.2.0 includes new features in **stock management**, new **administrative screens**, targeted **performance improvements** and a beta version of the **Cold Chain Equipment (CCE)** service and more contributions in the form of pull requests, from the **Malawi implementation**, a national implementation is now live on OpenLMIS version 3.
+
+3.2.0 represents the first milestone towards the `Vaccines MVP
+<https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_ feature set. 
 
 After 3.2.0, there are further planned `milestone releases and patch releases
 <http://docs.openlmis.org/en/latest/conventions/versioningReleasing.html>`_ that will add more
@@ -42,7 +41,7 @@ versions back to version 3.0.1. Any exceptions are identified in the Components 
 older version 3 to 3.2.0. This migration has its own GitHub repo and Docker image. See
 `Adjustment Reason Migration <https://github.com/OpenLMIS/openlmis-adjustment-reason-migration>`_.
 
-For background information on OpenLMIS version 3's new micro-service architecture,
+For background information on OpenLMIS version 3's micro-service architecture,
 extensions/customizations, and upgrade paths for OpenLMIS versions 1 and 2, see the `3.0.0 Release
 Notes <https://openlmis.atlassian.net/wiki/spaces/OP/pages/88670325/3.0.0+Release+-+1+March+2017>`_.
 
@@ -55,13 +54,14 @@ Download or View on GitHub
 New Features
 ============
 
-This is a new section to flag all the new features specifically. Hopefully many of these are
-configurable or have a toggle so new features will not negatively impact existing implementations.
+This is a new section to flag all the new features. 
 
-- CCE Service (beta) and Reference Data contain new features for cold chain equipment (see CCE
-  component below)
-- Stock Management component is now an official release (it was previously a beta component)
-- Report service is now its own separate component to provide reporting features (**TBD**)
+* **Stock Management**: is not an official release and added a notification and new support for recording VVM status.
+* **Administrative Screens**: view supply lines, geogrphic zones, requisition groups and program settings.
+* beta version of the new **Cold Chain Equipment (CCE)** service: which includes the support to upload a catalog of cold chain equipment, add equpiment inventory (from the catalog) to facilities, and manually update the functional status of that equipment.  Review the `wiki <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113145252/Cold+Chain+Equipment+Management>`_ for details on the upcoming features.
+* **Performance** - targeted improvements were made based on the first implementation's use and results. Improvements were made in server response times, which impacts load time, and memory utilization. In addition, new tooling was introduced to provide the ability to track performance improvements and bottlenecks. 
+* Reference data
+* Report service is now its own separate component to provide reporting features (**TBD**)
 
 Changes to Existing Functionality
 =================================
