@@ -42,8 +42,7 @@ Allows managing reports.
 
 - `Report Service <reportService.html>`_
 - `Report ERD <erd-report.html>`_
-- `Live Documentation for Report API <http://test.openlmis.org/report/docs/#/default>`_
-- `Static Documentation for Report API <http://build.openlmis.org/job/OpenLMIS-report-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Report API <http://build.openlmis.org/job/OpenLMIS-report-service/28/artifact/build/resources/main/api-definition.html>`_
 
 ********************
 Notification Service
