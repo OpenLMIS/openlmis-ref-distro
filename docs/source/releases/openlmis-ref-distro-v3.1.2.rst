@@ -162,6 +162,11 @@ Bug fixes and improvements (backwards-compatible):
 Source: `Fulfillment CHANGELOG
 <https://github.com/OpenLMIS/openlmis-fulfillment/blob/master/CHANGELOG.md>`_
 
+nginx
+--------
+
+**TBD**
+
 Notification Service 3.1.0
 --------------------------
 
@@ -373,10 +378,8 @@ Components with No Changes
 ==========================
 
 Other tooling components have not changed, including: the `logging service
-<https://github.com/OpenLMIS/openlmis-rsyslog>`_, the tailored docker-ized distribution of `nginx
-<https://github.com/OpenLMIS/openlmis-nginx>`_ and `postgres
-<https://github.com/OpenLMIS/postgres>`_, and a library for shared Java code called `service-util
-<https://github.com/OpenLMIS/openlmis-service-util>`_.
+<https://github.com/OpenLMIS/openlmis-rsyslog>`_ and a library for shared Java code called
+`service-util <https://github.com/OpenLMIS/openlmis-service-util>`_.
 
 Contributions
 =============
