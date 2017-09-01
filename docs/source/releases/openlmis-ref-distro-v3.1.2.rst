@@ -38,9 +38,9 @@ Compatibility
 All changes are backwards-compatible. Any changes to data include automated migrations from previous
 versions back to version 3.0.1. Any exceptions are identified in the Components sections below.
 
-**Important: 3.2.0 contains a data migration script that must be applied in order to upgrade from
+**Important**: 3.2.0 contains a data migration script that must be applied in order to upgrade from
 older version 3 to 3.2.0. This migration has its own GitHub repo and Docker image. See
-`Adjustment Reason Migration <https://github.com/OpenLMIS/openlmis-adjustment-reason-migration>`_.**
+`Adjustment Reason Migration <https://github.com/OpenLMIS/openlmis-adjustment-reason-migration>`_.
 
 For background information on OpenLMIS version 3's new micro-service architecture,
 extensions/customizations, and upgrade paths for OpenLMIS versions 1 and 2, see the `3.0.0 Release
@@ -89,6 +89,9 @@ changes impact developers and systems integrating with OpenLMIS:
   service to handle adjustment reasons and store data on stock cards (see Requisition component)
 - Configuration settings endpoints (/api/settings) are no longer available; use environment
   variables to configure the application (see OLMIS-2612 below)
+- postgres database now requires one additional extension: uuid. It is already included in the
+  postgres component (see postgres component below), but those hosting on Amazon AWS RDS will need
+  to add the extension.
 
 All Changes by Component
 ========================
@@ -170,6 +173,11 @@ Bug fixes, security and performance improvements (backwards-compatible):
 
 Source: `Notification CHANGELOG
 <https://github.com/OpenLMIS/openlmis-notification/blob/master/CHANGELOG.md>`_
+
+postgres
+--------
+
+**TBD**: explain new version and link to documentation about adding uuid extension
 
 Reference Data Service 8.0.0
 ----------------------------
