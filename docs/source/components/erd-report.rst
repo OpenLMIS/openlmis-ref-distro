@@ -4,4 +4,6 @@ Report ERD
 
 ERD schema of Report service:
 
-* `Zip ERD <http://build.openlmis.org/job/OpenLMIS-report-erd-generation/27/artifact/erd-report.zip>`_
+* `Live ERD <http://ci.openlmis.org/erd-report/>`_
+* `Zip ERD <http://build.openlmis.org/job/OpenLMIS-report-erd-generation/lastSuccessfulBuild/artifact/erd-report.zip>`_
+
