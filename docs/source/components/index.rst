@@ -22,8 +22,7 @@ Includes the basics of fulfillment.
 - `Fulfillment Service <fulfillmentService.html>`_
 - `Fulfillment UI <fulfillmentUI.html>`_
 - `Fulfillment ERD <erd-fulfillment.html>`_
-- `Live Documentation for Fulfillment API <http://test.openlmis.org/fulfillment/docs/#/default>`_
-- `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/326/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 CCE Service
