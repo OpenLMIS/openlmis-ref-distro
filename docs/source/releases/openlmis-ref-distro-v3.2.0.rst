@@ -286,6 +286,22 @@ The Reference UI bundles the following UI components together using Docker image
 auth-ui 5.0.3
 ~~~~~~~~~~~~~
 
+New functionality added in backwards-compatiable manner:
+
+- `OLMIS-3085 <https://openlmis.atlassian.net/browse/OLMIS-3085>`_: Added standard login and logout
+  events.
+
+Bug fixes and security updates:
+
+- `OLMIS-3124 <https://openlmis.atlassian.net/browse/OLMIS-3124>`_: Removed openlmis-download
+  directive and moved it to openlmis-ui-components
+- `MW-348 <https://openlmis.atlassian.net/browse/MW-348>`_: Added loading modal while logging in.
+- `OLMIS-2871 <https://openlmis.atlassian.net/browse/OLMIS-2871>`_: Made the component use an
+  Authorization header instead of an access_token request parameter when calls to the backend are
+  made.
+- `OLMIS-2867 <https://openlmis.atlassian.net/browse/OLMIS-2867>`_: Added message when user tries
+  to log in while offline.
+
 See `openlmis-auth-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-auth-ui/blob/master/CHANGELOG.md>`_
 
@@ -298,11 +314,35 @@ below for more info.
 fulfillment-ui 5.0.3
 ~~~~~~~~~~~~~~~~~~~~
 
+Bug fixes:
+
+- `OLMIS-2837 <https://openlmis.atlassian.net/browse/OLMIS-2837>`_: Fixed filtering on the manage
+  POD page.
+- `OLMIS-2724 <https://openlmis.atlassian.net/browse/OLMIS-2724>`_: Fixed broken requesting
+  facility filter select on Order View.
+
 See `openlmis-fulfillment-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-fulfillment-ui/blob/master/CHANGELOG.md>`_
 
 referencedata-ui 5.2.1
 ~~~~~~~~~~~~~~~~~~~~~~
+
+Improvements:
+
+- `OLMIS-2780 <https://openlmis.atlassian.net/browse/OLMIS-2780>`_: User form now uses minimal facilities endpoint.
+
+New functionality added in a backwards-compatible manner:
+
+- `OLMIS-3085 <https://openlmis.atlassian.net/browse/OLMIS-3085>`_: Made minimal facility list download and cache when user logs in.
+- `OLMIS-2696 <https://openlmis.atlassian.net/browse/OLMIS-2696>`_: Added requisition group administration screen.
+- `OLMIS-2698 <https://openlmis.atlassian.net/browse/OLMIS-2698>`_: Added geographic zone administration screens.
+- `OLMIS-2853 <https://openlmis.atlassian.net/browse/OLMIS-2853>`_: Added view Supply Lines screen.
+- `OLMIS-2600 <https://openlmis.atlassian.net/browse/OLMIS-2600>`_: Added view Program Settings screen.
+
+Bug fixes
+
+- `OLMIS-2905 <https://openlmis.atlassian.net/browse/OLMIS-2905>`_: User with only POD_MANAGE or ORDERS_MANAGE can now access 'View Orders' page.
+- `OLMIS-2714 <https://openlmis.atlassian.net/browse/OLMIS-2714>`_: Fixed loading modal closing too soon after saving user.
 
 See `openlmis-referencedata-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-referencedata-ui/blob/master/CHANGELOG.md>`_
@@ -310,11 +350,36 @@ See `openlmis-referencedata-ui CHANGELOG
 report-ui 5.0.3
 ~~~~~~~~~~~~~~~
 
+Big fixes:
+
+- `OLMIS-2911 <https://openlmis.atlassian.net/browse/OLMIS-2911>`_: Added http method and body to jasper template paramter
+
 See `openlmis-report-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-report-ui/blob/master/CHANGELOG.md>`_
 
 requisition-ui 5.1.1
 ~~~~~~~~~~~~~~~~~~~~
+
+- `OLMIS-2797 <https://openlmis.atlassian.net/browse/OLMIS-2797>`_: Updated product-grid error messages to use openlmis-invalid.
+
+New functionality that are not backwards-compatible:
+
+- `OLMIS-2833 <https://openlmis.atlassian.net/browse/OLMIS-2833>`_: Add date field to Requisition form
+Date physical stock count completed is required for submit and authorize requisition.
+- `OLMIS-3025 <https://openlmis.atlassian.net/browse/OLMIS-3025>`_: Introduced frontend batch-approval functionality.
+- `OLMIS-3023 <https://openlmis.atlassian.net/browse/OLMIS-3023>`_: Added configurable physical stock date field to program settings.
+- `OLMIS-2694 <https://openlmis.atlassian.net/browse/OLMIS-2694>`_: Change Requisition adjustment reasons to come from Requisition object. OpenLMIS Stock Management UI is now connected to Requisition UI.
+
+Improvements:
+
+- `OLMIS-2969 <https://openlmis.atlassian.net/browse/OLMIS-2969>`_: Requisitions show saving indicator only when requisition is editable.
+
+Bug fixes:
+
+- `OLMIS-2800 <https://openlmis.atlassian.net/browse/OLMIS-2800>`_: Skip column will not be shown in submitted status when user has no authorize right.
+- `OLMIS-2801 <https://openlmis.atlassian.net/browse/OLMIS-2801>`_: Disabled the 'Add Product' button in the non-full supply screen for users without rights to edit the requisition. Right checks for create/initialize permissions were also fixed.
+- `OLMIS-2906 <https://openlmis.atlassian.net/browse/OLMIS-2906>`_: "Outdated offline form" error is not appearing in a product grid when requisition is up to date.
+- `OLMIS-3017 <https://openlmis.atlassian.net/browse/OLMIS-3017>`_: Fixed problem with outdated status messages after Authorize action.
 
 See `openlmis-requisition-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/CHANGELOG.md>`_
@@ -328,17 +393,39 @@ See Stock Management service component below for more info.
 ui-components 5.1.1
 ~~~~~~~~~~~~~~~~~~~
 
+New functionality added in a backwards-compatible manner:
+
+- `OLMIS-2978 <https://openlmis.atlassian.net/browse/OLMIS-2978>`_: Made sticky table element animation more performant.
+- `OLMIS-2573 <https://openlmis.atlassian.net/browse/OLMIS-2573>`_: Re-worked table form error messages to not have multiple focusable elements.
+- `OLMIS-1693 <https://openlmis.atlassian.net/browse/OLMIS-1693>`_: Added openlmis-invalid and error message documentation.
+- `OLMIS-249 <https://openlmis.atlassian.net/browse/OLMIS-249>`_: Datepicker element now allows translating day and month names.
+- `OLMIS-2817 <https://openlmis.atlassian.net/browse/OLMIS-2817>`_: Added new file input directive.
+- `OLMIS-3001 <https://openlmis.atlassian.net/browse/OLMIS-3001>`_: Added external url run block, that allows opening external urls.
+
+Bug fixes:
+
+- `OLMIS-3088 <https://openlmis.atlassian.net/browse/OLMIS-3088>`_: Re-implemented tab error icon.
+- `OLMIS-3036 <https://openlmis.atlassian.net/browse/OLMIS-3036>`_: Cleaned up and formalized input-group error message implementation.
+- `OLMIS-3042 <https://openlmis.atlassian.net/browse/OLMIS-3042>`_: Updated openlmis-invalid and openlmis-popover element compilation to fix popovers from instantly closing.
+- `OLMIS-2806 <https://openlmis.atlassian.net/browse/OLMIS-2806>`_: Fixed stock adjustment reasons display order not being respected in the UI.
+
 See `openlmis-ui-components CHANGELOG
 <https://github.com/OpenLMIS/openlmis-ui-components/blob/master/CHANGELOG.md>`_
 
 ui-layout:5.0.2
 ~~~~~~~~~~~~~~~
 
+New features:
+
+- `OLMIS-2543 <https://openlmis.atlassian.net/browse/OLMIS-2543>`_: Added interceptor for displaying server errors
+
 See `openlmis-ui-layout CHANGELOG
 <https://github.com/OpenLMIS/openlmis-ui-layout/blob/master/CHANGELOG.md>`_
 
-In addition, the `Dev UI developer tooling <https://github.com/OpenLMIS/dev-ui>`_ has advanced to
-v5.
+Dev UI
+~~~~~~
+
+The `Dev UI developer tooling <https://github.com/OpenLMIS/dev-ui>`_ has advanced to v5.
 
 Report Service 1.0.0
 --------------------
@@ -368,8 +455,9 @@ Contract breaking changes:
   (/api/settings) are no longer available. Use environment variables to configure the application.
 - `MW-365 <https://openlmis.atlassian.net/browse/MW-365>`_: Requisition search endpoints:
   requisitionsForApproval and requisitionsForConvert will now return smaller basic dtos.
-- `OLMIS-2833 <https://openlmis.atlassian.net/browse/OLMIS-2833>`_: Added date physical stock count
-  completed to Requisition
+- `OLMIS-2833 <https://openlmis.atlassian.net/browse/OLMIS-2833>`_ and `OLMIS-3023
+  <https://openlmis.atlassian.net/browse/OLMIS-3023>`_: Added date physical stock count
+  completed to Requisition; and feature can be turned on and off in Program Settings
 - `OLMIS-2671 <https://openlmis.atlassian.net/browse/OLMIS-2671>`_: Stock Management service is now
   required by Requisition
 - `OLMIS-2694 <https://openlmis.atlassian.net/browse/OLMIS-2694>`_: Changed Requisition adjustment
