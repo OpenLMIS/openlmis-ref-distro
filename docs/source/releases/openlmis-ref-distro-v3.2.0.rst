@@ -256,7 +256,7 @@ Bug fixes, security and performance improvements, also backwards-compatible:
 Source: `ReferenceData CHANGELOG
 <https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
 
-Reference UI 6.0.0
+Reference UI 5.0.3
 ------------------
 
 The Reference UI bundles the following UI components together using Docker images specified in its
@@ -315,6 +315,9 @@ ui-layout:5.0.2
 
 See `openlmis-ui-layout CHANGELOG
 <https://github.com/OpenLMIS/openlmis-ui-layout/blob/master/CHANGELOG.md>`_
+
+In addition, the `Dev UI developer tooling <https://github.com/OpenLMIS/dev-ui>`_ has advanced to
+v5.
 
 Report Service 1.0.0
 --------------------
