@@ -34,9 +34,6 @@ requests are welcomed.
 Compatibility
 -------------
 
-All changes are backwards-compatible. Any changes to data include automated migrations from previous
-versions back to version 3.0.1. Any exceptions are identified in the Components sections below.
-
 **Important**: If you are upgrading to 3.2.0 and using your own database solution (i.e. Amazon RDS),
 and not the Postgres image in the Reference Distribution, please make sure you have the Postgres
 "uuid-ossp" extension installed. If you are using the Postgres image from the Reference
@@ -56,6 +53,10 @@ older version 3 to 3.2.0. This migration has its own GitHub repo and Docker imag
 If you are upgrading from any previous version of 3 to 3.2.0, see the README file which has 
 specific instructions to apply this migration.
 
+All other changes are backwards-compatible. Any changes to data or schemas include automated
+migrations from previous versions back to version 3.0.1. All new or altered functionality is
+listed in the sections below for New Features and Changes to Existing Functionality.
+
 For background information on OpenLMIS version 3's micro-service architecture,
 extensions/customizations, and upgrade paths for OpenLMIS versions 1 and 2, see the `3.0.0 Release
 Notes <https://openlmis.atlassian.net/wiki/spaces/OP/pages/88670325/3.0.0+Release+-+1+March+2017>`_.
@@ -71,12 +72,12 @@ New Features
 
 This is a new section to flag all the new features. 
 
-* **Stock Management**: is not an official release and added a notification and new support for recording VVM status.
-* **Administrative Screens**: view supply lines, geogrphic zones, requisition groups and program settings.
-* beta version of the new **Cold Chain Equipment (CCE)** service: which includes the support to upload a catalog of cold chain equipment, add equpiment inventory (from the catalog) to facilities, and manually update the functional status of that equipment.  Review the `wiki <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113145252/Cold+Chain+Equipment+Management>`_ for details on the upcoming features.
-* **Performance** - targeted improvements were made based on the first implementation's use and results. Improvements were made in server response times, which impacts load time, and memory utilization. In addition, new tooling was introduced to provide the ability to track performance improvements and bottlenecks. 
-* Reference data
-* Report service is now its own separate component to provide reporting features (**TBD**)
+- **Stock Management**: is not an official release and added a notification and new support for recording VVM status.
+- **Administrative Screens**: view supply lines, geogrphic zones, requisition groups and program settings.
+- beta version of the new **Cold Chain Equipment (CCE)** service: which includes the support to upload a catalog of cold chain equipment, add equpiment inventory (from the catalog) to facilities, and manually update the functional status of that equipment.  Review the `wiki <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113145252/Cold+Chain+Equipment+Management>`_ for details on the upcoming features.
+- **Performance** - targeted improvements were made based on the first implementation's use and results. Improvements were made in server response times, which impacts load time, and memory utilization. In addition, new tooling was introduced to provide the ability to track performance improvements and bottlenecks. 
+- Reference data
+- Report service is now a separate component (see Report component below)
 
 Changes to Existing Functionality
 =================================
@@ -318,7 +319,21 @@ See `openlmis-ui-layout CHANGELOG
 Report Service 1.0.0
 --------------------
 
-**TBD**
+This new service is intended to provide reporting functionality for other components to use. It is a
+1.0.0 release which is stable for production use, and it powers one built-in report (the Facility
+Assignment Configuration Errors report).
+
+**Warning**: Developers should take note that its design will be changing with future releases.
+Developers and implementers are discouraged from using this 1.0.0 version to build additional
+reports.
+
+Current report functionality:
+
+- `OLMIS-2760 <https://openlmis.atlassian.net/browse/OLMIS-2760>`_: Facility Assignment
+  Configuration Errors
+
+Additional built-in reports in OpenLMIS 3.2.0 are still powered by their own services. In future
+releases, they may be migrated to a new version of this centralized report service.
 
 Requisition Service 5.0.0
 -------------------------
