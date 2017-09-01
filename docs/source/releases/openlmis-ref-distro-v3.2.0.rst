@@ -18,7 +18,10 @@ This release represents another major milestone in the version 3 series, which i
 software `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_ that
 allows more functionality to be shared among the community of OpenLMIS users.
 
-3.2.0 includes new features in **stock management**, new **administrative screens**, targeted **performance improvements** and a beta version of the **Cold Chain Equipment (CCE)** service and more contributions in the form of pull requests, from the **Malawi implementation**, a national implementation is now live on OpenLMIS version 3.
+3.2.0 includes new features in **stock management**, new **administrative screens**, targeted
+**performance improvements** and a beta version of the **Cold Chain Equipment (CCE)** service. It
+also contains contributions in the form of pull requests from the **Malawi implementation**, a
+national implementation that is now live on OpenLMIS version 3.
 
 3.2.0 represents the first milestone towards the `Vaccines MVP
 <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_ feature set. 
@@ -51,9 +54,16 @@ OLMIS-2811 under the Reference Data Service section.
 older version 3 to 3.2.0. This migration has its own GitHub repo and Docker image. See
 `Adjustment Reason Migration <https://github.com/OpenLMIS/openlmis-adjustment-reason-migration>`_.
 If you are upgrading from any previous version of 3 to 3.2.0, see the README file which has 
-specific instructions to apply this migration. For background on this migration, see the `connecting stock and requisition services <https://openlmis.atlassian.net/wiki/spaces/OP/pages/114234797/Connecting+Stock+Management+and+Requisition+Services>`_.
+specific instructions to apply this migration. For background on this migration, see `Connecting
+Stock and Requisition Services
+<https://openlmis.atlassian.net/wiki/spaces/OP/pages/114234797/Connecting+Stock+Management+and+Requisition+Services>`_.
 
-Requisition Service now requires use of the Stock Management service and connects to Stock Management service to handle adjustment reasons and store data on stock cards (see Requisition component).
+**Important**: Requisition Service now requires use of the Stock Management service. Data collected
+on requisition forms uses adjustment reasons from the Stock service and submits data to stock cards.
+Certain columns on the Requisition Template are now required. See `Requisition Template Column
+Dependencies and Calculations
+<https://openlmis.atlassian.net/wiki/spaces/OP/pages/112138794/Implementer+Administrator#Implementer/Administrator-RequisitionTemplateColumns>`_
+as well as more details in the Requisition component below.
 
 All other changes are backwards-compatible. Any changes to data or schemas include automated
 migrations from previous versions back to version 3.0.1. All new or altered functionality is
@@ -439,10 +449,25 @@ Other tooling components have not changed, including: the `logging service
 Contributions
 =============
 
-Thanks to the Malawi implementation team who has continued contributing many pull requests to add
-functionality, performance improvements, and customization in ways that have global shared benefit.
-Also, thanks to everyone who contributed to `OpenLMIS 3.0.0 
-<https://openlmis.atlassian.net/wiki/spaces/OP/pages/88670325/3.0.0+Release+-+1+March+2017#id-3.0.0Release-1March2017-Contributors>`_.
+Many organizations and individuals around the world have contributed to OpenLMIS version 3 by
+serving on committees, bringing the community together, and of course writing code and
+documentation. Below is a list of those who contributed code or documentation into the GitHub
+repos. If anyone who contributed in GitHub is missing, please contact the Community Manager.
+
+Team Parrot: Paweł Gesek, Paweł Albecki, Nikodem Graczewski, Mateusz Kwiatkowski, Joanna Bebak,
+Paweł Nawrocki
+
+Team ILL: Chongsun Ahn, Brandon Bowersox-Johnson, Sam Im, Mary Jo Kochendorfer, Ben Leibert, Nick
+Reid, Josh Zamor
+
+A special thanks to the implementers working in Malawi who contributed features and improvements:
+Sebastian Brudziński, Weronika Ciecierska, Łukasz Lewczyński, Klaudia Pałkowska, Ben Leibert,
+Christine Lenihan.
+
+Special thanks to community members: Kaleb Brownlow, Lindabeth Doby, Tenly Snow, Jake Watson, Ashraf
+Islam, Parambir Gill, and all who attended the Product Committee, Technical Committee and Governance
+Committee meetings, and the many funders, supporters, implementors, partners, and those working
+around the world to make medical supply chains work for all people.
 
 Further Resources
 =================
