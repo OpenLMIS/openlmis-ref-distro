@@ -51,7 +51,9 @@ OLMIS-2811 under the Reference Data Service section.
 older version 3 to 3.2.0. This migration has its own GitHub repo and Docker image. See
 `Adjustment Reason Migration <https://github.com/OpenLMIS/openlmis-adjustment-reason-migration>`_.
 If you are upgrading from any previous version of 3 to 3.2.0, see the README file which has 
-specific instructions to apply this migration.
+specific instructions to apply this migration. For background on this migration, see the `connecting stock and requisition services <https://openlmis.atlassian.net/wiki/spaces/OP/pages/114234797/Connecting+Stock+Management+and+Requisition+Services>`_.
+
+Requisition Service now requires use of the Stock Management service and connects to Stock Management service to handle adjustment reasons and store data on stock cards (see Requisition component).
 
 All other changes are backwards-compatible. Any changes to data or schemas include automated
 migrations from previous versions back to version 3.0.1. All new or altered functionality is
