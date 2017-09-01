@@ -85,8 +85,7 @@ Requisition (pull) based replenishment process.
 - `Requisition Service <requisitionService.html>`_
 - `Requisition UI <requisitionUI.html>`_
 - `Requisition ERD <erd-requisition.html>`_
-- `Live Documentation for Requisition API <http://test.openlmis.org/requisition/docs/#/default>`_
-- `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/1705/artifact/build/resources/main/api-definition.html>`_
 
 *************************
 Stock Management Service
