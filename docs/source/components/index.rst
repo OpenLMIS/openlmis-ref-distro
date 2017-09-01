@@ -32,8 +32,7 @@ Allows managing Cold Chain Equipment.
 
 - `CCE Service <cceService.html>`_
 - `CCE ERD <cce-fulfillment.html>`_
-- `Live Documentation for CCE API <http://test.openlmis.org/cce/docs/#/default>`_
-- `Static Documentation for CCE API <http://build.openlmis.org/job/OpenLMIS-cce-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for CCE API <http://build.openlmis.org/job/OpenLMIS-cce-service/127/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Report Service
