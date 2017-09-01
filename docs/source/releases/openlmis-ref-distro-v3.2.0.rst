@@ -37,9 +37,24 @@ Compatibility
 All changes are backwards-compatible. Any changes to data include automated migrations from previous
 versions back to version 3.0.1. Any exceptions are identified in the Components sections below.
 
+**Important**: If you are upgrading to 3.2.0 and using your own database solution (i.e. Amazon RDS),
+and not the Postgres image in the Reference Distribution, please make sure you have the Postgres
+"uuid-ossp" extension installed. If you are using the Postgres image from the Reference
+Distribution, then this extension will be installed for you once you pull the latest image from
+DockerHub. For more information about this change, please see the Postgres section, and OLMIS-2681
+under the Requisition Service section.
+
+**Important**: 3.2.0 requires a data load script that must be run once in order to properly upgrade
+from an older version 3 to 3.2.0. To run this script, add ``refresh-db`` to your Spring profile. An
+example: ``export spring_profiles_active="refresh-db"``. You only need to run it the first time you
+start the server after upgrading to 3.2.0. For more information about this change, please see
+OLMIS-2811 under the Reference Data Service section.
+
 **Important**: 3.2.0 contains a data migration script that must be applied in order to upgrade from
 older version 3 to 3.2.0. This migration has its own GitHub repo and Docker image. See
 `Adjustment Reason Migration <https://github.com/OpenLMIS/openlmis-adjustment-reason-migration>`_.
+If you are upgrading from any previous version of 3 to 3.2.0, see the README file which has 
+specific instructions to apply this migration.
 
 For background information on OpenLMIS version 3's micro-service architecture,
 extensions/customizations, and upgrade paths for OpenLMIS versions 1 and 2, see the `3.0.0 Release
@@ -179,10 +194,15 @@ Bug fixes, security and performance improvements (backwards-compatible):
 Source: `Notification CHANGELOG
 <https://github.com/OpenLMIS/openlmis-notification/blob/master/CHANGELOG.md>`_
 
-postgres
+Postgres
 --------
 
-**TBD**: explain new version and link to documentation about adding uuid extension
+The postgres image in OpenLMIS 3.2.0 has changed slightly to include the **uuid-ossp** extension,
+in order to randomly generate UUIDs in SQL (this new requirement was introduced in 
+`OLMIS-2681 <https://openlmis.atlassian.net/browse/OLMIS-2681>`_). Because the change is minor and
+does not change the version of Postgres, we have released an updated image with the same version
+number (9.6-postgis). When using the 3.2.0 release, as long as you use ``docker-compose pull``, it
+will pull the correct version of the postgres image.
 
 Reference Data Service 8.0.0
 ----------------------------
@@ -210,6 +230,10 @@ New functionality added in a backwards-compatible manner:
   enableDatePhysicalStockCountCompleted field to program settings.
 - `OLMIS-2619 <https://openlmis.atlassian.net/browse/OLMIS-2619>`_: Added CCE Manager role and
   assigned CCE Manager and Inventory Manager roles to new user ccemanager.
+- `OLMIS-2811 <https://openlmis.atlassian.net/browse/OLMIS-2811>`_: Added API endpoint for user's
+  permission strings.
+- `OLMIS-2885 <https://openlmis.atlassian.net/browse/OLMIS-2885>`_: Added ETag support for programs
+  and facilities endpoints.
 
 Bug fixes, security and performance improvements, also backwards-compatible:
 
@@ -343,6 +367,10 @@ Bug fixes added in a backwards-compatible manner:
   not only the application logic.
 - `OLMIS-3019 <https://openlmis.atlassian.net/browse/OLMIS-3019>`_: Removed clearance of beginning
   balance and price per pack fields from skipped line items while authorizing.
+- `OLMIS-2911 <https://openlmis.atlassian.net/browse/OLMIS-2911>`_: Added HTTP method parameter to
+  jasper template parameter object.
+- `OLMIS-2681 <https://openlmis.atlassian.net/browse/OLMIS-2681>`_: Added profiling to requisition
+  search endpoint, also it is using db pagination now.
 
 Source: `Requisition CHANGELOG
 <https://github.com/OpenLMIS/openlmis-requisition/blob/master/CHANGELOG.md>`_
