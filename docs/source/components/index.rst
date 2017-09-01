@@ -32,8 +32,7 @@ Security credentials, Authentication and Authorization. Uses OAuth2.
 - `Auth Service <authService.html>`_
 - `Auth UI <authUI.html>`_
 - `Auth ERD <erd-auth.html>`_
-- `Live Documentation for Auth API <http://test.openlmis.org/auth/docs/#/default>`_
-- `Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/275/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Fulfillment Service
@@ -126,4 +125,3 @@ Electronic stock cards.
 - `Stock Management ERD <erd-stockmanagement.html>`_
 - `Live Documentation for Stock Management API <http://test.openlmis.org/stockmanagement/docs/#/default>`_
 - `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
-
