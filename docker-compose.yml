@@ -38,7 +38,7 @@ services:
     depends_on: [log]
 
   referencedata:
-    image: openlmis/referencedata:8.0.1-SNAPSHOT
+    image: openlmis/referencedata:8.0.2-SNAPSHOT
     env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
