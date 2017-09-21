@@ -27,6 +27,18 @@ See the `OpenLMIS-UI Styleguide <build.openlmis.org/job/OpenLMIS-reference-ui/la
 
    uiStyleguide
    uiCodeConventions
+   uiConstant
+   uiController
+   uiCss
+   uiDirective
+   uiFactory
+   uiFilter
+   uiInterceptor
+   uiModal
+   uiModule
+   uiPojo
+   uiRoute
+   uiService
 
 Performance
 ===========
@@ -37,3 +49,4 @@ Performance
    performance
    performanceData
    performanceTips
+   uiPerformance
