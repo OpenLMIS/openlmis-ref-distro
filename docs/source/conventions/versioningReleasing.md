@@ -3,8 +3,8 @@
 ## Micro-Services are Versioned Independently
 
 OpenLMIS version 3 introduced a micro-services architecture where each component is versioned and
-released independently. In addition, all the components are packaged together into a Reference
-Distribution. When we refer to OpenLMIS 3.X.Y, we are talking about a release of the Reference
+released independently. In addition, all the components are packaged together into a **Reference
+Distribution**. When we refer to OpenLMIS 3.X.Y, we are talking about a release of the Reference
 Distribution, called the [ref-distro in GitHub](https://github.com/OpenLMIS/openlmis-ref-distro).
 The components inside ref-distro 3.X.Y have their own separate version numbers which are listed on
 the Release Notes.
@@ -18,9 +18,96 @@ and UI components.
 
 All OpenLMIS source code is available on GitHub, and the components have separate repositories.
 Releases are tagged on GitHub for all components as well as the ref-distro. Releases of some
-components, such as the service components and UI components, are also published to Docker Hub as
-versioned docker images. In addition, we publish releases of the [service utility
-library](https://github.com/OpenLMIS/openlmis-service-util) to Maven.
+components, such as the service components and UI components, are also published to [Docker
+Hub](https://hub.docker.com/u/openlmis/) as versioned docker images. In addition, we publish
+releases of the [service utility library](https://github.com/OpenLMIS/openlmis-service-util) to
+Maven.
+
+## Release Process
+
+Starting with OpenLMIS 3.2.1, each release of the Reference Distribution will go through a
+Release Candidate process. A Release Candidate will be shared for a Review Period of at least one
+week to allow for manual regression testing and to allow community review and input. The goal is
+that we catch and fix issues in order to put out higher-quality releases.
+
+The following diagram illustrates the process, and each step is explained in detail below.
+
+![Release Candidate Process Diagram](https://raw.githubusercontent.com/OpenLMIS/openlmis-ref-distro/master/docs/source/conventions/ReleaseCandidateProcessDiagram-Oct2017-fromGliffy.png)
+
+### Active Development
+
+* Multiple agile teams develop OpenLMIS services/components and review and incorporate Pull Request contributions
+* Microservices architecture provides separation between the numerous components
+* Automated test coverage prevents regressions and gives the team the safety net to release often
+* Continuous Integration and Deployment (CI/CD) ensures developers get immediate feedback and QA activities can catch issues quickly
+* Code is peer reviewed during Jira ticket workflow and in Pull Requests
+* Documentation, CHANGELOGs and demo data are kept up-to-date as code development happens in each service/component
+
+### Do Release Preparation & Code Freeze
+
+* Verify the pre-requisites, including all automated tests are passing and all CHANGELOGs are up-to-date; see Release Prerequisites below under Rolling a Release
+* Conduct a manual regression test cycle 1-2 weeks before the release, if possible
+* Begin a Code Freeze: shift agile teams' workloads to bugs and clean-up, rather than committing large new features or breaking changes ("slow down" 1-2 weeks before release)
+
+  Note: Branching is not part of the current process (see 'We Prefer Coordination over Branching' section below), but may be adopted in the future along with CI/CD changes to support more teams working in parallel.
+
+* Write draft Release Notes including sections on 'Compatibility', 'Changes to Existing Functionality', and 'New Features'
+* Schedule or timing for releases is documented above and may be discussed and revised by the community
+
+### Publish a Release Candidate
+
+* Each component that has any changes since the last release is released and semantically versioned (e.g., openlmis-requisition:6.3.4 or openlmis-newthing:1.0.0-beta)
+
+  Note: Usually, all components are released with the Reference Distribution. Sometimes, due to exceptional requests, the team may release a service/component at another time even when there is not another Reference Distribution release.
+
+* Reference Distribution Release Candidate is released with these components (e.g., openlmis-ref-distro:3.7.0-rc1)
+
+  Note: We archive permanent documentation for every release, but not for every release candidate.
+
+* Share Release Candidate with the OpenLMIS community along with the draft Release Notes and invite testing and feedback
+
+See the 'Rolling a Release' section further below for the specific technical steps to build, tag and
+publish a release of components and the Reference Distribution.
+
+### Review Period
+
+* Active Development is paused and the only development work that happens is release-critical bug fixes or work on branches (note: branches are not yet recommended and not supported by CI/CD)
+* Conduct a full manual regression test cycle (including having developers conduct testing) and document which tests were conducted in the Release Notes
+* Run automated performance testing and review results
+* Collect all bug reports in Jira, including those from community early adopters, and including bugs in code, documentation and translations, tagging with the RC 'AffectsVersion' and triaging which are critical for release
+* Overall timeline for review period starts when the first Release Candidate is shared and should last at least 1 week, during which time subsequent Release Candidates may be published
+
+### Fix Critical Issues
+
+Are there critical release issues? If not, after the first Release Candidate (RC1) we may move
+directly to a release. Otherwise, we will fix critical issues and publish a new Release Candidate
+(e.g. RC2).
+
+* Developers fix critical issues in code, documentation, and translations. Only commits for critical issues will be accepted. Other commits will be rejected.
+* Every commit is reviewed to determine whether portions or all of the full regression test cycle must be repeated
+* And we continue to hold every ticket up to our on-going guidelines and expectations:
+  * Every commit is peer reviewed and manually tested, and should include automated test coverage to meet guidelines
+  * Every commit must correspond to a Jira ticket and have gone through review and QA steps, and have Zephyr test cases in Jira
+
+Once critical issues are fixed, publish a new Release Candidate and conduct another Review Period.
+
+### Publish the Release
+
+When a Release Candidate has gone through a Review Period without any critical issues found, then
+this release candidate becomes the Golden Master to be published as an official release of OpenLMIS.
+
+* Update the Release Notes to state that this is the official release and include the date
+* Release the Reference Distribution; the exact code and components in the Golden Master Release Candidate are tagged as the OpenLMIS Reference Distribution release with a version number tag (e.g. openlmis-ref-distro:3.7.0)
+* Share the Release with the OpenLMIS community along with the final Release Notes
+
+After publishing the release, Active Development can resume.
+
+### Implementation Release Process
+
+A typical OpenLMIS implementation is composed of multiple core OpenLMIS components plus some custom
+components or extensions, translations and integrations. It is recommended that OpenLMIS
+implementations follow a similar process as above to receive, review and verify that updates of
+OpenLMIS perform correctly with their customizations and configuration.
 
 ## Release Numbering
 
