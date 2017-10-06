@@ -109,6 +109,13 @@ components or extensions, translations and integrations. It is recommended that 
 implementations follow a similar process as above to receive, review and verify that updates of
 OpenLMIS perform correctly with their customizations and configuration.
 
+Key differences for implementation releases:
+
+* **Upstream Components**: Implementations treat the OpenLMIS core product as an "upstream" vendor distribution. When a new core Release Candidate or Release are available, they are encouraged to pull the new upstream OpenLMIS components into the implementations CI/CD pipeline and conduct testing and review.
+* **Independent Review**: It is critical for the implementation to conduct its own Review Period. It may be a process similar to the diagram above, with multiple Release Candidates for that implementation and with rounds of manual regression testing to ensure that all the components (core + custom) work together correctly.
+* **Conduct Testing/UAT on Staging**: Implementations should apply Release Candidates and Releases onto testing/staging environments before production environments. Testing should be conducted on an environment that is a mirror of production (with a recent copy of production data, same server hardware, same networks, etc). There may be a full manual regression test cycle or a shorter smoke test as part of applying a new version onto the production environment. There should also be a set of automated tests and performance tests, similar to the core release process above, but with production data in place to verify performance with the full data set.
+* **Follow Best Practices**: When working with a production environment, follow all best practices: schedule a downtime/maintenance window before making any changes; take a full backup of code, configuration and data at the start of the deployment process; test the new version before re-opening it to production traffic; always have a roll-back plan if issues arise in production that were not caught in previous testing.
+
 ## Release Numbering
 
 Version 3 components follow the [Semantic Versioning](http://semver.org/) standard:
