@@ -78,7 +78,7 @@ features used here are documented at Taurus' page on the `JMeter executer`_.
 
   execution:
     - concurrency: 1
-      iterations: 10
+      hold-for: 1m
       scenario: users-get-one
   scenarios:
     get-user-token:
@@ -105,7 +105,7 @@ features used here are documented at Taurus' page on the `JMeter executer`_.
             Authorization: Bearer ${access_token}
 
 The `execution` block defines for our test scenario `users-get-one` that runs
-1 concurrent user, 10 times sequentially.  Notice that this definition is for
+1 concurrent user, for one minute.  Notice that this definition is for
 the simplest of test executions - 1 user, run it enough times to get a useful
 sampling.  We use this sort of test execution to first get a sense of what our
 endpoint's single-user characteristics are.
@@ -122,8 +122,8 @@ Next notice that we have two scenarios defined:
 Summary
 ^^^^^^^^
 
-* First test the most basic of environments:  1 user, enough times to get an
-  average.
+* First test the most basic of environments:  1 user, enough times to get useful
+  sample size.
 * Re-use the scenario to obtain an access_token using `include-scenario`.
 * It's generally OK to use demo-data identifiers (the user's UUID) - though it
   couples the test to the demo-data, it will provide consistent results.
@@ -290,7 +290,7 @@ The stress testing here introduces important changes in our `execution` block:
       scenario: get-user-token
 
 Instead of defining 1 user, here we'll have 10 concurrent ones.  Instead of
-running the test 10 times, we're going to run the test as many times as we
+running the test for 1 minute, we're going to run the test as many times as we
 can for 2 minutes.  For further options see the Taurus' `Execution doc`_.
 
 When stress testing, it's important to remember that too much simply isn't
