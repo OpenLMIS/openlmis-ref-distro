@@ -315,6 +315,33 @@ Summary
   OpenLMIS performance testing typically only requires the most basic stress
   testing.
 
+Testing file uploads
+--------------------
+
+In this short example we're going to send a request to the catalog items endpoint
+and upload some items as a CSV file.
+
+.. code-block:: yaml
+
+  upload-catalog-items:
+    requests:
+      - include-scenario: get-user-token
+      - url: ${__P(base-uri)}/api/catalogItems?format=csv
+        method: POST
+        label: UploadCatalogItems
+        headers:
+          Authorization: Bearer ${access_token}
+        upload-files:
+          - param: file
+            path: /tmp/artifacts/catalog_items.csv
+
+Summary
+^^^^^^^
+
+* When uploading a file we don't have to worry about setting correct content header
+  as Taurus take care of it on its own when using upload-files block. This behavior
+  is described in the `HTTP Requests`_ of the Taurus user manual
+
 Pass-fail criteria
 ------------------
 
@@ -381,3 +408,4 @@ Next we'll be adding:
 .. _JMeter: http://jmeter.apache.org/
 .. _JMeter executer: http://gettaurus.org/docs/JMeter/
 .. _Performance Plugin: https://wiki.jenkins.io/display/JENKINS/Performance+Plugin
+.. _HTTP Requests: https://gettaurus.org/docs/JMeter/#HTTP-Requests
