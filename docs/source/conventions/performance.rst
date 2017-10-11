@@ -381,7 +381,7 @@ retrieve 10 users, and we'd add a pass-fail criteria such as:
   reporting:
       - module: passfail
         criteria:
-          90% of users fail to get 10 users in time: p90 of Get10Users>500ms, continue as failed
+          Get 10 Users is too slow: p90 of Get10Users>500ms, continue as failed
 
 Read the `Taurus Passfail doc`_ for more.
 
