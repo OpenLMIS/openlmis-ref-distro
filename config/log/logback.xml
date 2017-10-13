@@ -11,6 +11,14 @@
         <appender-ref ref="SYSLOG"/>
     </logger>
 
+    <logger name="org.openlmis.cce" level="DEBUG" additivity="false">
+        <appender-ref ref="SYSLOG"/>
+    </logger>
+
+    <logger name="org.openlmis.fulfillment" level="DEBUG" additivity="false">
+        <appender-ref ref="SYSLOG"/>
+    </logger>
+
     <logger name="org.openlmis.notification" level="DEBUG" additivity="false">
         <appender-ref ref="SYSLOG"/>
     </logger>
@@ -19,7 +27,15 @@
         <appender-ref ref="SYSLOG"/>
     </logger>
 
+    <logger name="org.openlmis.report" level="DEBUG" additivity="false">
+        <appender-ref ref="SYSLOG"/>
+    </logger>
+
     <logger name="org.openlmis.requisition" level="DEBUG" additivity="false">
+        <appender-ref ref="SYSLOG"/>
+    </logger>
+
+    <logger name="org.openlmis.stockmanagement" level="DEBUG" additivity="false">
         <appender-ref ref="SYSLOG"/>
     </logger>
 
