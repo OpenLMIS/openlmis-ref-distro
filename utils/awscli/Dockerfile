@@ -3,6 +3,7 @@ FROM openlmis/dev:3
 RUN apk -v --update add \
     python \
     py-pip \
+    jq \
     && \
   pip install --upgrade awscli s3cmd python-magic && \
   apk -v --purge del py-pip && \
