@@ -1,0 +1,5 @@
+# rename to .env, or rename and pass via docker run --env-file
+
+AWS_ACCESS_KEY_ID=your access key here
+AWS_SECRET_ACCESS_KEY=your secret key here
+AWS_DEFAULT_REGION=us-east-1
