@@ -11,7 +11,7 @@ this should likely be replaced.
   in with your AWS information, and named something appropriate.  You'll pass this file to the
   docker image so that the AWS CLI may connect to your account.
   ```
-  curl -LO https://github.../env.sample your.env
+  curl -L https://raw.githubusercontent.com/OpenLMIS/openlmis-ref-distro/master/utils/awscli/env-sample > your.env
   ```
 
 1. You may run interactively with:
