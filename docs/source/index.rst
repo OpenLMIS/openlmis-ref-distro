@@ -47,6 +47,7 @@ Links:
    - `GitHub <https://github.com/openlmis>`_
    - `DockerHub <https://hub.docker.com/u/openlmis>`_ (Published Docker Images)
    - `OSS Sonatype <https://oss.sonatype.org/#nexus-search;quick~org.openlmis>`_ (Maven Publishing)
+   - `Transifex <https://www.transifex.com/openlmis/public/>`_ (translations and localized text)
    - `Code Review <https://review.openlmis.org>`_
    - `Code Quality Analysis <http://sonar.openlmis.org>`_ (SonarQube)
    - `CI Server <http://build.openlmis.org>`_ (Jenkins)
