@@ -1,0 +1,11 @@
+ENCODED_USER_PASSWORD=BCryptEncodedPassword
+
+# these are the credentials the UI uses
+OLD_UI_CLIENT_ID=
+NEW_UI_CLIENT_ID=
+UI_CLIENT_SECRET=
+
+# these are the credentials the services use
+OLD_SERVICE_CLIENT_ID=
+NEW_SERVICE_CLIENT_ID=
+SERVICE_CLIENT_SECRET=
