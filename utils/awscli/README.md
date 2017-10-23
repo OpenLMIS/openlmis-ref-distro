@@ -25,8 +25,3 @@ this should likely be replaced.
   echo "aws rds describe-db-instances" > runme.sh
   docker run -it --rm --env-file your.env -v $(pwd)/runme.sh:/app/runme.sh openlmis/awscli /bin/sh runme.sh
   ```
-
-## Volumes
-
-For convenience the volume `/app` exists and is also the working directory for mounting in shell
-scripts to automate aws usage.

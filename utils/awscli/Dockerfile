@@ -10,8 +10,7 @@ RUN apk -v --update add \
   rm /var/cache/apk/*
 
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod 500 /entrypoint.sh
-VOLUME /app
-WORKDIR /app
+RUN chmod u+x /entrypoint.sh
+WORKDIR /
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["sh"]
