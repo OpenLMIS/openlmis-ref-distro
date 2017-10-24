@@ -66,6 +66,8 @@ restore_db_from_snapshot() {
 		--db-instance-identifier $SNAPSHOT_NAME_TMP \
 		--new-db-instance-identifier $TARGET_INSTANCE \
 		--apply-immediately
+
+  wait_available $TARGET_INSTANCE
 }
 
 wait_available() {
