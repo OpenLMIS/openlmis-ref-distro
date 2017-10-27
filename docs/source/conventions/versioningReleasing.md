@@ -71,16 +71,20 @@ publish a release of components and the Reference Distribution.
 
 ### Review Period
 
-* Active Development is paused and the only development work that happens is release-critical bug fixes or work on branches (note: branches are not yet recommended and not supported by CI/CD)
-* Conduct a full manual regression test cycle (including having developers conduct testing) and document which tests were conducted in the Release Notes
-* Run automated performance testing and review results
-* Collect all bug reports in Jira, including those from community early adopters, and including bugs in code, documentation and translations, tagging with the RC 'AffectsVersion' and triaging which are critical for release
-* Overall timeline for review period starts when the first Release Candidate is shared and should last at least 1 week, during which time subsequent Release Candidates may be published
+The overall timeline for review period starts when the first Release Candidate is shared and should last at least 1 week, during which time subsequent Release Candidates may be published.
+
+* The community is alerted of the upcoming release candidate date and review period via Slack and the listservs. 
+* Active Development is paused and the only development work that happens is release-critical bug fixes or work on branches (note: branches are not yet recommended and not supported by CI/CD).
+* The team conducts a full manual regression test cycle (including having developers conduct testing) according to the Release Candidate Test Plan. For an example, see the [3.2.1 Regression Test Plan](https://openlmis.atlassian.net/wiki/spaces/OP/pages/123961802/3.2.1+Regression+Test+Plan).  The test plan is included in the final Release Notes.
+* Community members are requested to conduct user acceptance testing to submit bugs and issues with the release candidate. Members can review and leverage the [OpenLMIS manual test cases](https://openlmis.atlassian.net/projects/OLMIS?selectedItem=com.thed.zephyr.je__project-centric-view-tests-page).
+* OpenLMIS will run automated performance testing and review results.
+* Manual bug reports are submitted in Jira, see the [Reporting bugs section](http://docs.openlmis.org/en/latest/contribute/contributionGuide.html#reporting-bugs) for details on how to submit bugs to OpenLMIS. All bugs and issues related to the Release Candidate must be associated with the specific Release Candidate Bugs epic. Bugs can be identified in the code, documentation, and translations.
+* A triage team will review and triage all bugs submitted on a daily bases during the review period. 
 
 ### Fix Critical Issues
 
-Are there critical release issues? If not, after the first Release Candidate (RC1) we may move
-directly to a release. Otherwise, we will fix critical issues and publish a new Release Candidate
+Are there critical bugs or issues associated with the release candidate? If not, after the first Release Candidate (RC1) OpenLMIS may move
+directly to a release. Otherwise, OpenLMIS will fix critical issues and publish a new Release Candidate
 (e.g. RC2).
 
 * Developers fix critical issues in code, documentation, and translations. Only commits for critical issues will be accepted. Other commits will be rejected.
