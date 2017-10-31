@@ -123,6 +123,26 @@ Performance data may also be optionally loaded and is defined by some Services.
 See http://docs.openlmis.org/en/latest/conventions/performanceData.html for
 more.
 
+## Refresh Database (Profile)
+
+This deployment profile is used by a few services to help ensure that the database they're working against is
+in a good state.  This profile should be set when:
+
+* Manual updates to the database have been made (INSERT, UPDATE, DELETE) through SQL or another tool other
+than the HTTP REST API each service exposes.
+* When the Release Notes call for it to be ran in an upgrade.
+
+Using this profile means that extra checks and updates are performed.  This uses extra resources such as
+memory, cpu, etc.  When set, Services will start slower, sometimes significantly slower.
+
+Usually this profile only needs to be set before the service(s) starts once.  If no further upgrades or manual
+database changes are made, the profile may be removed before subsequent starting of the service(s) to quicken
+startup time.
+
+```
+spring_profiles_active=refresh-db
+```
+
 ## Configuring Services
 
 When a container needs configuration via a file (as opposed to an environment variable for example), then
