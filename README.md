@@ -130,7 +130,7 @@ in a good state.  This profile should be set when:
 
 * Manual updates to the database have been made (INSERT, UPDATE, DELETE) through SQL or another tool other
 than the HTTP REST API each service exposes.
-* When the Release Notes call for it to be ran in an upgrade.
+* When the Release Notes call for it to be run in an upgrade.
 
 Using this profile means that extra checks and updates are performed.  This uses extra resources such as
 memory, cpu, etc.  When set, Services will start slower, sometimes significantly slower.
