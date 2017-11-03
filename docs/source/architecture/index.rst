@@ -15,7 +15,6 @@ to be customized without the need for the community to fork the code base:
 Combined these components allow the OpenLMIS community to customize and
 contribute to a shared LMIS.
 
-=======================
 New Service Guidelines
 =======================
 
