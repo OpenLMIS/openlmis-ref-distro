@@ -13,7 +13,8 @@ This document is an outcome of the 2015 Community meeting and is copied (with mi
 > software without paying a license fee. Changes and additions are made available to the community under the terms of 
 > the license via our code contribution process.
 
-OpenLMIS is built and licensed under an Open Source [license](LICENSE.txt).  In addition to the project being Open 
+OpenLMIS is built and licensed under an Open Source [license](https://github.com/OpenLMIS/openlmis-ref-distro/blob/master/LICENSE).
+In addition to the project being Open 
 Source, OpenLMIS strives to always be available to develop on, build, deploy, use and generally contribute to using 
 similarly licensed technologies.  In practice this means that strong preference is given to contributions and their 
 dependant technologies that are licensed similarly.  Contributions should aspire to contribute:
