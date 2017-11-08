@@ -99,11 +99,8 @@ prioritized for: published APIs, designs and code contracts.  Additionally docum
 oftentimes more useful over a longer period of time.
 * sharing code often comes with mis-matched expectations and undesired consequences, so it's not unexpected that 
 development often occurs behind closed-doors until "it's ready".  The OpenLMIS project however aims to be *open* so all 
-code that is part of the OpenLMIS project is found in the OpenLMIS [repository](https://github.com/OpenLMIS/open-lmis).
-The recommended approach to [collaborating](CONTRIBUTING.md) with OpenLMIS is to publicly host and link 
-your project to OpenLMIS utilizing GitHub's 
-[Fork and Pull Request](https://help.github.com/categories/collaborating-on-projects-using-pull-requests/) model.  
-[Contribution](CONTRIBUTING.md) to OpenLMIS **requires** this pull request method.
+code that is part of the OpenLMIS project is found in the OpenLMIS [organization](https://github.com/OpenLMIS/).
+The recommended approach to [collaborating](../contribute) is documented.
 * sharing ideas, work items, roadmaps, feature requests, knowledge bases, etc. is vital to know where the project is 
 going and encourage participation.  To that end OpenLMIS encourages all participants to utilize 
 the public forums, chat, project management, and wiki spaces to collaborate.  An active list is found in the 
