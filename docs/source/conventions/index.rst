@@ -6,6 +6,7 @@ Conventions
    :maxdepth: 1
 
    licenseHeader
+   communityPrinciples15
 
 Service Conventions
 ===================
