@@ -103,8 +103,8 @@ code that is part of the OpenLMIS project is found in the OpenLMIS [organization
 The recommended approach to [collaborating](../contribute) is documented.
 * sharing ideas, work items, roadmaps, feature requests, knowledge bases, etc. is vital to know where the project is 
 going and encourage participation.  To that end OpenLMIS encourages all participants to utilize 
-the public forums, chat, project management, and wiki spaces to collaborate.  An active list is found in the 
-[README](README.md).
+the public forums, chat, project management, and wiki spaces to collaborate.  An active list is found at
+[docs.openlmis.org](http://docs.openlmis.org).
 * automated testing ensures functionality from developer to developer and implementation to implementation is 
 behaving as expected over time.  OpenLMIS doesn't currently define code-coverage targets, however, the project expects 
 that appropriate test coverage is provided with every contribution and highly scrutinizes existing tests.  Since 
