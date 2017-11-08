@@ -1,4 +1,4 @@
-# OpenLMIS Community Principles
+# OpenLMIS Community Principles (2015)
 The OpenLMIS community principles aims to help contributors to the project create quality contributions
 by illimunating some of the intentions behind the OpenLMIS principles and influence better design and 
 implementation of OpenLMIS features.
