@@ -92,9 +92,9 @@ OpenLMIS 3.2.1 contains some new features:
 - Demo data is significantly expanded, including for use in contract tests and performance tests
 - `Vaccine MVP 
   <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_ features including
-  Ideal Stock Amount (ISA) management and Cold Chain Equipment (CCE) tracking (CCE features are
+  Ideal Stock Amount (ISA) management, printing of physical inventory counts and Cold Chain Equipment (CCE) tracking (CCE features are
   released in a Beta version that is not included in the 3.2.1 release)
-- Contributions from the Malawi implementation, including a new Extension Point for customizing Order Numbers
+- Contributions from the Malawi implementation, including a new Extension Point for customizing Order Numbers and deleting previously skipped requisitions.
 
 Changes to Existing Functionality
 =================================
@@ -102,7 +102,7 @@ Changes to Existing Functionality
 Version 3.2.1 contains changes that impact users of existing functionality. Please review these
 changes which may require informing end-users and/or updating your customizations/extensions:
 
-- `OLMIS-3223 <https://openlmis.atlassian.net/browse/OLMIS-3223>`_: Ability to delete skipped
+- `OLMIS-3233 <https://openlmis.atlassian.net/browse/OLMIS-3233>`_: Ability to delete previously skipped
   Requisitions
 - `OLMIS-3076 <https://openlmis.atlassian.net/browse/OLMIS-3076>`_: DataIntegrityViolationException
   when trying to remove previous requisition / Average Period Consumption should not calculate
@@ -114,9 +114,10 @@ changes which may require informing end-users and/or updating your customization
   administrators can hide selected reasons from end-users.
 - `OLMIS-3221 <https://openlmis.atlassian.net/browse/OLMIS-3221>`_ and `OLMIS-3222
   <https://openlmis.atlassian.net/browse/OLMIS-3222>`_: View Orders filtering by period start and
-  end dates
+  end dates.
 - `OLMIS-2700 <https://openlmis.atlassian.net/browse/OLMIS-2700>`_: View Requisition enhancements.
-  This includes new sort order controls and make the Date Initiated visible.
+  This includes new sort order controls and makes the Date Initiated visible in the table.
+- `OLMIS-3449 <https://openlmis.atlassian.net/browse/OLMIS-3449>`_: Explanation field on Non Full supply is no longer mandatory
 
 See `all 3.2.1 issues tagged 'UIChange' in Jira <https://openlmis.atlassian.net/issues/?jql=status%3DDone%20AND%20project%3DOLMIS%20AND%20fixVersion%3D3.2.1%20and%20type!%3DTest%20and%20type!%3DEpic%20and%20labels%20IN%20(UIChange)%20ORDER%20BY%20type%20ASC%2C%20priority%20DESC%2C%20key%20ASC>`_.
 
