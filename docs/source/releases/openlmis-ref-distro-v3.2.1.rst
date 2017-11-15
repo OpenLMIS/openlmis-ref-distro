@@ -1,5 +1,5 @@
 ======================================
-3.2.1 Release Notes - 14 November 2017
+3.2.1 Release Notes - 15 November 2017
 ======================================
 
 Status: Stable
@@ -149,16 +149,17 @@ manually testing with simulated conditions (EG, network set to Slow 3G).
 This chart shows a side-by-side comparison of the loading times for different actions in the UI
 in version 3.2.1 (green) compared to testing done in early October 2017 before improvements (blue).
 
-![Release Candidate Process Diagram](https://raw.githubusercontent.com/OpenLMIS/openlmis-ref-distro/master/docs/source/releases/ui-performance-loading-times-Oct2017-v3.2.1.png)
+.. image:: ui-performance-loading-times-Oct2017-v3.2.1.png
+    :alt: Release Candidate Process Diagram
 
 These loading times are measured from the UI app with network set to Slow 3G and CPU throttled.
 The data was gathered manually by timing the application while running the new performance data set.
 
 Top Areas Improved in 3.2.1:
 
-- Convert to Order has dramatically improved loading times (now under 20 seconds): `OLMIS-3318  <https://openlmis.atlassian.net/browse/OLMIS-3318 >`_and `OLMIS-3320 <https://openlmis.atlassian.net/browse/OLMIS-3320>`_.
+- Convert to Order has dramatically improved loading times (now under 20 seconds): `OLMIS-3318 <https://openlmis.atlassian.net/browse/OLMIS-3318>`_ and `OLMIS-3320 <https://openlmis.atlassian.net/browse/OLMIS-3320>`_.
 - Requisition Approve is significantly faster (now under 15 seconds): `OLMIS-3346 <https://openlmis.atlassian.net/browse/OLMIS-3346>`_.
-- Requisition Initiate is faster. `OLMIS-3332  <https://openlmis.atlassian.net/browse/OLMIS-3332 >`_and `OLMIS-3322 <https://openlmis.atlassian.net/browse/OLMIS-3322>`_.
+- Requisition Initiate is faster. `OLMIS-3332 <https://openlmis.atlassian.net/browse/OLMIS-3332>`_ and `OLMIS-3322 <https://openlmis.atlassian.net/browse/OLMIS-3322>`_.
 - Requisition Submit and Authorize are also faster (improved by those same tickets).
 - Batch Approve performs better scrolling through large numbers of products.
 
@@ -483,7 +484,7 @@ additional reports.
 
 Changes since Report Service 1.0.0-beta:
 
-- `OLMIS-3116  <https://openlmis.atlassian.net/browse/OLMIS-3116 >`_: Change user home facility from Facility DTO to UUID
+- `OLMIS-3116 <https://openlmis.atlassian.net/browse/OLMIS-3116>`_: Change user home facility from Facility DTO to UUID
 
 Requisition Service 5.1.0
 -------------------------
