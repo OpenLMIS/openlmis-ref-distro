@@ -7,7 +7,7 @@
 # attempts to find the local IP (not a public IP in case of NAT)
 # to start the Reference Distrubtion on.
 #
-# WARNING:  this is expiremental, you should back-up your settings.env
+# WARNING:  this is expiremental, you should back-up your .env
 # file first before running this script.
 ######################################################################
 
@@ -28,18 +28,18 @@ findHost() {
 }
 
 checkOrFetchEnv() {
-  if [ ! -f "settings.env" ]; then
-    echo 'settings.env file not found, copying settings-sample.env'
-    cp settings-sample.env settings.env
+  if [ ! -f ".env" ]; then
+    echo '.env file not found, fetching from github...'
+    wget -O .env https://raw.githubusercontent.com/OpenLMIS/openlmis-config/master/.env
   else
-    echo 'settings.env file found'
+    echo '.env file found'
   fi
 }
 
 setEnvByIp() {
-  echo "Replacing VIRTUAL_HOST and BASE_URL of settings.env file with ${HOST_ADDR}"
-  sed -i '' -e "s#^VIRTUAL_HOST.*#VIRTUAL_HOST=${HOST_ADDR}#" settings.env 2>/dev/null || true
-  sed -i '' -e "s#^BASE_URL.*#BASE_URL=http://${HOST_ADDR}:8080#" settings.env 2>/dev/null || true
+  echo "Replacing VIRTUAL_HOST and BASE_URL of .env file with ${HOST_ADDR}"
+  sed -i '' -e "s#^VIRTUAL_HOST.*#VIRTUAL_HOST=${HOST_ADDR}#" .env 2>/dev/null || true
+  sed -i '' -e "s#^BASE_URL.*#BASE_URL=http://${HOST_ADDR}#" .env 2>/dev/null || true
 }
 
 findHost

@@ -1,4 +1,4 @@
-version: "3.3"
+version: "2"
 services:
 
   consul:
@@ -7,14 +7,14 @@ services:
     ports:
       - "8300"
       - "8400"
-      - "8500"
+      - "8500:8500"
       - "53"
 
   nginx:
-    image: openlmis/nginx:${OL_NGINX_VERSION}
+    image: openlmis/nginx:4
     ports:
-      - "${OL_HTTP_PORT:-80}:80"
-    env_file: settings.env
+      - "80:80"
+    env_file: .env
     environment:
       NGINX_LOG_DIR: '/var/log/nginx/log'
     volumes:
@@ -23,80 +23,87 @@ services:
     depends_on: [consul]
 
   reference-ui:
-    image: openlmis/reference-ui:${OL_REFERENCE_UI_VERSION}
-    env_file: settings.env
+    image: openlmis/reference-ui:5.0.4-RC3
+    env_file: .env
     depends_on: [consul]
 
   requisition:
-    image: openlmis/requisition:${OL_REQUISITION_VERSION}
-    env_file: settings.env
+    image: openlmis/requisition:5.1.0-RC2
+    env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
+      spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
     depends_on: [log]
 
   referencedata:
-    image: openlmis/referencedata:${OL_REFERENCEDATA_VERSION}
-    env_file: settings.env
+    image: openlmis/referencedata:9.0.0-RC2
+    env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
+      spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
     depends_on: [log]
 
   auth:
-    image: openlmis/auth:${OL_AUTH_VERSION}
-    env_file: settings.env
+    image: openlmis/auth:3.1.1-RC1
+    env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
+      spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
     depends_on: [log]
 
   notification:
-    image: openlmis/notification:${OL_NOTIFICATION_VERSION}
-    env_file: settings.env
+    image: openlmis/notification:3.0.4-RC1
+    env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+      spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
     depends_on: [log]
 
   fulfillment:
-    image: openlmis/fulfillment:${OL_FULFILLMENT_VERSION}
-    env_file: settings.env
+    image: openlmis/fulfillment:6.1.0-RC1
+    env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
+      spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
     depends_on: [log]
 
   stockmanagement:
-    image: openlmis/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
-    env_file: settings.env
+    image: openlmis/stockmanagement:2.0.0-RC2
+    env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
+      spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
     depends_on: [log]
 
   report:
-    image: openlmis/report:${OL_REPORT_VERSION}
-    env_file: settings.env
+    image: openlmis/report:1.0.0-RC1
+    env_file: .env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
+      spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
     depends_on: [log]
 
   db:
-    image: openlmis/postgres:${OL_POSTGRES_VERSION}
-    env_file: settings.env
+    image: openlmis/postgres:9.6-postgis
+    env_file: .env
     depends_on: [consul]
 
   log:
-    image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
+    image: openlmis/rsyslog:1
     volumes:
       - 'syslog:/var/log'
     depends_on:
@@ -112,9 +119,9 @@ services:
   ftp:
     image: hauptmedia/proftpd
     ports:
-      - "${OL_FTP_PORT_21:-21}:21"
-      - "${OL_FTP_PORT_20:-20}:20"
-    env_file: settings.env
+      - "21:21"
+      - "20:20"
+    env_file: .env
     depends_on: [consul]
 
 volumes:
