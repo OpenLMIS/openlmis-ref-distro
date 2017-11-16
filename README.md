@@ -26,17 +26,22 @@ and [Docker for Windows](https://www.docker.com/products/docker#/windows).  If y
 
 ### Quick Setup
 
-1. Pull the environment file template, edit `VIRTUAL_HOST` and `BASE_URL` to be your IP address (if you're behind a NAT, then don't mistakenly use the router's address),
-You __should only need to do this once__, though as this is an actively developed application, you may need to check the environment file template for new additions.
+1. Copy and configure your settings, edit `VIRTUAL_HOST` and `BASE_URL` to be your IP address
+(if you're behind a NAT, then don't mistakenly use the router's address), You __should only need
+to do this once__, though as this is an actively developed application, you may need to check the
+environment file template for new additions.
   ```
-  $ curl -LO https://raw.githubusercontent.com/OpenLMIS/openlmis-config/master/.env
+  $ cp settings-sample.env settings.env
   ```
 
-  Note that 'localhost' will not work here—-it must be an actual IP address (like aaa.bbb.yyy.zzz). This is because localhost would be interpreted
-  relative to each container, but providing your workstation's IP address gives an absolute outside location that is reachable from each container.
-  Also note that your BASE_URL will not need the port ":8080" that may be in the environment file template.
+  Note that 'localhost' will not work here—-it must be an actual IP address (like aaa.bbb.yyy.zzz).
+  This is because localhost would be interpreted relative to each container, but providing your
+  workstation's IP address gives an absolute outside location that is reachable from each container.
+  Also note that your BASE_URL will not need the port ":8080" that may be in the environment file
+  template.
 
-2. Pull all the services, and bring the Reference Distribution up.  Since this is actively developed, you __should pull the services frequently__.
+2. Pull all the services, and bring the Reference Distribution up.  Since this is actively
+developed, you __should pull the services frequently__.
   ```
   $ docker-compose pull
   $ docker-compose up -d  # drop the -d here to see console messages
@@ -142,6 +147,31 @@ startup time.
 ```
 spring_profiles_active=refresh-db
 ```
+
+## Docker Compose configuration
+
+The docker-compose.yml file may be customized to change:
+
+* Versions of Services that should be deployed.
+* Host ports that should be used for specific Services.
+
+This may be configured in the included [.env](.env) file or overridden by setting the same variable in the shell.
+
+For example to set the HTTP port to 8080 instead of the default 80:
+
+```
+export OL_HTTP_PORT=8080
+./start-local.sh
+```
+
+A couple conventions:
+
+1. The .env file has service versions.  See the [.env](.env) file for more.
+1. Port mappings have defaults in the [docker-compose.yml](docker-compose.yml):
+  * OL_HTTP_PORT - Host port that the application will be made available.
+  * OL_FTP_PORT_20 - Host port that the included FTP's port 20 is mapped to.
+  * OL_FTP_PORT_21 - Host port that the included FTP's port 21 is mapped to.
+
 
 ## Configuring Services
 
