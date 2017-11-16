@@ -87,14 +87,14 @@ New Features
 
 OpenLMIS 3.2.1 contains these new features:
 
-- Facility administration screens now support adding and editing facilities
-- User administration screens now provide filtering and more password reset options
-- Demo data is significantly expanded, including for use in contract tests and performance tests
+- Facility administration screens now support adding and editing facilities.
+- User administration screens now provide filtering and more password reset options.
+- Demo data is significantly expanded, including for use in contract tests and performance tests.
 - `Vaccine MVP 
   <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_ features including
-  Ideal Stock Amount (ISA) management, printing of physical inventory counts and Cold Chain
-  Equipment (CCE) tracking (CCE features are released in a Beta version that is not included in the
-  3.2.1 release)
+  Ideal Stock Amount (ISA) management, printing of physical inventory counts and additional work in Cold Chain
+  Equipment (CCE) tracking (CCE features are released in a Beta version which is not included in the
+  3.2.1 release).
 - Contributions from the Malawi implementation, including a new Extension Point for customizing
   Order Numbers and deleting previously skipped requisitions.
 
@@ -105,7 +105,7 @@ Version 3.2.1 contains changes that impact users of existing functionality. Plea
 changes which may require informing end-users and/or updating your customizations/extensions:
 
 - `OLMIS-3233 <https://openlmis.atlassian.net/browse/OLMIS-3233>`_: Ability to delete previously
-  skipped Requisitions
+  skipped Requisitions.
 - `OLMIS-3076 <https://openlmis.atlassian.net/browse/OLMIS-3076>`_: DataIntegrityViolationException
   when trying to remove previous requisition / Average Period Consumption should not calculate
   using Emergency requisition data. This change updates the rules about when it is possible to
@@ -120,7 +120,7 @@ changes which may require informing end-users and/or updating your customization
 - `OLMIS-2700 <https://openlmis.atlassian.net/browse/OLMIS-2700>`_: View Requisition enhancements.
   This includes new sort order controls and makes the Date Initiated visible in the table.
 - `OLMIS-3449 <https://openlmis.atlassian.net/browse/OLMIS-3449>`_: Explanation field on Non-Full
-  Supply is no longer mandatory
+  Supply is no longer mandatory.
 
 See `all 3.2.1 issues tagged 'UIChange' in Jira <https://openlmis.atlassian.net/issues/?jql=status%3DDone%20AND%20project%3DOLMIS%20AND%20fixVersion%3D3.2.1%20and%20type!%3DTest%20and%20type!%3DEpic%20and%20labels%20IN%20(UIChange)%20ORDER%20BY%20type%20ASC%2C%20priority%20DESC%2C%20key%20ASC>`_.
 
@@ -135,7 +135,7 @@ changes impact developers and systems integrating with OpenLMIS:
   and orderables) available for any user with a valid login token.
 - `OLMIS-3116 <https://openlmis.atlassian.net/browse/OLMIS-3116>`_: User DTO now returns home facility UUID instead of Facility object.
 - `OLMIS-3105 <https://openlmis.atlassian.net/browse/OLMIS-3105>`_: User DTO now returns UUIDs instead of codes for role assignments.
-- `OLMIS-3293 <https://openlmis.atlassian.net/browse/OLMIS-3293>`_: Paginate search facilityTypeApprovedProducts and made endpoint RESTful
+- `OLMIS-3293 <https://openlmis.atlassian.net/browse/OLMIS-3293>`_: Paginate search facilityTypeApprovedProducts and made endpoint RESTful.
 - `OLMIS-2732 <https://openlmis.atlassian.net/browse/OLMIS-2732>`_: Stock Management Physical
   Inventory API was redesigned to be RESTful (during work on this ticket for print support).
 
@@ -200,7 +200,7 @@ Auth Service 3.1.1
 Bug fixes added in a backwards-compatible manner:
 
 - `OLMIS-3119 <https://openlmis.atlassian.net/browse/OLMIS-3119>`_: Fixed issue with TOKEN_DURATION variable being ingored, which in reality was an issue with set up of the Spring context and autowiring not working as expected.
-- `OLMIS-3357 <https://openlmis.atlassian.net/browse/OLMIS-3357>`_: Reset email will not be sent when user is created or updated
+- `OLMIS-3357 <https://openlmis.atlassian.net/browse/OLMIS-3357>`_: Reset email will not be sent when user is created or updated.
 
 Source: `Auth CHANGELOG <https://github.com/OpenLMIS/openlmis-auth/blob/master/CHANGELOG.md>`_
 
@@ -211,7 +211,7 @@ This component is a **beta** of new Cold Chain Equipment functionality to suppor
 medical supply chains. This API service component has an accompanying beta CCE UI component.
 
 For details, see the functional documentation: `Cold Chain Equipment Management
-<https://openlmis.atlassian.net/wiki/spaces/OP/pages/113145252/Cold+Chain+Equipment+Management>`_
+<https://openlmis.atlassian.net/wiki/spaces/OP/pages/113145252/Cold+Chain+Equipment+Management>`_.
 
 *Warning: This is a beta component, and is not yet intended for production use. APIs and
 functionality are still subject to change until the official release.*
@@ -221,7 +221,7 @@ Fulfillment Service 6.1.0
 
 New functionality added in a backwards-compatible manner:
 
-- `OLMIS-3221 <https://openlmis.atlassian.net/browse/OLMIS-3221>`_: Added period start and end dates parameters to the order search endpoint
+- `OLMIS-3221 <https://openlmis.atlassian.net/browse/OLMIS-3221>`_: Added period start and end dates parameters to the order search endpoint.
 
 Improvements added in a backwards-compatible manner:
 
@@ -247,7 +247,7 @@ Breaking changes:
 
 - `OLMIS-3116 <https://openlmis.atlassian.net/browse/OLMIS-3116>`_: User DTO now returns home facility UUID instead of Facility object.
 - `OLMIS-3105 <https://openlmis.atlassian.net/browse/OLMIS-3105>`_: User DTO now returns UUIDs instead of codes for role assignments.
-- `OLMIS-3293 <https://openlmis.atlassian.net/browse/OLMIS-3293>`_: Paginate search facilityTypeApprovedProducts and made endpoint RESTful
+- `OLMIS-3293 <https://openlmis.atlassian.net/browse/OLMIS-3293>`_: Paginate search facilityTypeApprovedProducts and made endpoint RESTful.
 
 New functionality added in a backwards-compatible manner:
 
@@ -265,12 +265,12 @@ New functionality added in a backwards-compatible manner:
 Bug fixes, security and performance improvements, also backwards-compatible:
 
 - `OLMIS-2857 <https://openlmis.atlassian.net/browse/OLMIS-2857>`_: Refactored user search repository method to user database pagination and sorting.
-- `OLMIS-2913 <https://openlmis.atlassian.net/browse/OLMIS-2913>`_: add DIVO user and assign to Inventory Manager role for SN1 and SN2
+- `OLMIS-2913 <https://openlmis.atlassian.net/browse/OLMIS-2913>`_: add DIVO user and assign to Inventory Manager role for SN1 and SN2.
 - `OLMIS-3146 <https://openlmis.atlassian.net/browse/OLMIS-3146>`_: added PROGRAMS_MANAGE right and enforce it on CUD endpoints.
 - `OLMIS-3209 <https://openlmis.atlassian.net/browse/OLMIS-3209>`_: Fixed problem with parsing orderable DTO when it contains several program orderables.
 - `OLMIS-3290 <https://openlmis.atlassian.net/browse/OLMIS-3290>`_: Fixed searching Orderables by code and name.
 - `OLMIS-3291 <https://openlmis.atlassian.net/browse/OLMIS-3291>`_: Fixed searching RequisitionGroups by supervisoryNode.
-- `OLMIS-3346 <https://openlmis.atlassian.net/browse/OLMIS-3346>`_: Decreased number of database calls to retrieve Facility Type Approved Products
+- `OLMIS-3346 <https://openlmis.atlassian.net/browse/OLMIS-3346>`_: Decreased number of database calls to retrieve Facility Type Approved Products.
 
 Source: `ReferenceData CHANGELOG
 <https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
@@ -341,8 +341,8 @@ New features:
 - `OLMIS-3153 <https://openlmis.atlassian.net/browse/OLMIS-3153>`_: Added facilityOperatorsService for communicating with the facilityOperators endpoints
 - Extended facilityService with the ability to save facility
 - `OLMIS-3154 <https://openlmis.atlassian.net/browse/OLMIS-3154>`_: Changed facility view to edit screen.
-- `OLMIS-3228 <https://openlmis.atlassian.net/browse/OLMIS-3228>`_: Create Download Current ISA Values page
-- `OLMIS-2217 <https://openlmis.atlassian.net/browse/OLMIS-2217>`_: Added ability to send reset password email
+- `OLMIS-3228 <https://openlmis.atlassian.net/browse/OLMIS-3228>`_: Create Download Current ISA Values page.
+- `OLMIS-2217 <https://openlmis.atlassian.net/browse/OLMIS-2217>`_: Added ability to send reset password email.
 - `OLMIS-396 <https://openlmis.atlassian.net/browse/OLMIS-396>`_: Added upload functionality to manage ISA screen.
 
 Improvements:
@@ -376,13 +376,13 @@ requisition-ui 5.2.0
 
 Improvements:
 
-- `OLMIS-2956 <https://openlmis.atlassian.net/browse/OLMIS-2956>`_: Removed UserRightFactory from requisition-initiate module, and replaced with permissionService
+- `OLMIS-2956 <https://openlmis.atlassian.net/browse/OLMIS-2956>`_: Removed UserRightFactory from requisition-initiate module, and replaced with permissionService.
 - `OLMIS-3294 <https://openlmis.atlassian.net/browse/OLMIS-3294>`_: Added loading modal after the approval is finished.
 - `OLMIS-2700 <https://openlmis.atlassian.net/browse/OLMIS-2700>`_: Added date initiated column and sorting to the View Requisitions table. Removed date authorized and date approved.
 - `OLMIS-3181 <https://openlmis.atlassian.net/browse/OLMIS-3181>`_: Added front-end validation to the requisition batch approval screen.
 - `OLMIS-3233 <https://openlmis.atlassian.net/browse/OLMIS-3233>`_: Added ability to delete requisitions with "skipped" status.
-- `OLMIS-3246 <https://openlmis.atlassian.net/browse/OLMIS-3246>`_: Added 'show' field to reason assignments
-- `OLMIS-3471 <https://openlmis.atlassian.net/browse/OLMIS-3471>`_: Explanation field on Non Full supply tab is no longer mandatory
+- `OLMIS-3246 <https://openlmis.atlassian.net/browse/OLMIS-3246>`_: Added 'show' field to reason assignments.
+- `OLMIS-3471 <https://openlmis.atlassian.net/browse/OLMIS-3471>`_: Explanation field on Non Full supply tab is no longer mandatory.
 - `OLMIS-3318 <https://openlmis.atlassian.net/browse/OLMIS-3318>`_: Added requisitions caching to the Convert to Order screen.
 - Updated dev-ui version to 6.
 
@@ -401,11 +401,11 @@ stockmanagement-ui 1.0.1
 
 New functionality that are backwards-compatible:
 
-- `OLMIS-2732 <https://openlmis.atlassian.net/browse/OLMIS-2732>`_: Print submitted physical inventory
+- `OLMIS-2732 <https://openlmis.atlassian.net/browse/OLMIS-2732>`_: Print submitted physical inventory.
 
 Improvements:
 
-- `OLMIS-3246 <https://openlmis.atlassian.net/browse/OLMIS-3246>`_: Added support for hidden stock adjustment reasons
+- `OLMIS-3246 <https://openlmis.atlassian.net/browse/OLMIS-3246>`_: Added support for hidden stock adjustment reasons.
 - `OLMIS-3296 <https://openlmis.atlassian.net/browse/OLMIS-3296>`_: Reworked facility-program select component to use cached rograms, minimal facilities and permission strings.
 - Updated dev-ui version to 6.
 
