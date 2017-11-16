@@ -80,7 +80,7 @@ an administrative hierarchy.
 - `Requisition Service <requisitionService.html>`_
 - `Requisition UI <requisitionUI.html>`_
 - `Requisition ERD <erd-requisition.html>`_
-- `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/1825/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/1835/artifact/build/resources/main/api-definition.html>`_
 
 *************************
 Stock Management Service
