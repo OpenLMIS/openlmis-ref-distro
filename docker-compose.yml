@@ -101,9 +101,8 @@ services:
     depends_on: [log]
     
   diagnostics:
-    restart: always
-    image: openlmis/diagnostics:1.0.0-SNAPSHOT
-    env_file: .env
+    image: openlmis/diagnostics:${OL_DIAGNOSTICS_VERSION}
+    env_file: settings.env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
       spring_profiles_active: ${spring_profiles_active}
