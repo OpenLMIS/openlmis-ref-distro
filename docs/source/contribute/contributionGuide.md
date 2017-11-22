@@ -9,7 +9,7 @@ The sections below describe all kinds of contributions, from bug reports to cont
 
 ## Reporting Bugs
 
-The OpenLMIS community uses JIRA for [tracking bugs](https://openlmis.atlassian.net/projects/OLMIS/issues/).
+The OpenLMIS community uses JIRA for [tracking bugs](https://openlmis.atlassian.net/projects/OLMIS/issues/). All bugs must be submitted to the OLMIS project to be reviewed or worked on.
 This system helps track current and historical bugs, what work has been done, and so on. Reporting a bug with this
 tool is the best way to get the bug fixed quickly and correctly.
 
@@ -75,25 +75,29 @@ Please see attached screenshots and database snapshot.
 
 ## Contributing Code
 
-The OpenLMIS community welcomes code contributions and we encourage you to fix a bug or implement a new feature.  
+The OpenLMIS community welcomes code contributions and we encourage you to implement a new feature. Review the following process and guidelines for contributing new features or modification to existing functionality. 
 
 ### Coordinating with the Global Community
 
-In reviewing contributions, the community promotes features that meet the broad needs of many countries for
+In reviewing your proposed contribution, the community promotes features that meet the broad needs of many countries for
 inclusion in the global codebase. We want to ensure that changes to the shared, global code will not
 negatively impact existing users and existing implementations. We encourage country-specific customizations to
 be built using the extension mechanism. Extensions can be shared as open source projects so that other countries
 might adopt them.
 
-To that end, when considering coding a new feature or modification, please:
+To that end, when considering coding a new feature or modification, please follow these steps to coordinate with the global community:
 
-1. Review your feature idea with the [Product Committee](https://openlmis.atlassian.net/wiki/display/OP/Product+Committee).
-They may help inform you about how other country needs overlap or differ. They may also consider including a new
-feature in the global codebase using the [New Feature Verification Process](https://openlmis.atlassian.net/wiki/display/OP/New+Feature+Verification+Process)
-or reviewing the [Global vs. Project-Specific Features wiki](https://openlmis.atlassian.net/wiki/display/OP/Global+vs.+Project-Specific+Features).
-2. Before modifying or extending core functionality, email the [developer forum](https://groups.google.com/forum/#!forum/openlmis-dev)
-or contact the [Technical Committee](https://openlmis.atlassian.net/wiki/display/OP/Technical+Committee).
-They can help share relevant resources or create any needed extension points (further details below).
+1. Create an OpenLMIS Jira ticket and include information for the following fields:
+  i. Type: Indicate New Feature
+  ii. Status: Leave as ROADMAP
+  iii. Summary: One line description of the feature
+  iv. Component/s: If you know which service is impacted by the new feature, please include. If not, leave it blank.
+  v. Description: Include the user story and detailed description of the feature. Highlight the end user value. Include user steps and edge cases if applicable. Attach screen shots or diagrams if useful.
+  vi. Affects Version: Leave it blank.
+2. Send an email to the product committee listserv ([instructions](https://openlmis.atlassian.net/wiki/spaces/OP/pages/27000853/Community)) with the link to the Jira ticket and any additional information or context about the request. Please review the [Global vs. Project-Specific Features wiki](https://openlmis.atlassian.net/wiki/display/OP/Global+vs.+Project-Specific+Features) for details on to evaluate if a feature is globally applicable or specific to an implementation. Please clearly indicate and time sensitivities so the product committee is aware and can be responsive. 
+3. The [Product Committee](https://openlmis.atlassian.net/wiki/display/OP/Product+Committee) will review the feature request at the next Product Committee meeting and provide feed back or request further clarification. Once the feature request is understood, the Product Committee will evaluate the request.
+4. If the request is deemed globally applicable and acceptable for the global codebase, the Product Committee with provide any additional guidence or direction needed in preparation for the Technical Committee review.
+5. Once approved by the product committee, we request the implementer to contact the [developer forum](https://groups.google.com/forum/#!forum/openlmis-dev) or contact the [Technical Committee](https://openlmis.atlassian.net/wiki/display/OP/Technical+Committee) to provide a proposed technical design to implement the approved feature. They can help share relevant resources or create any needed extension points (further details below).
 
 ### Extensibility and Customization
 
