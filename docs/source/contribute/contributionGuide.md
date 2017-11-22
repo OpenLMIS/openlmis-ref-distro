@@ -88,12 +88,12 @@ might adopt them.
 To that end, when considering coding a new feature or modification, please follow these steps to coordinate with the global community:
 
 1. Create an OpenLMIS Jira ticket and include information for the following fields:
-  i. Type: Indicate New Feature
-  ii. Status: Leave as ROADMAP
-  iii. Summary: One line description of the feature
-  iv. Component/s: If you know which service is impacted by the new feature, please include. If not, leave it blank.
-  v. Description: Include the user story and detailed description of the feature. Highlight the end user value. Include user steps and edge cases if applicable. Attach screen shots or diagrams if useful.
-  vi. Affects Version: Leave it blank.
+    1. Type: Indicate New Feature
+    2. Status: Leave as ROADMAP
+    3. Summary: One line description of the feature
+    4. Component/s: If you know which service is impacted by the new feature, please include. If not, leave it blank.
+    5. Description: Include the user story and detailed description of the feature. Highlight the end user value. Include user steps and edge cases if applicable. Attach screen shots or diagrams if useful.
+    6. Affects Version: Leave it blank.
 2. Send an email to the product committee listserv ([instructions](https://openlmis.atlassian.net/wiki/spaces/OP/pages/27000853/Community)) with the link to the Jira ticket and any additional information or context about the request. Please review the [Global vs. Project-Specific Features wiki](https://openlmis.atlassian.net/wiki/display/OP/Global+vs.+Project-Specific+Features) for details on to evaluate if a feature is globally applicable or specific to an implementation. Please clearly indicate and time sensitivities so the product committee is aware and can be responsive. 
 3. The [Product Committee](https://openlmis.atlassian.net/wiki/display/OP/Product+Committee) will review the feature request at the next Product Committee meeting and provide feed back or request further clarification. Once the feature request is understood, the Product Committee will evaluate the request.
 4. If the request is deemed globally applicable and acceptable for the global codebase, the Product Committee with provide any additional guidence or direction needed in preparation for the Technical Committee review.
