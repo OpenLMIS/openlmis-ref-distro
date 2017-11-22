@@ -28,16 +28,34 @@ upgrade, you may need to ask on the technical forums.
 Fixing bugs is a time-intensive process. To speed things along and assist in fixing the bug, it greatly helps to send
 in a complete and detailed bug report. These steps can help that along:
 
-1. First, make sure you search for the bug! It takes a lot of work to report and investigate bug reports, so please do
-this first (as described in the section Before You Report a Bug above).
-2. In the Description, write a clear and concise explanation of what you entered and what you saw, as well as what you
-thought you should see from OpenLMIS.
-3. Include the detailed steps, such as the Steps in the example below, that someone unfamiliar with the bug can use to
-recreate it. Make sure this bug occurs more than once, perhaps on a different personal computer or web browsers.
-4. The web browser (e.g. Firefox), version (e.g. v48), OpenLMIS version, as well as any custom modifications made.
-5. Your priority in fixing this bug
-6. If applicable, any error message text, stack trace, or logging output
-7. If possible and relevant, a sample or view of the database - though don't post sensitive information in public
+1. First, make sure you search for the bug in the current OpenLMIS backlog! It takes a lot of work to report and investigate bug reports, so please do this first (as described in the section Before You Report a Bug above).
+2. Create a bug in the OpenLMIS Jira Project.  Include the following information in the ticket:
+    1. _Type_: Select "bug"
+    2. _Status_: Leave as "ROADMAP". The OpenLMIS team will update the status to "TO DO" once the ticket is ready for work and reproduced.
+    3. _Description_: Write a clear and concise explanation of what you entered and what you saw, as well as what you
+thought you should see from OpenLMIS. Include the detailed steps, such as the Steps in the example below, that someone unfamiliar with the bug can use to recreate it. Make sure this bug occurs more than once, perhaps on a different personal computer or web browsers. Indicate the web browser (e.g. Firefox), version (e.g. v48), OpenLMIS version, as well as any custom modifications made. Include any time sensitivities or information of impact to support the team in prioritizing the bug.
+    4. _Priority_: Indicate the priority level based on the guidence below in the Prioritizing Bugs section. The priority may be updated later by the Product Manager upon grooming and scheduling for work.
+    5. _Affects Version/s_: Indicate what version of the reference distribution the bug was found in.
+    6. _Component_: 
+    7. _Attachments_: Attach any relevant screen shots, videos or documents that will help the team understand and reproduce the bug.
+3. If applicable, include any error message text, stack trace, or logging output in the _Description_ or _Attachments_.
+4. If possible and relevant, a sample or view of the database - though don't post sensitive information in public
+
+Once the bug is submitted, the OpenLMIS team will review the bugs prior to the next sprint cycle. Bugs will be prioritized and scheduled for work based on priority, resources, and implementation needs. Follow the ticket in Jira for updates on status and completion. Each release includes a list of bugs fixed.
+
+### Prioritizing Bugs
+
+Each bug submission should include an initial prioritization form the reporter. Please follow the guidelines below for the initial prioritization.
+
+Priority Level | Example Criteria
+---------------|----
+Blocker| Cannot execute function (cannot click button, button doesn't exist, cannot complete action when button is clicked). Cannot complete expected action (does not match expected results for the test case). No error message when there is an error. OpenLMIS will not release with this bug.
+Critical | Error message is unactionable by the user, and user cannot complete next action (500 server error message). Search results provided do not match expected results based on data. Poor UI performance or accessibility (user cannot tab to column or use keyboard to complete action). OpenLMIS should not release with this bug.
+Major |Performance related (slow response time). Major asthetic issue (See [UI Styleguide](http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/section-3.html#!#kssref-3-3) for reference). Incorrect filtering, but doesn't block users from completing tasks and executing functionality. Wrong user error message (user does not know how to proceed based on the error message provided).
+Minor | Asthetics (spacing is wrong, alignment is wrong, see [UI Styleguide](http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/section-3.html#!#kssref-3-3)). Message key is wrong. Console errors. Service giving the wrong error between services.
+Trivial | Anything else.
+
+When the bug is groomed and scheduled for work, the Product Manager will set the final priority level. See [Backlog Grooming](https://openlmis.atlassian.net/wiki/spaces/OP/pages/106627250/Backlog+Grooming) for details on the scheduling of work.
 
 ### Example Bug Report
 
@@ -88,13 +106,13 @@ might adopt them.
 To that end, when considering coding a new feature or modification, please follow these steps to coordinate with the global community:
 
 1. Create an OpenLMIS Jira ticket and include information for the following fields:
-    1. Type: Indicate New Feature
-    2. Status: Leave as ROADMAP
-    3. Summary: One line description of the feature
-    4. Component/s: If you know which service is impacted by the new feature, please include. If not, leave it blank.
-    5. Description: Include the user story and detailed description of the feature. Highlight the end user value. Include user steps and edge cases if applicable. Attach screen shots or diagrams if useful.
-    6. Affects Version: Leave it blank.
-2. Send an email to the product committee listserv ([instructions](https://openlmis.atlassian.net/wiki/spaces/OP/pages/27000853/Community)) with the link to the Jira ticket and any additional information or context about the request. Please review the [Global vs. Project-Specific Features wiki](https://openlmis.atlassian.net/wiki/display/OP/Global+vs.+Project-Specific+Features) for details on to evaluate if a feature is globally applicable or specific to an implementation. Please clearly indicate and time sensitivities so the product committee is aware and can be responsive. 
+    1. _Type_: Select "New Feature"
+    2. _Status_: Leave as "ROADMAP"
+    3. _Summary_: One line description of the feature
+    4. _Component/s_: If you know which service is impacted by the new feature, please include. If not, leave it blank.
+    5. _Description_: Include the user story and detailed description of the feature. Highlight the end user value. Include user steps and edge cases if applicable. Attach screen shots or diagrams if useful.
+    6. _Affects Version_: Leave it blank.
+2. Send an email to the product committee listserv ([instructions](https://openlmis.atlassian.net/wiki/spaces/OP/pages/27000853/Community)) with the link to the Jira ticket and any additional information or context about the request. Please review the [Global vs. Project-Specific Features wiki](https://openlmis.atlassian.net/wiki/display/OP/Global+vs.+Project-Specific+Features) for details on how to evaluate if a feature is globally applicable or specific to an implementation. Please clearly indicate any time sensitivities so the product committee is aware and can be responsive. 
 3. The [Product Committee](https://openlmis.atlassian.net/wiki/display/OP/Product+Committee) will review the feature request at the next Product Committee meeting and provide feed back or request further clarification. Once the feature request is understood, the Product Committee will evaluate the request.
 4. If the request is deemed globally applicable and acceptable for the global codebase, the Product Committee with provide any additional guidence or direction needed in preparation for the Technical Committee review.
 5. Once approved by the product committee, we request the implementer to contact the [developer forum](https://groups.google.com/forum/#!forum/openlmis-dev) or contact the [Technical Committee](https://openlmis.atlassian.net/wiki/display/OP/Technical+Committee) to provide a proposed technical design to implement the approved feature. They can help share relevant resources or create any needed extension points (further details below).
@@ -227,6 +245,22 @@ For complete licensing details be sure to reference the LICENSE file that comes 
 
 The Living Roadmap can be found [here](https://openlmis.atlassian.net/wiki/display/OP/Living+Product+Roadmap)
 The backlog can be found [here](https://openlmis.atlassian.net/secure/RapidBoard.jspa?rapidView=46&view=planning.nodetail)
+
+### Suggest a New Feature
+
+The OpenLMIS community welcomes suggestions and requests for new features, functionality or improvements to OpenLMIS. __Please note that suggested new features may or may not be scheduled for work depending on resourcing and value to the community. If this feature is needed for a specific implementation in a timely fashion we suggest the team consider building the feature and contributing it back to core. See the section on Contributing Code above for details.__  Follow the steps below so that the community can review, evaluate, and potentially schedule the new feature for work:
+
+1. Create an OpenLMIS Jira ticket and include information for the following fields:
+    1. _Type_: Select "New Feature"
+    2. _Status_: Leave as "ROADMAP"
+    3. _Summary_: One line description of the feature
+    4. _Component/s_: If you know which service is impacted by the new feature, please include. If not, leave it blank.
+    5. _Description_ Include the user story and detailed description of the desired new feature, functionality or improvement. Highlight the end user value. Include user steps and edge cases if applicable. Attach screen shots or diagrams if useful in building a shared understanding of the suggested feature.
+    6. _Affects Version_: Leave it blank.
+2. Send an email to the product committee listserv ([instructions](https://openlmis.atlassian.net/wiki/spaces/OP/pages/27000853/Community)) with the link to the Jira ticket and any additional information or context about the suggested feature and functionality. Please review the [Global vs. Project-Specific Features wiki](https://openlmis.atlassian.net/wiki/display/OP/Global+vs.+Project-Specific+Features) for details on how to evaluate if a feature is globally applicable or specific to an implementation. Please clearly indicate any time sensitivities so the product committee is aware and can be responsive.  
+3. The [Product Committee](https://openlmis.atlassian.net/wiki/display/OP/Product+Committee) will review the feature request at the next Product Committee meeting and provide feed back or request further clarification. Once the feature request is understood, the Product Committee will evaluate the request to determine the next steps.
+        * The Product Committee will set the priority of the feature and keep the Jira ticket updated with information on scheduling, questions, and if any additional information is needed.
+4. Follow the ticket in Jira or attend Product Committee meetings to keep updated on the status of the suggested new feature.
 
 ## Contributing Documentation
 
