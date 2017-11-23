@@ -264,7 +264,7 @@ The OpenLMIS community welcomes suggestions and requests for new features, funct
 
 ## Contributing Documentation
 
-Writing documentation is just as helpful as writing code. See [Contribute Documentation](http://docs.openlmis.org/en/latest/developer-docs/contributeDocs.html).
+Writing documentation is just as helpful as writing code. See [Contribute Documentation](http://docs.openlmis.org/en/latest/contribute/contributeDocs.html).
 
 ## References
 
