@@ -106,6 +106,21 @@ this release candidate becomes the Golden Master to be published as an official 
 
 After publishing the release, Active Development can resume.
 
+#### Releasing components outside of a Ref Distro release (draft)
+
+At times OpenLMIS will release
+stable components outside the process of releasing a new Ref Distro.  When a component is released
+without the Ref Distro it is done on its own - without the benefits of the rigirous release process of the Ref Distro.
+
+Any component may be released at any time.  However to release a component, it must pass the following criteria:
+
+* All automated tests of the component must be passing.
+* All dependancies must also be co-released and their automated tests passing if a change in the dependancy is needed to successfully
+release the component.
+* The release must be stable - no half-finished features or fixes.
+* Since the release of the component is outside of the Ref Distro release process, **implementers should be careful** in taking such
+releases as they haven't been fully tested in the larger context of the Ref Distro.
+
 ### Implementation Release Process
 
 A typical OpenLMIS implementation is composed of multiple core OpenLMIS components plus some custom
