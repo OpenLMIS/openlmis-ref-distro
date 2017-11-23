@@ -259,7 +259,7 @@ The OpenLMIS community welcomes suggestions and requests for new features, funct
     6. _Affects Version_: Leave it blank.
 2. Send an email to the product committee listserv ([instructions](https://openlmis.atlassian.net/wiki/spaces/OP/pages/27000853/Community)) with the link to the Jira ticket and any additional information or context about the suggested feature and functionality. Please review the [Global vs. Project-Specific Features wiki](https://openlmis.atlassian.net/wiki/display/OP/Global+vs.+Project-Specific+Features) for details on how to evaluate if a feature is globally applicable or specific to an implementation. Please clearly indicate any time sensitivities so the product committee is aware and can be responsive.  
 3. The [Product Committee](https://openlmis.atlassian.net/wiki/display/OP/Product+Committee) will review the feature request at the next Product Committee meeting and provide feed back or request further clarification. Once the feature request is understood, the Product Committee will evaluate the request to determine the next steps.
-        * The Product Committee will set the priority of the feature and keep the Jira ticket updated with information on scheduling, questions, and if any additional information is needed.
+    * The Product Committee will set the priority of the feature and keep the Jira ticket updated with information on scheduling, questions, and if any additional information is needed.
 4. Follow the ticket in Jira or attend Product Committee meetings to keep updated on the status of the suggested new feature.
 
 ## Contributing Documentation
