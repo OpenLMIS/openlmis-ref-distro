@@ -277,6 +277,9 @@ component, the other items below need to change.
 These steps apply when you change a component's serviceVersion (changing which -SNAPSHOT the
 codebase is working towards):
 
+- If the component that you are about to release depends on the openlmis-service-util, verify
+  that it uses a stable version of that library. If it uses a snapshot version, a release of 
+  openlmis-service-util is required before you can proceed. 
 - Within the component, set the **serviceVersion** property in the **gradle.properties** file to
   the new -SNAPSHOT you've chosen.
   - See Step 3 below for details.
