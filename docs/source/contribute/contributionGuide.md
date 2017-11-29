@@ -36,10 +36,10 @@ in a complete and detailed bug report. These steps can help that along:
 thought you should see from OpenLMIS. Include the detailed steps, such as the Steps in the example below, that someone unfamiliar with the bug can use to recreate it. Make sure this bug occurs more than once, perhaps on a different personal computer or web browsers. Indicate the web browser (e.g. Firefox), version (e.g. v48), OpenLMIS version, as well as any custom modifications made. Include any time sensitivities or information of impact to support the team in prioritizing the bug.
     4. _Priority_: Indicate the priority level based on the guidence below in the Prioritizing Bugs section. The priority may be updated later by the Product Manager upon grooming and scheduling for work.
     5. _Affects Version/s_: Indicate what version of the reference distribution the bug was found in.
-    6. _Component_: 
+    6. _Component_: If you know which service is impacted by the bug, please include. If not, leave it blank.
     7. _Attachments_: Attach any relevant screen shots, videos or documents that will help the team understand and reproduce the bug.
-3. If applicable, include any error message text, stack trace, or logging output in the _Description_ or _Attachments_.
-4. If possible and relevant, a sample or view of the database - though don't post sensitive information in public
+3. If applicable, include any error message text, a screenshot, stack trace, or logging output in the _Description_ or _Attachments_.
+4. If possible and relevant, a sample or view of the database - though don't post sensitive information in public.
 
 Once the bug is submitted, the OpenLMIS team will review the bugs prior to the next sprint cycle. Bugs will be prioritized and scheduled for work based on priority, resources, and implementation needs. Follow the ticket in Jira for updates on status and completion. Each release includes a list of bugs fixed.
 
@@ -47,13 +47,11 @@ Once the bug is submitted, the OpenLMIS team will review the bugs prior to the n
 
 Each bug submission should include an initial prioritization form the reporter. Please follow the guidelines below for the initial prioritization.
 
-Priority Level | Example Criteria
----------------|----
-Blocker| Cannot execute function (cannot click button, button doesn't exist, cannot complete action when button is clicked). Cannot complete expected action (does not match expected results for the test case). No error message when there is an error. OpenLMIS will not release with this bug.
-Critical | Error message is unactionable by the user, and user cannot complete next action (500 server error message). Search results provided do not match expected results based on data. Poor UI performance or accessibility (user cannot tab to column or use keyboard to complete action). OpenLMIS should not release with this bug.
-Major |Performance related (slow response time). Major asthetic issue (See [UI Styleguide](http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/section-3.html#!#kssref-3-3) for reference). Incorrect filtering, but doesn't block users from completing tasks and executing functionality. Wrong user error message (user does not know how to proceed based on the error message provided).
-Minor | Asthetics (spacing is wrong, alignment is wrong, see [UI Styleguide](http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/section-3.html#!#kssref-3-3)). Message key is wrong. Console errors. Service giving the wrong error between services.
-Trivial | Anything else.
+* **Blocker**: Cannot execute function (cannot click button, button does not exist, cannot complete action when button is clicked). Cannot complete expected action (does not match expected results for the test case). No error message when there is an error. OpenLMIS will not release with this bug.
+* **Critical**: Error message is unactionable by the user, and user cannot complete next action (500 server error message). Search results provided do not match expected results based on data. Poor UI performance or accessibility (user cannot tab to column or use keyboard to complete action). OpenLMIS should not release with this bug.
+* **Major**: Performance related (slow response time). Major asthetic issue (See [UI Styleguide](http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/section-3.html#!#kssref-3-3) for reference). Incorrect filtering, but doesn't block users from completing tasks and executing functionality. Wrong user error message (user does not know how to proceed based on the error message provided).
+* **Minor**: Aesthetics (spacing is wrong, alignment is wrong, see [UI Styleguide](http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/section-3.html#!#kssref-3-3)). Message key is wrong. Console errors. Service giving the wrong error between services.
+* **Trivial**: Anything else.
 
 When the bug is groomed and scheduled for work, the Product Manager will set the final priority level. See [Backlog Grooming](https://openlmis.atlassian.net/wiki/spaces/OP/pages/106627250/Backlog+Grooming) for details on the scheduling of work.
 
@@ -114,7 +112,7 @@ To that end, when considering coding a new feature or modification, please follo
     6. _Affects Version_: Leave it blank.
 2. Send an email to the product committee listserv ([instructions](https://openlmis.atlassian.net/wiki/spaces/OP/pages/27000853/Community)) with the link to the Jira ticket and any additional information or context about the request. Please review the [Global vs. Project-Specific Features wiki](https://openlmis.atlassian.net/wiki/display/OP/Global+vs.+Project-Specific+Features) for details on how to evaluate if a feature is globally applicable or specific to an implementation. Please clearly indicate any time sensitivities so the product committee is aware and can be responsive. 
 3. The [Product Committee](https://openlmis.atlassian.net/wiki/display/OP/Product+Committee) will review the feature request at the next Product Committee meeting and provide feed back or request further clarification. Once the feature request is understood, the Product Committee will evaluate the request.
-4. If the request is deemed globally applicable and acceptable for the global codebase, the Product Committee with provide any additional guidence or direction needed in preparation for the Technical Committee review.
+4. If the request is deemed globally applicable and acceptable for the global codebase, the Product Committee will provide any additional guidence or direction needed in preparation for the Technical Committee review.
 5. Once approved by the product committee, we request the implementer to contact the [developer forum](https://groups.google.com/forum/#!forum/openlmis-dev) or contact the [Technical Committee](https://openlmis.atlassian.net/wiki/display/OP/Technical+Committee) to provide a proposed technical design to implement the approved feature. They can help share relevant resources or create any needed extension points (further details below).
 
 ### Extensibility and Customization
