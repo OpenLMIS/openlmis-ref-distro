@@ -201,7 +201,7 @@ versioning and schedule were also discussed at the [Product Committee meeting on
 Because each component is independently, semantically versioned, the developers working on that
 component need to coordinate so they are working towards the same version (their next release).
 
-Each component's repository has a version file (gradle.properties or version.properties) that
+Each component's repository has a version file (gradle.properties or project.properties) that
 states which version is currently being developed. By default, we expect components will be working
 on the master branch towards a Patch release. The developers can coordinate any time they are ready
 to work on features (for a Minor release).
@@ -328,7 +328,7 @@ in these steps - e.g. SNAPSHOT):
    the Target (instead of just using the master branch, default). Also, when you create the version
    in GitHub check the "This is a pre-release" checkbox if indeed that is true. Do this for each
    service/UI module in the project, including the API services and the AngularJS UI repo (note: in
-   that repo, the file is called version.properties, not gradle.properties). DON'T update the
+   that repo, the file is called project.properties, not gradle.properties). DON'T update the
    Reference Distribution yet.
    1. Do we need a release branch? No, we do not need a release branch, only a tag. If there are any
       later fixes we need to apply to the 3.0 Beta, we would issue a new beta release (eg, 3.0 Beta
