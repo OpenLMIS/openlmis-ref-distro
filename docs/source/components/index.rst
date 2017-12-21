@@ -30,6 +30,7 @@ Auth
 Security credentials, Authentication and Authorization. Uses OAuth2.
 
 - `Auth Service <authService.html>`_
+- `Auth Service Design <authServiceDesign.html>`_
 - `Auth UI <authUI.html>`_
 - `Auth ERD <erd-auth.html>`_
 - `Live Documentation for Auth API <http://test.openlmis.org/auth/docs/#/default>`_
