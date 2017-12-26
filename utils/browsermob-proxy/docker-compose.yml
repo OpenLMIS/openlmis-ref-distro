@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  bmp:
+    image: openlmis/bmp
+    container_name: bmp
+    ports:
+      - 9090-9121:9090-9121
