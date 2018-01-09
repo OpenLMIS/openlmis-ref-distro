@@ -7,6 +7,7 @@ sudo mkdir -p /var/www/html/erd-$1
 sudo chown -R $USER:$USER /var/www/html/erd-$1
 
 wget https://raw.githubusercontent.com/OpenLMIS/openlmis-config/master/.env -O .env \
+&& sed -i -e "s/^spring_profiles_active=demo-data,refresh-db/spring_profiles_active=/" .env \
 && wget https://raw.githubusercontent.com/OpenLMIS/openlmis-$1/master/docker-compose.erd-generation.yml -O docker-compose.erd-generation.yml \
 && (/usr/local/bin/docker-compose -f docker-compose.erd-generation.yml up &) \
 && sleep 90 \
