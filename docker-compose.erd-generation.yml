@@ -1,0 +1,20 @@
+version: "2"
+services:
+
+  olservice:
+    image: openlmis/${OL_SERVICE_NAME}
+    links:
+      - db
+      - log
+    env_file: .env
+
+  db:
+    image: openlmis/postgres:9.6-postgis
+    ports:
+      - "5432"
+    env_file: .env
+
+  log:
+    image: openlmis/rsyslog:1
+    volumes:
+      - '../logs/${OL_SERVICE_NAME}:/var/log'
