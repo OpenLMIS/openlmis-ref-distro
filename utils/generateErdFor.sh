@@ -3,9 +3,21 @@
 docker pull openlmis/$1
 #the image might be built on the jenkins slave, so we need to pull here to make sure it's using the latest
 
+# prepare ERD folder on CI server
 sudo mkdir -p /var/www/html/erd-$1
 sudo chown -R $USER:$USER /var/www/html/erd-$1
 
+# General steps:
+# - Copy env file and remove demo data profiles (errors happen during startup when they are enabled)
+# - Copy ERD generation docker-compose file and bring up service with db container and wait
+# - Clean out existing ERD folder
+# - Create output folder (SchemaSpy uses it to hold ERD files) and make sure it is writable by docker
+# - Use SchemaSpy docker image to generate ERD files and send to output, wait
+# - Bring down service and db container
+# - Make sure output folder and its subfolders is owned by user (docker generated files/folders are owned by docker)
+# - Move output to web folder
+# - Clean out old zip file and re-generate it
+# - Clean up files and folders
 wget https://raw.githubusercontent.com/OpenLMIS/openlmis-config/master/.env -O .env \
 && sed -i -e "s/^spring_profiles_active=demo-data,refresh-db/spring_profiles_active=/" .env \
 && wget https://raw.githubusercontent.com/OpenLMIS/openlmis-$1/master/docker-compose.erd-generation.yml -O docker-compose.erd-generation.yml \
