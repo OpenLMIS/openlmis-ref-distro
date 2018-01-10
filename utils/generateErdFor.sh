@@ -21,7 +21,7 @@ sudo chown -R $USER:$USER /var/www/html/erd-$1
 wget https://raw.githubusercontent.com/OpenLMIS/openlmis-ref-distro/master/settings-sample.env -O .env \
 && sed -i -e "s/^spring_profiles_active=demo-data,refresh-db/spring_profiles_active=/" .env \
 && wget https://raw.githubusercontent.com/OpenLMIS/openlmis-ref-distro/master/docker-compose.erd-generation.yml -O docker-compose.yml \
-&& export OL_SERVICE_NAME=$1
+&& export OL_SERVICE_NAME=$1 \
 && (/usr/local/bin/docker-compose up &) \
 && sleep 90 \
 && sudo rm /var/www/html/erd-$1/* -rf \
