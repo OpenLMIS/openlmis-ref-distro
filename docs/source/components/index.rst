@@ -104,6 +104,7 @@ At a high level, the OpenLMIS-UI uses Javascript to create an application that r
 The OpenLMIS-UI is state driven, meaning the browser's URL determines what is displayed on the screen. Once the application starts, the browser's current URL is parsed and used to retrive data from OpenLMIS Services. All retrived data populates HTML-based views, which are displayed in the user's browser and styled by CSS.
 
 The primary libraries that are used by the OpenLMIS-UI are:
+
 - `Grunt <https://gruntjs.com/>`_ orchestrates the application build process
 - `AppCache <https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache>`_ allows the application run in a browser while offline
 - `AngularJS v1 <https://angularjs.org/>`_ is the application framework
@@ -111,10 +112,11 @@ The primary libraries that are used by the OpenLMIS-UI are:
 - `PouchDB <https://pouchdb.com/>`_ stores data for offline functionality
 - `Sass <http://sass-lang.com/>`_ is used to generate CSS
 
-Learn more about the Reference-UI
+More about the Reference-UI:
+
+- `Reference UI <referenceUI.html>`_
 - `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_
 - `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/docs/index.html#/api>`_
-- `Reference UI <referenceUI.html>`_
 - `UI Layout <uiLayout.html>`_
 - `UI Components <uiComponents.html>`_
 - `Dev UI <devUI.html>`_
