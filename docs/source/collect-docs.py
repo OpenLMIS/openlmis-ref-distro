@@ -1,10 +1,5 @@
 import urllib
 
-#architecture
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/application_structure.md", "architecture/applicationStructure.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/build_process.md", "architecture/buildProcess.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/dev-ui/master/docs/extention_guide.md", "architecture/extentionGuide.md")
-
 #components
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillment/master/README.md", "components/fulfillmentService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-requisition/master/README.md", "components/requisitionService.md")

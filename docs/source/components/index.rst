@@ -97,12 +97,22 @@ Reference (meta) data for: users, facilities, programs, products, schedules, etc
 ************
 Reference UI
 ************
+The Reference-UI is a single page application that communicates with OpenLMIS Services to provide a user interface for interacting with OpenLMIS. This UI aims to be modular, extendable, and provide a consistent user experience.
 
-The Reference UI for web-based access through a web-browser. Compiles together all the assets that
-make up the OpenLMIS-UI. See the `build process documentation <../architecture/buildProcess.html>`_
-to understand exactly how the UI is compiled.
+At a high level, the OpenLMIS-UI uses Javascript to create an application that runs in a user's web browser. After the OpenLMIS-UI has been loaded into a user's web browser, The OpenLMIS-UI is designed to be used while offline. Supported web browsers are Google Chrome and Firefox.
 
-- `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/styleguide/index.html#!/login>`_
+The OpenLMIS-UI is state driven, meaning the browser's URL determines what is displayed on the screen. Once the application starts, the browser's current URL is parsed and used to retrive data from OpenLMIS Services. All retrived data populates HTML-based views, which are displayed in the user's browser and styled by CSS.
+
+The primary libraries that are used by the OpenLMIS-UI are:
+- `Grunt <https://gruntjs.com/>`_ orchestrates the application build process
+- `AppCache <https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache>`_ allows the application run in a browser while offline
+- `AngularJS v1 <https://angularjs.org/>`_ is the application framework
+- `Angular UI-Router <https://github.com/angular-ui/ui-router/>`_ provides URL routing
+- `PouchDB <https://pouchdb.com/>`_ stores data for offline functionality
+- `Sass <http://sass-lang.com/>`_ is used to generate CSS
+
+Learn more about the Reference-UI
+- `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_
 - `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/docs/index.html#/api>`_
 - `Reference UI <referenceUI.html>`_
 - `UI Layout <uiLayout.html>`_

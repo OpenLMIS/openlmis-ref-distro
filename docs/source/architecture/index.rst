@@ -66,16 +66,6 @@ After a production docker image is produced, docker compose is used once again
 in the Reference Distribution to combine the desired deployment images with the
 needed configuration to produce an OpenLMIS deployment.
 
-UI
-===
-
-.. toctree::
-   :maxdepth: 1
-
-   applicationStructure
-   buildProcess
-   extentionGuide
-
 
 .. _Architecture: https://openlmis.atlassian.net/wiki/x/IYAKAw
 .. _Bounded Contexts: https://martinfowler.com/bliki/BoundedContext.html
