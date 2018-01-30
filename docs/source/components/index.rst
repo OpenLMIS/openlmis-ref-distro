@@ -105,12 +105,20 @@ The OpenLMIS-UI is state driven, meaning the browser's URL determines what is di
 
 The primary libraries that are used by the OpenLMIS-UI are:
 
+Core technologies used to build the OpenLMIS-UI are:
+
+- `Docker <https://www.docker.com/>`_ provides environment encapsulation
+- `NPM <https://www.npmjs.com/>`_ is the package manager
 - `Grunt <https://gruntjs.com/>`_ orchestrates the application build process
+- `Sass <http://sass-lang.com/>`_ is used to generate CSS
+- `Nginx <https://www.nginx.com/>`_ runs the OpenLMIS-UI within the OpenLMIS micro-services framework
+
+Primary libraries used within the OpenLMIS-UI are:
+
 - `AppCache <https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache>`_ allows the application run in a browser while offline
 - `AngularJS v1 <https://angularjs.org/>`_ is the application framework
 - `Angular UI-Router <https://github.com/angular-ui/ui-router/>`_ provides URL routing
 - `PouchDB <https://pouchdb.com/>`_ stores data for offline functionality
-- `Sass <http://sass-lang.com/>`_ is used to generate CSS
 
 More about the Reference-UI:
 
