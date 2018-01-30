@@ -111,6 +111,7 @@ Core technologies used to build the OpenLMIS-UI are:
 - `NPM <https://www.npmjs.com/>`_ is the package manager
 - `Grunt <https://gruntjs.com/>`_ orchestrates the application build process
 - `Sass <http://sass-lang.com/>`_ is used to generate CSS
+- For unit testing, `Karma <https://karma-runner.github.io/2.0/index.html>`_ is the test runner and `Jasmine <https://jasmine.github.io/>`_ is the assertion and mocking library
 - `Nginx <https://www.nginx.com/>`_ runs the OpenLMIS-UI within the OpenLMIS micro-services framework
 
 Primary libraries used within the OpenLMIS-UI are:
