@@ -5,6 +5,7 @@ urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillm
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-requisition/master/README.md", "components/requisitionService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth/master/README.md", "components/authService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth/master/DESIGN.md", "components/authServiceDesign.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-cce/master/README.md", "components/cceService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-notification/master/README.md", "components/notificationService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata/master/README.md", "components/referencedataService.md")
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-stockmanagement/master/README.md", "components/stockmanagementService.md")
