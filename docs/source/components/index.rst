@@ -2,7 +2,7 @@
 Components
 ==========
 
-OpenLMIS v3 uses a micro-services :doc:`../architecture` with different services each providing
+OpenLMIS v3 uses a micro-services :doc:`../architecture/index` with different services each providing
 different APIs.
 
 Each component below has its own Git repository, API docs and ERD. Many services below also have a
