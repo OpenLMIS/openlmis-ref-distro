@@ -53,7 +53,9 @@ developed, you __should pull the services frequently__.
 	http://<your ip-address>/
 	```
 
-	_note if_ you get a `HTTP 502: Bad Gateway`, that's probably okay.  Just wait a few minutes as not everything has started yet.
+	_note if_ you get a `HTTP 502: Bad Gateway`, it is probably still starting up all of the
+	microservice containers.  You can wait a few minutes for everything to start.  You can also
+	run `docker stats` to watch each container using CPU and memory while starting.
 
   By default the demo configuration (facilities, geographies, users, etc) is loaded on startup. To use that demo you may start
   with a demo account:
