@@ -21,25 +21,17 @@ Service Conventions
 
 UI Conventions
 ==============
-See the `OpenLMIS-UI Styleguide <build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_ for documentation about how components look and function.
+See the `OpenLMIS-UI Styleguide <http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_ for documentation about how components look and function.
 
 .. toctree::
    :maxdepth: 1
 
    uiStyleguide
-   uiCodeConventions
-   uiConstant
-   uiController
-   uiCss
-   uiDirective
-   uiFactory
-   uiFilter
-   uiInterceptor
-   uiModal
-   uiModule
-   uiPojo
-   uiRoute
-   uiService
+   uiInformationArchitecture
+   uiJavascript
+   uiAngularjs
+   uiTesting
+   uiMarkup
 
 Performance
 ===========
