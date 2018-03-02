@@ -21,12 +21,15 @@ Service Conventions
 
 UI Conventions
 ==============
-See the `OpenLMIS-UI Styleguide <http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_ for documentation about how components look and function.
+
+See the `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_
+for conventions about how components look and function. See the Reference UI section under
+:doc:`../components/index`_ to learn about the UI architecture, how to build and extend/customize.
 
 .. toctree::
    :maxdepth: 1
 
-   uiStyleguide
+   uiConventions
    uiInformationArchitecture
    uiJavascript
    uiAngularjs
