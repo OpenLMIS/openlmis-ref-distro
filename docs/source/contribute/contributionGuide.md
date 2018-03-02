@@ -122,7 +122,7 @@ A prime focus of version 3 is enabling extensions and customizations to happen w
 There are multiple ways OpenLMIS can be extended, and lots of documentation and starter code is available:
 
 * The Reference UI supports extension by adding CSS, overriding HTML layouts, adding new screens, or replacing
-existing screens in the UI application. See the [UI Extension Architecture and Guide](https://github.com/OpenLMIS/openlmis-requisition-refUI/blob/master/docs/extention_guide.md).
+existing screens in the UI application. See the [UI Extension Guide](https://github.com/OpenLMIS/openlmis-ui-components/blob/master/docs/extension_guide.md).
 * The Reference Distribution is a collection of collaborative **Services**, Services may be added in
  or swapped out to create custom distributions.
 * The Services can be extended using **extension points** in the Java code. The core team is eager to add more

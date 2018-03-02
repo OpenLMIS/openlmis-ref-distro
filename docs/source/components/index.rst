@@ -100,36 +100,55 @@ or can be added and edited individually using the Reference Data Service APIs.
 - `Live Documentation for Reference Data API <http://test.openlmis.org/referencedata/docs/#/default>`_
 - `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
-
 ************
 Reference UI
 ************
 
-The OpenLMIS Reference-UI is a single page application that is compiled from multiple UI repositories. The Reference-UI is similar to the OpenLMIS-Ref-Distro, in that it's an example deployment for implementers to use not something to fork or copy.
+The OpenLMIS Reference UI is a single page application that is compiled from multiple UI
+repositories. The Reference UI is similar to the OpenLMIS-Ref-Distro, in that it's an example
+deployment for implementers to use.
 
-Learn about the Reference-UI
+Learn about the Reference UI:
 
-- `Reference UI GitHub repo <https://github.com/OpenLMIS/openlmis-reference-ui>`_
-- `Reference UI README <referenceUI.html>`_
-
-UI Repositories Overview:
-
-- `Dev UI <devUI.html>`_ is where the UI build process and tooling are defined. All other UI repositories use this build process. `Dev UI GitHub repo <https://github.com/OpenLMIS/dev-ui>`_
-- `UI Components <uiComponents.html>`_ is where OpenLMIS reusable components are defined, along with base CSS styles. `UI Components GitHub repo <https://github.com/OpenLMIS/openlmis-ui-components>`_
-- `Auth UI <authUI.html>`_ connects the OpenLMIS-UI to the OpenLMIS Auth Service, and handles all authentication related details so other UI repositories don't have to. `Auth UI GitHub repo <https://github.com/OpenLMIS/openlmis-auth-ui/>`_
-- `UI Layout <uiLayout.html>`_ creates UI layouts and page architecture used in the OpenLMIS-UI. `UI Layout GitHub repo <https://github.com/OpenLMIS/openlmis-ui-layout>`_
-- `Reference Data UI <referencedataUI.html>`_ adds administration screens for objects defined in the OpenLMIS Reference Data Service. `Reference Data UI GitHub repo <https://github.com/OpenLMIS/openlmis-referencedata-ui>`_
-- `Stock Management UI <stockmanagementUI.html>`_ adds screens to interact with the OpenLMIS Stock Management Service. `Stock Management UI GitHub repo <https://github.com/OpenLMIS/openlmis-stockmanagement-ui>`_
-- `Fulfillment UI <fulfillmentUI.html>`_ adds screens to connect to the OpenLMIS Fulfillment Service. `Fulfillment UI GitHub repo <https://github.com/OpenLMIS/openlmis-fulfillment-ui>`_
-- `CCE UI <cceUI.html>`_ adds screens to the OpenLMIS CCE Service. `CCE UI GitHub repo <https://github.com/OpenLMIS/openlmis-cce-ui>`_
-- `Requisition UI <requisitionUI.html>`_ adds screens to support the OpenLMIS Requisition Service. `Requisition UI GitHub repo <https://github.com/OpenLMIS/openlmis-requisition-ui>`_
-- `Report UI <reportUI.html>`_ adds screens to interact with OpenLMIS Report Service. `Report UI GitHub repo <https://github.com/OpenLMIS/openlmis-report-ui>`_
-
-UI Documentation:
-
+- `OpenLMIS UI Overview <uiOverview.html>`_ describes the UI architecture and tooling
 - `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_
+  shows examples and best practices for many re-usable components
+- `Dev UI <devUI.html>`_ documents the build process and commands used by all UI components
+
+Coding and Customizing the UI:
+
+- `UI Extension Guide <uiExtensionGuide.html>`_
+- UI :doc:`../conventions/index`
 - `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/docs/index.html#/api>`_
 
+UI Repositories:
+
+- `Reference UI <referenceUI.html>`_ puts all the UI repositories into one single page application
+  (`Reference UI GitHub repo <https://github.com/OpenLMIS/openlmis-reference-ui>`_)
+- `Dev UI <devUI.html>`_ provides the build tools and commands. All other UI repositories use these
+  build tools by including Dev UI as a base image in docker-compose.
+  (`Dev UI GitHub repo <https://github.com/OpenLMIS/dev-ui>`_)
+- `UI Components <uiComponents.html>`_ is where OpenLMIS reusable components are defined along with
+  base CSS styles (`UI Components GitHub repo <https://github.com/OpenLMIS/openlmis-ui-components>`_)
+- `Auth UI <authUI.html>`_ connects the OpenLMIS UI to the OpenLMIS Auth Service and handles all
+  authentication details so other UI repositories don't have to (`Auth UI GitHub repo
+  <https://github.com/OpenLMIS/openlmis-auth-ui/>`_)
+- `UI Layout <uiLayout.html>`_ defines UI layouts and page architecture used in the OpenLMIS UI
+  (`UI Layout GitHub repo <https://github.com/OpenLMIS/openlmis-ui-layout>`_)
+- `Reference Data UI <referencedataUI.html>`_ adds administration screens for objects defined in
+  the OpenLMIS Reference Data Service (`Reference Data UI GitHub repo
+  <https://github.com/OpenLMIS/openlmis-referencedata-ui>`_)
+- `Stock Management UI <stockmanagementUI.html>`_ adds screens to interact with the OpenLMIS Stock
+  Management Service (`Stock Management UI GitHub repo
+  <https://github.com/OpenLMIS/openlmis-stockmanagement-ui>`_)
+- `Fulfillment UI <fulfillmentUI.html>`_ adds screens to connect to the OpenLMIS Fulfillment Service
+  (`Fulfillment UI GitHub repo <https://github.com/OpenLMIS/openlmis-fulfillment-ui>`_)
+- `CCE UI <cceUI.html>`_ adds screens for the OpenLMIS CCE Service. (`CCE UI GitHub repo
+  <https://github.com/OpenLMIS/openlmis-cce-ui>`_)
+- `Requisition UI <requisitionUI.html>`_ adds screens to support the OpenLMIS Requisition Service
+  (`Requisition UI GitHub repo <https://github.com/OpenLMIS/openlmis-requisition-ui>`_)
+- `Report UI <reportUI.html>`_ adds screens to interact with OpenLMIS Report Service (`Report UI
+  GitHub repo <https://github.com/OpenLMIS/openlmis-report-ui>`_)
 
 **************
 Report Service
