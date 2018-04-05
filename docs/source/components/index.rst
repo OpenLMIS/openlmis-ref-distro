@@ -13,20 +13,22 @@ components together into one web application.
 Logging into the Live Documentation
 ***********************************
 
-The live documentation links below connect directly to our Swagger docs on our CI server.  To use
+The live documentation links below connect directly to our API Console docs on our CI server. To use
 the API you'll first need to get an access token from the Auth service, and then you'll need to
 give that token when using one of the RESTful operations.
 
 Obtaining an access token:
 
-1. go to the Auth service's `POST /api/oauth/token <https://test.openlmis.org/auth/docs/#!/default/post_api_oauth_token>`_
-2. click on :code:`Authorize` in the top right of the page
-3. in the box that has popped-up, enter username :code:`user-client` and password :code:`changeme`
-4. click :code:`Authorize` under :code:`password`
-5. enter the username :code:`administrator` and password :code:`password`
-6. click :code:`Try it out!`
-7. In the :code:`Response body` box, copy the UUID.  e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` copy :code:`a93bcab7-aaf5-43fe-9301-76c526698898` to use later.
-8. Paste the UUID you just copied into any endpoint's :code:`access_token` field.
+1. Go to the Auth service's `POST /api/oauth/token <https://test.openlmis.org/auth/docs/>`_
+2. Click :code:`Try it` in the top right of the tab
+3. In the Authentication section, enter username :code:`user-client` and password :code:`changeme`
+4. In the Query Parameters section, enter username :code:`administrator` and password :code:`password`
+4. Click :code:`Authorize` under :code:`password`
+5. Enter the username :code:`administrator` and password :code:`password`
+6. Click :code:`Post`
+7. In the :code:`Response` box, copy the UUID.  e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` copy :code:`a93bcab7-aaf5-43fe-9301-76c526698898` to use later.
+8. Paste the UUID you just copied into any endpoint's :code:`access_token` field and into :code:`Authorization` with _Bearer_
+e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` -> :code:`Authorization: Bearer a93bcab7-aaf5-43fe-9301-76c526698898`
 
 ************
 Auth Service
