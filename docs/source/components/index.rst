@@ -27,7 +27,7 @@ Obtaining an access token:
 6. Enter the username :code:`administrator` and password :code:`password`
 7. Click :code:`Post`
 8. In the :code:`Response` box, copy the UUID.  e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` copy :code:`a93bcab7-aaf5-43fe-9301-76c526698898` to use later
-9. Paste the UUID you just copied into any endpoint's :code:`access_token` field and into :code:`Authorization` with *Bearer* e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` -> :code:`Authorization: Bearer a93bcab7-aaf5-43fe-9301-76c526698898`
+9. Paste the UUID you just copied into any endpoint's :code:`access_token` field or into :code:`Authorization` with *Bearer* e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` -> :code:`Authorization: Bearer a93bcab7-aaf5-43fe-9301-76c526698898`
 
 ************
 Auth Service
