@@ -23,11 +23,11 @@ Obtaining an access token:
 2. Click :code:`Try it` in the top right of the tab
 3. In the Authentication section, enter username :code:`user-client` and password :code:`changeme`
 4. In the Query Parameters section, enter username :code:`administrator` and password :code:`password`
-4. Click :code:`Authorize` under :code:`password`
-5. Enter the username :code:`administrator` and password :code:`password`
-6. Click :code:`Post`
-7. In the :code:`Response` box, copy the UUID.  e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` copy :code:`a93bcab7-aaf5-43fe-9301-76c526698898` to use later.
-8. Paste the UUID you just copied into any endpoint's :code:`access_token` field and into :code:`Authorization` with _Bearer_
+5. Click :code:`Authorize` under :code:`password`
+6. Enter the username :code:`administrator` and password :code:`password`
+7. Click :code:`Post`
+8. In the :code:`Response` box, copy the UUID.  e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` copy :code:`a93bcab7-aaf5-43fe-9301-76c526698898` to use later.
+9. Paste the UUID you just copied into any endpoint's :code:`access_token` field and into :code:`Authorization` with _Bearer_
 e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` -> :code:`Authorization: Bearer a93bcab7-aaf5-43fe-9301-76c526698898`
 
 ************
