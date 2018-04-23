@@ -14,9 +14,9 @@ Release Notes
 
 The OpenLMIS Community is excited to announce the **3.3.0 release** of OpenLMIS! It is another
 major milestone in the version 3 `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_
-that allows more functionality to be shared among the community of OpenLMIS users.
+that allows more functionality to be shared among the community of OpenLMIS implementers.
 
-3.3.0 includes new [LIST KEY NEW FEATURES BY NAME...SEE PREVIOUS RELEASE NOTES FOR EXAMPLES]
+3.3.0 includes a wide range of new features and functionality. The majority of features were defined as the `Minimal Viable Product (MVP) <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_ to support countires in managing their immunization supply chain. Some of the key features include a standards based integration with a Remote Temperature Monitoring (RTM) platform to supporting the order fulfillment process. See the New Features section for details.
 
 For a full list of features and bug-fixes since 3.2.1, see `OpenLMIS 3.3.0 Jira tickets
 <https://openlmis.atlassian.net/issues/?jql=status%3DDone%20AND%20project%3DOLMIS%20AND%20fixVersion%3D3.3%20and%20type!%3DTest%20and%20type!%3DEpic%20ORDER%20BY%20type%20ASC%2C%20priority%20DESC%2C%20key%20ASC>`_.
@@ -29,7 +29,7 @@ Compatibility
 -------------
 
 [ADD PARAGRAPHS HERE TO EXPLAIN ANY COMPATIBILITY ISSUES, SUCH AS MANUAL DATA MIGRATIONS, NEW
-DEPENDENCIES, ETC.]
+DEPENDENCIES, REDESIGN OF EMERGENCY REQUISITIONS, MULTIPLE REQUISITION TEMPLATES, ETC.]
 
 **Batch Requisition Approval**: The Batch Approval screen, which was improved in OpenLMIS 3.2.1,
 is still not officially supported. The UI screen is disabled by default. Implementations can
@@ -76,7 +76,14 @@ New Features
 
 OpenLMIS 3.3.0 contains these new features:
 
-- [MAKE A BULLETTED LIST TO EXPLAIN KEY NEW FEATURES...SEE PREVIOUS RELEASE NOTES FOR EXAMPLES]
+Features releated to the `Vaccine Module MVP <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_:
+
+- Analytics infrastructure
+- DISC indicators 
+- `Vaccine stock based requisitions <https://openlmis.atlassian.net/browse/OLMIS-4059>`_ that allow users to populate a requisition based on current stock levels and forecasted demand targets or ideal stock amounts.
+- `Enhancements to support stock management for vaccines <https://openlmis.atlassian.net/browse/OLMIS-1293>`_.
+- `Order fulfillment <https://openlmis.atlassian.net/browse/OLMIS-208>`_, sometimes referred to as the process of resupplying supervised facilities.
+- [CHECK ON CONTRIBUTIONS/PULL REQUESTS]
 - MAYBE REFERENCE THE `Vaccine MVP 
   <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_ features.
 
@@ -86,7 +93,11 @@ Changes to Existing Functionality
 Version 3.3.0 contains changes that impact users of existing functionality. Please review these
 changes which may require informing end-users and/or updating your customizations/extensions:
 
-- [MAKE A BULLETTED LIST OF ANY SIGNIFICANT CHANGES...SEE PREVIOUS RELEASE NOTES FOR EXAMPLES]
+- `OLMIS-3949 <https://openlmis.atlassian.net/browse/OLMIS-3949>`_: The redesign of emergency requisitions.
+- `OLMIS-3929 <https://openlmis.atlassian.net/browse/OLMIS-3929>`_: View and edit multiple requisition templates per program.
+- `OLMIS-3166 <https://openlmis.atlassian.net/browse/OLMIS-3166>`_: Add user control for AppCache. Users can see their build number and update their web page application to the latest build.
+- `OLMIS-3877 <https://openlmis.atlassian.net/browse/OLMIS-3877>`_: UI filter component is consistent across pages.
+- `OLMIS-4026 <https://openlmis.atlassian.net/browse/OLMIS-4026>`_: Changed table styles to support order fulfillment complexity.
 
 See `all 3.3.0 issues tagged 'UIChange' in Jira <https://openlmis.atlassian.net/issues/?jql=status%3DDone%20AND%20project%3DOLMIS%20AND%20fixVersion%3D3.3%20and%20type!%3DTest%20and%20type!%3DEpic%20and%20labels%20IN%20(UIChange)%20ORDER%20BY%20type%20ASC%2C%20priority%20DESC%2C%20key%20ASC>`_.
 
