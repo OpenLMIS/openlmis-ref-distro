@@ -292,6 +292,7 @@ Service Util 3.1.0
 
 We now use an updated library for shared Java code called `service-util
 <https://github.com/OpenLMIS/openlmis-service-util>`_.
+
 Source: `Report CHANGELOG <https://github.com/OpenLMIS/openlmis-service-util/blob/master/CHANGELOG.md>`_
 
 Components with No Changes
