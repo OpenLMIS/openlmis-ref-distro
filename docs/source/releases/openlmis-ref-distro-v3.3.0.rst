@@ -143,6 +143,8 @@ Manual tests were conducted using a set of [NNN] Zephyr tests tracked in Jira. A
 found during testing. The full set of tests was executed on the first Release Candidate (RC1).
 
 [EXPLAIN ROUNDS OF TESTING. SEE PREVIOUS RELEASE NOTES FOR EXAMPLE. CONSIDER CSV FILE AS BEFORE.]
+See a spreadsheet of all regression test executions for this release:
+`3.3.0-regression-tests.csv <https://raw.githubusercontent.com/OpenLMIS/openlmis-ref-distro/master/docs/source/releases/3.3.0-regression-tests.csv>`_.
 
 The automated tests (unit tests, integration tests, and contract tests) were 100% passing at the time
 of the 3.3.0 release. Automated test coverage is tracked in `Sonar
