@@ -167,6 +167,7 @@ CCE Service 1.0.0
 -----------------
 
 This is the first stable release of openlmis-cce.
+Source: `CCE CHANGELOG <https://github.com/OpenLMIS/openlmis-cce/blob/master/CHANGELOG.md>`_
 
 Fulfillment Service 7.0.0
 -------------------------
@@ -206,6 +207,7 @@ cce-ui 1.0.0
 
 This is the first stable release of openlmis-cce-ui; it provides CCE inventory management and
 administration screens that work with the openlmis-cce service APIs.
+See: `openlmis-cce-ui CHANGELOG <https://github.com/OpenLMIS/openlmis-cce-ui/blob/master/CHANGELOG.md>`_
 
 fulfillment-ui 6.0.0
 ~~~~~~~~~~~~~~~~~~~~
@@ -269,6 +271,8 @@ releases, they may be migrated to a new version of this centralized report servi
 future releases. Developers and implementers are discouraged from using this 1.0.1 version to build
 additional reports.
 
+Source: `Report CHANGELOG <https://github.com/OpenLMIS/openlmis-report/blob/master/CHANGELOG.md>`_
+
 Requisition Service 6.0.0
 -------------------------
 
@@ -286,6 +290,7 @@ Service Util 3.1.0
 
 We now use an updated library for shared Java code called `service-util
 <https://github.com/OpenLMIS/openlmis-service-util>`_.
+Source: `Report CHANGELOG <https://github.com/OpenLMIS/openlmis-service-util/blob/master/CHANGELOG.md>`_
 
 Components with No Changes
 ==========================
