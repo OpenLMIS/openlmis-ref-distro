@@ -208,6 +208,7 @@ cce-ui 1.0.0
 
 This is the first stable release of openlmis-cce-ui; it provides CCE inventory management and
 administration screens that work with the openlmis-cce service APIs.
+
 See: `openlmis-cce-ui CHANGELOG <https://github.com/OpenLMIS/openlmis-cce-ui/blob/master/CHANGELOG.md>`_
 
 fulfillment-ui 6.0.0
