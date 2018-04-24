@@ -139,11 +139,10 @@ OpenLMIS 3.3.0 is the second release using the new `Release Candidate process
 of this process, a full manual regression test cycle was conducted, and multiple release candidates
 were published to address critical bugs before releasing the final version 3.3.0.
 
-Manual tests were conducted using a set of [NNN] Zephyr tests tracked in Jira. A total of [ZZ] bugs were
-found during testing. The full set of tests was executed on the first Release Candidate (RC1).
-
-[EXPLAIN ROUNDS OF TESTING. SEE PREVIOUS RELEASE NOTES FOR EXAMPLE. CONSIDER CSV FILE AS BEFORE.]
-See a spreadsheet of all regression test executions for this release:
+Manual tests were conducted using a set of 136 Zephyr tests tracked in Jira. A total of 50 bugs was
+found during testing. The full set of tests was executed on the third Release Candidate (RC3).
+With previous release candidates (RC1 and RC2), only the first phase of testing was conducted.
+See the spreadsheet of all regression test executions for this release:
 `3.3.0-regression-tests.csv <https://raw.githubusercontent.com/OpenLMIS/openlmis-ref-distro/master/docs/source/releases/3.3.0-regression-tests.csv>`_.
 
 The automated tests (unit tests, integration tests, and contract tests) were 100% passing at the time
