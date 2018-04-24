@@ -28,7 +28,7 @@ For information about future planned releases, see the `Living Product Roadmap
 Compatibility
 -------------
 
-A new feature introduced in 3.3, `OLMIS-3929 <https://openlmis.atlassian.net/browse/OLMIS-3929>`_:View and edit multiple requisition templates per program, requires a manual data migration outlined `here <https://github.com/OpenLMIS/openlmis-requisition-template-migration>`_. 
+The requisition service introduced, `OLMIS-3929 <https://openlmis.atlassian.net/browse/OLMIS-3929>`_:View and edit multiple requisition templates per program, which requires a manual data migration explained `here <https://github.com/OpenLMIS/openlmis-requisition-template-migration>`_. 
 
 The fulfillment service has a major release due to the additional features in fulfilling orders within OpenLMIS. Please review the Fulfillment service changelog in detail to ensure a clear understanding of the breaking changes.
 
@@ -77,8 +77,7 @@ To report a bug, see `Reporting Bugs
 New Features
 ============
 
-OpenLMIS 3.3.0 contains the following features, many are specific to the `Vaccine Module MVP <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_:
-
+OpenLMIS 3.3.0 contains the following features, the majority are specific to the `Vaccine Module MVP  <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_Features, were completed by the core OpenLMIS development team:
 
 - `Vaccine stock based requisitions <https://openlmis.atlassian.net/browse/OLMIS-4059>`_ that allow users to populate a requisition based on current stock levels and forecasted demand targets or ideal stock amounts.
 - `Enhancements to support stock management for vaccines <https://openlmis.atlassian.net/browse/OLMIS-1293>`_.
@@ -86,11 +85,14 @@ OpenLMIS 3.3.0 contains the following features, many are specific to the `Vaccin
 - `Receiving stock <https://openlmis.atlassian.net/wiki/spaces/OP/pages/88670483/Receiving+stock>`_ into inventory, using an electronic Proof of Delivery based on the shipment details created in OpenLMIS. 
 - `Forecasting and Estimation features <https://openlmis.atlassian.net/browse/OLMIS-1294>`_ to upload forecasted demand targets and use those targets to calculate reorder amounts.
 - Official release of the Cold Chain Equipment (CCE) service and includes a new feature displaying active alerts on specific pieces of equipment inventory using a standards based interoperability with a Remote Temperature Monitoring (RTM) platform. 
-- Administration screens: 
+- `Administration screens <https://openlmis.atlassian.net/browse/OLMIS-4067>`_ included assigning requisition templates to facility types within a program, view and create facility types, and manage API keys. 
 - The analytics infrastructure and DISC indicators were developed and deployed in a new open-source stack. By the 3.3 release, this technology infrastructure is not deployed within our dockerized microservice architecture. We can provide access to the demo environment for showcasing and will focus on deploying in docker for the next release.
 
-Pull Requests
-- [CHECK ON CONTRIBUTIONS/PULL REQUESTS]
+Pull Requests contributed by community members:
+
+- Reference Data and Reference Data UI `OLMIS-3448 <https://openlmis.atlassian.net/browse/OLMIS-3448>`_
+- Reference Data `OLMIS-4337 <https://openlmis.atlassian.net/browse/OLMIS-4337>`_
+- Requisition `OLMIS-4383 <https://openlmis.atlassian.net/browse/OLMIS-4387>`_
 
 Changes to Existing Functionality
 =================================
@@ -98,7 +100,7 @@ Changes to Existing Functionality
 Version 3.3.0 contains changes that impact users of existing functionality. Please review these
 changes which may require informing end-users and/or updating your customizations/extensions:
 
-- `OLMIS-3949 <https://openlmis.atlassian.net/browse/OLMIS-3949>`_: The redesign of emergency requisitions has made large changes and now uses a simplifed template for and no longer requires reporting information.
+- `OLMIS-3949 <https://openlmis.atlassian.net/browse/OLMIS-3949>`_: The **redesign of emergency requisitions** made large UI and API changes. Emergency requisitions now use a simplifed template with limited columns. Please ensure to review all relevant documentation to understand the decision making, which went through the `product committee <https://openlmis.atlassian.net/wiki/spaces/OP/pages/199655438/PC+January+30+2018>>`_, and major UI changes to alert relevant users.
 - `OLMIS-3929 <https://openlmis.atlassian.net/browse/OLMIS-3929>`_: View and edit multiple requisition templates per program.
 - `OLMIS-3166 <https://openlmis.atlassian.net/browse/OLMIS-3166>`_: Add user control for AppCache. Users can see their build number and update their web page application to the latest build.
 - `OLMIS-3877 <https://openlmis.atlassian.net/browse/OLMIS-3877>`_: UI filter component is consistent across pages.
@@ -112,20 +114,22 @@ API Changes
 Some APIs have changes to their contracts and/or their request-response data structures. These
 changes impact developers and systems integrating with OpenLMIS:
 
-- Requisition service has a major release, v6.0.0, due to the redesign of emergency requisitions. See the changelog for details.
-- Fulfillment service has a major release, v7.0.0, due to significant changes in the data model for orders, shipments and proofs of delivery. See the changelog for details.
-- Reference data service has a major release, v10.0.0, due to changes for pagination, filtering and rights. See the changelog for details.
-- Stock management service has a major release, v3.0.0, due to significant changes to stock events and physical inventory data.
+- Requisition service has a major release, v6.0.0, due to the redesign of emergency requisitions. See the Requisition changelog for details.
+- Fulfillment service has a major release, v7.0.0, due to significant changes in the data model for orders, shipments and proofs of delivery. See the Fulfillment changelog for details.
+- Reference data service has a major release, v10.0.0, due to changes for pagination, filtering and rights. See the Reference data changelog for details.
+- Stock management service has a major release, v3.0.0, due to significant changes to stock events and physical inventory data. See the Stock management changelog for details.
 
 Performance Improvements
 ========================
+
+Manual testing of the same user workflows with the same test data we used in testing v3.2.1 shows that last-mile performance characteristics have been retained with minor improvements in some areas. For more details about the specific work done, please reference `this <https://openlmis.atlassian.net/issues/?jql=project%20%3D%20OLMIS%20AND%20issuetype%20%3D%20Task%20AND%20status%20%3D%20Done%20AND%20fixVersion%20%3D%203.3%20AND%20labels%20%3D%20Performance%20AND%20text%20~%20%22performance%22%20ORDER%20BY%20priority%20DESC%2C%20status%20ASC%2C%20key%20ASC>`_ list of tasks.
 
 [EXPLAIN CURRENT DEVELOPMENTS IN PERFORMANCE. WE HAVE REPEATED THE MANUAL TESTS TO ENSURE NO
 REGRESSIONS. WE HAVE INCREASED DATA SETS FOR PERFORMANCE TESTING OF NEW FEATURES, AND ADDED
 NEW AUTOMATED TESTS. WE HAVE AN END-TO-END FRAMEWORK THAT WILL NOW LET US BUILD EVEN MORE
 TESTS SO PERF TESTING CAN BE DONE MOSTLY AUTOMATED NOT MANUAL IN THE FUTURE.]
 
-[MAY WANT TO ADD A GRAPH AND LINKS TO STATS AND WIKI. SEE PREVIOUS RELEASE NOTES FOR EXAMPLES.]
+[ADD A GRAPH AND LINKS TO STATS AND WIKI. SEE PREVIOUS RELEASE NOTES FOR EXAMPLES.]
 
 Test Coverage
 =============
@@ -312,5 +316,5 @@ For a detailed list of contributors to previous versions, see the Release Notes 
 Further Resources
 =================
 
-We are excited to announce the release of the first iteration of the Implementer Toolkit on the OpenLMIS website.  Learn more about the `OpenLMIS Community <http://openlmis.org/about/community/>`_ and how to get
+We are excited to announce the release of the first iteration of the Implementer Toolkit on the `OpenLMIS website <http://openlmis.org/>`_.  Learn more about the `OpenLMIS Community <http://openlmis.org/about/community/>`_ and how to get
 involved!
