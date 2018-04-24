@@ -167,6 +167,7 @@ CCE Service 1.0.0
 -----------------
 
 This is the first stable release of openlmis-cce.
+
 Source: `CCE CHANGELOG <https://github.com/OpenLMIS/openlmis-cce/blob/master/CHANGELOG.md>`_
 
 Fulfillment Service 7.0.0
