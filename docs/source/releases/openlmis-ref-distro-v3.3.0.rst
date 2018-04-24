@@ -147,8 +147,6 @@ of the 3.3.0 release. Automated test coverage is tracked in `Sonar
 All Changes by Component
 ========================
 
-[INSERT SUB-HEADINGS FOR EACH COMPONENT LISTING ITS VERSION AND ALL IMPROVEMENTS FROM CHANGELOGS]
-
 Version 3.3.0 of the Reference Distribution contains updated versions of the components listed
 below. The Reference Distribution bundles these component together using Docker to create a complete
 OpenLMIS instance. Each component has its own own public GitHub repository (source code) and
@@ -156,33 +154,35 @@ DockerHub repository (release image). The Reference Distribution and components 
 independently; for details see `Versioning and Releasing
 <http://docs.openlmis.org/en/latest/conventions/versioningReleasing.html>`_.
 
-Auth Service X.Y.Z
+Auth Service 3.2.0
 ------------------
 
 Source: `Auth CHANGELOG <https://github.com/OpenLMIS/openlmis-auth/blob/master/CHANGELOG.md>`_
 
-CCE Service X.Y.Z
+CCE Service 1.0.0
 -----------------
 
-Fulfillment Service X.Y.Z
+This is the first stable release of openlmis-cce.
+
+Fulfillment Service 7.0.0
 -------------------------
 
 Source: `Fulfillment CHANGELOG
 <https://github.com/OpenLMIS/openlmis-fulfillment/blob/master/CHANGELOG.md>`_
 
-Notification Service X.Y.Z
+Notification Service 3.0.4
 --------------------------
 
 Source: `Notification CHANGELOG
 <https://github.com/OpenLMIS/openlmis-notification/blob/master/CHANGELOG.md>`_
 
-Reference Data Service X.Y.Z
-----------------------------
+Reference Data Service 10.0.0
+-----------------------------
 
 Source: `ReferenceData CHANGELOG
 <https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
 
-Reference UI X.Y.Z
+Reference UI 5.0.5
 ------------------
 
 The Reference UI (`https://github.com/OpenLMIS/openlmis-reference-ui/ <https://github.com/OpenLMIS/openlmis-reference-ui/>`_)
@@ -191,52 +191,55 @@ a single page web application that is optimized for offline and low-bandwidth en
 The Reference UI is compiled together from module UI modules using Docker compose along with the
 OpenLMIS dev-ui. UI modules included in the Reference UI are:
 
-auth-ui X.Y.Z
+auth-ui 6.1.0
 ~~~~~~~~~~~~~
 
 See `openlmis-auth-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-auth-ui/blob/master/CHANGELOG.md>`_
 
-cce-ui X.Y.Z
+cce-ui 1.0.0
 ~~~~~~~~~~~~
 
-fulfillment-ui X.Y.Z
+This is the first stable release of openlmis-cce-ui; it provides CCE inventory management and
+administration screens that work with the openlmis-cce service APIs.
+
+fulfillment-ui 6.0.0
 ~~~~~~~~~~~~~~~~~~~~
 
 See `openlmis-fulfillment-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-fulfillment-ui/blob/master/CHANGELOG.md>`_
 
-referencedata-ui X.Y.Z
+referencedata-ui 5.3.0
 ~~~~~~~~~~~~~~~~~~~~~~
 
 See `openlmis-referencedata-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-referencedata-ui/blob/master/CHANGELOG.md>`_
 
-report-ui X.Y.Z
+report-ui 5.0.5
 ~~~~~~~~~~~~~~~
 
 See `openlmis-report-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-report-ui/blob/master/CHANGELOG.md>`_
 
-requisition-ui X.Y.Z
+requisition-ui 5.3.0
 ~~~~~~~~~~~~~~~~~~~~
 
 See `openlmis-requisition-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/CHANGELOG.md>`_
 
-stockmanagement-ui X.Y.Z
+stockmanagement-ui 1.1.0
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 See `openlmis-ui-components CHANGELOG
 <https://github.com/OpenLMIS/openlmis-stockmanagement-ui/blob/master/CHANGELOG.md>`_
 
-ui-components X.Y.Z
+ui-components 5.3.0
 ~~~~~~~~~~~~~~~~~~~
 
 See `openlmis-ui-components CHANGELOG
 <https://github.com/OpenLMIS/openlmis-ui-components/blob/master/CHANGELOG.md>`_
 
-ui-layout X.Y.Z
+ui-layout 5.1.0
 ~~~~~~~~~~~~~~~
 
 See `openlmis-ui-layout CHANGELOG
@@ -247,7 +250,7 @@ Dev UI v7
 
 The `Dev UI developer tooling <https://github.com/OpenLMIS/dev-ui>`_ has advanced to v7.
 
-Report Service X.Y.Z
+Report Service 1.0.1
 --------------------
 
 This service is intended to provide reporting functionality for other components to use. It is a
@@ -259,32 +262,35 @@ Additional built-in reports in OpenLMIS 3.3.0 are still powered by their own ser
 releases, they may be migrated to a new version of this centralized report service.
 
 **Warning**: Developers should take note that the design of this service will be changing with
-future releases. Developers and implementers are discouraged from using this 1.0.0 version to build
+future releases. Developers and implementers are discouraged from using this 1.0.1 version to build
 additional reports.
 
-Requisition Service X.Y.Z
+Requisition Service 6.0.0
 -------------------------
 
 Source: `Requisition CHANGELOG
 <https://github.com/OpenLMIS/openlmis-requisition/blob/master/CHANGELOG.md>`_
 
-Stock Management X.Y.Z
+Stock Management 3.0.0
 ----------------------
 
 Source: `Stock Management CHANGELOG
 <https://github.com/OpenLMIS/openlmis-stockmanagement/blob/master/CHANGELOG.md>`_
 
+Service Util 3.1.0
+------------------
+
+We now use an updated library for shared Java code called `service-util
+<https://github.com/OpenLMIS/openlmis-service-util>`_.
+
 Components with No Changes
 ==========================
-
-[NEED TO CONFIRM THIS LIST]
 
 Other tooling components have not changed, including: the `logging service
 <https://github.com/OpenLMIS/openlmis-rsyslog>`_, the Consul-friendly distribution of
 `nginx <https://github.com/OpenLMIS/openlmis-nginx>`_, the docker `Postgres 9.6-postgis image
-<https://github.com/OpenLMIS/postgres>`_, the docker `rsyslog image
-<https://github.com/OpenLMIS/openlmis-rsyslog>`_, the docker `scalyr image
-<https://github.com/OpenLMIS/openlmis-scalyr>`_, and a library for shared Java code called `service-util <https://github.com/OpenLMIS/openlmis-service-util>`_.
+<https://github.com/OpenLMIS/postgres>`_, and the docker `scalyr image
+<https://github.com/OpenLMIS/openlmis-scalyr>`_.
 
 Contributions
 =============
