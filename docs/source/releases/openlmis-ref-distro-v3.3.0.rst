@@ -176,7 +176,7 @@ Fulfillment Service 7.0.0
 Source: `Fulfillment CHANGELOG
 <https://github.com/OpenLMIS/openlmis-fulfillment/blob/master/CHANGELOG.md>`_
 
-Notification Service 3.0.4
+Notification Service 3.0.5
 --------------------------
 
 Source: `Notification CHANGELOG
