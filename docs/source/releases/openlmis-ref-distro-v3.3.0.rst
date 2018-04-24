@@ -77,7 +77,7 @@ To report a bug, see `Reporting Bugs
 New Features
 ============
 
-OpenLMIS 3.3.0 contains the following features, the majority are specific to the `Vaccine Module MVP  <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_Features, were completed by the core OpenLMIS development team:
+OpenLMIS 3.3.0 contains the following features, the majority are specific to the `Vaccine Module MVP  <https://openlmis.atlassian.net/wiki/spaces/OP/pages/113144940/Vaccine+MVP>`_ Features, were completed by the core OpenLMIS development team:
 
 - `Vaccine stock based requisitions <https://openlmis.atlassian.net/browse/OLMIS-4059>`_ that allow users to populate a requisition based on current stock levels and forecasted demand targets or ideal stock amounts.
 - `Enhancements to support stock management for vaccines <https://openlmis.atlassian.net/browse/OLMIS-1293>`_.
@@ -100,7 +100,7 @@ Changes to Existing Functionality
 Version 3.3.0 contains changes that impact users of existing functionality. Please review these
 changes which may require informing end-users and/or updating your customizations/extensions:
 
-- `OLMIS-3949 <https://openlmis.atlassian.net/browse/OLMIS-3949>`_: The **redesign of emergency requisitions** made large UI and API changes. Emergency requisitions now use a simplifed template with limited columns. Please ensure to review all relevant documentation to understand the decision making, which went through the `product committee <https://openlmis.atlassian.net/wiki/spaces/OP/pages/199655438/PC+January+30+2018>>`_, and major UI changes to alert relevant users.
+- `OLMIS-3949 <https://openlmis.atlassian.net/browse/OLMIS-3949>`_: The **redesign of emergency requisitions** made large UI and API changes. Emergency requisitions now use a simplifed template with limited columns. Please ensure to review all relevant documentation to understand the decision making, which went through the `product committee <https://openlmis.atlassian.net/wiki/spaces/OP/pages/199655438/PC+January+30+2018>`_, and major UI changes to alert relevant users.
 - `OLMIS-3929 <https://openlmis.atlassian.net/browse/OLMIS-3929>`_: View and edit multiple requisition templates per program.
 - `OLMIS-3166 <https://openlmis.atlassian.net/browse/OLMIS-3166>`_: Add user control for AppCache. Users can see their build number and update their web page application to the latest build.
 - `OLMIS-3877 <https://openlmis.atlassian.net/browse/OLMIS-3877>`_: UI filter component is consistent across pages.
