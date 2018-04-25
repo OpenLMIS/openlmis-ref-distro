@@ -145,9 +145,33 @@ With previous release candidates (RC1 and RC2), only the first phase of testing 
 See the spreadsheet of all regression test executions for this release:
 `3.3.0-regression-tests.csv <https://raw.githubusercontent.com/OpenLMIS/openlmis-ref-distro/master/docs/source/releases/3.3.0-regression-tests.csv>`_.
 
-The automated tests (unit tests, integration tests, and contract tests) were 100% passing at the time
-of the 3.3.0 release. Automated test coverage is tracked in `Sonar
-<http://sonar.openlmis.org/projects>`_.
+OpenLMIS 3.3.0 also includes a large set of automated tests. There are multiple types of tests,
+including Unit Tests, Integration, Component, Contract and End-to-End. These tests exist in the API
+services in Java as well as in the JavaScript UI web application. See the `Testing Guide
+<http://docs.openlmis.org/en/latest/conventions/testing.html>`_.
+
+For OpenLMIS 3.3.0, here are a few key statistics on automated tests:
+
+- There are **2,665 unit tests** in the API services in Java, not including other types of tests
+  nor tests in the Javascript UI application. `Sonar <http://sonar.openlmis.org/projects>`_ counts
+  unit tests on each Java component.
+- Test **coverage is over 60%** for all components, both Java and JavaScript, and is over 80% for
+  many components. `Sonar <http://sonar.openlmis.org/projects>`_ tracks test coverage and fails
+   quality gates if developers contribute new code with less than 80% coverage.
+
+All of the automated tests, both Java and Javascript tests of all types, are passing as of the time
+of the release. Any failing test would stop the build and block a release.
+
+Further advances in automated testing are still on the horizon for future releases of OpenLMIS:
+
+- Automated performance tests: There is already an automated test tool that measures the speed of
+  API endpoints with a large set of performance test data. However, not all tests pass and there is
+  not an established baseline for performance/speed of all areas of the system. Achieving this will
+  greatly improve the objective means for tracking and improving performance.
+- End-to-end testing: There is already an end-to-end testing toolset. However, coverage is very low.
+  The addition of more end-to-end automated tests can reduce the manual test effort that is
+  currently required for each release. It can help developers identify and fix regressions so the
+  community can move towards a “continuous delivery” release process.
 
 All Changes by Component
 ========================
