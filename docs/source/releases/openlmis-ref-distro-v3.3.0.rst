@@ -1,5 +1,5 @@
 ===================================
-3.3.0 Release Notes - 24 April 2018
+3.3.0 Release Notes - COMINING SOON
 ===================================
 
 Status: Stable
