@@ -22,7 +22,7 @@ Service Conventions
 UI Conventions
 ==============
 
-See the `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_
+See the `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-ui-components/567/artifact/build/styleguide/index.html>`_
 for conventions about how components look and function. See the Reference UI section under
 :doc:`../components/index` to learn about the UI architecture, how to build and extend/customize.
 
