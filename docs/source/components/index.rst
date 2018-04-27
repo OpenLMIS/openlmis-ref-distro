@@ -42,8 +42,7 @@ Auth Service works with the Reference Data service to handle role-based access c
 - `Auth Service README <authService.html>`_
 - `Auth Service Design <authServiceDesign.html>`_
 - `Auth Service ERD <erd-auth.html>`_
-- `Live Documentation for Auth API <http://test.openlmis.org/auth/docs/#/default>`_
-- `Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/362/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Fulfillment Service
@@ -56,8 +55,7 @@ warehouse systems.
 - `Fulfillment Service GitHub repo <https://github.com/OpenLMIS/openlmis-fulfillment>`_
 - `Fulfillment Service README <fulfillmentService.html>`_
 - `Fulfillment ERD <erd-fulfillment.html>`_
-- `Live Documentation for Fulfillment API <http://test.openlmis.org/fulfillment/docs/#/default>`_
-- `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/614/artifact/build/resources/main/api-definition.html>`_
 
 ***********
 CCE Service
@@ -70,8 +68,7 @@ inventory (tracking equipment at locations) and functional status. The catalog c
 - `CCE Service GitHub repo <https://github.com/OpenLMIS/openlmis-cce>`_
 - `CCE Service README <cceService.html>`_
 - `CCE ERD <erd-cce.html>`_
-- `Live Documentation for CCE API <http://test.openlmis.org/cce/docs/#/default>`_
-- `Static Documentation for CCE API <http://build.openlmis.org/job/OpenLMIS-cce-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for CCE API <http://build.openlmis.org/job/OpenLMIS-cce-service/327/artifact/build/resources/main/api-definition.html>`_
 
 ********************
 Notification Service
@@ -82,8 +79,7 @@ email notifications to users. The Notification Service does not provide a web UI
 
 - `Notification Service GitHub repo <https://github.com/OpenLMIS/openlmis-notification>`_
 - `Notification Service README <notificationService.html>`_
-- `Live Documentation for Notification API <http://test.openlmis.org/notification/docs/#/default>`_
-- `Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-service/141/artifact/build/resources/main/api-definition.html>`_
 
 **********************
 Reference Data Service
@@ -98,8 +94,7 @@ or can be added and edited individually using the Reference Data Service APIs.
 - `Reference Data Service GitHub repo <https://github.com/OpenLMIS/openlmis-referencedata/>`_
 - `Reference Data Service README <referencedataService.html>`_
 - `Reference Data ERD <erd-referencedata.html>`_
-- `Live Documentation for Reference Data API <http://test.openlmis.org/referencedata/docs/#/default>`_
-- `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/1468/artifact/build/resources/main/api-definition.html>`_
 
 ************
 Reference UI
@@ -112,7 +107,7 @@ deployment for implementers to use.
 Learn about the Reference UI:
 
 - `OpenLMIS UI Overview <uiOverview.html>`_ describes the UI architecture and tooling
-- `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_
+- `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-ui-components/567/artifact/build/styleguide/index.html>`_
   shows examples and best practices for many re-usable components
 - `Dev UI <devUI.html>`_ documents the build process and commands used by all UI components
 
@@ -120,7 +115,7 @@ Coding and Customizing the UI:
 
 - `UI Extension Guide <uiExtensionGuide.html>`_
 - UI :doc:`../conventions/index`
-- `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/docs/index.html#/api>`_
+- `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui/2794/artifact/build/docs/index.html#/api>`_
 
 UI Repositories:
 
@@ -161,8 +156,7 @@ report storage, generation (including in PDF format), and seeding rights that us
 - `Report Service GitHub repo <https://github.com/OpenLMIS/openlmis-report/>`_
 - `Report Service README <reportService.html>`_
 - `Report ERD <erd-report.html>`_
-- `Live Documentation for Report API <http://test.openlmis.org/report/docs/#/default>`_
-- `Static Documentation for Report API <http://build.openlmis.org/job/OpenLMIS-report-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Report API <http://build.openlmis.org/job/OpenLMIS-report-service/72/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Requisition Service
@@ -177,8 +171,7 @@ programs and facilities.
 - `Requisition Service GitHub repo <https://github.com/OpenLMIS/openlmis-requisition>`_
 - `Requisition Service README <requisitionService.html>`_
 - `Requisition ERD <erd-requisition.html>`_
-- `Live Documentation for Requisition API <http://test.openlmis.org/requisition/docs/#/default>`_
-- `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/2104/artifact/build/resources/main/api-definition.html>`_
 
 ************************
 Stock Management Service
@@ -190,5 +183,4 @@ recording stock transactions over time.
 - `Stock Management Service GitHub repo <https://github.com/OpenLMIS/openlmis-stockmanagement>`_
 - `Stock Management Service README <stockmanagementService.html>`_
 - `Stock Management ERD <erd-stockmanagement.html>`_
-- `Live Documentation for Stock Management API <http://test.openlmis.org/stockmanagement/docs/#/default>`_
-- `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-service/653/artifact/build/resources/main/api-definition.html>`_
