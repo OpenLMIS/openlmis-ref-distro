@@ -137,8 +137,8 @@ OpenLMIS 3.3.0 is the second release using the new `Release Candidate process
 of this process, a full manual regression test cycle was conducted, and multiple release candidates
 were published to address critical bugs before releasing the final version 3.3.0.
 
-Manual tests were conducted using a set of 136 Zephyr tests tracked in Jira. A total of 50 bugs was
-found during testing. The full set of tests was executed on the third Release Candidate (RC3).
+Manual tests were conducted using a set of 136 Zephyr tests tracked in Jira. A total of 50 bugs were
+found during testing. The full set of tests were executed on the third Release Candidate (RC3).
 With previous release candidates (RC1 and RC2), only the first phase of testing was conducted.
 See the spreadsheet of all regression test executions for this release:
 `3.3.0-regression-tests.csv <https://raw.githubusercontent.com/OpenLMIS/openlmis-ref-distro/master/docs/source/releases/3.3.0-regression-tests.csv>`_.
@@ -211,7 +211,7 @@ Reference Data Service 10.0.0
 Source: `ReferenceData CHANGELOG
 <https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
 
-Reference UI 5.0.5
+Reference UI 5.0.6
 ------------------
 
 The Reference UI (`https://github.com/OpenLMIS/openlmis-reference-ui/ <https://github.com/OpenLMIS/openlmis-reference-ui/>`_)
@@ -252,7 +252,7 @@ report-ui 5.0.5
 See `openlmis-report-ui CHANGELOG
 <https://github.com/OpenLMIS/openlmis-report-ui/blob/master/CHANGELOG.md>`_
 
-requisition-ui 5.3.0
+requisition-ui 5.3.1
 ~~~~~~~~~~~~~~~~~~~~
 
 See `openlmis-requisition-ui CHANGELOG
