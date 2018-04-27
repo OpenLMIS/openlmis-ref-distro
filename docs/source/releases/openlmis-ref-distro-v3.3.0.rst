@@ -122,12 +122,12 @@ changes impact developers and systems integrating with OpenLMIS:
 Performance 
 ========================
 
-OpenLMIS conducted manual testing of the same user workflows with the same test data we used in testing v3.2.1 to establish that last-mile performance characteristics have been retained at a minimum. There are minor improvements in some areas. For more details about the specific work done to improve performance for 3.3.0, please reference `this <https://openlmis.atlassian.net/issues/?jql=project%20%3D%20OLMIS%20AND%20issuetype%20%3D%20Task%20AND%20status%20%3D%20Done%20AND%20fixVersion%20%3D%203.3%20AND%20labels%20%3D%20Performance%20AND%20text%20~%20%22performance%22%20ORDER%20BY%20priority%20DESC%2C%20status%20ASC%2C%20key%20ASC>`_ list of tasks.
+OpenLMIS conducted manual performance tests of the same user workflows with the same test data we used in testing v3.2.1 to establish that last-mile performance characteristics have been retained at a minimum. For details on the test results and process, please see `this wiki page <https://openlmis.atlassian.net/wiki/spaces/OP/pages/116949318/Performance+Metrics>`_ for details. There are minor improvements in the sync, submit, authorize and single approve within the requisition service. For more details about the specific work done to improve performance for 3.3.0, please reference `this <https://openlmis.atlassian.net/issues/?jql=project%20%3D%20OLMIS%20AND%20issuetype%20%3D%20Task%20AND%20status%20%3D%20Done%20AND%20fixVersion%20%3D%203.3%20AND%20labels%20%3D%20Performance%20AND%20text%20~%20%22performance%22%20ORDER%20BY%20priority%20DESC%2C%20status%20ASC%2C%20key%20ASC>`_ list of tasks.
 
-The following chart depicts the manual testing results. 
+The following chart displays the 3.3.0 UI loading times in seconds for both 3.2.1 and 3.3.0 using the same test data. 
 
 .. image:: UI-Performance-3.3.0.png
-    :alt: UI Performance Load Times for 3.2.1 and 3.3.0
+    :alt: UI Load Times for 3.2.1 and 3.3.0
 
 Test Coverage
 =============
@@ -331,17 +331,10 @@ Contributions
 =============
 
 Many organizations and individuals around the world have contributed to OpenLMIS version 3 by
-serving on committees, bringing the community together, and of course writing code and
-documentation. Below is a list of those who contributed code or documentation into the GitHub
-repos. If anyone who contributed in GitHub is missing, please contact the Community Manager.
+serving on our committees (Governance, Product and Technical), requesting improvements, suggesting features and writing code and documentation. Please visit our GitHub repos to see the list of individual contributors on the OpenLMIS codebase. If anyone who contributed in GitHub is missing, please contact the Community Manager.
 
 Thanks to the Malawi implementation team who has continued to contribute a number of changes
 that have global shared benefit.
-
-[LIST OUT CONTRIBUTORS]
-
-For a detailed list of contributors to previous versions, see the Release Notes for OpenLMIS 3.2.0,
-3.1.0 and 3.0.0.
 
 Further Resources
 =================
