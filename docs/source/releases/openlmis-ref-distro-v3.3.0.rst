@@ -126,7 +126,8 @@ OpenLMIS conducted manual testing of the same user workflows with the same test 
 
 The following chart depicts the manual testing results. 
 
-[insert chart]
+.. image:: UI-Performance-3.3.0.png
+    :alt: UI Performance Load Times for 3.2.1 and 3.3.0
 
 Test Coverage
 =============
