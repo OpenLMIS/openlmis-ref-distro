@@ -350,6 +350,7 @@ in these steps - e.g. SNAPSHOT):
       that same next release.
       Finally, on Jenkins, identify which build was the one that built and published to Docker/Maven
       the release. Press the Keep the build forever button.
+1. In **openlmis-config**, tag the most recent commit with the tag version (including the 'v').
 1. Update **docker-compose.yml** in **openlmis-ref-distro** with the release chosen
    1. For each of the services deployed as the new version on DockerHub, update the version in the
       **docker-compose.yml** file to the version you're releasing. See the lines under "services:" →
