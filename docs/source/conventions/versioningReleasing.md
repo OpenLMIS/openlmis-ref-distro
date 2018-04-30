@@ -306,7 +306,7 @@ codebase is working towards):
 When you are ready to create and publish a release (Note that version modifiers should not be used
 in these steps - e.g. SNAPSHOT):
 
-1. Select a tag name such as '3.0.0-beta' based on the numbering guidelines above.
+1. Select a tag name (e.g. '3.3.0') based on the numbering guidelines above.
 1. The service utility library should be released prior to the Services. Publishing to the central
    repository may take some time, so publish at least a few hours before building and publishing the
    released Services:
@@ -322,14 +322,15 @@ in these steps - e.g. SNAPSHOT):
    1. In each OpenLMIS Service's build.gradle, update the dependency version of the library to point
       to the released version of the library (e.g. drop 'SNAPSHOT')
 1. In each service, set the **serviceVersion** property in the **gradle.properties** file to the
-   version you've chosen. Push this to GitHub, then log on to GitHub and create a release tagged
-   with the same tag. Note that GitHub release tags should start with the letter "v", so
-   '3.0.0-beta' would be tagged 'v3.0.0-beta'. It's safest to choose a particular commit to use as
-   the Target (instead of just using the master branch, default). Also, when you create the version
-   in GitHub check the "This is a pre-release" checkbox if indeed that is true. Do this for each
-   service/UI module in the project, including the API services and the AngularJS UI repo (note: in
-   that repo, the file is called project.properties, not gradle.properties). DON'T update the
-   Reference Distribution yet.
+   next version, which should simply be the version without the SNAPSHOT suffix (e.g. if the 
+   serviceVersion was 6.0.0-SNAPSHOT, it should be 6.0.0). Push this to GitHub, then log on to 
+   GitHub and create a release tagged with the same tag. Note that GitHub release tags should start
+   with the letter "v", so '6.0.0' would be tagged 'v6.0.0'. It's safest to choose a particular 
+   commit to use as the Target (instead of just using the master branch, default). Also, when you 
+   create the version in GitHub check the "This is a pre-release" checkbox if indeed that is true. 
+   1. Do this for each service/UI module in the project, including the API services and the UI 
+      repos (note: in those repos, the file is called project.properties, not gradle.properties). 
+      DON'T update the Reference Distribution yet.
    1. Do we need a release branch? No, we do not need a release branch, only a tag. If there are any
       later fixes we need to apply to the 3.0 Beta, we would issue a new beta release (eg, 3.0 Beta
       R1) to publish additional, specific fixes.
@@ -345,41 +346,48 @@ in these steps - e.g. SNAPSHOT):
       jobs to complete and be successful so give this a few minutes.
       Note: After tagging each service, you may also want to change the serviceVersion again so that
       future commits are tagged on Docker Hub with a different tag. For example, after releasing
-      '3.1.0' you may want to change the serviceVersion to '3.1.1-SNAPSHOT'. You need to coordinate
+      '6.0.0' you may want to change the serviceVersion to '6.0.1-SNAPSHOT'. You need to coordinate
       with developers on your component to make sure everyone is working on 'master' branch towards
       that same next release.
-      Finally, on Jenkins, identify which build was the one that built and published to Docker/Maven
+   1. Finally, on Jenkins, identify which build was the one that built and published to Docker/Maven
       the release. Press the Keep the build forever button.
-1. In **openlmis-config**, tag the most recent commit with the tag version (including the 'v').
-1. Update **docker-compose.yml** in **openlmis-ref-distro** with the release chosen
-   1. For each of the services deployed as the new version on DockerHub, update the version in the
-      **docker-compose.yml** file to the version you're releasing. See the lines under "services:" →
-      serviceName → "image: openlmis/requisition-refui:3.0.0-beta-SNAPSHOT" and change that last part
-      to the new version tag for each service.
+1. Update **.env** in **openlmis-ref-distro** with the release tag name chosen (e.g '3.3.0')
+   1. For each of the services (and the Reference UI) deployed as the new version on DockerHub, 
+      update the version in the **.env** file to the version you're releasing.
    1. Commit this change and tag the openlmis-ref-distro repo with the release being made.
       Note: There is consideration underway about using a git branch to coordinate the ref-distro
-      release.
+      release, to perform this step and the next one.
 1. In order to publish the openlmis-ref-distro documentation to ReadTheDocs:
    1. Edit **collect-docs.py** to change links to pull in specific version tags of README files. In that
       script, change a line like
       `urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata/master/README.md", "developer-docs/referencedata.md")`
       to
       `urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata/v3.0.0/README.md, "developer-docs/referencedata.md")`
+   1. Edit **index.rst** and the ERD RST files under **docs/source/components** to change links to 
+      pull in specific build version numbers of static API documentation and ERD zip files. In 
+      those files, change a URL like 
+      `http://build.openlmis.org/job/OpenLMIS-auth-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html`
+      to
+      `http://build.openlmis.org/job/OpenLMIS-auth-service/362/artifact/build/resources/main/api-definition.html`
+      and
+      `http://build.openlmis.org/job/OpenLMIS-auth-erd-generation/lastSuccessfulBuild/artifact/erd-auth.zip`
+      to
+      `http://build.openlmis.org/job/OpenLMIS-auth-erd-generation/323/artifact/erd-auth.zip`
    1. To make your new version visible in the "version" dropdown on ReadTheDocs, it has to be set as
       "active" in the admin settings on readthedocs (admin -> versions -> choose active versions). Once
       set active the link is displayed on the documentation page (it is also possible to set default
       version).
-1. Update **docker-compose.yml** in **openlmis-deployment** for the UAT deployment script with the release
-   chosen which is at https://github.com/OpenLMIS/openlmis-deployment/blob/master/deployment/uat_env/docker-compose.yml
+1. Update **.env** in **openlmis-deployment** for the Demo v3 deployment script with the release
+   chosen which is at https://github.com/OpenLMIS/openlmis-deployment/blob/master/deployment/demo_env/.env
+   1. Make sure to coordinate with the OpenLMIS Community Manager when redeploying to Demo v3.
    1. For each of the services deployed as a the new version on DockerHub, update the version in the
-      **docker-compose.yml** file to the version you're releasing.
+      **.env** file to the version you're releasing.
    1. Commit this change. (You do not need to tag this repo because it is only used by Jenkins, not
       external users.)
-1. Kick off each **-deploy-to-uat** job on Jenkins
-   1. **Wait** about 1 minute between starting each job
-   1. **Confirm** UAT has the deployed service. e.g. for the auth service:
-      http://uat.openlmis.org/auth check that the **version** is the one chosen.
-1. Navigate to uat.openlmis.org and ensure it works
+1. Kick off the **OpenLMIS-3.x-deploy-to-demo-v3** job on Jenkins
+   1. **Confirm** Demo v3 has each deployed service. e.g. for the auth service:
+      https://demo-v3.openlmis.org/auth check that the **version** is the one chosen.
+1. Navigate to demo-v3.openlmis.org and ensure it works
 
 Once all these steps are completed and verified, the release process is complete. At this point you
 can conduct communication tasks such as sharing the URL and Release Announcement to stakeholders.
