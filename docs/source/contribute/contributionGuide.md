@@ -218,7 +218,9 @@ the translation process. Because of the micro-service architecture, each compone
 and its own Transifex project.
 
 See the [OpenLMIS Transifex projects](https://www.transifex.com/openlmis/public/) and the
-[Translations wiki](https://openlmis.atlassian.net/wiki/display/OP/Translations) to get started.
+[Translations wiki](https://openlmis.atlassian.net/wiki/display/OP/Translations) to get started. See also the
+[UI Extenion guide](http://docs.openlmis.org/en/latest/components/uiExtensionGuide.html#messages) for details
+about how implementations can override UI strings with their own custom messages.
 
 ## Licensing
 
