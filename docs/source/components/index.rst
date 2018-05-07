@@ -192,3 +192,43 @@ recording stock transactions over time.
 - `Stock Management ERD <erd-stockmanagement.html>`_
 - `Live Documentation for Stock Management API <http://test.openlmis.org/stockmanagement/docs/#/default>`_
 - `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+
+********************************
+Reporting and Analytics Platform
+********************************
+
+OpenLMIS includes a reporting and analytics platform that extracts the data from each microservice, streams it to a data warehouse and provides a scalable reporting and dashboard interface. This reporting platform is made of multiple open source components, Apache Nifi, Apache Kafka, Druid and Apache SuperSet. This section provides an overview of each of the components of the reporting and analytics platform.
+
+----
+Nifi
+----
+
+`NiFi <https://nifi.apache.org/>`_ is used for pulling data from OpenLMIS’s APIs, merging data from the APIs into a single schema, and transforming the data into a format that’s easy to query in Druid. Currently, NiFi blends data from the stockCardSummaries API and the referenceData API. It splits stock cards into line items and merges reference data with those line items, to have a single schema where stock card transactions (line items) contain detailed reference data like facility name, commodity type name, etc. instead of the reference data ids that natively live on the transaction in the stock management module. NiFi functions like an assembly line, where data moves from “processor” to processor throughout the “flow file.”
+
+-----
+Kafka
+-----
+
+`Kafka <https://kafka.apache.org/>`_ is used for stream processing and passing the data from NiFi to Druid. It works on a publish-subscribe model, similar to how message queues in an enterprise messaging systems work. Kafka is run on a cluster on one or more servers. A Kafka cluster stores streams of “records” in categories called “topics.” A record consists of three parts: a key, a value, and a timestamp. A Kafka topic receives the transformed transaction from NiFi and publishes it to the Druid “supervisor.” The Druid supervisor is always listening for updates from Kafka, and indexes the data immediately.
+
+-----
+Druid
+-----
+
+`Druid <http://druid.io/>`_ is a distributed column-oriented OLAP database that the reporting stack uses for data storage and querying. Druid is purpose-built for querying streaming data sets at scale. Each set of data is called a “data source.” JSON is the default language used for querying in Druid and is what the DISC indicators use. Druid also includes support for `SQL <http://druid.io/docs/latest/querying/sql.html>`_ using `Apache Calcite <https://calcite.apache.org/>`_, although this is not yet something we’ve explored. You can find documentation on querying in Druid using JSON `here <http://druid.io/docs/latest/querying/querying.html>`_.
+
+--------
+Superset
+--------
+
+`Superset <https://superset.incubator.apache.org/>`_ is the visualization layer of the reporting stack and is used to create self-service dashboards on the data in Druid. It’s very closely integrated with Druid, and will detect the schema for each data source and the data therein. “Dimensions” are akin to columns within a relational database, and “metrics” are calculations performed on those dimensions - e.g. count distinct, sum, min, max. Typically “metrics” are written off of numeric dimensions, with the exception of count distinct. Superset is the UI in which we write JSON queries for Druid to calculate metrics that are more sophisticated than the basic types outlined above.
+
+Slices are individual visualizations and can be listed by clicking on the Charts tab along the top. Each slice has a visualization type, a data source, and one or more metrics and dimensions that you want to display. Superset supports the development of custom visualization types if it’s not included in the default list provided by Apache.
+
+A dashboard is an assembly of slices onto a single page. Filters can be applied at the dashboard-level, and filter all slices sharing the filter’s data source to the specified dimension. Filters can also be used to manipulate date ranges. With proper security (more information below), users can save custom private or public versions of dashboards, and drill into a particular slice to modify it and construct an ad hoc visualization.
+
+Security is handled via User Roles and Users. A User is a distinct login with a password, and is tied to an email address. There can only be one User per email address. A User Role is the list of actions that a User can do in Superset. Superset contains three User Roles by default, but they can be customized by duplicating the defaults and adding or removing permissions.
+
+- Gamma - a view-only user who can save private views of dashboards and slices
+- Alpha - a power user who is able to view all data sources, and create public dashboards and slices
+- Admin - administrator with all access
