@@ -3,13 +3,18 @@ Architecture
 ==============
 
 As of OpenLMIS v3, the `architecture`_
-has transitioned to (micro) services fulfilling RESTful (HTTP) API requests
-from a modularized Reference UI.  Extension mechanisms, microservices, UI modules and a reporting
-and analytics platform further allow for components of the architecture
+has transitioned to (micro) services fulfilling RESTful (HTTP) API requests.
+A modularized Reference UI application runs in a browser and uses those APIs
+to expose functionality to end users. Other systems and mobile apps may also
+use the APIs to integrate and provide functionality. A Reporting and Analytics 
+Platform uses a data warehouse strategy to offer visualizations of OpenLMIS
+data.
+
+Extension mechanisms allow for components of the architecture
 to be customized without the need for the community to fork the code base:
 
 - UI modules give flexibility in creating new user experiences or changing existing ones
-- Extension Points & Modules - allows Service functionality to be modified
+- Extension Points & Modules - allows Service/API functionality to be modified
 - Extra Data - allows for extensions to store data with existing components
 - Reporting and Analytics Platform - allows for robust reporting solutions to be developed to meet implementation needs
 
