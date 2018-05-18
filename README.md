@@ -95,35 +95,6 @@ $ export spring_profiles_active=demo-data
 $ docker-compose up -d
 ```
 
-## Demo Data (old way)
-You can use a standard data set for demonstration purposes. Each service that has demo data, has
-it stored in its Docker image. The demo data is built from JSON sources in each service's repo:
-* [Auth Service Demo Data](https://github.com/OpenLMIS/openlmis-auth/tree/master/demo-data)
-* [Reference Data Demo Data](https://github.com/OpenLMIS/openlmis-referencedata/tree/master/demo-data)
-* [Requisition Demo Data](https://github.com/OpenLMIS/openlmis-requisition/tree/master/demo-data)
-* [Fulfillment Demo Data](https://github.com/OpenLMIS/openlmis-fulfillment/tree/master/demo-data)
-
-The docker-compose.yml file is configured to automatically load the demo data through a setting in
-the JAVA_OPTS environment variable. If you wish to not load demo data, or load custom data, you can
-modify this setting.
-
-In the docker-compose.yml file, look for a line like the following for each service with demo data:
-  ```
-  JAVA_OPTS: '-Dlogging.config=/logback/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql,file:///demo-data/data.sql'
-  ```
-
-If you wish to not load demo data, you can remove the demo data load entry:
-  ```
-  JAVA_OPTS: '-Dlogging.config=/logback/logback.xml -Dspring.jpa.properties.hibernate.hbm2ddl.import_files=/bootstrap.sql'
-  ```
-
-Or, you can replace it with your own by mounting a volume into the Docker container when it starts
-and replacing the demo data entry. Be sure to prefix it with `file://`; otherwise, the service
-will look in the classpath for the file.
-
-*NOTE:* be careful not to remove the `bootstrap.sql` entry, as that file must be loaded for the
-service to function properly.
-
 ## Performance data
 
 Performance data may also be optionally loaded and is defined by some Services.
