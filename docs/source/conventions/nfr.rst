@@ -128,10 +128,11 @@ Todo
 #. Clarify render time in performance
 #. Clarify the 2 size of data in Performance - how will we define it here across
    domains?  Or use links?
+#. Move functional testing into RTD.
 #. Fill in Interoperability
 #. Fill in Data integrity
 #. Fill in etc...
 
 
-.. _Performance Testing: performance
+.. _Performance Testing: performance.html
 .. _Functional Testing: https://github.com/OpenLMIS/openlmis-functional-tests/blob/master/README.md
