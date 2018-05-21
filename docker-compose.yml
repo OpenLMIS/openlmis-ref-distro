@@ -73,7 +73,7 @@ services:
     depends_on: [log]
 
   cce:
-    image: openlmis/cce:1.0.0-SNAPSHOT
+    image: openlmis/cce:${OL_CCE_VERSION}
     env_file: settings.env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
