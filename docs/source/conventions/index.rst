@@ -7,6 +7,7 @@ Conventions
 
    licenseHeader
    communityPrinciples15
+   nfr
 
 Service Conventions
 ===================
