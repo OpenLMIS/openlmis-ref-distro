@@ -301,6 +301,19 @@ codebase is working towards):
 - (If your component, such as the openlmis-service-util library, publishes to Maven, then other
   steps will be needed here.)
 
+### Patch Releasing a Component
+
+1. Create a hotfix branch that includes 'rel-' prefix and the patch version, e.g. 'rel-10.0.1'
+2. Set the **serviceVersion** property in the **gradle.properties** file to the patch version with 
+SNAPSHOT suffix, e.g. 10.0.1-SNAPSHOT.
+3. Make sure that Jenkins builds the branch successfully. If needed, run the job with 
+'contractTestsBranch' parameter set to the branch of **contract-tests** repository containing your 
+ref-distro release, e.g. 'v3.3.0'.
+4. Run performance tests
+5. If all passes, remove SNAPSHOT suffix from the **serviceVersion** property.
+6. Verify that the patch release is available on docker hub.
+
+
 ### Releasing the Reference Distribution (openlmis-ref-distro)
 
 When you are ready to create and publish a release (Note that version modifiers should not be used
@@ -321,20 +334,18 @@ in these steps - e.g. SNAPSHOT):
       check: [https://search.maven.org/](https://search.maven.org/)
    1. In each OpenLMIS Service's build.gradle, update the dependency version of the library to point
       to the released version of the library (e.g. drop 'SNAPSHOT')
-1. In each service, set the **serviceVersion** property in the **gradle.properties** file to the
-   next version, which should simply be the version without the SNAPSHOT suffix (e.g. if the 
-   serviceVersion was 6.0.0-SNAPSHOT, it should be 6.0.0). Push this to GitHub, then log on to 
-   GitHub and create a release tagged with the same tag. Note that GitHub release tags should start
-   with the letter "v", so '6.0.0' would be tagged 'v6.0.0'. It's safest to choose a particular 
-   commit to use as the Target (instead of just using the master branch, default). Also, when you 
-   create the version in GitHub check the "This is a pre-release" checkbox if indeed that is true. 
+1. In each service, branch for release. The branch name should start with 'rel-' followed by version
+   of the service, e.g. 'rel-6.0.0'. Set the **serviceVersion** property in the 
+   **gradle.properties** file to the next version, which should simply be the version without the 
+   SNAPSHOT suffix (e.g. if the serviceVersion was 6.0.0-SNAPSHOT, it should be 6.0.0). Push this to
+   GitHub, then log on to GitHub and create a release tagged with the same tag. Note that GitHub 
+   release tags should start with the letter "v", so '6.0.0' would be tagged 'v6.0.0'. Choose
+   the release branch to use as the Target. Also, when you create the version in GitHub check the 
+   "This is a pre-release" checkbox if indeed that is true. 
    1. Do this for each service/UI module in the project, including the API services and the UI 
       repos (note: in those repos, the file is called project.properties, not gradle.properties). 
       DON'T update the Reference Distribution yet.
-   1. Do we need a release branch? No, we do not need a release branch, only a tag. If there are any
-      later fixes we need to apply to the 3.0 Beta, we would issue a new beta release (eg, 3.0 Beta
-      R1) to publish additional, specific fixes.
-   1. Do we need a code freeze? We do not need a "code freeze" process. We will add the tag in Git,
+   1. Do we need a code freeze? We do not need a "code freeze" process. We are branching for release,
       and everyone can keep committing further work on master as usual. Updates to master will be
       automatically built and deployed at the [Test site](http://test.openlmis.org), but not the [UAT
       site](http://uat.openlmis.org).
@@ -377,6 +388,8 @@ in these steps - e.g. SNAPSHOT):
       "active" in the admin settings on readthedocs (admin -> versions -> choose active versions). Once
       set active the link is displayed on the documentation page (it is also possible to set default
       version).
+1. Create a branch of **openlmis-contract-tests** named by the tag (e.g. v3.3.0) and update **.env** 
+   file to include newly released components.
 1. Update **.env** in **openlmis-deployment** for the Demo v3 deployment script with the release
    chosen which is at https://github.com/OpenLMIS/openlmis-deployment/blob/master/deployment/demo_env/.env
    1. Make sure to coordinate with the OpenLMIS Community Manager when redeploying to Demo v3.
