@@ -79,7 +79,7 @@ The overall timeline for review period starts when the first Release Candidate i
 * Community members are requested to conduct user acceptance testing to submit bugs and issues with the release candidate. Members can review and leverage the [OpenLMIS manual test cases](https://openlmis.atlassian.net/projects/OLMIS?selectedItem=com.thed.zephyr.je__project-centric-view-tests-page).
 * OpenLMIS will run automated performance testing and review results.
 * Manual bug reports are submitted in Jira, see the [Reporting bugs section](http://docs.openlmis.org/en/latest/contribute/contributionGuide.html#reporting-bugs) for details on how to submit bugs to OpenLMIS. All bugs and issues related to the Release Candidate must be associated with the specific Release Candidate Bugs epic. Bugs can be identified in the code, documentation, and translations.
-* A triage team will review and triage all bugs submitted on a daily bases during the review period. 
+* A triage team will review and triage all bugs submitted on a daily bases during the review period.
 
 ### Fix Critical Issues
 
@@ -278,8 +278,8 @@ These steps apply when you change a component's serviceVersion (changing which -
 codebase is working towards):
 
 - If the component that you are about to release depends on the openlmis-service-util, verify
-  that it uses a stable version of that library. If it uses a snapshot version, a release of 
-  openlmis-service-util is required before you can proceed. 
+  that it uses a stable version of that library. If it uses a snapshot version, a release of
+  openlmis-service-util is required before you can proceed.
 - Within the component, set the **serviceVersion** property in the **gradle.properties** file to
   the new -SNAPSHOT you've chosen.
   - See Step 3 below for details.
@@ -304,10 +304,10 @@ codebase is working towards):
 ### Patch Releasing a Component
 
 1. Create a hotfix branch that includes 'rel-' prefix and the patch version, e.g. 'rel-10.0.1'
-2. Set the **serviceVersion** property in the **gradle.properties** file to the patch version with 
+2. Set the **serviceVersion** property in the **gradle.properties** file to the patch version with
 SNAPSHOT suffix, e.g. 10.0.1-SNAPSHOT.
-3. Make sure that Jenkins builds the branch successfully. If needed, run the job with 
-'contractTestsBranch' parameter set to the branch of **contract-tests** repository containing your 
+3. Make sure that Jenkins builds the branch successfully. If needed, run the job with
+'contractTestsBranch' parameter set to the branch of **contract-tests** repository containing your
 ref-distro release, e.g. 'v3.3.0'.
 4. Run performance tests
 5. If all passes, remove SNAPSHOT suffix from the **serviceVersion** property.
@@ -335,15 +335,15 @@ in these steps - e.g. SNAPSHOT):
    1. In each OpenLMIS Service's build.gradle, update the dependency version of the library to point
       to the released version of the library (e.g. drop 'SNAPSHOT')
 1. In each service, branch for release. The branch name should start with 'rel-' followed by version
-   of the service, e.g. 'rel-6.0.0'. Set the **serviceVersion** property in the 
-   **gradle.properties** file to the next version, which should simply be the version without the 
+   of the service, e.g. 'rel-6.0.0'. Set the **serviceVersion** property in the
+   **gradle.properties** file to the next version, which should simply be the version without the
    SNAPSHOT suffix (e.g. if the serviceVersion was 6.0.0-SNAPSHOT, it should be 6.0.0). Push this to
-   GitHub, then log on to GitHub and create a release tagged with the same tag. Note that GitHub 
+   GitHub, then log on to GitHub and create a release tagged with the same tag. Note that GitHub
    release tags should start with the letter "v", so '6.0.0' would be tagged 'v6.0.0'. Choose
-   the release branch to use as the Target. Also, when you create the version in GitHub check the 
-   "This is a pre-release" checkbox if indeed that is true. 
-   1. Do this for each service/UI module in the project, including the API services and the UI 
-      repos (note: in those repos, the file is called project.properties, not gradle.properties). 
+   the release branch to use as the Target. Also, when you create the version in GitHub check the
+   "This is a pre-release" checkbox if indeed that is true.
+   1. Do this for each service/UI module in the project, including the API services and the UI
+      repos (note: in those repos, the file is called project.properties, not gradle.properties).
       DON'T update the Reference Distribution yet.
    1. Do we need a code freeze? We do not need a "code freeze" process. We are branching for release,
       and everyone can keep committing further work on master as usual. Updates to master will be
@@ -363,7 +363,7 @@ in these steps - e.g. SNAPSHOT):
    1. Finally, on Jenkins, identify which build was the one that built and published to Docker/Maven
       the release. Press the Keep the build forever button.
 1. Update **.env** in **openlmis-ref-distro** with the release tag name chosen (e.g '3.3.0')
-   1. For each of the services (and the Reference UI) deployed as the new version on DockerHub, 
+   1. For each of the services (and the Reference UI) deployed as the new version on DockerHub,
       update the version in the **.env** file to the version you're releasing.
    1. Commit this change and tag the openlmis-ref-distro repo with the release being made.
       Note: There is consideration underway about using a git branch to coordinate the ref-distro
@@ -374,21 +374,21 @@ in these steps - e.g. SNAPSHOT):
       `urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata/master/README.md", "developer-docs/referencedata.md")`
       to
       `urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata/v3.0.0/README.md, "developer-docs/referencedata.md")`
-   1. Edit **index.rst** and the ERD RST files under **docs/source/components** to change links to 
-      pull in specific build version numbers of static API documentation and ERD zip files. In 
-      those files, change a URL like 
-      `http://build.openlmis.org/job/OpenLMIS-auth-service/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html`
+   1. Edit **index.rst** and the ERD RST files under **docs/source/components** to change links to
+      pull in specific build version numbers of static API documentation and ERD zip files. In
+      those files, change a URL like
+      `http://build.openlmis.org/job/OpenLMIS-auth-pipeline/job/master/lastSuccessfulBuild/artifact/api-definition.html`
       to
-      `http://build.openlmis.org/job/OpenLMIS-auth-service/362/artifact/build/resources/main/api-definition.html`
+      `http://build.openlmis.org/job/OpenLMIS-auth-pipeline/job/master/362/artifact/api-definition.html`
       and
-      `http://build.openlmis.org/job/OpenLMIS-auth-erd-generation/lastSuccessfulBuild/artifact/erd-auth.zip`
+      `http://build.openlmis.org/job/OpenLMIS-auth-pipeline/job/master/lastSuccessfulBuild/artifact/erd-auth.zip`
       to
-      `http://build.openlmis.org/job/OpenLMIS-auth-erd-generation/323/artifact/erd-auth.zip`
+      `http://build.openlmis.org/job/OpenLMIS-auth-pipeline/job/master/323/artifact/erd-auth.zip`
    1. To make your new version visible in the "version" dropdown on ReadTheDocs, it has to be set as
       "active" in the admin settings on readthedocs (admin -> versions -> choose active versions). Once
       set active the link is displayed on the documentation page (it is also possible to set default
       version).
-1. Create a branch of **openlmis-contract-tests** named by the tag (e.g. v3.3.0) and update **.env** 
+1. Create a branch of **openlmis-contract-tests** named by the tag (e.g. v3.3.0) and update **.env**
    file to include newly released components.
 1. Update **.env** in **openlmis-deployment** for the Demo v3 deployment script with the release
    chosen which is at https://github.com/OpenLMIS/openlmis-deployment/blob/master/deployment/demo_env/.env
@@ -405,5 +405,3 @@ in these steps - e.g. SNAPSHOT):
 Once all these steps are completed and verified, the release process is complete. At this point you
 can conduct communication tasks such as sharing the URL and Release Announcement to stakeholders.
 Congratulations!
-
-
