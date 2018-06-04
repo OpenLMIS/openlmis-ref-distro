@@ -112,7 +112,7 @@ deployment for implementers to use.
 Learn about the Reference UI:
 
 - `OpenLMIS UI Overview <uiOverview.html>`_ describes the UI architecture and tooling
-- `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_
+- `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-ui-components-pipeline/job/master/lastSuccessfulBuild/artifact/build/styleguide/index.html>`_
   shows examples and best practices for many re-usable components
 - `Dev UI <devUI.html>`_ documents the build process and commands used by all UI components
 
@@ -120,7 +120,7 @@ Coding and Customizing the UI:
 
 - `UI Extension Guide <uiExtensionGuide.html>`_
 - UI :doc:`../conventions/index`
-- `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui/lastSuccessfulBuild/artifact/build/docs/index.html#/api>`_
+- `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui-pipeline/job/master/lastSuccessfulBuild/artifact/build/docs/index.html#/api>`_
 
 UI Repositories:
 

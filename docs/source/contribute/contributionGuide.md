@@ -49,8 +49,8 @@ Each bug submission should include an initial prioritization form the reporter. 
 
 * **Blocker**: Cannot execute function (cannot click button, button does not exist, cannot complete action when button is clicked). Cannot complete expected action (does not match expected results for the test case). No error message when there is an error. OpenLMIS will not release with this bug.
 * **Critical**: Error message is unactionable by the user, and user cannot complete next action (500 server error message). Search results provided do not match expected results based on data. Poor UI performance or accessibility (user cannot tab to column or use keyboard to complete action). OpenLMIS should not release with this bug.
-* **Major**: Performance related (slow response time). Major asthetic issue (See [UI Styleguide](http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/section-3.html#!#kssref-3-3) for reference). Incorrect filtering, but doesn't block users from completing tasks and executing functionality. Wrong user error message (user does not know how to proceed based on the error message provided).
-* **Minor**: Aesthetics (spacing is wrong, alignment is wrong, see [UI Styleguide](http://build.openlmis.org/job/OpenLMIS-ui-components/lastSuccessfulBuild/artifact/build/styleguide/section-3.html#!#kssref-3-3)). Message key is wrong. Console errors. Service giving the wrong error between services.
+* **Major**: Performance related (slow response time). Major asthetic issue (See [UI Styleguide](http://build.openlmis.org/job/OpenLMIS-ui-components-pipeline/job/master/lastSuccessfulBuild/artifact/build/styleguide/section-3.html#!#kssref-3-3) for reference). Incorrect filtering, but doesn't block users from completing tasks and executing functionality. Wrong user error message (user does not know how to proceed based on the error message provided).
+* **Minor**: Aesthetics (spacing is wrong, alignment is wrong, see [UI Styleguide](http://build.openlmis.org/job/OpenLMIS-ui-components-pipeline/job/master/lastSuccessfulBuild/artifact/build/styleguide/section-3.html#!#kssref-3-3)). Message key is wrong. Console errors. Service giving the wrong error between services.
 * **Trivial**: Anything else.
 
 When the bug is groomed and scheduled for work, the Product Manager will set the final priority level. See [Backlog Grooming](https://openlmis.atlassian.net/wiki/spaces/OP/pages/106627250/Backlog+Grooming) for details on the scheduling of work.
@@ -91,7 +91,7 @@ Please see attached screenshots and database snapshot.
 
 ## Contributing Code
 
-The OpenLMIS community welcomes code contributions and we encourage you to implement a new feature. Review the following process and guidelines for contributing new features or modification to existing functionality. 
+The OpenLMIS community welcomes code contributions and we encourage you to implement a new feature. Review the following process and guidelines for contributing new features or modification to existing functionality.
 
 ### Coordinating with the Global Community
 
@@ -110,7 +110,7 @@ To that end, when considering coding a new feature or modification, please follo
     4. _Component/s_: If you know which service is impacted by the new feature, please include. If not, leave it blank.
     5. _Description_: Include the user story and detailed description of the feature. Highlight the end user value. Include user steps and edge cases if applicable. Attach screen shots or diagrams if useful.
     6. _Affects Version_: Leave it blank.
-2. Send an email to the product committee listserv ([instructions](https://openlmis.atlassian.net/wiki/spaces/OP/pages/27000853/Community)) with the link to the Jira ticket and any additional information or context about the request. Please review the [Global vs. Project-Specific Features wiki](https://openlmis.atlassian.net/wiki/display/OP/Global+vs.+Project-Specific+Features) for details on how to evaluate if a feature is globally applicable or specific to an implementation. Please clearly indicate any time sensitivities so the product committee is aware and can be responsive. 
+2. Send an email to the product committee listserv ([instructions](https://openlmis.atlassian.net/wiki/spaces/OP/pages/27000853/Community)) with the link to the Jira ticket and any additional information or context about the request. Please review the [Global vs. Project-Specific Features wiki](https://openlmis.atlassian.net/wiki/display/OP/Global+vs.+Project-Specific+Features) for details on how to evaluate if a feature is globally applicable or specific to an implementation. Please clearly indicate any time sensitivities so the product committee is aware and can be responsive.
 3. The [Product Committee](https://openlmis.atlassian.net/wiki/display/OP/Product+Committee) will review the feature request at the next Product Committee meeting and provide feed back or request further clarification. Once the feature request is understood, the Product Committee will evaluate the request.
 4. If the request is deemed globally applicable and acceptable for the global codebase, the Product Committee will provide any additional guidence or direction needed in preparation for the Technical Committee review.
 5. Once approved by the product committee, we request the implementer to contact the [developer forum](https://groups.google.com/forum/#!forum/openlmis-dev) or contact the [Technical Committee](https://openlmis.atlassian.net/wiki/display/OP/Technical+Committee) to provide a proposed technical design to implement the approved feature. They can help share relevant resources or create any needed extension points (further details below).
@@ -163,9 +163,9 @@ and [Sonar](http://sonar.openlmis.org/).
 ## Git, Branching & Pull Requests
 
 The OpenLMIS community employs several code-management techniques to help develop the software, enable contributions,
-discuss & review and pull the community together. The first is that OpenLMIS code is managed using Git and is always 
-publicly hosted on [GitHub](http://github.com/OpenLMIS/). We encourage everyone working on the codebase to 
-take advantage of GitHub's fork and pull-request model to track what's going on. 
+discuss & review and pull the community together. The first is that OpenLMIS code is managed using Git and is always
+publicly hosted on [GitHub](http://github.com/OpenLMIS/). We encourage everyone working on the codebase to
+take advantage of GitHub's fork and pull-request model to track what's going on.
 
 For more about version numbers and releasing, see **versioningReleasing.md**.
 
@@ -181,8 +181,8 @@ The general flow:
 
 5. *Re-base* your branch *often* from OpenLMIS `master` branch - keep up to date!
 
-6. Issue a *Pull Request* back to the `master` branch - explain what you did and keep it brief to speed review! 
-Mention the JIRA ticket number (e.g., "OLIMS-34") in the commit and pull request messages to activate the 
+6. Issue a *Pull Request* back to the `master` branch - explain what you did and keep it brief to speed review!
+Mention the JIRA ticket number (e.g., "OLIMS-34") in the commit and pull request messages to activate the
 JIRA/GitHub integration.
 
 While developing your code, be sure you follow the [Style Guide](https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md)
@@ -190,7 +190,7 @@ and keep your contribution specific to doing one thing.
 
 ## Automated Testing
 
-OpenLMIS 3 includes new [patterns and tools](https://github.com/OpenLMIS/openlmis-template-service/blob/master/TESTING.md) 
+OpenLMIS 3 includes new [patterns and tools](https://github.com/OpenLMIS/openlmis-template-service/blob/master/TESTING.md)
 for automated test coverage at all levels. Unit tests continue to be
 the foundation of our automated testing strategy, as they were in previous versions of OpenLMIS. Version 3
 introduces a new focus on integration tests, component tests, and contract tests (using Cucumber). Test
@@ -289,4 +289,3 @@ Writing documentation is just as helpful as writing code. See [Contribute Docume
 * Release Process (using Semantic Versioning) - [https://openlmis.atlassian.net/wiki/display/OP/Releases](https://openlmis.atlassian.net/wiki/display/OP/Releases)
 
 * OpenLMIS Website - [https://openlmis.org](https://openlmis.org)
-
