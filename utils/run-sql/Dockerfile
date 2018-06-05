@@ -1,4 +1,4 @@
-FROM openlmis/dev:3
+FROM openlmis/dev:4
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod u+x /entrypoint.sh
