@@ -1,0 +1,8 @@
+version: "0.1"
+services:
+
+  nifi:
+    image: apache/nifi:${OL_NIFI_VERSION}
+    ports:
+      - "8080"
+      - "9443"
