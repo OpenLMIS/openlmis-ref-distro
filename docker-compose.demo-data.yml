@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+
+  demo-data:
+    image: openlmis/demo-data
+    env_file: settings.env
+    depends_on: [db]
+    command: ["/wait-for-postgres.sh", "/load.sh"]
