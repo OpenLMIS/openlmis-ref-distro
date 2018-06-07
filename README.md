@@ -82,13 +82,12 @@ developed, you __should pull the services frequently__.
 	* if you ran `docker-compose up` _note_ the absence of `-d`, then interupt the application with `Ctrl-C`, and perform cleanup by removing containers.  See
 	our [docker cheat sheet](https://openlmis.atlassian.net/wiki/x/PwBIAw) for help on manually removing containers.
 
-## Demo Data (new way)
+## Demo Data
 
-For some services it's possible to load demo data using an environment variable.
-This variable is called `spring.profiles.active`.  When this environment
-has as one of it's values `demo-data`, then the demo data for the service will
-be loaded.  This variable may be set in the
-[.env file](https://github.com/OpenLMIS/openlmis-config/blob/master/.env) or in your shell with:
+It's possible to load demo data using an environment variable. This variable is
+called `spring.profiles.active`.  When this environment has as one of it's 
+values `demo-data`, then the demo data for the service will be loaded.  This 
+variable may be set in the settings.env file or in your shell with:
 
 ```shell
 $ export spring_profiles_active=demo-data
@@ -98,6 +97,12 @@ $ docker-compose up -d
 ## Performance data
 
 Performance data may also be optionally loaded and is defined by some Services.
+This can be loaded by running the script:
+
+```shell
+$ ./demo-data-start.sh
+```
+
 See http://docs.openlmis.org/en/latest/conventions/performanceData.html for
 more.
 
