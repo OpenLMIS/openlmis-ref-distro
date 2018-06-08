@@ -167,20 +167,23 @@ discuss & review and pull the community together. The first is that OpenLMIS cod
 publicly hosted on [GitHub](http://github.com/OpenLMIS/). We encourage everyone working on the codebase to
 take advantage of GitHub's fork and pull-request model to track what's going on.
 
-The PR should be on a short-lived branch and processed very quickly by reviews towards merging back
+The pull request should be on a short-lived branch and processed very quickly by reviews towards merging back
 to the master branch. The branch may have received many commits before the developer initiated the pull
-request, but it's important to remember about rebasing the changes into a single commit before starting code review.
+request, but it's important to remember about rebasing the changes with the master branch before creating it.
+Otherwise, conflicts with the master branch may occur when you merge the changes.
 
 OpenLMIS Jenkins runs build, test and Sonar analysis for all branches and also for pull requests.
-In case of pull requests, build status makes the work easier for developers who submit them and those who are
-reviewing them, so they save the time and know the code is high quality.
+For both, the developer needs to get the commit reviewed. In case of second of them, code review is happening
+in the pull request itself. Build status makes the work easier for developers who create the pull requests and
+those who are reviewing them, so they save the time and know the code is high quality.
 
 As a developer working on a branch, you have Sonar check your work without that check effecting
 the Sonar report on the master branch. SonarQube gives developers an opportunity to track the quality of
 code branches to ensure that only clean, approved code gets merged into master, and when it's not
 it doesn't mislead them looking at the master branch into thinking the overall project quality has dropped.
 
-[Sonar](http://sonar.openlmis.org/) quality gates should pass before you move your code to the review.
+While creating pull request [Sonar](http://sonar.openlmis.org/) quality gates have to pass. Otherwise, the reviewer
+wouldn't be able to merge the code to the master branch.
 
 For more about version numbers and releasing, see **versioningReleasing.md**.
 
