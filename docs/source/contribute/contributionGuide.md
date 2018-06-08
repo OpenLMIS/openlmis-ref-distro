@@ -168,9 +168,13 @@ publicly hosted on [GitHub](http://github.com/OpenLMIS/). We encourage everyone 
 take advantage of GitHub's fork and pull-request model to track what's going on.
 
 The pull request should be on a short-lived branch and processed very quickly by reviews towards merging back
-to the master branch. The branch may have received many commits before the developer initiated the pull
+to the master branch. If there is more that one developer on the same short-lived branch,
+then that branch is at risk of not being short-lived. It is at risk of being more and more like
+a release branch under active development, and not short at all.
+
+The branch may have received many commits before the developer initiated the pull
 request, but it's important to remember about rebasing the changes with the master branch before creating it.
-Otherwise, conflicts with the master branch may occur when you merge the changes.
+Otherwise, conflicts will not allow reviewer to merge the changes to the master branch.
 
 OpenLMIS Jenkins runs build, test and Sonar analysis for all branches and also for pull requests.
 For both, the developer needs to get the commit reviewed. In case of second of them, code review is happening
