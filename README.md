@@ -96,10 +96,12 @@ $ docker-compose up -d
 
 ## Performance data
 
-Performance data may also be optionally loaded and is defined by some Services.
-This can be loaded by running the script:
+Performance data may also be optionally loaded and is defined by some Services. If you'd like to 
+start a demo system with a lot of data, run this script instead of executing step #2 of the Quick 
+Setup.
 
 ```shell
+$ export spring_profiles_active=demo-data
 $ ./demo-data-start.sh
 ```
 
@@ -165,7 +167,7 @@ To add configuration:
 3. Add a COPY statement to `config/Dockerfile` which copies the configuration file to the container's `/config`.
 e.g. `COPY kannel/kannel.config /config/kanel/kannel.config`.
 4. Ensure that the container which will use this configuration file mounts the named-volume `service-config` to
-`/config.  e.g.
+`/config`.  e.g.
 
   ```shell
   kannel:
