@@ -21,7 +21,7 @@ Releases are tagged on GitHub for all components as well as the ref-distro. Rele
 components, such as the service components and UI components, are also published to [Docker
 Hub](https://hub.docker.com/u/openlmis/) as versioned docker images. In addition, we publish
 releases of the [service utility library](https://github.com/OpenLMIS/openlmis-service-util) to
-Maven.
+Maven. Moreover, release builds are kept on Jenkins forever by default.
 
 ## Release Process
 
