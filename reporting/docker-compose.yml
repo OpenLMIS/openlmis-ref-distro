@@ -20,3 +20,18 @@ services:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
     env_file: ../settings.env
     depends_on: [consul]
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:${OL_ZOOKEEPER_VERSION}
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=32181
+      - ZOOKEEPER_TICK_TIME=2000
+      - ZOOKEEPER_SYNC_LIMIT=2
+
+  kafka:
+    image: confluentinc/cp-kafka:${OL_KAFKA_VERSION}
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:32181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092
+      - KAFKA_BROKER_ID=2
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
