@@ -145,6 +145,31 @@ Extension points are simply hooks in the code that enable some implementations t
 behavior while maintaining compatibility for others. The Dev Forum or Technical Committee group can help advise how
 best to do this. They can also serve as a forum to request an extension point.
 
+#### Feature Flags
+
+This is a mechanism that can reduce branching code and merging large pull requests when working on some big
+functionality that is not finished. **Feature Flags** are based on branching the code execution based on status
+of feature flag. We simply put old working code in one branch while our new implementation is placed in second one.
+This allows us to ommit using git branches and have our code on master branch. Moreover this new code will be deployed
+on our tests servers. **Feature Flag** status can be changed on deployment while setting a environment variable with proper name.
+
+**Feature Flags** can be used in situations like i.e.:
+* making an controversial change that could break other functionality
+* making a potential performance improvement
+* working on unfinished functionality on master branch
+* marking functionality that can be turned on/off after releasing it (those should be documented)
+All except for the last case should be rather short lived flags and be removed after few weeks.
+Those **Feature Flags** gives us advantage of possibility to verify changes and logs on test server rather than locally.
+
+Here is a example of implementation for **BATCH_APPROVE_SCREEN feature flag** in our UI code:
+* [Feature flag constant](https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/src/requisition-batch-approval/batch-approve-screen-flag.constant.js)
+* [Run method for setting flag to our featureFlagService](https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/src/requisition-batch-approval/requisition-batch-approve.flag.run.js)
+* [Example of feature flag usage](https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/src/requisition-approval/requisition-approval.routes.js#L70)
+
+Here is a example of implementation for **FACILITY_SEARCH_CONJUNCTION feature flag** in our backend code:
+* [Feature flag declaration with default value](https://github.com/OpenLMIS/openlmis-referencedata/blob/master/src/main/resources/application.properties#L57)
+* [Usage of feature flag](https://github.com/OpenLMIS/openlmis-referencedata/blob/master/src/main/java/org/openlmis/referencedata/service/FacilityService.java#L53)
+
 ### Developing A New Service
 
 OpenLMIS 3 uses a microservice architecture, so more significant enhancements to the system may be achieved by
