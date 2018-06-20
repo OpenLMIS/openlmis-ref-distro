@@ -214,26 +214,25 @@ and keep your contribution specific to doing one thing.
 
 This is a mechanism that can reduce branching code and merging large pull requests when working on some big
 functionality that is not finished. **Feature Flags** are based on branching the code execution based on status
-of feature flag. We simply put old working code in one branch while our new implementation is placed in second one.
-This allows us to ommit using git branches and have our code on master branch. Moreover this new code will be deployed
-on our tests servers. **Feature Flag** status can be changed on deployment while setting a environment variable with proper name.
+of feature flag. We simply put old working code in one branch while our new implementation is placed in another.
+This allows us to ommit using git branches and have our code on the master branch. Moreover this new code will be deployed
+on our tests servers. **Feature Flag** status can be changed on deployment by setting an environment variable with proper name.
 
-**Feature Flags** can be used in situations like i.e.:
+**Feature Flags** can be used in situations like:
 * making an controversial change that could break other functionality
 * making a potential performance improvement
 * working on unfinished functionality on master branch
 * marking functionality that can be turned on/off after releasing it (those should be documented)
 All except for the last case should be rather short lived flags and be removed after few weeks.
-Those **Feature Flags** gives us advantage of possibility to verify changes and logs on test server rather than locally.
+Those **Feature Flags** give us advantage of possibility to verify changes and logs on test server rather than locally.
 
-Here is a example of implementation for **BATCH_APPROVE_SCREEN feature flag** in our UI code:
+Here is an example of implementation for **BATCH_APPROVE_SCREEN feature flag** in our UI code:
 * [Feature flag constant](https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/src/requisition-batch-approval/batch-approve-screen-flag.constant.js)
 * [Run method for setting flag to our featureFlagService](https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/src/requisition-batch-approval/requisition-batch-approve.flag.run.js)
 * [Example of feature flag usage](https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/src/requisition-approval/requisition-approval.routes.js#L70)
 
-Here is a example of implementation for **FACILITY_SEARCH_CONJUNCTION feature flag** in our backend code:
-* [Feature flag declaration with default value](https://github.com/OpenLMIS/openlmis-referencedata/blob/master/src/main/resources/application.properties#L57)
-* [Usage of feature flag](https://github.com/OpenLMIS/openlmis-referencedata/blob/master/src/main/java/org/openlmis/referencedata/service/FacilityService.java#L53)
+Here is an example of implementation for **FACILITY_SEARCH_CONJUNCTION feature flag** in our backend code:
+* [Commit with new feature flag](https://github.com/OpenLMIS/openlmis-referencedata/commit/8aec45a2020e2628feaf4505645b89699314d2ab)
 
 ## Automated Testing
 
