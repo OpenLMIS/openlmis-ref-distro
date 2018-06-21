@@ -35,3 +35,9 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092
       - KAFKA_BROKER_ID=2
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+
+  superset:
+    command: superset init
+    image: amancevice/superset:${OL_SUPERSET_VERSION}
+    ports:
+        - "8088"
