@@ -136,6 +136,10 @@ services:
     env_file: settings.env
     depends_on: [consul]
 
+  redis:
+    image: redis:3.2.12
+    depends_on: [consul]
+
 volumes:
   syslog:
     external: false
