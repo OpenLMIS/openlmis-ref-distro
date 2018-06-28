@@ -1,6 +1,6 @@
 version: "3.3"
-services:
 
+services:
   consul:
     command: -server -bootstrap
     image: gliderlabs/consul-server
@@ -13,12 +13,14 @@ services:
   nifi:
     image: apache/nifi:${OL_NIFI_VERSION}
     ports:
-      - "8080"
-      - "9443"
+      - "8080:8080"
+      - "9443:9443"
 
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
     env_file: ../settings.env
+    command: >
+        bash -c "createdb superset"
     depends_on: [consul]
 
   zookeeper:
@@ -37,7 +39,13 @@ services:
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
 
   superset:
-    command: superset init
     image: amancevice/superset:${OL_SUPERSET_VERSION}
     ports:
-        - "8088"
+        - "8088:8088"
+    volumes:
+      - ./superset:/etc/superset
+    command: >
+        bash -c "fabmanager create-admin --app superset --username admin --firstname Admin --lastname Admin --email noreply --password password
+        && superset db upgrade
+        && superset init"
+    depends_on: [db]
