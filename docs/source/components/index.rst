@@ -11,7 +11,7 @@ Security credentials, Authentication and Authorization. Uses OAuth2.
 - `Auth Service <authService.html>`_
 - `Auth UI <authUI.html>`_
 - `Auth ERD <erd-auth.html>`_
-- `Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/295/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-pipeline/job/rel-3.1.1/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Fulfillment Service
@@ -23,7 +23,7 @@ deliveries.
 - `Fulfillment Service <fulfillmentService.html>`_
 - `Fulfillment UI <fulfillmentUI.html>`_
 - `Fulfillment ERD <erd-fulfillment.html>`_
-- `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/346/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-pipeline/job/rel-6.1.0/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Report Service
@@ -34,7 +34,7 @@ given.
 
 - `Report Service <reportService.html>`_
 - `Report ERD <erd-report.html>`_
-- `Static Documentation for Report API <http://build.openlmis.org/job/OpenLMIS-report-service/34/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Report API <http://build.openlmis.org/job/OpenLMIS-report-pipeline/job/rel-1.0.0/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 ********************
 Notification Service
@@ -42,7 +42,7 @@ Notification Service
 
 Notifying users when their attention is needed.
 
-- `Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-service/127/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-pipeline/job/rel-3.0.4/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 **********************
 Reference Data Service
@@ -53,7 +53,7 @@ Reference (meta) data for: users, facilities, programs, products, schedules, etc
 - `Reference Data Service <referencedataService.html>`_
 - `Reference Data UI <referencedataUI.html>`_
 - `Reference Data ERD <erd-referencedata.html>`_
-- `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/1141/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-pipeline/job/rel-9.0.0/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 ************
 Reference UI
@@ -63,8 +63,8 @@ The Reference UI for web-based access through a web-browser. Compiles together a
 make up the OpenLMIS-UI. See the `build process documentation <../architecture/buildProcess.html>`_
 to understand exactly how the UI is compiled.
 
-- `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-reference-ui/1685/artifact/build/styleguide/index.html#!/login>`_
-- `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui/1685/artifact/build/docs/index.html#/api>`_
+- `UI Styleguide <http://build.openlmis.org/job/OpenLMIS-reference-ui-pipeline/job/rel-5.0.4/lastSuccessfulBuild/artifact/build/styleguide/index.html#!/login>`_
+- `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui-pipeline/job/rel-5.0.4/lastSuccessfulBuild/artifact/build/docs/index.html#/api>`_
 - `Reference UI <referenceUI.html>`_
 - `UI Layout <uiLayout.html>`_
 - `UI Components <uiComponents.html>`_
@@ -80,7 +80,7 @@ an administrative hierarchy.
 - `Requisition Service <requisitionService.html>`_
 - `Requisition UI <requisitionUI.html>`_
 - `Requisition ERD <erd-requisition.html>`_
-- `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/1835/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-pipeline/job/rel-5.1.0/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 *************************
 Stock Management Service
@@ -91,4 +91,4 @@ Electronic stock cards and stock transactions.
 - `Stock Management Service <stockmanagementService.html>`_
 - `Stock Management UI <stockmanagementUI.html>`_
 - `Stock Management ERD <erd-stockmanagement.html>`_
-- `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-service/489/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-pipeline/job/rel-2.0.0/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_

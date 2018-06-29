@@ -4,4 +4,4 @@ Requisition ERD
 
 ERD schema of Requisition service:
 
-* `Zip ERD <http://build.openlmis.org/job/OpenLMIS-requisition-erd-generation/1397/artifact/erd-requisition.zip>`_
+* `Zip ERD <http://build.openlmis.org/job/OpenLMIS-requisition-pipeline/job/rel-5.1.0/lastSuccessfulBuild/artifact/erd-requisition.zip>`_
