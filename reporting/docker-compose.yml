@@ -19,8 +19,8 @@ services:
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
     env_file: ../settings.env
-    command: >
-        bash -c "createdb superset"
+    volumes:
+        - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     depends_on: [consul]
 
   zookeeper:

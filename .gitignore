@@ -2,3 +2,4 @@
 logs/
 build/
 *.iml
+*.pyc
