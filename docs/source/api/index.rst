@@ -26,7 +26,7 @@ Auth Service
 
 Security credentials, Authentication and Authorization. Uses OAuth2.
 
-`Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-service/229/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-pipeline/job/rel-3.0.2/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 **********************
 Reference Data Service
@@ -34,7 +34,7 @@ Reference Data Service
 
 Provides the reference data for the rest of the processes: facilities, programs, products, etc.
 
-`Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-service/705/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-pipeline/job/rel-5.0.1/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Requisition Service
@@ -42,7 +42,7 @@ Requisition Service
 
 Requisition (pull) based replenishment process.
 
-`Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-service/1463/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-pipeline/job/rel-3.1.2/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Fulfillment Service
@@ -50,7 +50,7 @@ Fulfillment Service
 
 Includes the basics of fulfillment.
 
-`Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-service/263/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-pipeline/job/rel-3.0.2/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
 ********************
 Notification Service
@@ -58,4 +58,4 @@ Notification Service
 
 Notifying users when their attention is needed.
 
-`Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-service/101/artifact/build/resources/main/api-definition.html>`_
+`Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-pipeline/job/rel-3.0.1/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
