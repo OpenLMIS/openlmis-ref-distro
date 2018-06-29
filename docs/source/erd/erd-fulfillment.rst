@@ -4,4 +4,4 @@ Fulfillment ERD
 
 ERD schema of Fulfillment service:
 
-* `Zip ERD <http://build.openlmis.org/view/Fulfillment-pipeline/job/OpenLMIS-fulfillment-erd-generation/182/artifact/erd-fulfillment.zip>`_
+* `Zip ERD <http://build.openlmis.org/job/OpenLMIS-fulfillment-pipeline/job/rel-3.0.0/lastSuccessfulBuild/artifact/erd-fulfillment.zip>`_
