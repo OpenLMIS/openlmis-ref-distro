@@ -46,7 +46,7 @@ services:
     volumes:
       - ./superset:/etc/superset
     command: >
-        bash -c "fabmanager create-admin --app superset --username admin --firstname Admin --lastname Admin --email noreply --password password
+        bash -c "sleep 30 && fabmanager create-admin --app superset --username admin --firstname Admin --lastname Admin --email noreply --password password
         && superset db upgrade
-        && superset init"
+        && superset init && gunicorn -w 2 --timeout 60 -b 0.0.0.0:8088 --limit-request-line 0 --limit-request-field_size 0 superset:app"
     depends_on: [db]
