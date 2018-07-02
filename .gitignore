@@ -1,6 +1,5 @@
 .idea/
 logs/
 build/
-reporting/superset/__pycache__
 *.iml
 *.pyc
