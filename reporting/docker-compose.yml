@@ -21,6 +21,9 @@ services:
     env_file: ../settings.env
     volumes:
         - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      - SUPERSET_POSTGRES_USER=${SUPERSET_POSTGRES_USER}
+      - SUPERSET_POSTGRES_PASSWORD=${SUPERSET_POSTGRES_PASSWORD}
     depends_on: [consul]
 
   zookeeper:
