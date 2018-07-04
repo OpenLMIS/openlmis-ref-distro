@@ -1,6 +1,6 @@
 version: "3.3"
-services:
 
+services:
   consul:
     command: -server -bootstrap
     image: gliderlabs/consul-server
@@ -13,12 +13,17 @@ services:
   nifi:
     image: apache/nifi:${OL_NIFI_VERSION}
     ports:
-      - "8080"
-      - "9443"
+      - "8080:8080"
+      - "9443:9443"
 
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
     env_file: ../settings.env
+    volumes:
+        - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      - SUPERSET_POSTGRES_USER=${SUPERSET_POSTGRES_USER}
+      - SUPERSET_POSTGRES_PASSWORD=${SUPERSET_POSTGRES_PASSWORD}
     depends_on: [consul]
 
   zookeeper:
@@ -35,3 +40,16 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092
       - KAFKA_BROKER_ID=2
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    depends_on: [zookeeper]
+
+  superset:
+    image: amancevice/superset:${OL_SUPERSET_VERSION}
+    ports:
+        - "8088:8088"
+    volumes:
+      - ./superset:/etc/superset
+    command: >
+        bash -c "sleep 30 && fabmanager create-admin --app superset --username ${SUPERSET_ADMIN_USERNAME} --firstname Admin --lastname Admin --email noreply --password ${SUPERSET_ADMIN_PASSWORD}
+        && superset db upgrade
+        && superset init && gunicorn -w 2 --timeout 60 -b 0.0.0.0:8088 --limit-request-line 0 --limit-request-field_size 0 superset:app"
+    depends_on: [db]
