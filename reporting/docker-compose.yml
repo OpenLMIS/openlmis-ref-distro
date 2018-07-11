@@ -4,10 +4,12 @@ services:
   consul:
     command: -server -bootstrap
     image: gliderlabs/consul-server
+    environment:
+      - CONSUL_PORT=8501
     ports:
       - "8300"
       - "8400"
-      - "8500:8500"
+      - "8501:8501"
       - "53"
 
   nifi:
