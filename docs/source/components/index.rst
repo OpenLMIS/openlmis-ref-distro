@@ -82,6 +82,7 @@ email notifications to users. The Notification Service does not provide a web UI
 
 - `Notification Service GitHub repo <https://github.com/OpenLMIS/openlmis-notification>`_
 - `Notification Service README <notificationService.html>`_
+- `Notification ERD <erd-notification.html>`_
 - `Live Documentation for Notification API <http://test.openlmis.org/notification/docs/#/default>`_
 - `Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
 
