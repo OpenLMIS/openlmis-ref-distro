@@ -17,6 +17,8 @@ services:
     ports:
       - "8080:8080"
       - "9443:9443"
+    volumes:
+      - ./nifi/assets:/opt/nifi/nifi-${OL_NIFI_VERSION}/assets
 
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
