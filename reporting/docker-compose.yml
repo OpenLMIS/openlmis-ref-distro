@@ -18,7 +18,6 @@ services:
       - "8080:8080"
       - "9443:9443"
     volumes:
-      - ./nifi/assets:/opt/nifi/nifi-${OL_NIFI_VERSION}/assets
       - ./nifi/libs:/tmp/nifi-libs
     entrypoint: >
       bash -c "chown -R nifi:nifi /tmp/nifi-libs/*
