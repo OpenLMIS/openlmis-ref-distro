@@ -13,10 +13,18 @@ services:
       - "53"
 
   nifi:
-    image: apache/nifi:${OL_NIFI_VERSION}
+    image: onaio/nifi:${OL_NIFI_VERSION}
     ports:
       - "8080:8080"
       - "9443:9443"
+    volumes:
+      - ./nifi/assets:/opt/nifi/nifi-${OL_NIFI_VERSION}/assets
+      - ./nifi/libs:/tmp/nifi-libs
+    entrypoint: >
+      bash -c "chown -R nifi:nifi /tmp/nifi-libs/*
+      && chmod -R 0640 /tmp/nifi-libs/*
+      && cp /tmp/nifi-libs/* lib/
+      && ../scripts/start.sh"
 
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
