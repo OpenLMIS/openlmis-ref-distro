@@ -1,0 +1,6 @@
+{
+  "import_vars": [ "SCALYR_REPORTING_HOST_NAME" ],
+  "server_attributes": {
+    "serverHost": "$SCALYR_REPORTING_HOST_NAME"
+  }
+}

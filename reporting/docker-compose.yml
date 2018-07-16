@@ -1,6 +1,16 @@
 version: "3.3"
 
 services:
+  scalyr:
+    image: scalyr/scalyr-docker-agent
+    env_file: ../settings.env
+    volumes:
+      - ./scalyr/api_key.json:/etc/scalyr-agent-2/agent.d/api_key.json
+      - ./scalyr/server_host.json:/etc/scalyr-agent-2/agent.d/server_host.json
+      - /run/docker.sock:/var/scalyr/docker.sock
+    ports:
+      - "6011:601"
+
   consul:
     command: -server -bootstrap
     image: gliderlabs/consul-server
@@ -11,6 +21,11 @@ services:
       - "8400"
       - "8501:8501"
       - "53"
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://127.0.0.1:6011"
+    depends_on: [scalyr]
 
   nifi:
     image: onaio/nifi:${OL_NIFI_VERSION}
@@ -24,6 +39,11 @@ services:
       && chmod -R 0640 /tmp/nifi-libs/*
       && cp /tmp/nifi-libs/* lib/
       && ../scripts/start.sh"
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://127.0.0.1:6011"
+    depends_on: [scalyr]
 
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
@@ -33,7 +53,11 @@ services:
     environment:
       - SUPERSET_POSTGRES_USER=${SUPERSET_POSTGRES_USER}
       - SUPERSET_POSTGRES_PASSWORD=${SUPERSET_POSTGRES_PASSWORD}
-    depends_on: [consul]
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://127.0.0.1:6011"
+    depends_on: [scalyr, consul]
 
   zookeeper:
     image: confluentinc/cp-zookeeper:${OL_ZOOKEEPER_VERSION}
@@ -41,6 +65,11 @@ services:
       - ZOOKEEPER_CLIENT_PORT=32181
       - ZOOKEEPER_TICK_TIME=2000
       - ZOOKEEPER_SYNC_LIMIT=2
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://127.0.0.1:6011"
+    depends_on: [scalyr]
 
   kafka:
     image: confluentinc/cp-kafka:${OL_KAFKA_VERSION}
@@ -49,7 +78,11 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092
       - KAFKA_BROKER_ID=2
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-    depends_on: [zookeeper]
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://127.0.0.1:6011"
+    depends_on: [scalyr, zookeeper]
 
   superset:
     image: amancevice/superset:${OL_SUPERSET_VERSION}
@@ -61,4 +94,8 @@ services:
         bash -c "sleep 30 && fabmanager create-admin --app superset --username ${SUPERSET_ADMIN_USERNAME} --firstname Admin --lastname Admin --email noreply --password ${SUPERSET_ADMIN_PASSWORD}
         && superset db upgrade
         && superset init && gunicorn -w 2 --timeout 60 -b 0.0.0.0:8088 --limit-request-line 0 --limit-request-field_size 0 superset:app"
-    depends_on: [db]
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://127.0.0.1:6011"
+    depends_on: [scalyr, db]
