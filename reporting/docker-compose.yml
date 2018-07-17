@@ -7,7 +7,7 @@ services:
     volumes:
       - ./scalyr/api_key.json:/etc/scalyr-agent-2/agent.d/api_key.json
       - ./scalyr/server_host.json:/etc/scalyr-agent-2/agent.d/server_host.json
-      - /run/docker.sock:/var/scalyr/docker.sock
+      - ${SCALYR_DOCKER_SOCK}:/var/scalyr/docker.sock
     ports:
       - "6011:601"
 
