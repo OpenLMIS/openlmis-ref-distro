@@ -52,7 +52,7 @@ Download or View on GitHub
 Known Bugs
 ==========
 
-No additional bugs were included in this patch release.
+No known additional bugs were included in this patch release.
 Bug reports are collected in Jira for troubleshooting, analysis and resolution on an ongoing basis. See `OpenLMIS 3.3.0
 Bugs <https://openlmis.atlassian.net/issues/?jql=project%3DOLMIS%20and%20type%3DBug%20and%20affectedVersion%3D3.3%20order%20by%20priority%20DESC%2C%20status%20ASC%2C%20key%20ASC>`_ for the current list of known bugs.
 
@@ -72,18 +72,6 @@ changes which may require informing end-users and/or updating your customization
 
 - `OLMIS-4728 <https://openlmis.atlassian.net/browse/OLMIS-4728>`_: Requisition's properties can be overwritten when saved concurrently.
 
-
-API Changes
-===========
-
-Some APIs have changes to their contracts and/or their request-response data structures. These
-changes impact developers and systems integrating with OpenLMIS:
-
-- Requisition service has a major release, v6.0.0, due to the redesign of emergency requisitions. See the Requisition changelog for details.
-- Fulfillment service has a major release, v7.0.0, due to significant changes in the data model for orders, shipments and proofs of delivery. See the Fulfillment changelog for details.
-- Reference data service has a major release, v10.0.0, due to changes for pagination, filtering and rights. See the Reference data changelog for details.
-- Stock management service has a major release, v3.0.0, due to significant changes to stock events and physical inventory data. See the Stock management changelog for details.
-
 Performance 
 ========================
 
@@ -97,38 +85,10 @@ found and resolved during testing.
 See the test cycle for all regression test case executions for this patch release: `3.3.1 Patch Release Test Plan and Execution
 <https://openlmis.atlassian.net/wiki/spaces/OP/pages/413991014/Patch+Release+Test+Plan+v3.3.1>`.
 
-OpenLMIS 3.3.0 also includes a large set of automated tests. There are multiple types of tests,
-including Unit Tests, Integration, Component, Contract and End-to-End. These tests exist in the API
-services in Java as well as in the JavaScript UI web application. See the `Testing Guide
-<http://docs.openlmis.org/en/latest/conventions/testing.html>`_.
-
-For OpenLMIS 3.3.0, here are a few key statistics on automated tests:
-
-- There are **2,665 unit tests** in the API services in Java, not including other types of tests
-  nor tests in the Javascript UI application. `Sonar <http://sonar.openlmis.org/projects>`_ counts
-  unit tests on each Java component.
-- Test **coverage is over 60%** for all components, both Java and JavaScript, and is over 80% for
-  many components. `Sonar <http://sonar.openlmis.org/projects>`_ tracks test coverage and fails
-   quality gates if developers contribute new code with less than 80% coverage.
-
-All of the automated tests, both Java and Javascript tests of all types, are passing as of the time
-of the release. Any failing test would stop the build and block a release.
-
-Further advances in automated testing are still on the horizon for future releases of OpenLMIS:
-
-- Automated performance tests: There is already an automated test tool that measures the speed of
-  API endpoints with a large set of performance test data. However, not all tests pass and there is
-  not an established baseline for performance/speed of all areas of the system. Achieving this will
-  greatly improve the objective means for tracking and improving performance.
-- End-to-end testing: There is already an end-to-end testing toolset. However, coverage is very low.
-  The addition of more end-to-end automated tests can reduce the manual test effort that is
-  currently required for each release. It can help developers identify and fix regressions so the
-  community can move towards a “continuous delivery” release process.
-
-All Changes by Component
+Component Version Numbers
 ========================
 
-Version 3.3.1 of the Reference Distribution contains updated versions of the components listed
+Version 3.3.1 of the Reference Distribution contains the following components and versions listed
 below. The Reference Distribution bundles these component together using Docker to create a complete
 OpenLMIS instance. Each component has its own own public GitHub repository (source code) and
 DockerHub repository (release image). The Reference Distribution and components are versioned
@@ -138,32 +98,17 @@ independently; for details see `Versioning and Releasing
 Auth Service 3.2.0
 ------------------
 
-Source: `Auth CHANGELOG <https://github.com/OpenLMIS/openlmis-auth/blob/master/CHANGELOG.md>`_
-
 CCE Service 1.0.0
 -----------------
-
-This is the first stable release of openlmis-cce.
-
-Source: `CCE CHANGELOG <https://github.com/OpenLMIS/openlmis-cce/blob/master/CHANGELOG.md>`_
 
 Fulfillment Service 7.0.0
 -------------------------
 
-Source: `Fulfillment CHANGELOG
-<https://github.com/OpenLMIS/openlmis-fulfillment/blob/master/CHANGELOG.md>`_
-
 Notification Service 3.0.5
 --------------------------
 
-Source: `Notification CHANGELOG
-<https://github.com/OpenLMIS/openlmis-notification/blob/master/CHANGELOG.md>`_
-
 Reference Data Service 10.0.0
 -----------------------------
-
-Source: `ReferenceData CHANGELOG
-<https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
 
 Reference UI 5.0.7
 ------------------
@@ -177,63 +122,32 @@ OpenLMIS dev-ui. UI modules included in the Reference UI are:
 auth-ui 6.1.0
 ~~~~~~~~~~~~~
 
-See `openlmis-auth-ui CHANGELOG
-<https://github.com/OpenLMIS/openlmis-auth-ui/blob/master/CHANGELOG.md>`_
-
 cce-ui 1.0.0
 ~~~~~~~~~~~~
-
-This is the first stable release of openlmis-cce-ui; it provides CCE inventory management and
-administration screens that work with the openlmis-cce service APIs.
-
-See: `openlmis-cce-ui CHANGELOG <https://github.com/OpenLMIS/openlmis-cce-ui/blob/master/CHANGELOG.md>`_
 
 fulfillment-ui 6.0.0
 ~~~~~~~~~~~~~~~~~~~~
 
-See `openlmis-fulfillment-ui CHANGELOG
-<https://github.com/OpenLMIS/openlmis-fulfillment-ui/blob/master/CHANGELOG.md>`_
-
 referencedata-ui 5.3.0
 ~~~~~~~~~~~~~~~~~~~~~~
-
-See `openlmis-referencedata-ui CHANGELOG
-<https://github.com/OpenLMIS/openlmis-referencedata-ui/blob/master/CHANGELOG.md>`_
 
 report-ui 5.0.5
 ~~~~~~~~~~~~~~~
 
-See `openlmis-report-ui CHANGELOG
-<https://github.com/OpenLMIS/openlmis-report-ui/blob/master/CHANGELOG.md>`_
-
 requisition-ui 6.1.0
 ~~~~~~~~~~~~~~~~~~~~
-
-See `openlmis-requisition-ui CHANGELOG
-<https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/CHANGELOG.md>`_
 
 stockmanagement-ui 1.1.0
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-See `openlmis-ui-components CHANGELOG
-<https://github.com/OpenLMIS/openlmis-stockmanagement-ui/blob/master/CHANGELOG.md>`_
-
 ui-components 5.3.0
 ~~~~~~~~~~~~~~~~~~~
-
-See `openlmis-ui-components CHANGELOG
-<https://github.com/OpenLMIS/openlmis-ui-components/blob/master/CHANGELOG.md>`_
 
 ui-layout 5.1.0
 ~~~~~~~~~~~~~~~
 
-See `openlmis-ui-layout CHANGELOG
-<https://github.com/OpenLMIS/openlmis-ui-layout/blob/master/CHANGELOG.md>`_
-
 Dev UI v7
 ~~~~~~~~~
-
-The `Dev UI developer tooling <https://github.com/OpenLMIS/dev-ui>`_ has advanced to v7.
 
 Report Service 1.0.1
 --------------------
@@ -243,54 +157,19 @@ This service is intended to provide reporting functionality for other components
 Assignment Configuration Errors report
 (`OLMIS-2760 <https://openlmis.atlassian.net/browse/OLMIS-2760>`_).
 
-Additional built-in reports in OpenLMIS 3.3.0 are still powered by their own services. In future
+Additional built-in reports in OpenLMIS 3.3.1 are still powered by their own services. In future
 releases, they may be migrated to a new version of this centralized report service.
 
 **Warning**: Developers should take note that the design of this service will be changing with
 future releases. Developers and implementers are discouraged from using this 1.0.1 version to build
 additional reports.
 
-Source: `Report CHANGELOG <https://github.com/OpenLMIS/openlmis-report/blob/master/CHANGELOG.md>`_
 
 Requisition Service 6.0.0
 -------------------------
 
-Source: `Requisition CHANGELOG
-<https://github.com/OpenLMIS/openlmis-requisition/blob/master/CHANGELOG.md>`_
-
 Stock Management 3.0.0
 ----------------------
 
-Source: `Stock Management CHANGELOG
-<https://github.com/OpenLMIS/openlmis-stockmanagement/blob/master/CHANGELOG.md>`_
-
 Service Util 3.1.0
 ------------------
-
-We now use an updated library for shared Java code called `service-util
-<https://github.com/OpenLMIS/openlmis-service-util>`_.
-
-Source: `Report CHANGELOG <https://github.com/OpenLMIS/openlmis-service-util/blob/master/CHANGELOG.md>`_
-
-Components with No Changes
-==========================
-
-Other tooling components have not changed, including: the `logging service
-<https://github.com/OpenLMIS/openlmis-rsyslog>`_, the Consul-friendly distribution of
-`nginx <https://github.com/OpenLMIS/openlmis-nginx>`_, the docker `Postgres 9.6-postgis image
-<https://github.com/OpenLMIS/postgres>`_, and the docker `scalyr image
-<https://github.com/OpenLMIS/openlmis-scalyr>`_.
-
-Contributions
-=============
-
-Many organizations and individuals around the world have contributed to OpenLMIS version 3 by
-serving on our committees (Governance, Product and Technical), requesting improvements, suggesting features and writing code and documentation. Please visit our GitHub repos to see the list of individual contributors on the OpenLMIS codebase. If anyone who contributed in GitHub is missing, please contact the Community Manager.
-
-Thanks to the Malawi implementation team who has continued to contribute a number of changes
-that have global shared benefit.
-
-Further Resources
-=================
-
-We are excited to announce the release of the first iteration of the Implementer Toolkit on the `OpenLMIS website <http://openlmis.org/get-started/implementer-toolkit/>`_.  Learn more about the `OpenLMIS Community <http://openlmis.org/about/community/>`_ and how to get involved!
