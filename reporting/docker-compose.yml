@@ -40,7 +40,8 @@ services:
       && chmod -R 0640 /tmp/nifi-libs/*
       && cp /tmp/nifi-libs/* lib/
       && /tmp/nifi-scripts/download-toolkit.sh ${OL_NIFI_VERSION}
-      && ../scripts/start.sh"
+      && /tmp/nifi-scripts/preload.sh init ${OL_NIFI_VERSION}&
+        ../scripts/start.sh"
     logging:
       driver: syslog
       options:
