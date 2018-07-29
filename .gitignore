@@ -3,3 +3,4 @@ logs/
 build/
 *.iml
 *.pyc
+settings.env
