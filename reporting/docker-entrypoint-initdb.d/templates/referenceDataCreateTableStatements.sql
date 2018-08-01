@@ -22,7 +22,7 @@ COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial
 --
 
 CREATE TABLE commodity_types (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     name character varying(255) NOT NULL,
     classificationsystem character varying(255) NOT NULL,
     classificationid character varying(255) NOT NULL,
@@ -37,7 +37,7 @@ ALTER TABLE commodity_types OWNER TO postgres;
 --
 
 CREATE TABLE facilities (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     active boolean NOT NULL,
     code text NOT NULL,
     comment text,
@@ -62,7 +62,7 @@ ALTER TABLE facilities OWNER TO postgres;
 --
 
 CREATE TABLE facility_operators (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     code text NOT NULL,
     description text,
     displayorder integer,
@@ -77,7 +77,7 @@ ALTER TABLE facility_operators OWNER TO postgres;
 --
 
 CREATE TABLE facility_type_approved_products (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     emergencyorderpoint double precision,
     maxperiodsofstock double precision NOT NULL,
     minperiodsofstock double precision,
@@ -94,7 +94,7 @@ ALTER TABLE facility_type_approved_products OWNER TO postgres;
 --
 
 CREATE TABLE facility_types (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     active boolean,
     code text NOT NULL,
     description text,
@@ -110,7 +110,7 @@ ALTER TABLE facility_types OWNER TO postgres;
 --
 
 CREATE TABLE geographic_levels (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     code text NOT NULL,
     levelnumber integer NOT NULL,
     name text
@@ -124,7 +124,7 @@ ALTER TABLE geographic_levels OWNER TO postgres;
 --
 
 CREATE TABLE geographic_zones (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     catchmentpopulation integer,
     code text NOT NULL,
     latitude numeric(8,5),
@@ -143,7 +143,7 @@ ALTER TABLE geographic_zones OWNER TO postgres;
 --
 
 CREATE TABLE ideal_stock_amounts (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     facilityid uuid NOT NULL,
     processingperiodid uuid NOT NULL,
     amount integer,
@@ -158,7 +158,7 @@ ALTER TABLE ideal_stock_amounts OWNER TO postgres;
 --
 
 CREATE TABLE lots (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     lotcode text NOT NULL,
     expirationdate date,
     manufacturedate date,
@@ -174,7 +174,7 @@ ALTER TABLE lots OWNER TO postgres;
 --
 
 CREATE TABLE orderable_display_categories (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     code character varying(255),
     displayname character varying(255),
     displayorder integer NOT NULL
@@ -188,7 +188,7 @@ ALTER TABLE orderable_display_categories OWNER TO postgres;
 --
 
 CREATE TABLE orderable_identifiers (
-    key character varying(255) NOT NULL,
+    key character varying(255) NOT NULL UNIQUE,
     value character varying(255) NOT NULL,
     orderableid uuid NOT NULL
 );
@@ -201,7 +201,7 @@ ALTER TABLE orderable_identifiers OWNER TO postgres;
 --
 
 CREATE TABLE orderables (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     fullproductname character varying(255),
     packroundingthreshold bigint NOT NULL,
     netcontent bigint NOT NULL,
@@ -220,7 +220,7 @@ ALTER TABLE orderables OWNER TO postgres;
 --
 
 CREATE TABLE processing_periods (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     description text,
     enddate date NOT NULL,
     name text NOT NULL,
@@ -236,7 +236,7 @@ ALTER TABLE processing_periods OWNER TO postgres;
 --
 
 CREATE TABLE processing_schedules (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     code text NOT NULL,
     description text,
     modifieddate timestamp with time zone,
@@ -251,7 +251,7 @@ ALTER TABLE processing_schedules OWNER TO postgres;
 --
 
 CREATE TABLE program_orderables (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     active boolean NOT NULL,
     displayorder integer NOT NULL,
     dosesperpatient integer,
@@ -270,7 +270,7 @@ ALTER TABLE program_orderables OWNER TO postgres;
 --
 
 CREATE TABLE programs (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     active boolean,
     code character varying(255),
     description text,
@@ -301,7 +301,7 @@ ALTER TABLE requisition_group_members OWNER TO postgres;
 --
 
 CREATE TABLE requisition_group_program_schedules (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     directdelivery boolean NOT NULL,
     dropofffacilityid uuid,
     processingscheduleid uuid NOT NULL,
@@ -317,7 +317,7 @@ ALTER TABLE requisition_group_program_schedules OWNER TO postgres;
 --
 
 CREATE TABLE requisition_groups (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     code text NOT NULL,
     description text,
     name text NOT NULL,
@@ -332,7 +332,7 @@ ALTER TABLE requisition_groups OWNER TO postgres;
 --
 
 CREATE TABLE stock_adjustment_reasons (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     additive boolean,
     description text,
     displayorder integer,
@@ -348,7 +348,7 @@ ALTER TABLE stock_adjustment_reasons OWNER TO postgres;
 --
 
 CREATE TABLE supervisory_nodes (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     code text NOT NULL,
     description text,
     name text NOT NULL,
@@ -364,7 +364,7 @@ ALTER TABLE supervisory_nodes OWNER TO postgres;
 --
 
 CREATE TABLE supply_lines (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     description text,
     programid uuid NOT NULL,
     supervisorynodeid uuid NOT NULL,
@@ -394,7 +394,7 @@ ALTER TABLE supported_programs OWNER TO postgres;
 --
 
 CREATE TABLE trade_item_classifications (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     classificationsystem character varying(255) NOT NULL,
     classificationid character varying(255) NOT NULL,
     tradeitemid uuid NOT NULL
@@ -408,7 +408,7 @@ ALTER TABLE trade_item_classifications OWNER TO postgres;
 --
 
 CREATE TABLE trade_items (
-    id uuid NOT NULL,
+    id uuid NOT NULL UNIQUE,
     manufactureroftradeitem character varying(255) NOT NULL,
     gtin text
 );
