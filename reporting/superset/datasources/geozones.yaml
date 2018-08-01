@@ -1,0 +1,33 @@
+databases:
+- database_name: open_lmis_reporting
+  expose_in_sqllab: true
+  extra: "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {}\r\n}\r\n"
+  sqlalchemy_uri: postgresql+psycopg2://postgres:p@ssw0rd@db:5432/open_lmis_reporting
+  tables:
+  - columns:
+    - {avg: true, column_name: catchmentpopulation, groupby: true, sum: true, type: INTEGER}
+    - {avg: true, column_name: latitude, groupby: true, sum: true, type: 'NUMERIC(8,
+        5)'}
+    - {avg: true, column_name: longitude, groupby: true, sum: true, type: 'NUMERIC(8,
+        5)'}
+    - {column_name: boundary, groupby: true, type: UNKNOWN}
+    - {column_name: code, groupby: true, type: TEXT}
+    - {column_name: id, groupby: true, type: UUID}
+    - {column_name: levelid, groupby: true, type: UUID}
+    - {column_name: name, groupby: true, type: TEXT}
+    - {column_name: parentid, groupby: true, type: UUID}
+    default_endpoint: ''
+    description: ''
+    metrics:
+    - {expression: AVG(catchmentpopulation), metric_name: avg__catchmentpopulation,
+      metric_type: avg}
+    - {expression: AVG(latitude), metric_name: avg__latitude, metric_type: avg}
+    - {expression: AVG(longitude), metric_name: avg__longitude, metric_type: avg}
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    - {expression: SUM(catchmentpopulation), metric_name: sum__catchmentpopulation,
+      metric_type: sum}
+    - {expression: SUM(latitude), metric_name: sum__latitude, metric_type: sum}
+    - {expression: SUM(longitude), metric_name: sum__longitude, metric_type: sum}
+    schema: ''
+    sql: ''
+    table_name: geographic_zones
