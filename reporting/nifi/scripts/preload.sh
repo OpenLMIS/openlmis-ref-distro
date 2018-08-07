@@ -73,15 +73,21 @@ importProcessGroups() {
   local returnCode=0
 
   # Get the list of registries and their IDs from NiFi
-  local registryDetails=($(${cliPath} nifi list-reg-clients -u "${NIFI_BASE_URL}" | sed '1,3d' | cut -d " " -f 4,7 -s))
-  # Resultant array has elements with even indexes being the names of the registries and odd elements IDs
+  local listCmdOutput=$(${cliPath} nifi list-reg-clients -u "${NIFI_BASE_URL}" | sed '1,3d')
 
   if [ $? -eq 0 ]; then
+    # Use sed (with a regex) to extract the registry client names and IDs
+    # Example text for regex:
+    #
+    #      1   Some Registry Name   13f84457-0165-1000-23cc-300c3ad387bb   http://some.name:18080
+    #          (capture group 1)               (capture group 2)
+    #
+    local registryNames=($(echo "$listCmdOutput" | sed -r -E "s/^[0-9]+\s+(.*)\s+([0-9a-zA-Z\-]+)\s+.*$/\1/g"))
+    local registryIds=($(echo "$listCmdOutput" | sed -r -E "s/^[0-9]+\s+(.*)\s+([0-9a-zA-Z\-]+)\s+.*$/\2/g"))
     curRegistryIndex=0
-    while [ ${curRegistryIndex} -lt ${#registryDetails[@]} ]; do
-      local registryName="${registryDetails[${curRegistryIndex}]}"
-      curRegistryIndex=$[$curRegistryIndex+1]
-      local registryId="${registryDetails[${curRegistryIndex}]}"
+    while [ ${curRegistryIndex} -lt ${#registryIds[@]} ]; do
+      local registryName="${registryNames[${curRegistryIndex}]}"
+      local registryId="${registryIds[${curRegistryIndex}]}"
       curRegistryIndex=$[$curRegistryIndex+1]
 
       if [ -d ${PROC_GROUPS_DIR}/${registryName} ] && [ ! -z "$registryName" ] && [ ! -z "$registryId" ]; then
