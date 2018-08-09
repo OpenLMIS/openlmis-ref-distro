@@ -5,15 +5,12 @@
 Status: Stable with disclaimer
 ==============
 
-3.3.1 Patch release is recommended for users of OpenLMIS version 3.0.0 because the patch inclues a bug fix for requisition statuses when saved concurrently. 
+3.3.1 Patch release is recommended for users of OpenLMIS version 3.3.0 because the patch inclues a bug fix for requisition statuses when saved concurrently. 
 Disclaimer: The 3.3.1 Patch release does not contain any known blocking bugs. Full regression testing and manual performance testing was not conducted as part of the patch release. 
 
 Patch Release Notes
 =============
 3.3.1 Patch Release contains the bug fix for `OLMIS-4728 <https://openlmis.atlassian.net/browse/OLMIS-4728>`.
-
-For a full list of features and bug-fixes since 3.2.1, see `OpenLMIS 3.3.0 Jira tickets
-<https://openlmis.atlassian.net/issues/?jql=status%3DDone%20AND%20project%3DOLMIS%20AND%20fixVersion%3D3.3%20and%20type!%3DTest%20and%20type!%3DEpic%20ORDER%20BY%20%22Epic%20Link%22%20asc%2C%20key%20ASC>`_.
 
 For information about future planned releases, see the `Living Product Roadmap
 <https://openlmis.atlassian.net/wiki/display/OP/Living+Product+Roadmap>`_. Pull requests and
@@ -22,7 +19,7 @@ For information about future planned releases, see the `Living Product Roadmap
 Compatibility
 -------------
 
-Compatible with OpenLMIS 3.0.0
+Compatible with OpenLMIS 3.3.0
 
 Backwards-Compatible Except As Noted
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,7 +59,7 @@ To report a bug, see `Reporting Bugs
 New Features
 ============
 
-No new features were introduce with this patch release.
+No new features were introduced with this patch release.
 
 Changes to Existing Functionality
 =================================
@@ -89,7 +86,7 @@ Component Version Numbers
 ========================
 
 Version 3.3.1 of the Reference Distribution contains the following components and versions listed
-below. The Reference Distribution bundles these component together using Docker to create a complete
+below. The Reference Distribution bundles these components together using Docker to create a complete
 OpenLMIS instance. Each component has its own own public GitHub repository (source code) and
 DockerHub repository (release image). The Reference Distribution and components are versioned
 independently; for details see `Versioning and Releasing
