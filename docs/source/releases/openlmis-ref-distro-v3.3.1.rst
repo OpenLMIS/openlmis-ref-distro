@@ -10,7 +10,7 @@ Disclaimer: The 3.3.1 Patch release does not contain any known blocking bugs. Fu
 
 Patch Release Notes
 =============
-3.3.1 Patch Release contains the bug fix for `OLMIS-4728 <https://openlmis.atlassian.net/browse/OLMIS-4728>`.
+3.3.1 Patch Release contains the bug fix for - `OLMIS-4728 <https://openlmis.atlassian.net/browse/OLMIS-4728>`_.
 
 For information about future planned releases, see the `Living Product Roadmap
 <https://openlmis.atlassian.net/wiki/display/OP/Living+Product+Roadmap>`_. Pull requests and
