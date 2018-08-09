@@ -80,7 +80,7 @@ Test Coverage
 Manual regression tests were conducted using a set of 30 Zephyr tests tracked in Jira. One bug was
 found and resolved during testing. 
 See the test cycle for all regression test case executions for this patch release: `3.3.1 Patch Release Test Plan and Execution
-<https://openlmis.atlassian.net/wiki/spaces/OP/pages/413991014/Patch+Release+Test+Plan+v3.3.1>`.
+<https://openlmis.atlassian.net/wiki/spaces/OP/pages/413991014/Patch+Release+Test+Plan+v3.3.1>`_.
 
 Component Version Numbers
 ========================
