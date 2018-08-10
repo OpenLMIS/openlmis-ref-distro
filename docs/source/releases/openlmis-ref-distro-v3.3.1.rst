@@ -1,15 +1,15 @@
-===================================
+========================================
 3.3.1 Patch Release Notes - 17 July 2018
-===================================
+========================================
 
 Status: Stable with disclaimer
-==============
+==============================
 
 3.3.1 Patch release is recommended for users of OpenLMIS version 3.3.0 because the patch inclues a bug fix for requisition statuses when saved concurrently. 
 Disclaimer: The 3.3.1 Patch release does not contain any known blocking bugs. Full regression testing and manual performance testing was not conducted as part of the patch release. 
 
 Patch Release Notes
-=============
+===================
 3.3.1 Patch Release contains the bug fix for - `OLMIS-4728 <https://openlmis.atlassian.net/browse/OLMIS-4728>`_.
 
 For information about future planned releases, see the `Living Product Roadmap
@@ -70,7 +70,7 @@ changes which may require informing end-users and/or updating your customization
 - `OLMIS-4728 <https://openlmis.atlassian.net/browse/OLMIS-4728>`_: Requisition's properties can be overwritten when saved concurrently.
 
 Performance 
-========================
+===========
 
 No manual performance testing was conducted for this patch release.
 
@@ -83,7 +83,7 @@ See the test cycle for all regression test case executions for this patch releas
 <https://openlmis.atlassian.net/wiki/spaces/OP/pages/413991014/Patch+Release+Test+Plan+v3.3.1>`_.
 
 Component Version Numbers
-========================
+=========================
 
 Version 3.3.1 of the Reference Distribution contains the following components and versions listed
 below. The Reference Distribution bundles these components together using Docker to create a complete
