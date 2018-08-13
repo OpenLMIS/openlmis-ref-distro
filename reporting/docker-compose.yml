@@ -5,11 +5,17 @@ services:
     image: scalyr/scalyr-docker-agent
     env_file: ../settings.env
     volumes:
-      - ./scalyr/api_key.json:/etc/scalyr-agent-2/agent.d/api_key.json
-      - ./scalyr/server_host.json:/etc/scalyr-agent-2/agent.d/server_host.json
+      - ./scalyr/agent.d:/etc/scalyr-agent-2/agent.d
       - ${SCALYR_DOCKER_SOCK}:/var/scalyr/docker.sock
+      - syslog:/var/log/reporting
+
+  log:
+    image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
+    volumes:
+      - syslog:/var/log
+      - ./rsyslog/rsyslog.d:/etc/rsyslog.d
     ports:
-      - "6011:601"
+      - "${SYSLOG_UDP_PORT}:514/udp"
 
   consul:
     command: -server -bootstrap
@@ -24,8 +30,8 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://127.0.0.1:6011"
-    depends_on: [scalyr]
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [log]
 
   nifi:
     image: onaio/nifi:${OL_NIFI_VERSION}
@@ -42,8 +48,8 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://127.0.0.1:6011"
-    depends_on: [scalyr]
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [log]
 
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
@@ -56,8 +62,8 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://127.0.0.1:6011"
-    depends_on: [scalyr, consul]
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [log, consul]
 
   zookeeper:
     image: confluentinc/cp-zookeeper:${OL_ZOOKEEPER_VERSION}
@@ -68,8 +74,8 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://127.0.0.1:6011"
-    depends_on: [scalyr]
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [log]
 
   kafka:
     image: confluentinc/cp-kafka:${OL_KAFKA_VERSION}
@@ -81,8 +87,8 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://127.0.0.1:6011"
-    depends_on: [scalyr, zookeeper]
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [log, zookeeper]
 
   superset:
     image: amancevice/superset:${OL_SUPERSET_VERSION}
@@ -98,5 +104,9 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://127.0.0.1:6011"
-    depends_on: [scalyr, db]
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [log, db]
+
+volumes:
+  syslog:
+    external: false
