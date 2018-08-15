@@ -6,7 +6,7 @@ export REG_CLIENTS_DIR="$WORKING_DIR/preload/registries"
 export IMPORTED_REG_CLIENTS_DIR="/tmp/nifi-preload/registries"
 export PROC_GROUPS_DIR="$WORKING_DIR/preload/process-groups"
 export IMPORTED_PROC_GROUPS_DIR="/tmp/nifi-preload/process-groups"
-export NIFI_UP_RETRY_COUNT=50
+export NIFI_UP_RETRY_COUNT=240
 
 main() {
   if waitNifiAvailable ${NIFI_UP_RETRY_COUNT}; then
@@ -25,6 +25,7 @@ main() {
 }
 
 waitNifiAvailable() {
+  echo "Waiting for NiFi to be available"
   local maxTries=$1
   local retryCount=1
 
@@ -45,6 +46,7 @@ initialize() {
 }
 
 createRegClients() {
+  echo "Importing the Registry Clients"
   local nifiVersion=$1
   local cliPath=$(getCliPath "$nifiVersion")
   local returnCode=0
@@ -68,6 +70,7 @@ createRegClients() {
 }
 
 importProcessGroups() {
+  echo "Importing the Process Groups"
   local nifiVersion=$1
   local cliPath=$(getCliPath "$nifiVersion")
   local returnCode=0
@@ -120,5 +123,5 @@ getCliPath() {
   echo "/tmp/nifi-toolkit-${nifiVersion}/bin/cli.sh"
 }
 
-main "$@"
+main "$@" &
 exit $?
