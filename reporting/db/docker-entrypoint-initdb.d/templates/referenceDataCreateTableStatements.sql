@@ -1,7 +1,7 @@
 
 -- Referencedata create table statements
 -- Created by Craig Appl (cappl@ona.io)
--- Last Updated 29 July 2018
+-- Last Updated 14 August 2018
 --
 
 --
@@ -23,9 +23,9 @@ COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial
 
 CREATE TABLE commodity_types (
     id uuid NOT NULL UNIQUE,
-    name character varying(255) NOT NULL,
-    classificationsystem character varying(255) NOT NULL,
-    classificationid character varying(255) NOT NULL,
+    name character varying(255),
+    classificationsystem character varying(255),
+    classificationid character varying(255),
     parentid uuid
 );
 
@@ -38,39 +38,28 @@ ALTER TABLE commodity_types OWNER TO postgres;
 
 CREATE TABLE facilities (
     id uuid NOT NULL UNIQUE,
-    active boolean NOT NULL,
-    code text NOT NULL,
+    status boolean,
+    code character varying(255),
     comment text,
     description text,
-    enabled boolean NOT NULL,
+    enabled boolean,
     godowndate date,
     golivedate date,
-    name text,
+    name character varying(255),
     openlmisaccessible boolean,
-    geographiczoneid uuid NOT NULL,
-    operatedbyid uuid,
-    typeid uuid NOT NULL,
+    district character varying(255),
+    region character varying(255),
+    country character varying(255),
+    operator_code character varying(255),
+    operator_name character varying(255),
+    operator_id uuid,
+    type character varying(255),
     extradata jsonb,
     location public.geometry
 );
 
 
 ALTER TABLE facilities OWNER TO postgres;
-
---
--- Name: facility_operators; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
-CREATE TABLE facility_operators (
-    id uuid NOT NULL UNIQUE,
-    code text NOT NULL,
-    description text,
-    displayorder integer,
-    name text
-);
-
-
-ALTER TABLE facility_operators OWNER TO postgres;
 
 --
 -- Name: facility_type_approved_products; Type: TABLE; Schema: referencedata; Owner: postgres
@@ -88,55 +77,6 @@ CREATE TABLE facility_type_approved_products (
 
 
 ALTER TABLE facility_type_approved_products OWNER TO postgres;
-
---
--- Name: facility_types; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
-CREATE TABLE facility_types (
-    id uuid NOT NULL UNIQUE,
-    active boolean,
-    code text NOT NULL,
-    description text,
-    displayorder integer,
-    name text
-);
-
-
-ALTER TABLE facility_types OWNER TO postgres;
-
---
--- Name: geographic_levels; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
-CREATE TABLE geographic_levels (
-    id uuid NOT NULL UNIQUE,
-    code text NOT NULL,
-    levelnumber integer NOT NULL,
-    name text
-);
-
-
-ALTER TABLE geographic_levels OWNER TO postgres;
-
---
--- Name: geographic_zones; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
-CREATE TABLE geographic_zones (
-    id uuid NOT NULL UNIQUE,
-    catchmentpopulation integer,
-    code text NOT NULL,
-    latitude numeric(8,5),
-    longitude numeric(8,5),
-    name text,
-    levelid uuid NOT NULL,
-    parentid uuid,
-    boundary public.geometry
-);
-
-
-ALTER TABLE geographic_zones OWNER TO postgres;
 
 --
 -- Name: ideal_stock_amounts; Type: TABLE; Schema: referencedata; Owner: postgres
@@ -170,46 +110,29 @@ CREATE TABLE lots (
 ALTER TABLE lots OWNER TO postgres;
 
 --
--- Name: orderable_display_categories; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
-CREATE TABLE orderable_display_categories (
-    id uuid NOT NULL UNIQUE,
-    code character varying(255),
-    displayname character varying(255),
-    displayorder integer NOT NULL
-);
-
-
-ALTER TABLE orderable_display_categories OWNER TO postgres;
-
---
--- Name: orderable_identifiers; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
-CREATE TABLE orderable_identifiers (
-    key character varying(255) NOT NULL UNIQUE,
-    value character varying(255) NOT NULL,
-    orderableid uuid NOT NULL
-);
-
-
-ALTER TABLE orderable_identifiers OWNER TO postgres;
-
---
 -- Name: orderables; Type: TABLE; Schema: referencedata; Owner: postgres
 --
 
 CREATE TABLE orderables (
     id uuid NOT NULL UNIQUE,
     fullproductname character varying(255),
-    packroundingthreshold bigint NOT NULL,
-    netcontent bigint NOT NULL,
+    packroundingthreshold bigint,
+    netcontent bigint,
     code character varying(255),
-    roundtozero boolean NOT NULL,
+    roundtozero boolean,
     description character varying(255),
     extradata jsonb,
-    dispensableid uuid NOT NULL
+    dispensableid uuid,
+    programid character varying(255),
+    orderabledisplaydategoryid character varying(255),
+    orderablecategorydisplayname character varying(255),
+    orderablecategorydisplayorder character varying(255),
+    active boolean,
+    fullsupply boolean,
+    displayorder int,
+    dosesperpatient int,
+    priceperpack double precision,
+    tradeitemid character varying(255)
 );
 
 
@@ -225,45 +148,14 @@ CREATE TABLE processing_periods (
     enddate date NOT NULL,
     name text NOT NULL,
     startdate date NOT NULL,
-    processingscheduleid uuid NOT NULL
+    durationinmonths int,
+    processingscheduleid uuid NOT NULL,
+    processingschedulename character varying(255),
+    processingschedulecode character varying(255)
 );
 
 
 ALTER TABLE processing_periods OWNER TO postgres;
-
---
--- Name: processing_schedules; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
-CREATE TABLE processing_schedules (
-    id uuid NOT NULL UNIQUE,
-    code text NOT NULL,
-    description text,
-    modifieddate timestamp with time zone,
-    name text NOT NULL
-);
-
-
-ALTER TABLE processing_schedules OWNER TO postgres;
-
---
--- Name: program_orderables; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
-CREATE TABLE program_orderables (
-    id uuid NOT NULL UNIQUE,
-    active boolean NOT NULL,
-    displayorder integer NOT NULL,
-    dosesperpatient integer,
-    fullsupply boolean NOT NULL,
-    priceperpack numeric(19,2),
-    orderabledisplaycategoryid uuid NOT NULL,
-    orderableid uuid NOT NULL,
-    programid uuid NOT NULL
-);
-
-
-ALTER TABLE program_orderables OWNER TO postgres;
 
 --
 -- Name: programs; Type: TABLE; Schema: referencedata; Owner: postgres
@@ -275,9 +167,9 @@ CREATE TABLE programs (
     code character varying(255),
     description text,
     name text,
-    periodsskippable boolean NOT NULL,
+    periodsskippable boolean,
     shownonfullsupplytab boolean,
-    enabledatephysicalstockcountcompleted boolean NOT NULL,
+    enabledatephysicalstockcountcompleted boolean,
     skipauthorization boolean DEFAULT false
 );
 
@@ -393,26 +285,12 @@ ALTER TABLE supported_programs OWNER TO postgres;
 -- Name: trade_item_classifications; Type: TABLE; Schema: referencedata; Owner: postgres
 --
 
-CREATE TABLE trade_item_classifications (
-    id uuid NOT NULL UNIQUE,
-    classificationsystem character varying(255) NOT NULL,
-    classificationid character varying(255) NOT NULL,
-    tradeitemid uuid NOT NULL
-);
-
-
-ALTER TABLE trade_item_classifications OWNER TO postgres;
-
---
--- Name: trade_items; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
 CREATE TABLE trade_items (
     id uuid NOT NULL UNIQUE,
-    manufactureroftradeitem character varying(255) NOT NULL,
-    gtin text
+    classificationsystem character varying(255),
+    classificationid character varying(255),
+    manufactureroftradeitem character varying(255)
 );
 
 
 ALTER TABLE trade_items OWNER TO postgres;
-
