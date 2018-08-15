@@ -42,12 +42,7 @@ services:
       - ./nifi/libs:/tmp/nifi-libs
       - ./nifi/scripts:/tmp/nifi-scripts
     entrypoint: >
-      bash -c "chown -R nifi:nifi /tmp/nifi-libs/*
-      && chmod -R 0640 /tmp/nifi-libs/*
-      && cp /tmp/nifi-libs/* lib/
-      && /tmp/nifi-scripts/download-toolkit.sh ${OL_NIFI_VERSION}
-      && /tmp/nifi-scripts/preload.sh init ${OL_NIFI_VERSION}&
-        ../scripts/start.sh"
+      bash -c "/tmp/nifi-scripts/start.sh ${OL_NIFI_VERSION}"
     logging:
       driver: syslog
       options:
