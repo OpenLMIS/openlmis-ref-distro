@@ -1,5 +1,5 @@
 ====================================
-3.4.0 Release Notes - 13 August 2018
+3.4.0 Release Notes - 17 August 2018
 ====================================
 
 Status: Stable
@@ -15,8 +15,6 @@ Release Notes
 The OpenLMIS Community is excited to announce the **3.4.0 release** of OpenLMIS! It is another
 major milestone in the version 3 `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_
 that allows more functionality to be shared among the community of OpenLMIS implementers.
-
-
 
 For a full list of features and bug-fixes since 3.3.1, see `OpenLMIS 3.4.0 Jira tickets
 <https://openlmis.atlassian.net/issues/?jql=status%3DDone%20AND%20project%3DOLMIS%20AND%20fixVersion%3D3.4%20and%20type!%3DTest%20and%20type!%3DEpic%20ORDER%20BY%20%22Epic%20Link%22%20asc%2C%20key%20ASC>`_.
@@ -66,12 +64,30 @@ To report a bug, see `Reporting Bugs
 
 New Features
 ============
+3.4 offers a wide range of new features and enhancements:
 
+*Reporting*: The new reporting infrastructure is dockerized and deployed within the OpenLMIS deployment. See the Reporting service for more details.
 
+*Requisitions*: 
+
+- Configurable templates for one-click requisitions based on current stock on hand records within stock management. We call this a stock based requisition.
+- Ability to hide and add new products to improve end user usability.
+- Ability to convert requisitions without creating an order.
+- New R&R column to account for “additional quantities” from new demand.
+
+*Orders*: New FTP retry feature when orders fail to transmit initially.
+
+*User Management*:
+
+- New “opting out” feature for email notifications. 
+- Improving the user profile so that users can manage their own data.
+- New reset password options.
+- New user profile information (roles and rights).
+
+*Notifications*: Redesigned to support more personalization and future work on supporting more channels.
 
 Changes to Existing Functionality
 =================================
-
 
 
 See `all 3.4.0 issues tagged 'UIChange' in Jira <https://openlmis.atlassian.net/issues/?jql=status%3DDone%20AND%20project%3DOLMIS%20AND%20fixVersion%3D3.4%20and%20type!%3DTest%20and%20type!%3DEpic%20and%20labels%20IN%20(UIChange)%20ORDER%20BY%20type%20ASC%2C%20priority%20DESC%2C%20key%20ASC>`_.
@@ -250,6 +266,6 @@ that have global shared benefit.
 Further Resources
 =================
 
-We are excited to announce the release of the first iteration of the Implementer Toolkit on the
- `OpenLMIS website <http://openlmis.org/get-started/implementer-toolkit/>`_.  Learn more about
+Please see the Implementer Toolkit on the
+ `OpenLMIS website <http://openlmis.org/get-started/implementer-toolkit/>`_ to learn more about best practicies in implementing OpenLMIS.  Also, learn more about
  the `OpenLMIS Community <http://openlmis.org/about/community/>`_ and how to get involved!
