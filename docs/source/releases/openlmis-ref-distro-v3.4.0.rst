@@ -121,7 +121,13 @@ The following chart displays the 3.4.0 UI loading times in seconds for both 3.3.
 Test Coverage
 =============
 
-
+OpenLMIS 3.4.0 is the second release using the new `Release Candidate process
+<http://docs.openlmis.org/en/latest/conventions/versioningReleasing.html#release-process>`_. As part
+of this process, full manual test cycles were executed for each release candidate published. Any critical or blocker bugs found during the release candidate were resolved in a bug fix cycle with a full manual test cycle executed before releasing the final version 3.4.0.
+ Manual tests were conducted using a set of 142 Zephyr tests tracked in Jira. A total of 34 bugs were
+found during testing. 
+See the spreadsheet of all test executions for this release:
+`3.4.0-regression-tests.csv <https://raw.githubusercontent.com/OpenLMIS/openlmis-ref-distro/master/docs/source/releases/3.4.0-regression-tests.csv>`_.
 
 All Changes by Component
 ========================
