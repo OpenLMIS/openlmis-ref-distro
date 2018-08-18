@@ -97,7 +97,7 @@ changes impact developers and systems integrating with OpenLMIS:
 - Notification Service v4.0.0 - Changes to the user contact details resource and the /api/notification endpoint: `notification changelog <https://github.com/OpenLMIS/openlmis-notification/blob/master/CHANGELOG.md>`_
 - Reference Data Service v11.0.0 - Changes to the user resource structure: `ref-data changelog <https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
 - Requisition Service v7.0.0 - Changes to the periodsForInitiate endpoint: `requisition changelog <https://github.com/OpenLMIS/openlmis-requisition/blob/master/CHANGELOG.md>`_
-- Stock Management UI Service v2.0.0 - Renamed admin-reason-modal module: `stockmanagement changelog <https://github.com/OpenLMIS/openlmis-stockmanagement-ui/blob/master/CHANGELOG.md>`_
+- Stock Management UI Service v3.1.0 - Renamed admin-reason-modal module: `stockmanagement changelog <https://github.com/OpenLMIS/openlmis-stockmanagement-ui/blob/master/CHANGELOG.md>`_
 - UI Components Service v6.0.0 - Changed syntax for using datepicker: `ui-components changelog <https://github.com/OpenLMIS/openlmis-ui-components/blob/master/CHANGELOG.md>`_
 - Dev-UI Service v8.0.0 - Replaced syncTransifex grunt option: `dev-ui changelog <https://github.com/OpenLMIS/dev-ui/blob/master/CHANGELOG.md>`_
 
@@ -220,7 +220,7 @@ Requisition-UI 5.4.0
 
 `Requisition-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/CHANGELOG.md>`_
 
-Stock Management-UI 2.0.0
+Stock Management-UI 3.1.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Stock Management-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-stockmanagement-ui/blob/master/CHANGELOG.md>`_
