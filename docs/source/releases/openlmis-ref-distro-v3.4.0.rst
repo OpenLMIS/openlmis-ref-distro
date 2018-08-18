@@ -181,7 +181,7 @@ Stock Management 3.1.0
 
 `Stock Management CHANGELOG <https://github.com/OpenLMIS/openlmis-stockmanagement/blob/master/CHANGELOG.md>`_
 
-Reference UI 5.4.0
+Reference UI 5.1.0
 ------------------
 
 `The Reference UI <https://github.com/OpenLMIS/openlmis-reference-ui/>`_
