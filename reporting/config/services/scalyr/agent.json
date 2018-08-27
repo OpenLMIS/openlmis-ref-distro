@@ -1,0 +1,34 @@
+// Configuration for the Scalyr Agent. For help:
+//
+// https://www.scalyr.com/help/scalyr-agent-2
+
+{
+    import_vars: [ "SCALYR_API_KEY", "VIRTUAL_HOST"],
+
+    // Enter a "Write Logs" api key for your account. These are available at https://www.scalyr.com/keys
+    api_key: "$SCALYR_API_KEY",
+
+    // Fields describing this server. These fields are attached to each log message, and
+    // can be used to filter data from a particular server or group of servers.
+    server_attributes: {
+       // Fill in this field if you'd like to override the server's hostname.
+       serverHost: "$VIRTUAL_HOST",
+       org: "OpenLMIS",
+
+       // You can add whatever additional fields you'd like.
+       // tier: "production"
+    }
+
+    // Log files to upload to Scalyr. You can use '*' wildcards here.
+    logs: [
+       { path: "/var/log/reporting/messages", attributes: {parser: "systemLog"} }
+    ],
+
+    global_monitor_sample_interval: "5",
+
+    monitors: [
+      {
+        module: "scalyr_agent.builtin_monitors.docker_monitor"
+      }
+    ]
+  }
