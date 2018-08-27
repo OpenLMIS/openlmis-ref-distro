@@ -19,7 +19,6 @@ services:
     image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
     volumes:
       - syslog:/var/log
-      - ./rsyslog/rsyslog.d:/etc/rsyslog.d
     ports:
       - "${SYSLOG_UDP_PORT}:514/udp"
 
