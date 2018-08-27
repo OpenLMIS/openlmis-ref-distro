@@ -55,11 +55,17 @@ services:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [log]
 
+  db-config-container:
+    build:
+      context: ./db
+    volumes:
+      - db-config-volume:/docker-entrypoint-initdb.d
+
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
     env_file: ../settings.env
     volumes:
-        - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        - db-config-volume:/docker-entrypoint-initdb.d
     environment:
       - SUPERSET_POSTGRES_USER=${SUPERSET_POSTGRES_USER}
       - SUPERSET_POSTGRES_PASSWORD=${SUPERSET_POSTGRES_PASSWORD}
@@ -116,4 +122,6 @@ volumes:
   syslog:
     external: false
   config-volume:
+    external: false
+  db-config-volume:
     external: false
