@@ -45,10 +45,10 @@ services:
       - "8080:8080"
       - "9443:9443"
     volumes:
-      - ./nifi/libs:/tmp/nifi-libs
-      - ./nifi/scripts:/tmp/nifi-scripts
+      - config-volume:/config
+      - ./nifi-cache:/tmp/nifi-docker-cache
     entrypoint: >
-      bash -c "/tmp/nifi-scripts/start.sh ${OL_NIFI_VERSION}"
+      bash -c "/config/nifi/scripts/start.sh ${OL_NIFI_VERSION}"
     logging:
       driver: syslog
       options:
