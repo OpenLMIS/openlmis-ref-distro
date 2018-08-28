@@ -1,10 +1,15 @@
 #!/bin/bash
 export NIFI_TOOLKIT_DOWNLOAD_MAX_RETRIES=3
+export NIFI_DOCKER_TMP_DIR=/tmp/nifi-docker-cache
 
 downloadNifiToolkit() {
   local nifiVersion=$1
   local retryCount=$2
-  local downloadDir=/tmp/nifi-scripts/cache
+  local downloadDir=$NIFI_DOCKER_TMP_DIR
+  if ! [[ -w "$downloadDir" ]]; then
+    echo "$downloadDir is not writable. Setting the download dir to /tmp"
+    downloadDir=/tmp
+  fi
   local archivePath=${downloadDir}/nifi-toolkit-${nifiVersion}.tar.gz
 
   if [ "$retryCount" -gt "$NIFI_TOOLKIT_DOWNLOAD_MAX_RETRIES" ]; then

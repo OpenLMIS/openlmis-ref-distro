@@ -1,11 +1,17 @@
 version: "3.3"
 
 services:
+  config-container:
+    build:
+      context: ./config
+    volumes:
+      - config-volume:/config
+
   scalyr:
-    image: scalyr/scalyr-docker-agent
+    image: openlmis/scalyr
     env_file: ../settings.env
     volumes:
-      - ./scalyr/agent.d:/etc/scalyr-agent-2/agent.d
+      - config-volume:/config
       - ${SCALYR_DOCKER_SOCK}:/var/scalyr/docker.sock
       - syslog:/var/log/reporting
 
@@ -13,7 +19,6 @@ services:
     image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
     volumes:
       - syslog:/var/log
-      - ./rsyslog/rsyslog.d:/etc/rsyslog.d
     ports:
       - "${SYSLOG_UDP_PORT}:514/udp"
 
@@ -39,21 +44,27 @@ services:
       - "8080:8080"
       - "9443:9443"
     volumes:
-      - ./nifi/libs:/tmp/nifi-libs
-      - ./nifi/scripts:/tmp/nifi-scripts
+      - config-volume:/config
+      - ./nifi-cache:/tmp/nifi-docker-cache
     entrypoint: >
-      bash -c "/tmp/nifi-scripts/start.sh ${OL_NIFI_VERSION}"
+      bash -c "/config/nifi/scripts/start.sh ${OL_NIFI_VERSION}"
     logging:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [log]
 
+  db-config-container:
+    build:
+      context: ./db
+    volumes:
+      - db-config-volume:/docker-entrypoint-initdb.d
+
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
     env_file: ../settings.env
     volumes:
-        - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        - db-config-volume:/docker-entrypoint-initdb.d
     environment:
       - SUPERSET_POSTGRES_USER=${SUPERSET_POSTGRES_USER}
       - SUPERSET_POSTGRES_PASSWORD=${SUPERSET_POSTGRES_PASSWORD}
@@ -93,9 +104,10 @@ services:
     ports:
         - "8088:8088"
     volumes:
-      - ./superset:/etc/superset
+      - config-volume:/config
     command: >
-        bash -c "sleep 30 && fabmanager create-admin --app superset --username ${SUPERSET_ADMIN_USERNAME} --firstname Admin --lastname Admin --email noreply --password ${SUPERSET_ADMIN_PASSWORD}
+        bash -c "cp -r /config/superset /etc/
+        && sleep 30 && fabmanager create-admin --app superset --username ${SUPERSET_ADMIN_USERNAME} --firstname Admin --lastname Admin --email noreply --password ${SUPERSET_ADMIN_PASSWORD}
         && superset db upgrade
         && superset import_datasources -p /etc/superset/datasources/geozones.yaml
         && superset init && gunicorn -w 2 --timeout 60 -b 0.0.0.0:8088 --limit-request-line 0 --limit-request-field_size 0 superset:app"
@@ -107,4 +119,8 @@ services:
 
 volumes:
   syslog:
+    external: false
+  config-volume:
+    external: false
+  db-config-volume:
     external: false
