@@ -49,7 +49,6 @@ CREATE TABLE facilities (
     district character varying(255),
     region character varying(255),
     country character varying(255),
-    openlmisaccessible character varying(255),
     golivedate date,
     godowndate date,
     openlmisaccessible boolean,
@@ -295,7 +294,7 @@ ALTER TABLE users OWNER TO postgres;
 --
 
 CREATE TABLE roles (
-    id uuid NOT NULL UNIQUE,
+    id uuid NOT NULL,
     name character varying(255),
     description character varying(255),
     rightsname character varying(255),
@@ -341,8 +340,7 @@ CREATE TABLE requisitiongroups (
     programname character varying(255),
     programid uuid,
     processingscheduleid uuid,
-    directdelivery boolean,
-    memberfacilityid jsonb
+    directdelivery boolean
 );
 
 
