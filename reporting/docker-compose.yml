@@ -62,7 +62,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [consul, nifi, superset, log, config-container]
+    depends_on: [consul, log, config-container]
 
   nifi:
     image: onaio/nifi:${OL_NIFI_VERSION}
@@ -78,7 +78,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [log]
+    depends_on: [log, nginx]
 
   db-config-container:
     build:
@@ -141,7 +141,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [log, db]
+    depends_on: [log, db, nginx]
 
 volumes:
   syslog:
