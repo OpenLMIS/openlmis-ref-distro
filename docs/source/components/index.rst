@@ -22,12 +22,21 @@ Obtaining an access token:
 1. Go to the Auth service's `POST /api/oauth/token <https://test.openlmis.org/auth/docs/>`_
 2. Click :code:`Try it` in the top right of the tab
 3. In the Authentication section, enter username :code:`user-client` and password :code:`changeme`
-4. In the Query Parameters section, enter username :code:`administrator` and password :code:`password`
+4. In the Query Parameters section, enter username :code:`administrator` and password
+  :code:`password`
 5. Click :code:`Authorize` under :code:`password`
 6. Enter the username :code:`administrator` and password :code:`password`
 7. Click :code:`Post`
-8. In the :code:`Response` box, copy the UUID.  e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` copy :code:`a93bcab7-aaf5-43fe-9301-76c526698898` to use later
-9. Paste the UUID you just copied into any endpoint's :code:`access_token` field or into :code:`Authorization` with *Bearer* e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"` -> :code:`Authorization: Bearer a93bcab7-aaf5-43fe-9301-76c526698898`
+8. In the :code:`Response` box, copy the UUID value of the :code:`access_token`.
+  e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"`
+  copy :code:`a93bcab7-aaf5-43fe-9301-76c526698898` to use later
+9. Use the Authorization Token you just copied with every request.
+  * In the live documentation using :code:`Try It`, type :code:`bearer` followed by the
+    :code:`access_token` you copied earlier into the :code:`Authorization` header.
+    e.g. :code:`bearer a93bcab7-aaf5-43fe-9301-76c526698898`
+  * Alternatively, in any other HTTP request tool (e.g. Postman) you may append it in the query
+    parameters using the :code:`access_token` field.
+    e.g. :code:`GET https://test.openlmis.org/api/facilities?access_token=a93bcab7-aaf5-43fe-9301-76c526698898`
 
 ************
 Auth Service
