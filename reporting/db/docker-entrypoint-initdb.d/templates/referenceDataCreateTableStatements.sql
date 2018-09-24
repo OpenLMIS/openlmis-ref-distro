@@ -54,8 +54,8 @@ CREATE TABLE facilities (
     openlmisaccessible boolean,
     comment text,
     description text,
-    extradata jsonb,
-    location public.geometry
+    extradata json,
+    location character varying(255)
 );
 
 
@@ -129,7 +129,7 @@ CREATE TABLE orderables (
     dosesperpatient int,
     priceperpack double precision,
     tradeitemid character varying(255),
-    extradata jsonb
+    extradata json
 );
 
 
@@ -330,7 +330,7 @@ ALTER TABLE supervisorynodes OWNER TO postgres;
 --
 
 CREATE TABLE requisitiongroups (
-    id uuid NOT NULL UNIQUE,
+    id character varying(255) NOT NULL UNIQUE,
     name character varying(255),
     code character varying(255),
     facilityid uuid,
@@ -338,8 +338,8 @@ CREATE TABLE requisitiongroups (
     supervisorynodename character varying(255),
     supervisorynodecode character varying(255),
     programname character varying(255),
-    programid uuid,
-    processingscheduleid uuid,
+    programid character varying(255),
+    processingscheduleid character varying(255),
     directdelivery boolean
 );
 
@@ -360,3 +360,104 @@ CREATE TABLE supplylines (
 
 
 ALTER TABLE supplylines OWNER TO postgres;
+
+--
+-- Name: requisitions; Type: TABLE; Schema: referencedata; Owner: postgres
+--
+
+CREATE TABLE requisitions (
+  id uuid,
+  created_date date,
+  modified_date date,
+  emergency_status boolean,
+  supplying_facility varchar,
+  supervisory_node varchar,
+  facility_id varchar,
+  facility_code varchar,
+  facility_name varchar,
+  facilty_active_status boolean,
+  district_id varchar,
+  district_code varchar,
+  district_name varchar,
+  region_id varchar,
+  region_code varchar,
+  region_name varchar,
+  country_id varchar,
+  country_code varchar,
+  country_name varchar,
+  facility_type_id varchar,
+  facility_type_code varchar,
+  facility_type_name varchar,
+  facility_operator_id varchar,
+  facility_operator_code varchar,
+  facility_operator_name varchar,
+  program_id varchar,
+  program_code varchar,
+  program_name varchar,
+  program_active_status boolean,
+  processing_period_id varchar,
+  processing_period_name varchar,
+  processing_period_startdate varchar,
+  processing_period_enddate date,
+  processing_schedule_id varchar,
+  processing_schedule_code varchar,
+  processing_schedule_name varchar 
+);
+
+ALTER TABLE requisitions OWNER TO postgres;
+
+--
+-- Name: requisition_line_item; Type: TABLE; Schema: referencedata; Owner: postgres
+--
+
+CREATE TABLE requisition_line_item (
+  requisition_line_item_id uuid,
+  requisition_id varchar,
+  orderable_id varchar,
+  product_code varchar,
+  full_product_name varchar,
+  trade_item_id varchar,
+  beginning_balance double precision,
+  total_consumed_quantity double precision,
+  average_consumption double precision,
+  adjusted_consumption double precision,
+  total_losses_and_adjustments double precision,
+  stock_on_hand double precision,
+  total_stockout_days double precision,
+  max_periods_of_stock double precision,
+  calculated_order_quantity double precision,
+  requested_quantity double precision,
+  approved_quantity double precision,
+  packs_to_ship double precision,
+  price_per_pack double precision,
+  total_cost double precision,
+  total_received_quantity double precision
+);
+
+ALTER TABLE requisition_line_item OWNER TO postgres;
+
+--
+-- Name: requisitions_status_history; Type: TABLE; Schema: referencedata; Owner: postgres
+--
+
+CREATE TABLE requisitions_status_history (
+  requisition_id varchar,
+  status varchar,
+  author_id varchar,
+  created_date date
+);
+
+ALTER TABLE requisitions_status_history OWNER TO postgres;
+
+--
+-- Name: requisitions_adjustment_lines; Type: TABLE; Schema: referencedata; Owner: postgres
+--
+
+CREATE TABLE requisitions_adjustment_lines (
+  id varchar,
+  reasonId varchar,
+  quantity int,
+  requisition_line_item_id varchar
+);
+
+ALTER TABLE requisitions_adjustment_lines OWNER TO postgres;
