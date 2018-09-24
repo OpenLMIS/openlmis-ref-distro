@@ -31,6 +31,7 @@ Obtaining an access token:
    e.g. :code:`"access_token": "a93bcab7-aaf5-43fe-9301-76c526698898"`
    copy :code:`a93bcab7-aaf5-43fe-9301-76c526698898` to use later
 9. Use the Authorization Token you just copied with every request.
+
    * In the live documentation using :code:`Try It`, type :code:`bearer` followed by the
      :code:`access_token` you copied earlier into the :code:`Authorization` header.
      e.g. :code:`bearer a93bcab7-aaf5-43fe-9301-76c526698898`
