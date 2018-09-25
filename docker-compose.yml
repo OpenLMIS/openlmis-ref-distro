@@ -98,6 +98,17 @@ services:
     volumes:
       - 'service-config:/config'
     depends_on: [log]
+
+  hapifhir:
+    restart: always
+    image: openlmis/hapifhir:${OL_HAPIFHIR_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+      spring_profiles_active: ${spring_profiles_active}
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log]
     
   diagnostics:
     image: openlmis/diagnostics:${OL_DIAGNOSTICS_VERSION}
