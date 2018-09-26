@@ -154,6 +154,7 @@ creating an additional service and adding it in to your OpenLMIS instance. See t
 ### What's not accepted
 
 * Code that breaks the build or disables / removes needed tests to pass
+  * In case developers expect they may not be able to fix Sonar/tests/build issues within a working day, breaking changes should be reverted.
 * Code that doesn't pass our Quality Gate - see the [Style Guide](https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md)
 and [Sonar](http://sonar.openlmis.org/).
 * Code that belongs in an Extension or a New Service
