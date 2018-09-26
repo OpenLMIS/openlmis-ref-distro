@@ -55,8 +55,8 @@ services:
     volumes:
       - config-volume:/config
     entrypoint: >
-      sh -c "cp -r /config/nginx/consul-template/* /etc/consul-template/
-      && openssl dhparam -dsaparam -out /etc/ssl/certs/dhparam.pem 4096
+      sh -c "openssl dhparam -dsaparam -out /etc/ssl/certs/dhparam.pem 4096
+      && cp -r /config/nginx/consul-template/* /etc/consul-template/
       && /home/run.sh"
     logging:
       driver: syslog
