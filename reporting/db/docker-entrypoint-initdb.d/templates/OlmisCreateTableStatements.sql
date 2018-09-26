@@ -1,7 +1,8 @@
 
--- Referencedata create table statements
+-- Olmis create table statements
 -- Created by Craig Appl (cappl@ona.io)
--- Last Updated 31 August 2018
+-- Modified by A. Maritim (amaritim@ona.io) and J. Wambere (jwambere@ona.io)
+-- Last Updated 24 September 2018
 --
 
 --
@@ -461,3 +462,64 @@ CREATE TABLE requisitions_adjustment_lines (
 );
 
 ALTER TABLE requisitions_adjustment_lines OWNER TO postgres;
+
+--
+-- Name: sohlineitems; Type: TABLE; Schema: referencedata; Owner: postgres
+--
+
+CREATE TABLE sohlineitems (
+    stockCardID varchar,
+    facilityID varchar,
+    facilityCode varchar,
+    facilityName varchar,
+    facilityActive boolean,
+    facilityEnabled boolean,
+    facilityType varchar,
+    programID varchar,
+    programCode varchar,
+    programName varchar,
+    orderableID varchar,
+    productCode varchar,
+    fullProductName varchar,
+    netContent int,
+    lastUpdate varchar,
+    quantity int,
+    reasonName varchar,
+    reasonType varchar,
+    reasonCategory varchar,
+    reasonID varchar,
+    occurredDate varchar,
+    stockOnHand int,
+    sohlineitems_id varchar,
+    source varchar,
+    destination varchar
+);
+
+ALTER TABLE sohlineitems OWNER TO postgres;
+
+--
+-- Name: facility_acess; Type: TABLE; Schema: referencedata; Owner: postgres
+--
+
+CREATE TABLE facility_acess (
+    username varchar,
+    facility varchar
+);
+
+ALTER TABLE facility_acess OWNER TO postgres;
+
+--
+-- Name: stock_adjustment_reasons; Type: TABLE; Schema: referencedata; Owner: postgres
+--
+
+CREATE TABLE stock_adjustment_reasons (
+  id varchar,
+  name varchar,
+  additive boolean,
+  displayorder int,
+  description text,
+  programid varchar,
+  programname varchar
+);
+
+ALTER TABLE stock_adjustment_reasons OWNER TO postgres;
