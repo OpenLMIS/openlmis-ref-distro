@@ -117,4 +117,10 @@ databases:
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     schema: ''
     table_name: facilities
-
+  - columns:
+    - {column_name: facility, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: username, filterable: true, groupby: true, type: VARCHAR}
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: facility_acess
