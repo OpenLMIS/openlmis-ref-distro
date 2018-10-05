@@ -46,7 +46,7 @@ databases:
     metrics:
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     schema: ''
-    table_name: facility_acess
+    table_name: facility_access
   - columns:
     - {avg: true, column_name: netcontent, sum: true, type: INTEGER}
     - {avg: true, column_name: quantity, sum: true, type: INTEGER}

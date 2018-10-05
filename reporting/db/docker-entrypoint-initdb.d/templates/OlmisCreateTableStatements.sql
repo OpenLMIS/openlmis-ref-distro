@@ -498,15 +498,15 @@ CREATE TABLE sohlineitems (
 ALTER TABLE sohlineitems OWNER TO postgres;
 
 --
--- Name: facility_acess; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: facility_access; Type: TABLE; Schema: referencedata; Owner: postgres
 --
 
-CREATE TABLE facility_acess (
+CREATE TABLE facility_access (
     username varchar,
     facility varchar
 );
 
-ALTER TABLE facility_acess OWNER TO postgres;
+ALTER TABLE facility_access OWNER TO postgres;
 
 --
 -- Name: stock_adjustment_reasons; Type: TABLE; Schema: referencedata; Owner: postgres
