@@ -11,13 +11,22 @@ SECRET_KEY = 'thisISaSECRET_1234'
 AUTH_TYPE = AUTH_OAUTH
 
 OAUTH_PROVIDERS = [
-    {'name': 'openlmis', 'icon': 'fa-google', 
-     'remote_app': {
-         'consumer_key': 'tableau-wdc',
-         'consumer_secret': 'changeme',
-         'base_url': 'https://uat.openlmis.org/api/oauth',
-         'access_token_url': 'https://uat.openlmis.org/api/oauth/token',
-         'authorize_url': 'https://uat.openlmis.org/api/oauth/authorize?response_type=token'}
+    {   'name': 'openlmis',
+        'icon': 'fa-google',
+        'token_key':'access_token',
+        'remote_app': {
+            'consumer_key': 'tableau-wdc',
+            'consumer_secret': 'changeme',
+            'request_token_params': {
+                'scope': 'read write'
+            },
+            'access_token_method': 'POST',
+            'access_token_headers': {
+                'Authorization':'Basic dXNlci1jbGllbnQ6Y2hhbmdlbWU=='
+            },
+            'base_url': 'https://uat.openlmis.org/api/oauth',
+            'access_token_url': 'https://uat.openlmis.org/api/oauth/token?grant_type=implicit',
+            'authorize_url': 'https://uat.openlmis.org/api/oauth/authorize?'}
      }
 ]
 
