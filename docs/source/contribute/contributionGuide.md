@@ -211,6 +211,22 @@ JIRA/GitHub integration.
 While developing your code, be sure you follow the [Style Guide](https://github.com/OpenLMIS/openlmis-template-service/blob/master/STYLE-GUIDE.md)
 and keep your contribution specific to doing one thing.
 
+### Quality responsibilities
+The changes made by the developer should be covered by automated tests which have to follow the [Testing Guide](https://openlmis.readthedocs.io/en/latest/conventions/testing.html).
+The developers should make sure that all acceptance criteria are met and check whether their changes work before moving the ticket to QA.
+They should cooperate with the QA person and give them some tips on how to verify changes that are difficult to test.
+The developer should make the tester aware of potential issues or places that could be affected by their changes.
+
+DO | DON'T
+--- | ---
+cover changes by automated tests | leave changes without automated tests
+cover all acceptance criteria | skip any of the acceptance criteria
+initial manual testing | move changes to QA without any verification
+give important information | just assign the ticket to the QA
+cooperate with the QA | snub questions
+give advice on how to test difficult changes | leave the QA without any help
+warn about potential issues | conceal any gaps in the code
+
 ### Feature Flags
 
 This is a mechanism that can reduce branching code and merging large pull requests when working on some big
