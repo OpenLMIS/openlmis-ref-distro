@@ -22,10 +22,10 @@ OAUTH_PROVIDERS = [
             },
             'access_token_method': 'POST',
             'access_token_headers': {
-                'Authorization':'Basic dXNlci1jbGllbnQ6Y2hhbmdlbWU=='
+                'Authorization':'Basic dGFibGVhdS13ZGM6Y2hhbmdlbWU='
             },
             'base_url': 'https://uat.openlmis.org/api/oauth',
-            'access_token_url': 'https://uat.openlmis.org/api/oauth/token?grant_type=password',
+            'access_token_url': 'https://uat.openlmis.org/api/oauth/token?grant_type=code',
             'authorize_url': 'https://uat.openlmis.org/api/oauth/authorize?'}
      }
 ]
