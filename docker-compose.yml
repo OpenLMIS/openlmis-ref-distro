@@ -123,6 +123,10 @@ services:
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
     env_file: settings.env
+    networks:
+      default:
+        aliases:
+          - olmis-db
     depends_on: [consul]
 
   log:
