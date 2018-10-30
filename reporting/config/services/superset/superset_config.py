@@ -25,7 +25,7 @@ OAUTH_PROVIDERS = [
                 'Authorization':'Basic dGFibGVhdS13ZGM6Y2hhbmdlbWU='
             },
             'base_url': 'https://uat.openlmis.org/api/oauth',
-            'access_token_url': 'https://uat.openlmis.org/api/oauth/token?grant_type=code',
+            'access_token_url': 'https://uat.openlmis.org/api/oauth/token?grant_type=authorization_code',
             'authorize_url': 'https://uat.openlmis.org/api/oauth/authorize?'}
      }
 ]
