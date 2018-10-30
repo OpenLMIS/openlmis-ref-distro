@@ -55,6 +55,27 @@ Each bug submission should include an initial prioritization form the reporter. 
 
 When the bug is groomed and scheduled for work, the Product Manager will set the final priority level. See [Backlog Grooming](https://openlmis.atlassian.net/wiki/spaces/OP/pages/106627250/Backlog+Grooming) for details on the scheduling of work.
 
+#### Ticket exemplars
+
+The bugs listed are examples of bugs for their priorities. When completing exploratory testing and bugs are found, consider these bugs as references for how to record and prioritize bugs.
+
+**Blocker:**
+* OLMIS-3983 - Cannot access offline requisition
+* OLMIS-3509 - No error message when create user fails
+* OLMIS-3501 - I can select a program that is not supported by My Facility on the Create/Initiate page
+* OLMIS-2980 - Broken translations for Stock Management Adjustments page titles 
+* OLMIS-3508 - Batch approval sticky rows do not respond to scrolling
+
+**Critical:**
+* OLMIS-4076 - It's possible to submit a requisition twice: duplicate status changes
+* OLMIS-3500 - The black background is only the height of the window
+
+**Minor:**
+* OLMIS-3299 - Insufficient error message when submitting physical inventory with a future date
+* OLMIS-2792 - Cannot add Issue for Essential Meds - demo data issue
+* OLMIS-3987 - Long text not wrapped properly in modals
+* OLMIS-3746 - Source Comments input field not displayed correctly on Firefox
+
 ### Example Bug Report
 
 ```
