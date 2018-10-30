@@ -1,0 +1,16 @@
+{
+    "name": "referencedata-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+        "database.hostname": "olmis-db",
+        "database.port": "5432",
+        "database.user": "postgres",
+        "database.password": "p@ssw0rd",
+        "database.dbname" : "open_lmis",
+        "database.server.name": "dbserver1",
+        "table.whitelist": "referencedata.programs",
+        "database.history.kafka.bootstrap.servers": "kafka:29092",
+        "database.history.kafka.topic": "schema-changes.referencedata"
+    }
+}
