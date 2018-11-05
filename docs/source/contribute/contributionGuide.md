@@ -238,15 +238,23 @@ The developers should make sure that all acceptance criteria are met and check w
 They should cooperate with the QA person and give them some tips on how to verify changes that are difficult to test.
 The developer should make the tester aware of potential issues or places that could be affected by their changes.
 
-| DO                                           | DON'T                                       |
-|----------------------------------------------|---------------------------------------------|
-| cover changes by automated tests             | leave changes without automated tests       |
-| cover all acceptance criteria                | skip any of the acceptance criteria         |
-| initial manual testing                       | move changes to QA without any verification |
-| give important information                   | just assign the ticket to the QA            |
-| cooperate with the QA                        | snub questions                              |
-| give advice on how to test difficult changes | leave the QA without any help               |
-| warn about potential issues                  | conceal any gaps in the code                |
+**DO:**
+* cover changes by automated tests
+* cover all acceptance criteria
+* initial manual testing
+* give important information
+* cooperate with the QA
+* give advice on how to test difficult changes
+* warn about potential issues
+                  
+**DON'T:**
+* leave changes without automated tests
+* skip any of the acceptance criteria
+* move changes to QA without any verification
+* just assign the ticket to the QA
+* snub questions
+* leave the QA without any help
+* conceal any gaps in the code
 
 ### Feature Flags
 
