@@ -503,7 +503,8 @@ ALTER TABLE sohlineitems OWNER TO postgres;
 
 CREATE TABLE facility_access (
     username varchar,
-    facility varchar
+    facility varchar,
+    program varchar
 );
 
 ALTER TABLE facility_access OWNER TO postgres;
