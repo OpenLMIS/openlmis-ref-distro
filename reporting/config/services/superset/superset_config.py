@@ -12,7 +12,7 @@ AUTH_TYPE = AUTH_OAUTH
 
 OAUTH_PROVIDERS = [
     {   'name': 'openlmis',
-        'icon': 'fa-google',
+        'icon': 'fa-sign-in',
         'token_key':'access_token',
         'remote_app': {
             'consumer_key': 'superset',
