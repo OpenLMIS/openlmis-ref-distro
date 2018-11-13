@@ -37,7 +37,9 @@ AUTH_USER_REGISTRATION_ROLE = "Public"
 AUTH_USER_REGISTRATION = True
 
 # Allow iFrame access from openLMIS running on localhost
-HTTP_HEADERS = {'X-Frame-Options': 'allow-from https://uat.openlmis.org'}
+HTTP_HEADERS = {
+    'X-Frame-Options': 'allow-from https://uat.openlmis.org'
+     }
 
 from superset.security import SupersetSecurityManager
 import logging
