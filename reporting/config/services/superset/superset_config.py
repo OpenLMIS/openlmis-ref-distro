@@ -39,25 +39,5 @@ AUTH_USER_REGISTRATION = True
 # Allow iFrame access from openLMIS running on localhost
 HTTP_HEADERS = {'X-Frame-Options': 'allow-from https://uat.openlmis.org'}
 
-from superset.security import SupersetSecurityManager
-import logging
-class CustomSecurityManager(SupersetSecurityManager):
-
-    def oauth_user_info(self, provider, response=None):
-        logging.debug("Oauth2 provider: {0}.".format(provider))
-        if provider == 'openlmis':
-            # get access token
-            my_token = self.oauth_tokengetter()[0]
-            # get referenceDataUserId
-            reference_user_id = self.appbuilder.sm.oauth_remotes[provider].get('oauth/check_token', data={'token': my_token})
-            reference_data_user_id = reference_user_id.data['referenceDataUserId']
-            # get user details
-            endpoint = 'users/{}'.format(reference_data_user_id)
-            user_info = self.appbuilder.sm.oauth_remotes[provider].get(endpoint)
-            me = user_info.data
-            # get email
-            email_endpoint = 'userContactDetails/{}'.format(reference_data_user_id)
-            email = self.appbuilder.sm.oauth_remotes[provider].get(email_endpoint)
-            return {'name': me['username'], 'email': email.data['emailDetails']['email'], 'id': me['id'], 'username': me['username'], 'first_name': me['firstName'], 'last_name': me['lastName']}
-
+from security import CustomSecurityManager
 CUSTOM_SECURITY_MANAGER = CustomSecurityManager
