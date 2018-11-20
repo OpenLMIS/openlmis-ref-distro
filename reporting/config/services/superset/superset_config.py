@@ -36,6 +36,9 @@ AUTH_USER_REGISTRATION_ROLE = "OLMIS Gamma"
 # Will allow user self registration
 AUTH_USER_REGISTRATION = True
 
+# Extract and use X-Forwarded-For/X-Forwarded-Proto headers?
+ENABLE_PROXY_FIX = True
+
 # Allow iFrame access from openLMIS running on localhost
 HTTP_HEADERS = {'X-Frame-Options': 'allow-from https://uat.openlmis.org'}
 
