@@ -57,6 +57,7 @@ services:
     entrypoint: >
       sh -c "openssl dhparam -dsaparam -out /etc/ssl/certs/dhparam.pem 4096
       && cp -r /config/nginx/consul-template/* /etc/consul-template/
+      && cp /config/nginx/htpasswd /etc/nginx
       && /home/run.sh"
     logging:
       driver: syslog
