@@ -31,7 +31,7 @@ OAUTH_PROVIDERS = [
 ]
 
 # The default user self registration role
-AUTH_USER_REGISTRATION_ROLE = "Public"
+AUTH_USER_REGISTRATION_ROLE = "OLMIS Gamma"
 
 # Will allow user self registration
 AUTH_USER_REGISTRATION = True
