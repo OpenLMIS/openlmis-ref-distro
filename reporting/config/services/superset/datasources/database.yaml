@@ -1,110 +1,319 @@
-databases:
+ databases:
 - database_name: open_lmis_reporting
   expose_in_sqllab: true
   extra: "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {}\r\n}\r\n"
-  sqlalchemy_uri: postgresql+psycopg2://superset:superset123@db:5432/open_lmis_reporting
-  tables:
+  sqlalchemy_uri: postgresql+psycopg2://postgres:p@ssw0rd@db:5432/open_lmis_reporting
+  tables: 
   - columns:
+    - {column_name: country_code, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: country_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: country_name, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: created_date, is_dttm: true, type: DATE}
+    - {column_name: district_code, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: district_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: district_name, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: emergency_status, type: BOOLEAN}
+    - {column_name: facility_code, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facility_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facility_name, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facility_operator_code, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facility_operator_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facility_operator_name, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facility_type_code, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facility_type_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facility_type_name, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facilty_active_status, type: BOOLEAN}
+    - {column_name: id, type: UUID}
+    - {column_name: modified_date, is_dttm: true, type: DATE}
+    - {column_name: processing_period_enddate, is_dttm: true, type: DATE}
+    - {column_name: processing_period_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: processing_period_name, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: processing_period_startdate, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: processing_schedule_code, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: processing_schedule_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: processing_schedule_name, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: program_active_status, type: BOOLEAN}
+    - {column_name: program_code, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: program_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: program_name, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: region_code, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: region_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: region_name, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: supervisory_node, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: supplying_facility, filterable: true, groupby: true, type: VARCHAR}
+    main_dttm_col: created_date
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: requisitions
+  - columns:
+    - {avg: true, column_name: auth_srid, sum: true, type: INTEGER}
+    - {avg: true, column_name: srid, sum: true, type: INTEGER}
+    - {column_name: auth_name, filterable: true, groupby: true, type: VARCHAR(256)}
+    - {column_name: proj4text, filterable: true, groupby: true, type: VARCHAR(2048)}
+    - {column_name: srtext, filterable: true, groupby: true, type: VARCHAR(2048)}
+    metrics:
+    - {expression: AVG(auth_srid), metric_name: avg__auth_srid, metric_type: avg}
+    - {expression: AVG(srid), metric_name: avg__srid, metric_type: avg}
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    - {expression: SUM(auth_srid), metric_name: sum__auth_srid, metric_type: sum}
+    - {expression: SUM(srid), metric_name: sum__srid, metric_type: sum}
+    schema: ''
+    table_name: spatial_ref_sys
+  - columns:
+    - {column_name: code, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: comment, type: TEXT}
+    - {column_name: country, filterable: true, groupby: true, type: VARCHAR(255)}
     - {column_name: description, type: TEXT}
-    - {column_name: enddate, is_dttm: true, type: DATE}
+    - {column_name: district, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: enabled, type: BOOLEAN}
+    - {column_name: extradata, type: JSON}
+    - {column_name: godowndate, is_dttm: true, type: DATE}
+    - {column_name: golivedate, is_dttm: true, type: DATE}
     - {column_name: id, type: UUID}
+    - {column_name: location, filterable: true, groupby: true, type: VARCHAR(255)}
     - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: processingscheduleid, type: UUID}
-    - {column_name: startdate, is_dttm: true, type: DATE}
-    main_dttm_col: enddate
+    - {column_name: openlmisaccessible, type: BOOLEAN}
+    - {column_name: operator_code, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: operator_id, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: operator_name, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: region, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: status, type: BOOLEAN}
+    - {column_name: type, filterable: true, groupby: true, type: VARCHAR(255)}
+    main_dttm_col: golivedate
     metrics:
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     schema: ''
-    table_name: processing_periods
+    table_name: facilities
   - columns:
-    - {column_name: classificationid, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: classificationsystem, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {avg: true, column_name: amount, sum: true, type: INTEGER}
+    - {column_name: commoditytypeid, type: UUID}
+    - {column_name: facilityid, type: UUID}
     - {column_name: id, type: UUID}
-    - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: parentid, type: UUID}
+    - {column_name: processingperiodid, type: UUID}
+    metrics:
+    - {expression: AVG(amount), metric_name: avg__amount, metric_type: avg}
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    - {expression: SUM(amount), metric_name: sum__amount, metric_type: sum}
+    schema: ''
+    table_name: ideal_stock_amounts
+  - columns:
+    - {column_name: active, type: BOOLEAN}
+    - {column_name: expirationdate, is_dttm: true, type: DATE}
+    - {column_name: id, type: UUID}
+    - {column_name: lotcode, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: manufacturedate, is_dttm: true, type: DATE}
+    - {column_name: tradeitemid, type: UUID}
+    main_dttm_col: expirationdate
     metrics:
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     schema: ''
-    table_name: commodity_types
+    table_name: lots
   - columns:
     - {avg: true, column_name: displayorder, sum: true, type: INTEGER}
-    - {column_name: additive, type: BOOLEAN}
+    - {avg: true, column_name: dosesperpatient, sum: true, type: INTEGER}
+    - {avg: true, column_name: netcontent, sum: true, type: BIGINT}
+    - {avg: true, column_name: orderablecategorydisplayorder, sum: true, type: INTEGER}
+    - {avg: true, column_name: packroundingthreshold, sum: true, type: BIGINT}
+    - {avg: true, column_name: priceperpack, sum: true, type: DOUBLE PRECISION}
+    - {column_name: active, type: BOOLEAN}
+    - {column_name: code, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: description, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: extradata, type: JSON}
+    - {column_name: fullproductname, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: fullsupply, type: BOOLEAN}
+    - {column_name: id, type: UUID}
+    - {column_name: orderablecategorydisplayname, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: orderabledisplaydategoryid, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: programid, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: roundtozero, type: BOOLEAN}
+    - {column_name: tradeitemid, filterable: true, groupby: true, type: VARCHAR(255)}
+    metrics:
+    - {expression: AVG(displayorder), metric_name: avg__displayorder, metric_type: avg}
+    - {expression: AVG(dosesperpatient), metric_name: avg__dosesperpatient, metric_type: avg}
+    - {expression: AVG(netcontent), metric_name: avg__netcontent, metric_type: avg}
+    - {expression: AVG(orderablecategorydisplayorder), metric_name: avg__orderablecategorydisplayorder,
+      metric_type: avg}
+    - {expression: AVG(packroundingthreshold), metric_name: avg__packroundingthreshold,
+      metric_type: avg}
+    - {expression: AVG(priceperpack), metric_name: avg__priceperpack, metric_type: avg}
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    - {expression: SUM(displayorder), metric_name: sum__displayorder, metric_type: sum}
+    - {expression: SUM(dosesperpatient), metric_name: sum__dosesperpatient, metric_type: sum}
+    - {expression: SUM(netcontent), metric_name: sum__netcontent, metric_type: sum}
+    - {expression: SUM(orderablecategorydisplayorder), metric_name: sum__orderablecategorydisplayorder,
+      metric_type: sum}
+    - {expression: SUM(packroundingthreshold), metric_name: sum__packroundingthreshold,
+      metric_type: sum}
+    - {expression: SUM(priceperpack), metric_name: sum__priceperpack, metric_type: sum}
+    schema: ''
+    table_name: orderables
+  - columns:
+    - {avg: true, column_name: displayorder, sum: true, type: INTEGER}
+    - {avg: true, column_name: dosesperpatient, sum: true, type: INTEGER}
+    - {avg: true, column_name: priceperpack, sum: true, type: 'NUMERIC(19, 2)'}
+    - {column_name: active, type: BOOLEAN}
+    - {column_name: fullsupply, type: BOOLEAN}
+    - {column_name: id, type: UUID}
+    - {column_name: orderabledisplaycategoryid, type: UUID}
+    - {column_name: orderableid, type: UUID}
+    - {column_name: programid, type: UUID}
+    metrics:
+    - {expression: AVG(displayorder), metric_name: avg__displayorder, metric_type: avg}
+    - {expression: AVG(dosesperpatient), metric_name: avg__dosesperpatient, metric_type: avg}
+    - {expression: AVG(priceperpack), metric_name: avg__priceperpack, metric_type: avg}
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    - {expression: SUM(displayorder), metric_name: sum__displayorder, metric_type: sum}
+    - {expression: SUM(dosesperpatient), metric_name: sum__dosesperpatient, metric_type: sum}
+    - {expression: SUM(priceperpack), metric_name: sum__priceperpack, metric_type: sum}
+    schema: ''
+    table_name: program_orderables
+  - columns:
+    - {column_name: active, type: BOOLEAN}
+    - {column_name: code, filterable: true, groupby: true, type: VARCHAR(255)}
     - {column_name: description, type: TEXT}
-    - {column_name: id, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: name, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: programid, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: programname, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: enabledatephysicalstockcountcompleted, type: BOOLEAN}
+    - {column_name: id, type: UUID}
+    - {column_name: name, type: TEXT}
+    - {column_name: periodsskippable, type: BOOLEAN}
+    - {column_name: shownonfullsupplytab, type: BOOLEAN}
+    - {column_name: skipauthorization, type: BOOLEAN}
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: programs
+  - columns:
+    - {column_name: facilityid, type: UUID}
+    - {column_name: requisitiongroupid, type: UUID}
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: requisition_group_members
+  - columns:
+    - {column_name: directdelivery, type: BOOLEAN}
+    - {column_name: dropofffacilityid, type: UUID}
+    - {column_name: id, type: UUID}
+    - {column_name: processingscheduleid, type: UUID}
+    - {column_name: programid, type: UUID}
+    - {column_name: requisitiongroupid, type: UUID}
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: requisition_group_program_schedules
+  - columns:
+    - {column_name: active, type: BOOLEAN}
+    - {column_name: facilityid, type: UUID}
+    - {column_name: locallyfulfilled, type: BOOLEAN}
+    - {column_name: programid, type: UUID}
+    - {column_name: startdate, is_dttm: true, type: DATE}
+    main_dttm_col: startdate
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: supported_programs
+  - columns:
+    - {avg: true, column_name: displayorder, sum: true, type: INTEGER}
+    - {column_name: code, type: TEXT}
+    - {column_name: description, type: TEXT}
+    - {column_name: id, type: UUID}
+    - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
     metrics:
     - {expression: AVG(displayorder), metric_name: avg__displayorder, metric_type: avg}
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     - {expression: SUM(displayorder), metric_name: sum__displayorder, metric_type: sum}
     schema: ''
-    table_name: stock_adjustment_reasons
+    table_name: facility_operators
   - columns:
-    - {column_name: facility, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: program, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: username, filterable: true, groupby: true, type: VARCHAR}
+    - {avg: true, column_name: count, sum: true, type: INTEGER}
+    - {column_name: description, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: id, type: UUID}
+    - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: rightsid, type: UUID}
+    - {column_name: rightsname, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: rightstype, filterable: true, groupby: true, type: VARCHAR(255)}
+    metrics:
+    - {expression: AVG(count), metric_name: avg__count, metric_type: avg}
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    - {expression: SUM(count), metric_name: sum__count, metric_type: sum}
+    schema: ''
+    table_name: roles
+  - columns:
+    - {column_name: classificationid, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: classificationsystem, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: id, type: UUID}
+    - {column_name: tradeitemid, type: UUID}
     metrics:
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     schema: ''
-    table_name: facility_access
+    table_name: trade_item_classifications
   - columns:
-    - {avg: true, column_name: netcontent, sum: true, type: INTEGER}
-    - {avg: true, column_name: quantity, sum: true, type: INTEGER}
-    - {avg: true, column_name: stockonhand, sum: true, type: INTEGER}
-    - {column_name: destination, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: facilityactive, type: BOOLEAN}
-    - {column_name: facilitycode, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: facilityenabled, type: BOOLEAN}
-    - {column_name: facilityid, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: facilityname, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: facilitytype, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: fullproductname, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: lastupdate, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: occurreddate, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: orderableid, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: productcode, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: programcode, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: programid, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: programname, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: reasoncategory, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: reasonid, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: reasonname, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: reasontype, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: sohlineitems_id, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: source, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: stockcardid, filterable: true, groupby: true, type: VARCHAR}
-    metrics:
-    - {expression: AVG(netcontent), metric_name: avg__netcontent, metric_type: avg}
-    - {expression: AVG(quantity), metric_name: avg__quantity, metric_type: avg}
-    - {expression: AVG(stockonhand), metric_name: avg__stockonhand, metric_type: avg}
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    - {expression: SUM(netcontent), metric_name: sum__netcontent, metric_type: sum}
-    - {expression: SUM(quantity), metric_name: sum__quantity, metric_type: sum}
-    - {expression: SUM(stockonhand), metric_name: sum__stockonhand, metric_type: sum}
-    schema: ''
-    table_name: sohlineitems
-  - columns:
-    - {avg: true, column_name: quantity, sum: true, type: INTEGER}
-    - {column_name: id, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: reasonid, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: requisition_line_item_id, filterable: true, groupby: true, type: VARCHAR}
-    metrics:
-    - {expression: AVG(quantity), metric_name: avg__quantity, metric_type: avg}
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    - {expression: SUM(quantity), metric_name: sum__quantity, metric_type: sum}
-    schema: ''
-    table_name: requisitions_adjustment_lines
-  - columns:
-    - {column_name: author_id, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: created_date, is_dttm: true, type: DATE}
-    - {column_name: requisition_id, filterable: true, groupby: true, type: VARCHAR}
-    - {column_name: status, filterable: true, groupby: true, type: VARCHAR}
-    main_dttm_col: created_date
+    - {column_name: gtin, type: TEXT}
+    - {column_name: id, type: UUID}
+    - {column_name: manufactureroftradeitem, filterable: true, groupby: true, type: VARCHAR(255)}
     metrics:
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     schema: ''
-    table_name: requisitions_status_history
+    table_name: trade_items
+  - columns:
+    - {column_name: id, type: UUID}
+    - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: type, filterable: true, groupby: true, type: VARCHAR(255)}
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: rights
+  - columns:
+    - {column_name: active, type: BOOLEAN}
+    - {column_name: firstname, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: homefacilityid, type: UUID}
+    - {column_name: id, type: UUID}
+    - {column_name: lastname, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: loginrestricted, type: BOOLEAN}
+    - {column_name: username, filterable: true, groupby: true, type: VARCHAR(255)}
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: users
+  - columns:
+    - {column_name: code, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: facilityid, type: UUID}
+    - {column_name: facilityname, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: id, type: UUID}
+    - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: parentnodeid, type: UUID}
+    - {column_name: parentnodename, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: requisitiongroupid, type: UUID}
+    - {column_name: requisitiongroupname, filterable: true, groupby: true, type: VARCHAR(255)}
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: supervisorynodes
+  - columns:
+    - {column_name: code, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: directdelivery, type: BOOLEAN}
+    - {column_name: facilityid, type: UUID}
+    - {column_name: id, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: processingscheduleid, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: programid, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: programname, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: supervisorynodecode, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: supervisorynodeid, type: UUID}
+    - {column_name: supervisorynodename, filterable: true, groupby: true, type: VARCHAR(255)}
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: requisitiongroups
+  - columns:
+    - {column_name: description, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: id, type: UUID}
+    - {column_name: programid, type: UUID}
+    - {column_name: supervisorynodeid, type: UUID}
+    - {column_name: supplyingfacilityid, type: UUID}
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: ''
+    table_name: supplylines
   - columns:
     - {avg: true, column_name: adjusted_consumption, sum: true, type: DOUBLE PRECISION}
     - {avg: true, column_name: approved_quantity, sum: true, type: DOUBLE PRECISION}
@@ -179,270 +388,103 @@ databases:
     schema: ''
     table_name: requisition_line_item
   - columns:
-    - {column_name: description, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: id, type: UUID}
-    - {column_name: programid, type: UUID}
-    - {column_name: supervisorynodeid, type: UUID}
-    - {column_name: supplyingfacilityid, type: UUID}
+    - {column_name: author_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: created_date, is_dttm: true, type: DATE}
+    - {column_name: requisition_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: status, filterable: true, groupby: true, type: VARCHAR}
+    main_dttm_col: created_date
     metrics:
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     schema: ''
-    table_name: supplylines
+    table_name: requisitions_status_history
   - columns:
-    - {column_name: code, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: directdelivery, type: BOOLEAN}
-    - {column_name: facilityid, type: UUID}
-    - {column_name: id, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: processingscheduleid, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: programid, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: programname, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: supervisorynodecode, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: supervisorynodeid, type: UUID}
-    - {column_name: supervisorynodename, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {avg: true, column_name: quantity, sum: true, type: INTEGER}
+    - {column_name: id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: reasonid, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: requisition_line_item_id, filterable: true, groupby: true, type: VARCHAR}
     metrics:
+    - {expression: AVG(quantity), metric_name: avg__quantity, metric_type: avg}
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    - {expression: SUM(quantity), metric_name: sum__quantity, metric_type: sum}
     schema: ''
-    table_name: requisitiongroups
+    table_name: requisitions_adjustment_lines
   - columns:
-    - {column_name: code, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: facilityid, type: UUID}
-    - {column_name: facilityname, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: id, type: UUID}
-    - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: parentnodeid, type: UUID}
-    - {column_name: parentnodename, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: requisitiongroupid, type: UUID}
-    - {column_name: requisitiongroupname, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {avg: true, column_name: netcontent, sum: true, type: INTEGER}
+    - {avg: true, column_name: quantity, sum: true, type: INTEGER}
+    - {avg: true, column_name: stockonhand, sum: true, type: INTEGER}
+    - {column_name: destination, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facilityactive, type: BOOLEAN}
+    - {column_name: facilitycode, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facilityenabled, type: BOOLEAN}
+    - {column_name: facilityid, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facilityname, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: facilitytype, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: fullproductname, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: lastupdate, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: occurreddate, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: orderableid, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: productcode, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: programcode, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: programid, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: programname, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: reasoncategory, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: reasonid, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: reasonname, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: reasontype, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: sohlineitems_id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: source, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: stockcardid, filterable: true, groupby: true, type: VARCHAR}
     metrics:
+    - {expression: AVG(netcontent), metric_name: avg__netcontent, metric_type: avg}
+    - {expression: AVG(quantity), metric_name: avg__quantity, metric_type: avg}
+    - {expression: AVG(stockonhand), metric_name: avg__stockonhand, metric_type: avg}
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    - {expression: SUM(netcontent), metric_name: sum__netcontent, metric_type: sum}
+    - {expression: SUM(quantity), metric_name: sum__quantity, metric_type: sum}
+    - {expression: SUM(stockonhand), metric_name: sum__stockonhand, metric_type: sum}
     schema: ''
-    table_name: supervisorynodes
+    table_name: sohlineitems
   - columns:
-    - {column_name: active, type: BOOLEAN}
-    - {column_name: firstname, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: homefacilityid, type: UUID}
-    - {column_name: id, type: UUID}
-    - {column_name: lastname, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: loginrestricted, type: BOOLEAN}
-    - {column_name: username, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: facility, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: program, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: username, filterable: true, groupby: true, type: VARCHAR}
     metrics:
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     schema: ''
-    table_name: users
+    table_name: facility_access
   - columns:
-    - {column_name: id, type: UUID}
-    - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: type, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {avg: true, column_name: displayorder, sum: true, type: INTEGER}
+    - {column_name: additive, type: BOOLEAN}
+    - {column_name: description, type: TEXT}
+    - {column_name: id, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: name, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: programid, filterable: true, groupby: true, type: VARCHAR}
+    - {column_name: programname, filterable: true, groupby: true, type: VARCHAR}
     metrics:
+    - {expression: AVG(displayorder), metric_name: avg__displayorder, metric_type: avg}
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    - {expression: SUM(displayorder), metric_name: sum__displayorder, metric_type: sum}
     schema: ''
-    table_name: rights
-  - columns:
-    - {column_name: gtin, type: TEXT}
-    - {column_name: id, type: UUID}
-    - {column_name: manufactureroftradeitem, filterable: true, groupby: true, type: VARCHAR(255)}
-    metrics:
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    schema: ''
-    table_name: trade_items
+    table_name: stock_adjustment_reasons
   - columns:
     - {column_name: classificationid, filterable: true, groupby: true, type: VARCHAR(255)}
     - {column_name: classificationsystem, filterable: true, groupby: true, type: VARCHAR(255)}
     - {column_name: id, type: UUID}
-    - {column_name: tradeitemid, type: UUID}
-    metrics:
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    schema: ''
-    table_name: trade_item_classifications
-  - columns:
-    - {avg: true, column_name: count, sum: true, type: INTEGER}
-    - {column_name: description, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: id, type: UUID}
     - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: rightsid, type: UUID}
-    - {column_name: rightsname, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: rightstype, filterable: true, groupby: true, type: VARCHAR(255)}
+    - {column_name: parentid, type: UUID}
     metrics:
-    - {expression: AVG(count), metric_name: avg__count, metric_type: avg}
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    - {expression: SUM(count), metric_name: sum__count, metric_type: sum}
     schema: ''
-    table_name: roles
+    table_name: commodity_types
   - columns:
-    - {avg: true, column_name: displayorder, sum: true, type: INTEGER}
-    - {column_name: code, type: TEXT}
     - {column_name: description, type: TEXT}
+    - {column_name: enddate, is_dttm: true, type: DATE}
     - {column_name: id, type: UUID}
     - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
-    metrics:
-    - {expression: AVG(displayorder), metric_name: avg__displayorder, metric_type: avg}
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    - {expression: SUM(displayorder), metric_name: sum__displayorder, metric_type: sum}
-    schema: ''
-    table_name: facility_operators
-  - columns:
-    - {column_name: active, type: BOOLEAN}
-    - {column_name: facilityid, type: UUID}
-    - {column_name: locallyfulfilled, type: BOOLEAN}
-    - {column_name: programid, type: UUID}
-    - {column_name: startdate, is_dttm: true, type: DATE}
-    main_dttm_col: startdate
-    metrics:
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    schema: ''
-    table_name: supported_programs
-  - columns:
-    - {column_name: directdelivery, type: BOOLEAN}
-    - {column_name: dropofffacilityid, type: UUID}
-    - {column_name: id, type: UUID}
     - {column_name: processingscheduleid, type: UUID}
-    - {column_name: programid, type: UUID}
-    - {column_name: requisitiongroupid, type: UUID}
+    - {column_name: startdate, is_dttm: true, type: DATE}
+    main_dttm_col: enddate
     metrics:
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     schema: ''
-    table_name: requisition_group_program_schedules
-  - columns:
-    - {column_name: facilityid, type: UUID}
-    - {column_name: requisitiongroupid, type: UUID}
-    metrics:
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    schema: ''
-    table_name: requisition_group_members
-  - columns:
-    - {column_name: active, type: BOOLEAN}
-    - {column_name: code, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: description, type: TEXT}
-    - {column_name: enabledatephysicalstockcountcompleted, type: BOOLEAN}
-    - {column_name: id, type: UUID}
-    - {column_name: name, type: TEXT}
-    - {column_name: periodsskippable, type: BOOLEAN}
-    - {column_name: shownonfullsupplytab, type: BOOLEAN}
-    - {column_name: skipauthorization, type: BOOLEAN}
-    metrics:
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    schema: ''
-    table_name: programs
-  - columns:
-    - {avg: true, column_name: displayorder, sum: true, type: INTEGER}
-    - {avg: true, column_name: dosesperpatient, sum: true, type: INTEGER}
-    - {avg: true, column_name: priceperpack, sum: true, type: 'NUMERIC(19, 2)'}
-    - {column_name: active, type: BOOLEAN}
-    - {column_name: fullsupply, type: BOOLEAN}
-    - {column_name: id, type: UUID}
-    - {column_name: orderabledisplaycategoryid, type: UUID}
-    - {column_name: orderableid, type: UUID}
-    - {column_name: programid, type: UUID}
-    metrics:
-    - {expression: AVG(displayorder), metric_name: avg__displayorder, metric_type: avg}
-    - {expression: AVG(dosesperpatient), metric_name: avg__dosesperpatient, metric_type: avg}
-    - {expression: AVG(priceperpack), metric_name: avg__priceperpack, metric_type: avg}
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    - {expression: SUM(displayorder), metric_name: sum__displayorder, metric_type: sum}
-    - {expression: SUM(dosesperpatient), metric_name: sum__dosesperpatient, metric_type: sum}
-    - {expression: SUM(priceperpack), metric_name: sum__priceperpack, metric_type: sum}
-    schema: ''
-    table_name: program_orderables
-  - columns:
-    - {avg: true, column_name: displayorder, sum: true, type: INTEGER}
-    - {avg: true, column_name: dosesperpatient, sum: true, type: INTEGER}
-    - {avg: true, column_name: netcontent, sum: true, type: BIGINT}
-    - {avg: true, column_name: orderablecategorydisplayorder, sum: true, type: INTEGER}
-    - {avg: true, column_name: packroundingthreshold, sum: true, type: BIGINT}
-    - {avg: true, column_name: priceperpack, sum: true, type: DOUBLE PRECISION}
-    - {column_name: active, type: BOOLEAN}
-    - {column_name: code, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: description, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: extradata, type: JSON}
-    - {column_name: fullproductname, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: fullsupply, type: BOOLEAN}
-    - {column_name: id, type: UUID}
-    - {column_name: orderablecategorydisplayname, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: orderabledisplaydategoryid, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: programid, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: roundtozero, type: BOOLEAN}
-    - {column_name: tradeitemid, filterable: true, groupby: true, type: VARCHAR(255)}
-    metrics:
-    - {expression: AVG(displayorder), metric_name: avg__displayorder, metric_type: avg}
-    - {expression: AVG(dosesperpatient), metric_name: avg__dosesperpatient, metric_type: avg}
-    - {expression: AVG(netcontent), metric_name: avg__netcontent, metric_type: avg}
-    - {expression: AVG(orderablecategorydisplayorder), metric_name: avg__orderablecategorydisplayorder,
-      metric_type: avg}
-    - {expression: AVG(packroundingthreshold), metric_name: avg__packroundingthreshold,
-      metric_type: avg}
-    - {expression: AVG(priceperpack), metric_name: avg__priceperpack, metric_type: avg}
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    - {expression: SUM(displayorder), metric_name: sum__displayorder, metric_type: sum}
-    - {expression: SUM(dosesperpatient), metric_name: sum__dosesperpatient, metric_type: sum}
-    - {expression: SUM(netcontent), metric_name: sum__netcontent, metric_type: sum}
-    - {expression: SUM(orderablecategorydisplayorder), metric_name: sum__orderablecategorydisplayorder,
-      metric_type: sum}
-    - {expression: SUM(packroundingthreshold), metric_name: sum__packroundingthreshold,
-      metric_type: sum}
-    - {expression: SUM(priceperpack), metric_name: sum__priceperpack, metric_type: sum}
-    schema: ''
-    table_name: orderables
-  - columns:
-    - {column_name: active, type: BOOLEAN}
-    - {column_name: expirationdate, is_dttm: true, type: DATE}
-    - {column_name: id, type: UUID}
-    - {column_name: lotcode, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: manufacturedate, is_dttm: true, type: DATE}
-    - {column_name: tradeitemid, type: UUID}
-    main_dttm_col: expirationdate
-    metrics:
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    schema: ''
-    table_name: lots
-  - columns:
-    - {avg: true, column_name: amount, sum: true, type: INTEGER}
-    - {column_name: commoditytypeid, type: UUID}
-    - {column_name: facilityid, type: UUID}
-    - {column_name: id, type: UUID}
-    - {column_name: processingperiodid, type: UUID}
-    metrics:
-    - {expression: AVG(amount), metric_name: avg__amount, metric_type: avg}
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    - {expression: SUM(amount), metric_name: sum__amount, metric_type: sum}
-    schema: ''
-    table_name: ideal_stock_amounts
-  - columns:
-    - {column_name: code, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: comment, type: TEXT}
-    - {column_name: country, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: description, type: TEXT}
-    - {column_name: district, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: enabled, type: BOOLEAN}
-    - {column_name: extradata, type: JSON}
-    - {column_name: godowndate, is_dttm: true, type: DATE}
-    - {column_name: golivedate, is_dttm: true, type: DATE}
-    - {column_name: id, type: UUID}
-    - {column_name: location, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: name, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: openlmisaccessible, type: BOOLEAN}
-    - {column_name: operator_code, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: operator_id, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: operator_name, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: region, filterable: true, groupby: true, type: VARCHAR(255)}
-    - {column_name: status, type: BOOLEAN}
-    - {column_name: type, filterable: true, groupby: true, type: VARCHAR(255)}
-    main_dttm_col: golivedate
-    metrics:
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    schema: ''
-    table_name: facilities
-  - columns:
-    - {avg: true, column_name: auth_srid, sum: true, type: INTEGER}
-    - {avg: true, column_name: srid, sum: true, type: INTEGER}
-    - {column_name: auth_name, filterable: true, groupby: true, type: VARCHAR(256)}
-    - {column_name: proj4text, filterable: true, groupby: true, type: VARCHAR(2048)}
-    - {column_name: srtext, filterable: true, groupby: true, type: VARCHAR(2048)}
-    metrics:
-    - {expression: AVG(auth_srid), metric_name: avg__auth_srid, metric_type: avg}
-    - {expression: AVG(srid), metric_name: avg__srid, metric_type: avg}
-    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
-    - {expression: SUM(auth_srid), metric_name: sum__auth_srid, metric_type: sum}
-    - {expression: SUM(srid), metric_name: sum__srid, metric_type: sum}
-    schema: ''
-    table_name: spatial_ref_sys
+    table_name: processing_periods

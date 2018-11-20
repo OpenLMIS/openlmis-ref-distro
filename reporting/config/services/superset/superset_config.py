@@ -31,13 +31,19 @@ OAUTH_PROVIDERS = [
 ]
 
 # The default user self registration role
-AUTH_USER_REGISTRATION_ROLE = "OLMIS Gamma"
+AUTH_USER_REGISTRATION_ROLE = "Public"
 
 # Will allow user self registration
 AUTH_USER_REGISTRATION = True
 
 # Allow iFrame access from openLMIS running on localhost
 HTTP_HEADERS = {'X-Frame-Options': 'allow-from https://uat.openlmis.org'}
+
+# CSV Options: key/value pairs that will be passed as argument to DataFrame.to_csv method
+# note: index option should not be overridden
+CSV_EXPORT = {
+    'encoding': 'utf-8',
+}
 
 from security import CustomSecurityManager
 CUSTOM_SECURITY_MANAGER = CustomSecurityManager
