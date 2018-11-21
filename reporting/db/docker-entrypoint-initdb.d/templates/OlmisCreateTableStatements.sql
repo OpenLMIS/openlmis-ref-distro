@@ -1,4 +1,3 @@
-
 -- Olmis create table statements
 -- Created by Craig Appl (cappl@ona.io)
 -- Modified by A. Maritim (amaritim@ona.io) and J. Wambere (jwambere@ona.io)
@@ -524,3 +523,159 @@ CREATE TABLE stock_adjustment_reasons (
 );
 
 ALTER TABLE stock_adjustment_reasons OWNER TO postgres;
+
+--
+-- Name: reporting_dates; Type: TABLE; Schema: referencedata; Owner: postgres
+--
+
+CREATE TABLE reporting_dates (
+  due_days int,
+  late_days int,
+  country varchar
+);
+
+ALTER TABLE reporting_dates OWNER TO postgres;
+
+-- Insert default values for reporting dates --
+INSERT INTO reporting_dates(due_days, late_days, country) 
+    VALUES(14, 7, 'Malawi'), (14, 7, 'Mozambique');
+
+---
+--- Name: reporting_rate_and_timeliness; Type: TABLE; Schema: referencedata; Owner: postgres
+---
+CREATE MATERIALIZED VIEW reporting_rate_and_timeliness AS
+SELECT f.id, f.name, f.district, f.region, f.country, f.type, f.operator_name, 
+f.status as facility_active_status,
+authorized_reqs.program_id, authorized_reqs.req_id, authorized_reqs.processing_period_id, 
+authorized_reqs.processing_period_enddate, authorized_reqs.facility_id, authorized_reqs.created_date, 
+authorized_reqs.modified_date, authorized_reqs.emergency_status, authorized_reqs.program_name, 
+authorized_reqs.program_active_status, authorized_reqs.processing_schedule_name, 
+authorized_reqs.processing_period_name, authorized_reqs.processing_period_startdate,
+sp.programid as supported_program, sp.startdate, sp.active as supported_program_active,
+rgm.requisitiongroupid,
+rgps.processingscheduleid,
+fa.facility, fa.program, fa.username,
+CASE
+    WHEN authorized_reqs.statuschangedate <= (authorized_reqs.processing_period_enddate::DATE + rd.due_days::INT) 
+        AND authorized_reqs.status = 'AUTHORIZED' THEN 'On time'
+    WHEN authorized_reqs.statuschangedate > (authorized_reqs.processing_period_enddate::DATE + rd.due_days::INT + rd.late_days::INT) 
+        AND authorized_reqs.status = 'AUTHORIZED' THEN 'Unscheduled'
+    WHEN authorized_reqs.statuschangedate < (authorized_reqs.processing_period_enddate::DATE + rd.due_days::INT + rd.late_days::INT) 
+        AND authorized_reqs.statuschangedate >= (authorized_reqs.processing_period_enddate::DATE + rd.due_days::INT) 
+        AND authorized_reqs.status = 'AUTHORIZED' THEN 'Late'
+    ELSE 'Did not report' END as reporting_timeliness
+FROM facilities f
+LEFT JOIN (
+    SELECT DISTINCT status_rank.facility_id, status_rank.req_id, status_rank.program_id, status_rank.processing_period_id, status_rank.statuschangedate, status_rank.status, status_rank.rank, status_rank.processing_period_enddate, status_rank.created_date, status_rank.modified_date, status_rank.emergency_status, status_rank.program_name, status_rank.program_active_status, status_rank.processing_schedule_name, status_rank.processing_period_name, status_rank.processing_period_startdate
+    FROM (
+        SELECT items.facility_id, items.program_id, items.req_id, items.processing_period_id, items.status, items.statuschangedate, items.processing_period_enddate, items.created_date, items.modified_date, items.emergency_status, items.program_name, items.program_active_status, items.processing_schedule_name, items.processing_period_name, items.processing_period_startdate,
+        rank() OVER (PARTITION BY items.program_id, items.facility_id, items.processing_period_id ORDER BY items.statuschangedate DESC) AS rank
+        FROM (
+            SELECT r.facility_id, r.program_id, r.id as req_id, r.processing_period_id, r.processing_period_enddate, r.created_date, r.modified_date, r.emergency_status, r.program_name, r.program_active_status, r.processing_schedule_name, r.processing_period_name, r.processing_period_startdate,
+            rh.status, rh.created_date AS statuschangedate
+            FROM requisitions r
+            JOIN (
+                SELECT rh.created_date, rh.status, rh.requisition_id
+                FROM requisitions_status_history rh
+                WHERE rh.status = 'AUTHORIZED') rh
+            ON rh.requisition_id::VARCHAR = r.id::VARCHAR) items
+        ORDER BY items.facility_id, items.processing_period_id, items.statuschangedate DESC) status_rank
+    WHERE status_rank.rank = 1) authorized_reqs
+ON f.id::VARCHAR = authorized_reqs.facility_id::VARCHAR
+JOIN reporting_dates rd ON f.country = rd.country
+LEFT JOIN supported_programs sp ON sp.facilityid = f.id AND sp.programid::VARCHAR = authorized_reqs.program_id::VARCHAR
+LEFT JOIN requisition_group_members rgm ON rgm.facilityid = f.id
+LEFT JOIN requisition_group_program_schedules rgps ON rgps.requisitionGroupId = rgm.requisitionGroupId
+JOIN facility_access fa ON fa.facility = f.name AND fa.program = authorized_reqs.program_id
+WHERE fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin' OR '{{ current_username() }}' = 'administrator'
+ORDER BY authorized_reqs.processing_period_enddate DESC;
+
+
+ALTER MATERIALIZED VIEW reporting_rate_and_timeliness OWNER TO postgres;
+
+---
+--- Name: adjustments; Type: TABLE; Schema: referencedata; Owner: postgres
+---
+CREATE MATERIALIZED VIEW adjustments AS
+SELECT DISTINCT ON (li.requisition_line_item_id) li.requisition_line_item_id, 
+r.id AS requisition_id, r.created_date, r.modified_date, r.emergency_status, 
+r.supervisory_node, r.facility_name, r.facility_type_name, r.facility_operator_name, 
+r.facilty_active_status, r.district_name, r.region_name, r.country_name, r.program_name, 
+r.program_active_status, r.processing_period_name, li.orderable_id, li.product_code, 
+li.full_product_name, li.trade_item_id, li.total_losses_and_adjustments,
+sh.status, sh.author_id, sh.created_date AS status_history_created_date,
+al.id AS adjustment_lines_id, al.quantity,
+sar.name AS stock_adjustment_reason,
+fa.facility, fa.program, fa.username
+FROM requisitions r
+JOIN requisition_line_item li ON r.id::VARCHAR = li.requisition_id
+JOIN requisitions_status_history sh ON r.id::VARCHAR = sh.requisition_id
+JOIN requisitions_adjustment_lines al ON li.requisition_line_item_id::VARCHAR = al.requisition_line_item_id
+JOIN stock_adjustment_reasons sar ON sar.id::VARCHAR = al.reasonid::VARCHAR
+JOIN facility_access fa ON fa.facility = r.facility_name AND fa.program = r.program_id
+WHERE sh.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED') 
+AND (fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin' 
+OR '{{ current_username() }}' = 'administrator')
+ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST;
+
+ALTER MATERIALIZED VIEW adjustments OWNER TO postgres;
+
+
+---
+--- Name: stock_status_and_consumption; Type: TABLE; Schema: referencedata; Owner: postgres
+---
+CREATE MATERIALIZED VIEW stock_status_and_consumption AS
+SELECT DISTINCT ON (li.requisition_line_item_id) li.requisition_line_item_id, r.id, 
+r.created_date as req_created_date, r.modified_date, r.emergency_status, r.supplying_facility, 
+r.supervisory_node, r.facility_id, r.facility_code, r.facility_name, r.facilty_active_status, 
+r.district_id, r.district_code, r.district_name, r.region_id, r.region_code, r.region_name, 
+r.country_id, r.country_code, r.country_name, r.facility_type_id, r.facility_type_code, 
+r.facility_type_name, r.facility_operator_id, r.facility_operator_code, r.facility_operator_name, 
+r.program_id, r.program_code, r.program_name, r.program_active_status, r.processing_period_id, 
+r.processing_period_name, r.processing_period_startdate, r.processing_period_enddate, 
+r.processing_schedule_id, r.processing_schedule_code, r.processing_schedule_name,
+li.requisition_id as li_req_id, li.orderable_id, li.product_code, li.full_product_name, 
+li.trade_item_id, li.beginning_balance, li.total_consumed_quantity, li.average_consumption, 
+li.total_losses_and_adjustments, li.stock_on_hand, li.total_stockout_days, li.max_periods_of_stock, 
+li.calculated_order_quantity, li.requested_quantity, li.approved_quantity, li.packs_to_ship, 
+li.price_per_pack, li.total_cost, li.total_received_quantity, sh.requisition_id as status_req_id, 
+sh.status as req_status, sh.author_id, sh.created_date as status_date, fa.facility, fa.program, fa.username,
+SUM(li.stock_on_hand) as closing_balance,
+SUM(li.average_consumption) as AMC,
+SUM(li.total_consumed_quantity) as Consumption,
+SUM(li.adjusted_consumption) as adjusted_consumption,
+SUM(li.approved_quantity) as order_quantity, f.status as facility_status,
+rd.due_days, rd.late_days,
+CASE WHEN (SUM(li.stock_on_hand) = 0 OR SUM(li.total_stockout_days) > 0 
+OR SUM(li.beginning_balance) = 0 OR SUM(li.max_periods_of_stock) = 0) THEN 1 ELSE 0 END as combined_stockout,
+CASE
+    WHEN SUM(li.max_periods_of_stock) > 6 THEN 'Overstocked'
+    WHEN SUM(li.max_periods_of_stock) < 3 AND (SUM(li.stock_on_hand) = 0 OR SUM(li.total_stockout_days) > 0 OR SUM(li.beginning_balance) = 0 OR SUM(li.max_periods_of_stock) = 0) THEN 'Stocked Out'
+    WHEN SUM(li.max_periods_of_stock) < 3 AND SUM(li.max_periods_of_stock) > 0 AND NOT(SUM(li.stock_on_hand) = 0 OR SUM(li.total_stockout_days) > 0 OR SUM(li.beginning_balance) = 0 OR SUM(li.max_periods_of_stock) = 0) THEN 'Understocked'
+    WHEN SUM(li.max_periods_of_stock) = 0 AND NOT(SUM(li.stock_on_hand) = 0 OR SUM(li.total_stockout_days) > 0 OR SUM(li.beginning_balance) = 0 OR SUM(li.max_periods_of_stock) = 0) THEN 'Unknown'
+    ELSE 'Adequately stocked' END as stock_status
+FROM requisitions r
+JOIN requisition_line_item li ON r.id::VARCHAR = li.requisition_id
+JOIN requisitions_status_history sh ON r.id::VARCHAR = sh.requisition_id
+JOIN reporting_dates rd ON r.country_name = rd.country
+JOIN facilities f ON r.facility_id::VARCHAR = f.id::VARCHAR
+JOIN facility_access fa ON fa.facility = f.name AND fa.program = r.program_id
+WHERE sh.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED') AND (fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin' OR '{{ current_username() }}' = 'administrator')
+GROUP BY r.id, r.created_date, r.modified_date, r.emergency_status, r.supplying_facility, 
+r.supervisory_node, r.facility_id, r.facility_code, r.facility_name, r.facilty_active_status, 
+r.district_id, r.district_code, r.district_name, r.region_id, r.region_code, r.region_name, 
+r.country_id, r.country_code, r.country_name, r.facility_type_id, r.facility_type_code, 
+r.facility_type_name, r.facility_operator_id, r.facility_operator_code, r.facility_operator_name, 
+r.program_id, r.program_code, r.program_name, r.program_active_status, r.processing_period_id, 
+r.processing_period_name, r.processing_period_startdate, r.processing_period_enddate, 
+r.processing_schedule_id, r.processing_schedule_code, r.processing_schedule_name,
+li.requisition_line_item_id, li_req_id, li.orderable_id, li.product_code, li.full_product_name, 
+li.trade_item_id, li.beginning_balance, li.total_consumed_quantity, li.average_consumption, 
+li.adjusted_consumption, li.total_losses_and_adjustments, li.stock_on_hand, li.total_stockout_days, 
+li.max_periods_of_stock, li.calculated_order_quantity, li.requested_quantity, li.approved_quantity, 
+li.packs_to_ship, li.price_per_pack, li.total_cost, li.total_received_quantity,
+status_req_id, req_status, sh.author_id, status_date, fa.facility, fa.program, 
+fa.username, facility_status, rd.due_days, rd.late_days
+ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST;
+
+ALTER MATERIALIZED VIEW stock_status_and_consumption OWNER TO postgres;
