@@ -4,7 +4,7 @@ databases:
   extra: "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {}\r\n}\r\n"
   sqlalchemy_uri: postgresql+psycopg2://postgres:p@ssw0rd@db:5432/open_lmis_reporting
   tables: 
-    - columns:
+  - columns:
     - {avg: true, column_name: adjusted_consumption, sum: true, type: DOUBLE PRECISION}
     - {avg: true, column_name: amc, sum: true, type: DOUBLE PRECISION}
     - {avg: true, column_name: approved_quantity, sum: true, type: DOUBLE PRECISION}
