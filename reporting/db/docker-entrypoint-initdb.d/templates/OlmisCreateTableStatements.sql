@@ -588,7 +588,7 @@ LEFT JOIN requisition_group_members rgm ON rgm.facilityid = f.id
 LEFT JOIN requisition_group_program_schedules rgps ON rgps.requisitionGroupId = rgm.requisitionGroupId
 JOIN facility_access fa ON fa.facility = f.name AND fa.program = authorized_reqs.program_id
 WHERE fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin' OR '{{ current_username() }}' = 'administrator'
-ORDER BY authorized_reqs.processing_period_enddate DESC;
+ORDER BY authorized_reqs.processing_period_enddate DESC WITH DATA;
 
 
 ALTER MATERIALIZED VIEW reporting_rate_and_timeliness OWNER TO postgres;
@@ -616,7 +616,7 @@ JOIN facility_access fa ON fa.facility = r.facility_name AND fa.program = r.prog
 WHERE sh.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED') 
 AND (fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin' 
 OR '{{ current_username() }}' = 'administrator')
-ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST;
+ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST WITH DATA;
 
 ALTER MATERIALIZED VIEW adjustments OWNER TO postgres;
 
@@ -676,6 +676,6 @@ li.max_periods_of_stock, li.calculated_order_quantity, li.requested_quantity, li
 li.packs_to_ship, li.price_per_pack, li.total_cost, li.total_received_quantity,
 status_req_id, req_status, sh.author_id, status_date, fa.facility, fa.program, 
 fa.username, facility_status, rd.due_days, rd.late_days
-ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST;
+ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST WITH DATA;
 
 ALTER MATERIALIZED VIEW stock_status_and_consumption OWNER TO postgres;
