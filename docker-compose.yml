@@ -34,8 +34,7 @@ services:
       JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/config/wait-for-postgres.sh"]
+    depends_on: [log]
 
   referencedata:
     image: openlmis/referencedata:${OL_REFERENCEDATA_VERSION}
@@ -44,8 +43,7 @@ services:
       JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/config/wait-for-postgres.sh"]
+    depends_on: [log]
 
   auth:
     image: openlmis/auth:${OL_AUTH_VERSION}
@@ -54,8 +52,7 @@ services:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/config/wait-for-postgres.sh"]
+    depends_on: [log]
 
   notification:
     image: openlmis/notification:${OL_NOTIFICATION_VERSION}
@@ -64,8 +61,7 @@ services:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/config/wait-for-postgres.sh"]
+    depends_on: [log]
 
   fulfillment:
     image: openlmis/fulfillment:${OL_FULFILLMENT_VERSION}
@@ -74,8 +70,7 @@ services:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/config/wait-for-postgres.sh"]
+    depends_on: [log]
 
   cce:
     image: openlmis/cce:${OL_CCE_VERSION}
@@ -84,8 +79,7 @@ services:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/config/wait-for-postgres.sh"]
+    depends_on: [log]
 
   stockmanagement:
     image: openlmis/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
@@ -94,8 +88,7 @@ services:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/config/wait-for-postgres.sh"]
+    depends_on: [log]
 
   report:
     image: openlmis/report:${OL_REPORT_VERSION}
@@ -104,8 +97,7 @@ services:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/config/wait-for-postgres.sh"]
+    depends_on: [log]
 
   hapifhir:
     restart: always
@@ -116,8 +108,7 @@ services:
       spring_profiles_active: ${spring_profiles_active}
     volumes:
       - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/config/wait-for-postgres.sh"]
+    depends_on: [log]
     
   diagnostics:
     image: openlmis/diagnostics:${OL_DIAGNOSTICS_VERSION}
