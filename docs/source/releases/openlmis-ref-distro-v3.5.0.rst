@@ -1,8 +1,8 @@
 ====================================
-3.5.0 Release Notes - 12 December 2018
+DRAFT 3.5.0 Release Notes -
 ====================================
 
-Status: Stable
+Status: Pending
 ==============
 
 3.5.0 is a stable release, and all users of `OpenLMIS version 3
@@ -11,10 +11,10 @@ encouraged to adopt it.
 
 Release Notes
 =============
-
+Mary Jo
 The OpenLMIS Community is excited to announce the **3.5.0 release** of OpenLMIS! It is another
 major milestone in the version 3 `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_
-that allows more functionality to be shared among the community of OpenLMIS implementers. It is also the first release since the `Gap Project <https://openlmis.atlassian.net/wiki/spaces/OP/pages/105578547/Gap+Analysis+eLMIS+Tanzania+Zambia+and+OpenLMIS+3.x>`_ has started. We are excited to announce that four organizations collaboratively worked on the 3.4 release!
+that allows more functionality to be shared among the community of OpenLMIS implementers. It is also the first release since the `Gap Project <https://openlmis.atlassian.net/wiki/spaces/OP/pages/105578547/Gap+Analysis+eLMIS+Tanzania+Zambia+and+OpenLMIS+3.x>`_ has started. We are excited to announce that four organizations collaboratively worked on the 3.5 release!
 
 For a full list of features and bug-fixes since 3.4.1, see `OpenLMIS 3.5.0 Jira tickets
 <https://openlmis.atlassian.net/issues/?jql=status%3DDone%20AND%20project%3DOLMIS%20AND%20fixVersion%3D3.5%20and%20type!%3DTest%20and%20type!%3DEpic%20ORDER%20BY%20%22Epic%20Link%22%20asc%2C%20key%20ASC>`_.
@@ -59,7 +59,7 @@ To report a bug, see `Reporting Bugs
 
 New Features
 ============
-
+Mary Jo
 
 Changes to Existing Functionality
 =================================
@@ -95,7 +95,7 @@ The following chart displays the 3.4.0 UI loading times in seconds for both 3.3.
 
 Test Coverage
 =============
-
+Sam
 
 
 All Changes by Component
