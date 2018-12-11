@@ -3,7 +3,7 @@ DRAFT 3.5.0 Release Notes -
 ====================================
 
 Status: Pending
-==============
+===============
 
 3.5.0 is a stable release, and all users of `OpenLMIS version 3
 <https://openlmis.atlassian.net/wiki/spaces/OP/pages/88670325/3.0.0+Release+-+1+March+2017>`_ are
@@ -73,25 +73,30 @@ API Changes
 Some APIs have changes to their contracts and/or their request-response data structures. These
 changes impact developers and systems integrating with OpenLMIS:
 
-- Authentication Service v4.0.0 - Changes to the user resource structure: `auth changelog <https://github.com/OpenLMIS/openlmis-auth/blob/master/CHANGELOG.md>`_
-- Notification Service v4.0.0 - Changes to the user contact details resource and the /api/notification endpoint: `notification changelog <https://github.com/OpenLMIS/openlmis-notification/blob/master/CHANGELOG.md>`_
-- Reference Data Service v11.0.0 - Changes to the user resource structure: `ref-data changelog <https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
-- Requisition Service v7.0.0 - Changes to the periodsForInitiate endpoint: `requisition changelog <https://github.com/OpenLMIS/openlmis-requisition/blob/master/CHANGELOG.md>`_
-- Stock Management UI Service v3.1.0 - Renamed admin-reason-modal module: `stockmanagement changelog <https://github.com/OpenLMIS/openlmis-stockmanagement-ui/blob/master/CHANGELOG.md>`_
-- UI Components Service v6.0.0 - Changed syntax for using datepicker: `ui-components changelog <https://github.com/OpenLMIS/openlmis-ui-components/blob/master/CHANGELOG.md>`_
-- Dev-UI Service v8.0.0 - Replaced syncTransifex grunt option: `dev-ui changelog <https://github.com/OpenLMIS/dev-ui/blob/master/CHANGELOG.md>`_
+- Fulfillment Service v8.0.0 - `fulfillment changelog <https://github.com/OpenLMIS/openlmis-fulfillment/blob/master/CHANGELOG.md>`_
+    - Refactored /api/orderFileTemplate API into /api/fileTemplate that persists config for both order and shipment templates.
+    - Updated Transfer properties so that it can also be used to persist transfer properties for shipment files imports.
+- Reference Data Service v12.0.0 - `ref-data changelog <https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
+    - Removed DELETE /api/processingPeriods/{id} endpoint
+    - Removed GET /api/users/{id}/supervisedFacilities endpoint
+    - Changed supervisory node structure
+    - Removed login restricted from the User model
+- Stock Management Service v4.0.0 - `stockmanagement changelog <https://github.com/OpenLMIS/openlmis-stockmanagement-ui/blob/master/CHANGELOG.md>`_
+    - Can't change type or category for stock card line item reason on update.
+- UI Components Service v7.0.0 - `ui-components changelog <https://github.com/OpenLMIS/openlmis-ui-components/blob/master/CHANGELOG.md>`_
+    - Changed syntax for using sort component.
 
 Performance
 ========================
 
-There are minor regressions in the sync, submit, authorize and single approve within the requisition service with slight improvements in convert to order.
+Overall, the performance of version 3.5.0 improves upon the 3.4.0 release. Significant improvements have been seen in the requisition submission, authorization, approval, and convert to order processes; with slight regressions in the initial load and initiate requisition processes.
 
-OpenLMIS conducted manual performance tests of the same user workflows with the same test data we used in testing v3.2.1 to establish that last-mile performance characteristics have been retained at a minimum. For details on the test results and process, please see `this wiki page <https://openlmis.atlassian.net/wiki/spaces/OP/pages/116949318/Performance+Metrics>`_. For more details about the specific work done to improve performance for 3.4.0, please reference `this <https://openlmis.atlassian.net/issues/?jql=project%20%3D%20OLMIS%20AND%20issuetype%20%3D%20Task%20AND%20status%20%3D%20Done%20AND%20fixVersion%20%3D%203.4%20AND%20labels%20%3D%20Performance%20AND%20text%20~%20%22performance%22%20ORDER%20BY%20priority%20DESC%2C%20status%20ASC%2C%20key%20ASC>`_ list of tasks.
+OpenLMIS conducted manual performance tests of the same user workflows with the same test data we used in testing v3.2.1 to establish that last-mile performance characteristics have been retained at a minimum. For details on the test results and process, please see `this wiki page <https://openlmis.atlassian.net/wiki/spaces/OP/pages/116949318/Performance+Metrics>`_.
 
-The following chart displays the 3.4.0 UI loading times in seconds for both 3.3.1 and 3.4.0 using the same test data.
+The following chart displays the 3.5.0 UI loading times in seconds for 3.3.0, 3.4.0, and 3.5.0 using the same test data.
 
-.. image:: UI-Performance-3.4.0.png
-    :alt: UI Load Times for 3.3.1 and 3.4.0
+.. image:: UI-Performance-3.5.0.png
+    :alt: UI Load Times for 3.4.0 and 3.5.0
 
 Test Coverage
 =============
@@ -108,32 +113,32 @@ DockerHub repository (release image). The Reference Distribution and components 
 independently; for details see `Versioning and Releasing
 <http://docs.openlmis.org/en/latest/conventions/versioningReleasing.html>`_.
 
-Auth Service 4.0.0
+Auth Service 4.1.0
 ------------------
 
 `Auth CHANGELOG <https://github.com/OpenLMIS/openlmis-auth/blob/master/CHANGELOG.md>`_
 
-CCE Service 1.0.1
+CCE Service 1.0.2
 -----------------
 
 `CCE CHANGELOG <https://github.com/OpenLMIS/openlmis-cce/blob/master/CHANGELOG.md>`_
 
-Fulfillment Service 7.0.1
+Fulfillment Service 8.0.0
 -------------------------
 
 `Fulfillment CHANGELOG <https://github.com/OpenLMIS/openlmis-fulfillment/blob/master/CHANGELOG.md>`_
 
-Notification Service 4.0.0
+Notification Service 4.0.1
 --------------------------
 
 `Notification CHANGELOG <https://github.com/OpenLMIS/openlmis-notification/blob/master/CHANGELOG.md>`_
 
-Reference Data Service 11.0.0
+Reference Data Service 12.0.0
 -----------------------------
 
 `ReferenceData CHANGELOG <https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
 
-Report Service 1.1.1
+Report Service 1.1.2
 --------------------
 
 This service is intended to provide reporting functionality for other components to use. Built-in
@@ -146,17 +151,17 @@ additional reports.
 
 `Report CHANGELOG <https://github.com/OpenLMIS/openlmis-report/blob/master/CHANGELOG.md>`_
 
-Requisition Service 7.0.0
+Requisition Service 7.1.0
 -------------------------
 
 `Requisition CHANGELOG <https://github.com/OpenLMIS/openlmis-requisition/blob/master/CHANGELOG.md>`_
 
-Stock Management 3.1.0
+Stock Management 4.0.0
 ----------------------
 
 `Stock Management CHANGELOG <https://github.com/OpenLMIS/openlmis-stockmanagement/blob/master/CHANGELOG.md>`_
 
-Reference UI 5.1.0
+Reference UI 5.1.2
 ------------------
 
 `The Reference UI <https://github.com/OpenLMIS/openlmis-reference-ui/>`_
@@ -165,55 +170,55 @@ a single page web application that is optimized for offline and low-bandwidth en
 The Reference UI is compiled together from module UI modules using Docker compose along with the
 OpenLMIS dev-ui. UI modules included in the Reference UI are:
 
-Reference Data-UI 5.4.0
+Reference Data-UI 5.5.0
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 `ReferenceData-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-referencedata-ui/blob/master/CHANGELOG.md>`_
 
-Auth-UI 6.1.1
+Auth-UI 6.1.3
 ~~~~~~~~~~~~~
 
 `Auth-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-auth-ui/blob/master/CHANGELOG.md>`_
 
-CCE-UI 1.0.1
+CCE-UI 1.0.2
 ~~~~~~~~~~~~
 
 `CCE-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-cce-ui/blob/master/CHANGELOG.md>`_
 
-Fulfillment-UI 6.0.1
+Fulfillment-UI 6.0.2
 ~~~~~~~~~~~~~~~~~~~~
 
 `Fulfillment-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-fulfillment-ui/blob/master/CHANGELOG.md>`_
 
-Report-UI 5.0.6
+Report-UI 5.1.0
 ~~~~~~~~~~~~~~~
 
 `Report-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-report-ui/blob/master/CHANGELOG.md>`_
 
-Requisition-UI 5.4.0
+Requisition-UI 5.5.0
 ~~~~~~~~~~~~~~~~~~~~
 
 `Requisition-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/CHANGELOG.md>`_
 
-Stock Management-UI 3.1.0
+Stock Management-UI 2.0.2
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Stock Management-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-stockmanagement-ui/blob/master/CHANGELOG.md>`_
 
-UI-Components 6.0.0
+UI-Components 7.0.0
 ~~~~~~~~~~~~~~~~~~~
 
 `UI-Components CHANGELOG <https://github.com/OpenLMIS/openlmis-ui-components/blob/master/CHANGELOG.md>`_
 
-UI-Layout 5.1.1
+UI-Layout 5.1.2
 ~~~~~~~~~~~~~~~
 
 `UI-Layout CHANGELOG <https://github.com/OpenLMIS/openlmis-ui-layout/blob/master/CHANGELOG.md>`_
 
-Dev UI v8
-~~~~~~~~~
+Dev UI 8.1.0
+~~~~~~~~~~~~
 
-The `Dev UI developer tooling <https://github.com/OpenLMIS/dev-ui>`_ has advanced to v8.
+The `Dev-UI CHANGLOG <https://github.com/OpenLMIS/dev-ui/blob/master/CHANGELOG.md>`_
 
 Components with No Changes
 ==========================
