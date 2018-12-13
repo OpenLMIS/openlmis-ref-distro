@@ -11,10 +11,9 @@ encouraged to adopt it.
 
 Release Notes
 =============
-Mary Jo
 The OpenLMIS Community is excited to announce the **3.5.0 release** of OpenLMIS! It is another
 major milestone in the version 3 `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_
-that allows more functionality to be shared among the community of OpenLMIS implementers. It is also the first release since the `Gap Project <https://openlmis.atlassian.net/wiki/spaces/OP/pages/105578547/Gap+Analysis+eLMIS+Tanzania+Zambia+and+OpenLMIS+3.x>`_ has started. We are excited to announce that four organizations collaboratively worked on the 3.5 release!
+that allows more functionality to be shared among the community of OpenLMIS implementers. This release was a major milestone in the the `Gap Project <https://openlmis.atlassian.net/wiki/spaces/OP/pages/105578547/Gap+Analysis+eLMIS+Tanzania+Zambia+and+OpenLMIS+3.x>`_ and adds more functionality to reduce the gap in features between different versions of OpenLMIS. We are excited to announce that four organizations collaboratively worked on the 3.5 release!
 
 For a full list of features and bug-fixes since 3.4.1, see `OpenLMIS 3.5.0 Jira tickets
 <https://openlmis.atlassian.net/issues/?jql=status%3DDone%20AND%20project%3DOLMIS%20AND%20fixVersion%3D3.5%20and%20type!%3DTest%20and%20type!%3DEpic%20ORDER%20BY%20%22Epic%20Link%22%20asc%2C%20key%20ASC>`_.
@@ -59,7 +58,17 @@ To report a bug, see `Reporting Bugs
 
 New Features
 ============
-Mary Jo
+The OpenLMIS community proudly presents the following new features with 3.5.0:
+
+- New in application reporting metrics, visualizations and tooling! To see a in-depth demo of the reporting tooling and capabilities, please reference the `OpenLMIS YouTube channel <https://www.youtube.com/watch?v=TyG2AmePtHg>`_) for a short video. Please note that the data is for development purposes only and not reflective of real data.
+- Configuring OpenLMIS to support multiple suppliers for one facility based on specific products.
+- Support the `mCSD <https://wiki.ihe.net/index.php/Mobile_Care_Services_Discovery_(mCSD)>`_ profile for facilities to allow for OpenLMIS to subscribe to a Facility Registry.
+- Allow Average Consumption to calculate the order quantities for Stock Based Requisitions, which are requisitions automatically populated by stock transactions recorded in the stock management service.  
+- A new possible column for requisitions to capture the additional stock needed for new patients, which impacts the calculated order quantity.
+- Ability to configure the Packs to Ship column to show up during the approval step to support users in seeing the number of packs to be ordered based on the dispensing unit.  
+- New integration tests to support the team in releasing faster!
+
+Reference the `3.5 epics <https://openlmis.atlassian.net/issues/?filter=20626>`_ for more details.
 
 Changes to Existing Functionality
 =================================
