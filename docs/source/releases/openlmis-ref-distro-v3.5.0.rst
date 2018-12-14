@@ -66,7 +66,7 @@ The OpenLMIS community proudly presents the following new features with 3.5.0:
 - Allow Average Consumption to calculate the order quantities for Stock Based Requisitions, which are requisitions automatically populated by stock transactions recorded in the stock management service.  
 - A new possible column for requisitions to capture the additional stock needed for new patients, which impacts the calculated order quantity.
 - Ability to configure the Packs to Ship column to show up during the approval step to support users in seeing the number of packs to be ordered based on the dispensing unit.  
-- New integration tests to support the team in releasing faster!
+- New `functional tests <https://github.com/OpenLMIS/openlmis-functional-tests>`_, `testing strategy <http://docs.openlmis.org/en/latest/conventions/testing.html>`_ and process improvements to support the team in releasing faster and moving towards more automatization!
 
 Reference the `3.5 epics <https://openlmis.atlassian.net/issues/?filter=20626>`_ for more details.
 
