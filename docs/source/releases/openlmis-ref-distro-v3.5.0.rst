@@ -1,8 +1,8 @@
 ====================================
-DRAFT 3.5.0 Release Notes -
+3.5.0 Release Notes - 13 December 2018
 ====================================
 
-Status: Pending
+Status: Stable
 ===============
 
 3.5.0 is a stable release, and all users of `OpenLMIS version 3
