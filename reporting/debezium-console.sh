@@ -5,4 +5,4 @@ docker-compose -f docker-compose.yml -f docker-compose.debezium.yml \
     --bootstrap-server kafka:29092 \
     --from-beginning \
     --property print.key=true \
-    --topic dbserver1.referencedata.programs
+    --topic openlmis.referencedata.programs
