@@ -13,6 +13,7 @@ services:
      - GROUP_ID=1
      - CONFIG_STORAGE_TOPIC=my_connect_configs
      - OFFSET_STORAGE_TOPIC=my_connect_offsets
+     - HOST_NAME=0.0.0.0
 
 networks:
   openlmis-ref-distro_default:
