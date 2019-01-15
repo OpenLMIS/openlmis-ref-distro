@@ -4,7 +4,7 @@
 
 start_instance() {
   # starting instance
-	echo "Stopping instance $TARGET_INSTANCE_ID"
+	echo "Starting instance $TARGET_INSTANCE_ID"
 	aws ec2 start-instances --instance-ids $TARGET_INSTANCE_ID
 
   echo "Waiting for $TARGET_INSTANCE_ID to be available"

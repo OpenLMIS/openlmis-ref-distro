@@ -1,6 +1,6 @@
 FROM openlmis/awscli
 
-COPY stop-instance.sh /stop-instance.sh
-RUN chmod u+x /stop-instance.sh
+COPY start-instance.sh /start-instance.sh
+RUN chmod u+x /start-instance.sh
 
-CMD /stop-instance.sh
+CMD /start-instance.sh
