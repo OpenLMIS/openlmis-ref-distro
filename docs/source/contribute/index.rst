@@ -13,4 +13,4 @@ and manageable:
 
    contributionGuide
    contributeDocs
-   New Developer Onboarding (google doc) <https://docs.google.com/document/d/1zjvDChIR8hKjABOqJdwiWMdvttxbij7oMuS2_CDDYws/edit>
+   Developer Onboarding Guide <https://openlmis.atlassian.net/wiki/x/d4J4HQ>
