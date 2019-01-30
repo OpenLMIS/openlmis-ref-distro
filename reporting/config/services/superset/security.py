@@ -47,6 +47,8 @@ class AuthOAuthView(AuthOAuthView):
         logging.debug("Authorized init")
         resp = self.appbuilder.sm.oauth_remotes[provider].authorized_response()
         redirect_url = request.args.get('redirect_url')
+        if 'custom_api_token' in request.headers:
+            resp = {'access_token': request.headers['custom_api_token']}
         if resp is None:
             flash(u'You denied the request to sign in.', 'warning')
             return redirect('login')
