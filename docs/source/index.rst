@@ -40,7 +40,7 @@ Links:
    - `Wiki <https://openlmis.atlassian.net/wiki/spaces/OP>`_
 - Communication
    - `Slack <http://openlmis.slack.com>`_
-   - `Forum <http://forum.openlmis.org`_
+   - `Forum <http://forum.openlmis.org>`_
 - Development
    - `GitHub <https://github.com/openlmis>`_
    - `DockerHub <https://hub.docker.com/u/openlmis>`_ (Published Docker Images)
