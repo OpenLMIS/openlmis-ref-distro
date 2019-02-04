@@ -28,14 +28,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"30__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": null, \"time_grain_sqla\": null, \"time_range\": \"No filter\", \"groupby\": [\"code\", \"name\", \"type\", \"district\", \"operator_name\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": null, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 18, \"datasource_name\": \"facilities\", \"schema\": \"facilities\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"30__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": null, \"time_grain_sqla\": null, \"time_range\": \"No filter\", \"groupby\": [\"code\", \"name\", \"type\", \"district\", \"operator_name\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": null, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 18, \"datasource_name\": \"facilities\", \"schema\": \"facilities\", \"database_name\": \"main\"}",
                             "datasource_name": "facilities",
                             "datasource_id": 30,
                             "id": 18,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:47:02"
                             },
-                            "perm": "[open_lmis_reporting].[facilities](id:30)",
+                            "perm": "[main].[facilities](id:30)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -71,14 +71,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"2__table\", \"viz_type\": \"filter_box\", \"url_params\": {}, \"granularity_sqla\": \"modified_date\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 5 years\", \"groupby\": [\"program_name\", \"processing_period_name\", \"stock_adjustment_reason\", \"district_name\", \"region_name\", \"facility_type_name\", \"facility_name\", \"full_product_name\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 88, \"column_name\": \"modified_date\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_modified_date\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(modified_date)\", \"optionName\": \"metric_oll674aoocn_zxtp1a7s9\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 16, \"datasource_name\": \"adjustments\", \"schema\": \"adjustments\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"2__table\", \"viz_type\": \"filter_box\", \"url_params\": {}, \"granularity_sqla\": \"modified_date\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 5 years\", \"groupby\": [\"program_name\", \"processing_period_name\", \"stock_adjustment_reason\", \"district_name\", \"region_name\", \"facility_type_name\", \"facility_name\", \"full_product_name\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 88, \"column_name\": \"modified_date\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_modified_date\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(modified_date)\", \"optionName\": \"metric_oll674aoocn_zxtp1a7s9\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 16, \"datasource_name\": \"adjustments\", \"schema\": \"adjustments\", \"database_name\": \"main\"}",
                             "datasource_name": "adjustments",
                             "datasource_id": 2,
                             "id": 16,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:42:45"
                             },
-                            "perm": "[open_lmis_reporting].[adjustments](id:2)",
+                            "perm": "[main].[adjustments](id:2)",
                             "description": null,
                             "viz_type": "filter_box"
                         }
@@ -93,14 +93,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"2__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"modified_date\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 5 years\", \"groupby\": [\"facility_type_name\", \"facility_name\", \"facility_operator_name\", \"stock_adjustment_reason\", \"processing_period_name\"], \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 75, \"column_name\": \"total_losses_and_adjustments\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": false, \"type\": \"DOUBLE PRECISION\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_total_losses_and_adjustments\"}, \"aggregate\": \"SUM\", \"sqlExpression\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Total Losses and Adjustments\", \"optionName\": \"metric_44er8bk1iis_r9zagd9tj9q\"}, {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 74, \"column_name\": \"quantity\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": false, \"type\": \"INTEGER\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_quantity\"}, \"aggregate\": \"SUM\", \"sqlExpression\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Quantity\", \"optionName\": \"metric_mpsnen9h9ws_ce08g8ry84r\"}], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 88, \"column_name\": \"modified_date\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_modified_date\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(modified_date)\", \"optionName\": \"metric_00ov9jltb8imi_a29mt18oj8\"}, \"row_limit\": 500, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 17, \"datasource_name\": \"adjustments\", \"schema\": \"adjustments\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"2__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"modified_date\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 5 years\", \"groupby\": [\"facility_type_name\", \"facility_name\", \"facility_operator_name\", \"stock_adjustment_reason\", \"processing_period_name\"], \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 75, \"column_name\": \"total_losses_and_adjustments\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": false, \"type\": \"DOUBLE PRECISION\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_total_losses_and_adjustments\"}, \"aggregate\": \"SUM\", \"sqlExpression\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Total Losses and Adjustments\", \"optionName\": \"metric_44er8bk1iis_r9zagd9tj9q\"}, {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 74, \"column_name\": \"quantity\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": false, \"type\": \"INTEGER\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_quantity\"}, \"aggregate\": \"SUM\", \"sqlExpression\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Quantity\", \"optionName\": \"metric_mpsnen9h9ws_ce08g8ry84r\"}], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 88, \"column_name\": \"modified_date\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_modified_date\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(modified_date)\", \"optionName\": \"metric_00ov9jltb8imi_a29mt18oj8\"}, \"row_limit\": 500, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 17, \"datasource_name\": \"adjustments\", \"schema\": \"adjustments\", \"database_name\": \"main\"}",
                             "datasource_name": "adjustments",
                             "datasource_id": 2,
                             "id": 17,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:44:33"
                             },
-                            "perm": "[open_lmis_reporting].[adjustments](id:2)",
+                            "perm": "[main].[adjustments](id:2)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -115,14 +115,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 2,
                             "created_on": {
                                 "__datetime__": "2018-11-21T12:58:46"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "pie"
                         }
@@ -137,14 +137,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 4,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:03:43"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -180,14 +180,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"program_name\", \"processing_schedule_name\", \"processing_period_name\", \"region_name\", \"district_name\", \"facility_type_name\", \"full_product_name\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_0wxl09vb8n5_tt9m1rtm7mo\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 12, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"program_name\", \"processing_schedule_name\", \"processing_period_name\", \"region_name\", \"district_name\", \"facility_type_name\", \"full_product_name\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_0wxl09vb8n5_tt9m1rtm7mo\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 12, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 12,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:36:01"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "filter_box"
                         }
@@ -202,14 +202,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last week\", \"groupby\": [\"facility_name\", \"product_code\", \"full_product_name\", \"processing_period_name\", \"order_quantity\", \"total_received_quantity\"], \"metrics\": [{\"expressionType\": \"SQL\", \"sqlExpression\": \"SUM(total_received_quantity)/SUM(order_quantity)*100\", \"column\": null, \"aggregate\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Order & Item Fill Rate (%)\", \"optionName\": \"metric_dmxrfpwvgbd_4kz5yq5ye7q\"}], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_xo2kbveeec_1coyi8jct2x\"}, \"row_limit\": 500, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [{\"expressionType\": \"SIMPLE\", \"subject\": \"order_quantity\", \"operator\": \">\", \"comparator\": \"0\", \"clause\": \"WHERE\", \"sqlExpression\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_wbdqry2mnhl_p1mj26j8qzf\"}], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 13, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last week\", \"groupby\": [\"facility_name\", \"product_code\", \"full_product_name\", \"processing_period_name\", \"order_quantity\", \"total_received_quantity\"], \"metrics\": [{\"expressionType\": \"SQL\", \"sqlExpression\": \"SUM(total_received_quantity)/SUM(order_quantity)*100\", \"column\": null, \"aggregate\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Order & Item Fill Rate (%)\", \"optionName\": \"metric_dmxrfpwvgbd_4kz5yq5ye7q\"}], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_xo2kbveeec_1coyi8jct2x\"}, \"row_limit\": 500, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [{\"expressionType\": \"SIMPLE\", \"subject\": \"order_quantity\", \"operator\": \">\", \"comparator\": \"0\", \"clause\": \"WHERE\", \"sqlExpression\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_wbdqry2mnhl_p1mj26j8qzf\"}], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 13, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 13,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:37:56"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -224,14 +224,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 10 years\", \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 45, \"column_name\": \"li_req_id\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"VARCHAR\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_li_req_id\"}, \"aggregate\": \"COUNT_DISTINCT\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": false, \"label\": \"COUNT_DISTINCT(li_req_id)\", \"optionName\": \"metric_v3b4y8nflpl_jdsj21s35wc\"}, \"adhoc_filters\": [{\"expressionType\": \"SIMPLE\", \"subject\": \"total_received_quantity\", \"operator\": \">\", \"comparator\": \"0\", \"clause\": \"WHERE\", \"sqlExpression\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_r64abbb4fc_m7cq22rpx27\"}], \"groupby\": [\"emergency_status\"], \"row_limit\": 10000, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 14, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 10 years\", \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 45, \"column_name\": \"li_req_id\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"VARCHAR\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_li_req_id\"}, \"aggregate\": \"COUNT_DISTINCT\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": false, \"label\": \"COUNT_DISTINCT(li_req_id)\", \"optionName\": \"metric_v3b4y8nflpl_jdsj21s35wc\"}, \"adhoc_filters\": [{\"expressionType\": \"SIMPLE\", \"subject\": \"total_received_quantity\", \"operator\": \">\", \"comparator\": \"0\", \"clause\": \"WHERE\", \"sqlExpression\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_r64abbb4fc_m7cq22rpx27\"}], \"groupby\": [\"emergency_status\"], \"row_limit\": 10000, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 14, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 14,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:39:13"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "pie"
                         }
@@ -246,14 +246,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 10 years\", \"groupby\": [\"facility_code\", \"facility_name\", \"facility_type_name\", \"district_name\", \"total_cost\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_jxsrc32f8f_mvy80fgsqnf\"}, \"row_limit\": 500, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 15, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 10 years\", \"groupby\": [\"facility_code\", \"facility_name\", \"facility_type_name\", \"district_name\", \"total_cost\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_jxsrc32f8f_mvy80fgsqnf\"}, \"row_limit\": 500, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 15, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 15,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:40:20"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -268,14 +268,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 2,
                             "created_on": {
                                 "__datetime__": "2018-11-21T12:58:46"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "pie"
                         }
@@ -290,14 +290,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 4,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:03:43"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -333,14 +333,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 5, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 days\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 5, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 days\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 5,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:07:18"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "filter_box"
                         }
@@ -355,14 +355,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 10 years\", \"groupby\": [\"facility_name\", \"product_code\", \"full_product_name\", \"processing_period_name\", \"beginning_balance\", \"total_received_quantity\", \"adjusted_consumption\", \"total_losses_and_adjustments\", \"closing_balance\", \"order_quantity\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_snhnk2qk72_toerklflce\"}, \"row_limit\": 500, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 9, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 10 years\", \"groupby\": [\"facility_name\", \"product_code\", \"full_product_name\", \"processing_period_name\", \"beginning_balance\", \"total_received_quantity\", \"adjusted_consumption\", \"total_losses_and_adjustments\", \"closing_balance\", \"order_quantity\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_snhnk2qk72_toerklflce\"}, \"row_limit\": 500, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 9, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 9,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:29:02"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -377,14 +377,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 10 days\", \"groupby\": [\"product_code\", \"full_product_name\", \"total_consumed_quantity\", \"adjusted_consumption\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ili8xba86dd_mosr7j1p5qq\"}, \"row_limit\": 500, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 10, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 10 days\", \"groupby\": [\"product_code\", \"full_product_name\", \"total_consumed_quantity\", \"adjusted_consumption\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ili8xba86dd_mosr7j1p5qq\"}, \"row_limit\": 500, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 100, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 10, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 10,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:30:25"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -399,14 +399,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"line\", \"slice_id\": 11, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 2 years\", \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 1, \"column_name\": \"adjusted_consumption\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"DOUBLE PRECISION\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_adjusted_consumption\"}, \"aggregate\": \"SUM\", \"sqlExpression\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Adjusted Consumption\", \"optionName\": \"metric_f3sjc5l6hbr_be6zwd326cj\"}], \"adhoc_filters\": [], \"groupby\": [\"facility_name\"], \"timeseries_limit_metric\": null, \"order_desc\": true, \"contribution\": false, \"row_limit\": 10000, \"color_scheme\": \"bnbColors\", \"show_brush\": \"no\", \"send_time_range\": false, \"show_legend\": true, \"rich_tooltip\": true, \"show_markers\": false, \"line_interpolation\": \"linear\", \"x_axis_label\": \"\", \"bottom_margin\": \"auto\", \"x_ticks_layout\": \"auto\", \"x_axis_format\": \"smart_date\", \"x_axis_showminmax\": false, \"y_axis_label\": \"\", \"left_margin\": \"auto\", \"y_axis_showminmax\": false, \"y_log_scale\": false, \"y_axis_format\": \".3s\", \"y_axis_bounds\": [null, null], \"rolling_type\": \"None\", \"comparison_type\": \"values\", \"resample_how\": null, \"resample_rule\": null, \"resample_fillmethod\": null, \"annotation_layers\": [], \"remote_id\": 11, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"line\", \"slice_id\": 11, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 2 years\", \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 1, \"column_name\": \"adjusted_consumption\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"DOUBLE PRECISION\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_adjusted_consumption\"}, \"aggregate\": \"SUM\", \"sqlExpression\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Adjusted Consumption\", \"optionName\": \"metric_f3sjc5l6hbr_be6zwd326cj\"}], \"adhoc_filters\": [], \"groupby\": [\"facility_name\"], \"timeseries_limit_metric\": null, \"order_desc\": true, \"contribution\": false, \"row_limit\": 10000, \"color_scheme\": \"bnbColors\", \"show_brush\": \"no\", \"send_time_range\": false, \"show_legend\": true, \"rich_tooltip\": true, \"show_markers\": false, \"line_interpolation\": \"linear\", \"x_axis_label\": \"\", \"bottom_margin\": \"auto\", \"x_ticks_layout\": \"auto\", \"x_axis_format\": \"smart_date\", \"x_axis_showminmax\": false, \"y_axis_label\": \"\", \"left_margin\": \"auto\", \"y_axis_showminmax\": false, \"y_log_scale\": false, \"y_axis_format\": \".3s\", \"y_axis_bounds\": [null, null], \"rolling_type\": \"None\", \"comparison_type\": \"values\", \"resample_how\": null, \"resample_rule\": null, \"resample_fillmethod\": null, \"annotation_layers\": [], \"remote_id\": 11, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 11,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:31:43"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "line"
                         }
@@ -421,14 +421,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 2,
                             "created_on": {
                                 "__datetime__": "2018-11-21T12:58:46"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "pie"
                         }
@@ -443,14 +443,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 4,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:03:43"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -486,14 +486,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 5, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 days\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 5, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 days\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 5,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:07:18"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "filter_box"
                         }
@@ -508,14 +508,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 2,
                             "created_on": {
                                 "__datetime__": "2018-11-21T12:58:46"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "pie"
                         }
@@ -530,14 +530,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 4,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:03:43"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -552,14 +552,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"bar\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 3 years\", \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 33, \"column_name\": \"facility_id\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"VARCHAR\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_facility_id\"}, \"aggregate\": \"COUNT_DISTINCT\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": false, \"label\": \"COUNT_DISTINCT(facility_id)\", \"optionName\": \"metric_phjempvrjz_mj5yuuzqiu\"}], \"adhoc_filters\": [], \"groupby\": [\"stock_status\"], \"timeseries_limit_metric\": null, \"order_desc\": true, \"contribution\": false, \"row_limit\": 10000, \"color_scheme\": \"bnbColors\", \"show_brush\": \"auto\", \"show_legend\": true, \"show_bar_value\": false, \"rich_tooltip\": true, \"bar_stacked\": true, \"line_interpolation\": \"linear\", \"show_controls\": false, \"bottom_margin\": \"auto\", \"x_axis_label\": \"\", \"x_ticks_layout\": \"auto\", \"x_axis_format\": \"smart_date\", \"x_axis_showminmax\": false, \"reduce_x_ticks\": false, \"y_axis_label\": \"Count of Facilities\", \"left_margin\": \"auto\", \"y_axis_showminmax\": false, \"y_log_scale\": false, \"y_axis_format\": \".3s\", \"y_axis_bounds\": [null, null], \"rolling_type\": \"None\", \"comparison_type\": \"values\", \"resample_how\": null, \"resample_rule\": null, \"resample_fillmethod\": null, \"annotation_layers\": [], \"remote_id\": 6, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"bar\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 3 years\", \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 33, \"column_name\": \"facility_id\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"VARCHAR\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_facility_id\"}, \"aggregate\": \"COUNT_DISTINCT\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": false, \"label\": \"COUNT_DISTINCT(facility_id)\", \"optionName\": \"metric_phjempvrjz_mj5yuuzqiu\"}], \"adhoc_filters\": [], \"groupby\": [\"stock_status\"], \"timeseries_limit_metric\": null, \"order_desc\": true, \"contribution\": false, \"row_limit\": 10000, \"color_scheme\": \"bnbColors\", \"show_brush\": \"auto\", \"show_legend\": true, \"show_bar_value\": false, \"rich_tooltip\": true, \"bar_stacked\": true, \"line_interpolation\": \"linear\", \"show_controls\": false, \"bottom_margin\": \"auto\", \"x_axis_label\": \"\", \"x_ticks_layout\": \"auto\", \"x_axis_format\": \"smart_date\", \"x_axis_showminmax\": false, \"reduce_x_ticks\": false, \"y_axis_label\": \"Count of Facilities\", \"left_margin\": \"auto\", \"y_axis_showminmax\": false, \"y_log_scale\": false, \"y_axis_format\": \".3s\", \"y_axis_bounds\": [null, null], \"rolling_type\": \"None\", \"comparison_type\": \"values\", \"resample_how\": null, \"resample_rule\": null, \"resample_fillmethod\": null, \"annotation_layers\": [], \"remote_id\": 6, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 6,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:14:54"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "bar"
                         }
@@ -574,14 +574,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 10 years\", \"groupby\": [\"region_name\", \"district_name\", \"processing_period_name\", \"facility_name\", \"full_product_name\", \"stock_status\"], \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 12, \"column_name\": \"max_periods_of_stock\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"DOUBLE PRECISION\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_max_periods_of_stock\"}, \"aggregate\": \"SUM\", \"sqlExpression\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Periods of Stock\", \"optionName\": \"metric_84tw1d3kw5d_36tczcpk5lf\"}], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_7cqrg8tr37v_unag22emloa\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": \"250\", \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 7, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 10 years\", \"groupby\": [\"region_name\", \"district_name\", \"processing_period_name\", \"facility_name\", \"full_product_name\", \"stock_status\"], \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 12, \"column_name\": \"max_periods_of_stock\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"DOUBLE PRECISION\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_max_periods_of_stock\"}, \"aggregate\": \"SUM\", \"sqlExpression\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Periods of Stock\", \"optionName\": \"metric_84tw1d3kw5d_36tczcpk5lf\"}], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_7cqrg8tr37v_unag22emloa\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": \"250\", \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 7, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 7,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:16:34"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -617,14 +617,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 2,
                             "created_on": {
                                 "__datetime__": "2018-11-21T12:58:46"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "pie"
                         }
@@ -639,14 +639,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 4,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:03:43"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -661,14 +661,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 5, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 days\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 5, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 days\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 5,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:07:18"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "filter_box"
                         }
@@ -683,14 +683,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"line\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 2 years\", \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 8, \"column_name\": \"combined_stockout\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"INTEGER\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_combined_stockout\"}, \"aggregate\": \"AVG\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"AVG(combined_stockout)\", \"optionName\": \"metric_xbuyamywqjh_vel69x0kb4l\"}], \"adhoc_filters\": [], \"groupby\": [\"district_name\"], \"timeseries_limit_metric\": null, \"order_desc\": true, \"contribution\": false, \"row_limit\": 10000, \"color_scheme\": \"bnbColors\", \"show_brush\": \"no\", \"send_time_range\": false, \"show_legend\": true, \"rich_tooltip\": true, \"show_markers\": false, \"line_interpolation\": \"linear\", \"x_axis_label\": \"\", \"bottom_margin\": \"auto\", \"x_ticks_layout\": \"auto\", \"x_axis_format\": \"smart_date\", \"x_axis_showminmax\": false, \"y_axis_label\": \"Stockout Rate\", \"left_margin\": \"auto\", \"y_axis_showminmax\": false, \"y_log_scale\": false, \"y_axis_format\": \".3s\", \"y_axis_bounds\": [null, null], \"rolling_type\": \"None\", \"comparison_type\": \"values\", \"resample_how\": null, \"resample_rule\": null, \"resample_fillmethod\": null, \"annotation_layers\": [{\"name\": \"Benchmark\", \"annotationType\": \"FORMULA\", \"sourceType\": \"\", \"value\": \".85\", \"overrides\": {\"since\": null, \"until\": null}, \"show\": true, \"titleColumn\": \"\", \"descriptionColumns\": [], \"timeColumn\": \"\", \"intervalEndColumn\": \"\", \"color\": \"#ff5a5f\", \"opacity\": \"\", \"style\": \"longDashed\", \"width\": 10, \"showMarkers\": false, \"hideLine\": false}], \"remote_id\": 8, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"line\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 2 years\", \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 8, \"column_name\": \"combined_stockout\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"INTEGER\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_combined_stockout\"}, \"aggregate\": \"AVG\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"AVG(combined_stockout)\", \"optionName\": \"metric_xbuyamywqjh_vel69x0kb4l\"}], \"adhoc_filters\": [], \"groupby\": [\"district_name\"], \"timeseries_limit_metric\": null, \"order_desc\": true, \"contribution\": false, \"row_limit\": 10000, \"color_scheme\": \"bnbColors\", \"show_brush\": \"no\", \"send_time_range\": false, \"show_legend\": true, \"rich_tooltip\": true, \"show_markers\": false, \"line_interpolation\": \"linear\", \"x_axis_label\": \"\", \"bottom_margin\": \"auto\", \"x_ticks_layout\": \"auto\", \"x_axis_format\": \"smart_date\", \"x_axis_showminmax\": false, \"y_axis_label\": \"Stockout Rate\", \"left_margin\": \"auto\", \"y_axis_showminmax\": false, \"y_log_scale\": false, \"y_axis_format\": \".3s\", \"y_axis_bounds\": [null, null], \"rolling_type\": \"None\", \"comparison_type\": \"values\", \"resample_how\": null, \"resample_rule\": null, \"resample_fillmethod\": null, \"annotation_layers\": [{\"name\": \"Benchmark\", \"annotationType\": \"FORMULA\", \"sourceType\": \"\", \"value\": \".85\", \"overrides\": {\"since\": null, \"until\": null}, \"show\": true, \"titleColumn\": \"\", \"descriptionColumns\": [], \"timeColumn\": \"\", \"intervalEndColumn\": \"\", \"color\": \"#ff5a5f\", \"opacity\": \"\", \"style\": \"longDashed\", \"width\": 10, \"showMarkers\": false, \"hideLine\": false}], \"remote_id\": 8, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}",
                             "datasource_name": "stock_status_and_consumption",
                             "datasource_id": 1,
                             "id": 8,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:21:14"
                             },
-                            "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                            "perm": "[main].[stock_status_and_consumption](id:1)",
                             "description": null,
                             "viz_type": "line"
                         }
@@ -726,14 +726,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"filter_box\", \"slice_id\": 1, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"groupby\": [\"region\", \"district\", \"name\", \"program_name\", \"processing_period_name\", \"processing_schedule_name\", \"reporting_timeliness\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_p2r4x1ybys_v8e6c02t7c\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 1, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"filter_box\", \"slice_id\": 1, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"groupby\": [\"region\", \"district\", \"name\", \"program_name\", \"processing_period_name\", \"processing_schedule_name\", \"reporting_timeliness\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_p2r4x1ybys_v8e6c02t7c\"}, \"adhoc_filters\": [], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 1, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 1,
                             "created_on": {
                                 "__datetime__": "2018-11-21T12:53:01"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "filter_box"
                         }
@@ -748,14 +748,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"pie\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 100 years\", \"metric\": \"count\", \"adhoc_filters\": [], \"groupby\": [\"reporting_timeliness\"], \"row_limit\": 25, \"pie_label_type\": \"key_percent\", \"donut\": true, \"show_legend\": true, \"show_labels\": true, \"labels_outside\": true, \"color_scheme\": \"bnbColors\", \"remote_id\": 2, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 2,
                             "created_on": {
                                 "__datetime__": "2018-11-21T12:58:46"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "pie"
                         }
@@ -770,14 +770,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 5 years\", \"groupby\": [\"processing_period_name\"], \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 110, \"column_name\": \"facility_id\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"VARCHAR\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_facility_id\"}, \"aggregate\": \"COUNT_DISTINCT\", \"sqlExpression\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Expected Facilities\", \"optionName\": \"metric_dyapxkgq3vt_9fryd0cvo7s\"}], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": false, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_vrhjvltam3_gox7h9tb8ok\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 3, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1D\", \"time_range\": \"Last 5 years\", \"groupby\": [\"processing_period_name\"], \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 110, \"column_name\": \"facility_id\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"VARCHAR\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_facility_id\"}, \"aggregate\": \"COUNT_DISTINCT\", \"sqlExpression\": null, \"hasCustomLabel\": true, \"fromFormData\": true, \"label\": \"Expected Facilities\", \"optionName\": \"metric_dyapxkgq3vt_9fryd0cvo7s\"}], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": false, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_vrhjvltam3_gox7h9tb8ok\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 3, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 3,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:01:11"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -792,14 +792,14 @@
                             "changed_by_fk": 1,
                             "created_by_fk": 1,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"open_lmis_reporting\"}",
+                            "params": "{\"datasource\": \"3__table\", \"viz_type\": \"table\", \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 10 years\", \"groupby\": [\"region\", \"district\", \"name\", \"processing_period_name\", \"reporting_timeliness\"], \"metrics\": [], \"percent_metrics\": [], \"timeseries_limit_metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 115, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_15fyko0isfa_us7zq097ry\"}, \"row_limit\": 10000, \"include_time\": false, \"order_desc\": true, \"all_columns\": [], \"order_by_cols\": [], \"adhoc_filters\": [], \"table_timestamp_format\": \"%Y-%m-%d %H:%M:%S\", \"page_length\": 0, \"include_search\": true, \"table_filter\": false, \"align_pn\": false, \"color_pn\": true, \"remote_id\": 4, \"datasource_name\": \"reporting_rate_and_timeliness\", \"schema\": \"reporting_rate_and_timeliness\", \"database_name\": \"main\"}",
                             "datasource_name": "reporting_rate_and_timeliness",
                             "datasource_id": 3,
                             "id": 4,
                             "created_on": {
                                 "__datetime__": "2018-11-21T13:03:43"
                             },
-                            "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                            "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                             "description": null,
                             "viz_type": "table"
                         }
@@ -823,12 +823,12 @@
                     "__datetime__": "2018-11-21T12:44:44"
                 },
                 "schema": "",
-                "params": "{\"remote_id\": 1, \"database_name\": \"open_lmis_reporting\"}",
+                "params": "{\"remote_id\": 1, \"database_name\": \"main\"}",
                 "changed_on": {
                     "__datetime__": "2018-11-21T13:05:44"
                 },
                 "sql": "",
-                "perm": "[open_lmis_reporting].[stock_status_and_consumption](id:1)",
+                "perm": "[main].[stock_status_and_consumption](id:1)",
                 "id": 1,
                 "is_sqllab_view": false,
                 "table_name": "stock_status_and_consumption",
@@ -4024,10 +4024,10 @@
                 "database": {
                     "__Database__": {
                         "allow_csv_upload": false,
-                        "database_name": "open_lmis_reporting",
+                        "database_name": "main",
                         "created_by_fk": null,
                         "allow_ctas": false,
-                        "sqlalchemy_uri": "postgresql+psycopg2://postgres:XXXXXXXXXX@db:5432/open_lmis_reporting",
+                        "sqlalchemy_uri": "postgresql+psycopg2://postgres:XXXXXXXXXX@db:5432/main",
                         "changed_by_fk": 1,
                         "allow_dml": false,
                         "password": "p@ssw0rd",
@@ -4043,7 +4043,7 @@
                         },
                         "extra": "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {}\r\n}\r\n",
                         "expose_in_sqllab": true,
-                        "perm": "[open_lmis_reporting].(id:1)",
+                        "perm": "[main].(id:1)",
                         "id": 1,
                         "allow_run_sync": true,
                         "verbose_name": null,
@@ -4067,12 +4067,12 @@
                     "__datetime__": "2018-11-21T12:44:47"
                 },
                 "schema": "",
-                "params": "{\"remote_id\": 3, \"database_name\": \"open_lmis_reporting\"}",
+                "params": "{\"remote_id\": 3, \"database_name\": \"main\"}",
                 "changed_on": {
                     "__datetime__": "2018-11-21T12:53:47"
                 },
                 "sql": "",
-                "perm": "[open_lmis_reporting].[reporting_rate_and_timeliness](id:3)",
+                "perm": "[main].[reporting_rate_and_timeliness](id:3)",
                 "id": 3,
                 "is_sqllab_view": false,
                 "table_name": "reporting_rate_and_timeliness",
@@ -4084,10 +4084,10 @@
                 "database": {
                     "__Database__": {
                         "allow_csv_upload": false,
-                        "database_name": "open_lmis_reporting",
+                        "database_name": "main",
                         "created_by_fk": null,
                         "allow_ctas": false,
-                        "sqlalchemy_uri": "postgresql+psycopg2://postgres:XXXXXXXXXX@db:5432/open_lmis_reporting",
+                        "sqlalchemy_uri": "postgresql+psycopg2://postgres:XXXXXXXXXX@db:5432/main",
                         "changed_by_fk": 1,
                         "allow_dml": false,
                         "password": "p@ssw0rd",
@@ -4103,7 +4103,7 @@
                         },
                         "extra": "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {}\r\n}\r\n",
                         "expose_in_sqllab": true,
-                        "perm": "[open_lmis_reporting].(id:1)",
+                        "perm": "[main].(id:1)",
                         "id": 1,
                         "allow_run_sync": true,
                         "verbose_name": null,
@@ -5053,12 +5053,12 @@
                     "__datetime__": "2018-11-21T12:44:52"
                 },
                 "schema": "",
-                "params": "{\"remote_id\": 30, \"database_name\": \"open_lmis_reporting\"}",
+                "params": "{\"remote_id\": 30, \"database_name\": \"main\"}",
                 "changed_on": {
                     "__datetime__": "2018-11-21T12:44:52"
                 },
                 "sql": null,
-                "perm": "[open_lmis_reporting].[facilities](id:30)",
+                "perm": "[main].[facilities](id:30)",
                 "id": 30,
                 "is_sqllab_view": false,
                 "table_name": "facilities",
@@ -5666,10 +5666,10 @@
                 "database": {
                     "__Database__": {
                         "allow_csv_upload": false,
-                        "database_name": "open_lmis_reporting",
+                        "database_name": "main",
                         "created_by_fk": null,
                         "allow_ctas": false,
-                        "sqlalchemy_uri": "postgresql+psycopg2://postgres:XXXXXXXXXX@db:5432/open_lmis_reporting",
+                        "sqlalchemy_uri": "postgresql+psycopg2://postgres:XXXXXXXXXX@db:5432/main",
                         "changed_by_fk": 1,
                         "allow_dml": false,
                         "password": "p@ssw0rd",
@@ -5685,7 +5685,7 @@
                         },
                         "extra": "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {}\r\n}\r\n",
                         "expose_in_sqllab": true,
-                        "perm": "[open_lmis_reporting].(id:1)",
+                        "perm": "[main].(id:1)",
                         "id": 1,
                         "allow_run_sync": true,
                         "verbose_name": null,
@@ -5709,12 +5709,12 @@
                     "__datetime__": "2018-11-21T12:44:46"
                 },
                 "schema": "",
-                "params": "{\"remote_id\": 2, \"database_name\": \"open_lmis_reporting\"}",
+                "params": "{\"remote_id\": 2, \"database_name\": \"main\"}",
                 "changed_on": {
                     "__datetime__": "2018-11-21T12:44:47"
                 },
                 "sql": null,
-                "perm": "[open_lmis_reporting].[adjustments](id:2)",
+                "perm": "[main].[adjustments](id:2)",
                 "id": 2,
                 "is_sqllab_view": false,
                 "table_name": "adjustments",
@@ -6740,10 +6740,10 @@
                 "database": {
                     "__Database__": {
                         "allow_csv_upload": false,
-                        "database_name": "open_lmis_reporting",
+                        "database_name": "main",
                         "created_by_fk": null,
                         "allow_ctas": false,
-                        "sqlalchemy_uri": "postgresql+psycopg2://postgres:XXXXXXXXXX@db:5432/open_lmis_reporting",
+                        "sqlalchemy_uri": "postgresql+psycopg2://postgres:XXXXXXXXXX@db:5432/main",
                         "changed_by_fk": 1,
                         "allow_dml": false,
                         "password": "p@ssw0rd",
@@ -6759,7 +6759,7 @@
                         },
                         "extra": "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {}\r\n}\r\n",
                         "expose_in_sqllab": true,
-                        "perm": "[open_lmis_reporting].(id:1)",
+                        "perm": "[main].(id:1)",
                         "id": 1,
                         "allow_run_sync": true,
                         "verbose_name": null,
