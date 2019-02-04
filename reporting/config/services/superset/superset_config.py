@@ -3,8 +3,7 @@ Superset config
 """
 from flask_appbuilder.security.manager import AUTH_OAUTH
 
-SQLALCHEMY_DATABASE_URI = \
-    'postgresql+psycopg2://superset:superset123@db:5432/superset'
+SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:p@ssw0rd@db:5432/open_lmis_reporting'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 SECRET_KEY = 'thisISaSECRET_1234'
 
