@@ -1,8 +1,8 @@
 databases:
-- database_name: open_lmis_reporting
+- database_name: main
   expose_in_sqllab: true
   extra: "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {}\r\n}\r\n"
-  sqlalchemy_uri: postgresql+psycopg2://postgres:p@ssw0rd@db:5432/open_lmis_reporting
+  sqlalchemy_uri: postgresql+psycopg2://postgres:XXXXXXXXXX@db:5432/open_lmis_reporting
   tables: 
   - columns:
     - {avg: true, column_name: adjusted_consumption, sum: true, type: DOUBLE PRECISION}
