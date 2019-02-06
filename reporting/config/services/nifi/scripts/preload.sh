@@ -43,6 +43,7 @@ waitNifiAvailable() {
 initialize() {
   createRegClients "$@"
   importProcessGroups "$@"
+  restartFlows
 }
 
 createRegClients() {
@@ -116,6 +117,16 @@ importProcessGroups() {
   fi
 
   return $returnCode
+}
+
+restartFlows() {
+  echo "Starting Flows"
+
+  curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | /usr/bin/jq '.[]|keys[]' | while read key ; 
+  do
+    output=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | /usr/bin/jq  ".[][$key].component.id" | sed -e 's/^"//' -e 's/"$//')
+    curl -i -X PUT -H 'Content-Type: application/json' -d '{"id":"'"${output}"'","state":"RUNNING"}' $NIFI_BASE_URL/nifi-api/flow/process-groups/${output}
+  done 
 }
 
 getCliPath() {
