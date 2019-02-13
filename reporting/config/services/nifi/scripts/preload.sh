@@ -43,7 +43,7 @@ waitNifiAvailable() {
 initialize() {
   createRegClients "$@"
   importProcessGroups "$@"
-  restartFlows
+  restartFlows "$@"
 }
 
 createRegClients() {
@@ -121,19 +121,7 @@ importProcessGroups() {
 
 restartFlows() {
   echo "Starting Flows"
-
-  # Get sensitive values
-  curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq '.[]|keys[]' | while read key ;
-  do
-    searchKey=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq ".[][$key].component.name" | sed -e 's/^"//' -e 's/"$//')
-    if [ "$searchKey" == "OpenLMIS v3 Reference Data" ] ;
-    then
-      curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq ".[][$key].component.variables.db_pass, .[][$key].component.variables.api_password" | sed -e 's/^"//' -e 's/"$//' > file.txt
-      break   
-    fi
-  done
-
-
+  
   curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq '.[]|keys[]' | while read key ; 
   do
     processorGroupId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq ".[][$key].component.id" | sed -e 's/^"//' -e 's/"$//')
@@ -141,8 +129,7 @@ restartFlows() {
     do
       controllerServiceId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq ".controllerServices[$key].component.id" | sed -e 's/^"//' -e 's/"$//')
       # Enter sensitive values
-      read -r password < file.txt
-      curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"0"},"component":{"id":"'"${controllerServiceId}"'","properties":{"Password":"'"${password}"'"}}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId} 
+      curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"0"},"component":{"id":"'"${controllerServiceId}"'","properties":{"Password":"'"$2"'"}}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId} 
       # Enable connector service
       curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"1"},"component":{"id":"'"${controllerServiceId}"'","state":"ENABLED"}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId}
     done
@@ -161,8 +148,7 @@ restartFlows() {
           then
             invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${createTokenId}/processors | jq ".processors[$key].component.id" | sed -e 's/^"//' -e 's/"$//')
             versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq ".revision.version" | sed -e 's/^"//' -e 's/"$//')
-            authenticationPassword=$(tail -n 1 file.txt);
-            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId", "version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Password":"'"${authenticationPassword}"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
+            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId", "version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Password":"'"$3"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
             break  
           fi
         done
@@ -171,7 +157,7 @@ restartFlows() {
     done
 
     # Restart flows
-    sleep 5 # necessary to ensure all controller services have been enabled
+    sleep 5 # necessary to ensure all changes have taken effect
     curl -s -X PUT -H 'Content-Type: application/json' -d '{"id":"'"${processorGroupId}"'","state":"RUNNING"}' $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}
   done 
   rm file.txt
