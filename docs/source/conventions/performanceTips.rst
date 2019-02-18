@@ -209,6 +209,7 @@ unnecessary in the given endpoint are not included in the basic version so we ca
 the second one. You can also use expand pattern to minimize the entity size in the response.
 
 Expand pattern
+---------------
 
 Using ObjectReference and expand pattern we can reduce the size of a response but with
 the opportunity to include the whole object instead of references when it is necessary.
