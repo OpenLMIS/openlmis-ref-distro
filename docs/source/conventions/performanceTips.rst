@@ -203,9 +203,9 @@ and in general can save upwards of 100ms as well as the extra memory overhead.  
 indexed (and well indexed), the database may even avoid a trip to disk, which typically can bring 
 this check in under a millisecond.
 
-Make sure that the returning object is as minimal as possible.Sometimes an endpoint returns
-the whole DTO whether basic DTO is enough. Some of the properties included in the full DTO are
-unnecessary in the given endpoint are not included in the basic version so we can simply use
+Make sure that the returning object is as minimal as possible. Sometimes an endpoint returns
+the whole representation while a basic representation is enough. Some of the properties included in the full DTO are
+unnecessary in the given endpoint and not included in the basic version so we can simply use
 the second one. You can also use expand pattern to minimize the entity size in the response.
 
 Expand pattern
@@ -238,6 +238,8 @@ The example of use this pattern:
   protected void expandDto(Object dto, Set<String> expands) {
     objReferenceExpander.expandDto(dto, expands);
   }
+
+`Here`_ you can find implementation of the method in ObjReferenceExpander class.
 
 Use Database Paging
 --------------------
@@ -485,4 +487,5 @@ WIP:
 .. _More indexing tips: https://devcenter.heroku.com/articles/postgresql-indexes
 .. _Http Caching: https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching
 .. _LastModifiedDate: https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#auditing.basics
+.. _Here: https://github.com/OpenLMIS/openlmis-fulfillment/blob/0efdc844a4b5870e3368dc97b4dccac13ff5d132/src/main/java/org/openlmis/fulfillment/service/ObjReferenceExpander.java#L91
 
