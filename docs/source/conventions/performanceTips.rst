@@ -203,6 +203,41 @@ and in general can save upwards of 100ms as well as the extra memory overhead.  
 indexed (and well indexed), the database may even avoid a trip to disk, which typically can bring 
 this check in under a millisecond.
 
+Make sure that the returning object is as minimal as possible.Sometimes an endpoint returns
+the whole DTO whether basic DTO is enough. Some of the properties included in the full DTO are
+unnecessary in the given endpoint are not included in the basic version so we can simply use
+the second one. You can also use expand pattern to minimize the entity size in the response.
+
+Expand pattern
+
+Using ObjectReference and expand pattern we can reduce the size of a response but with
+the opportunity to include the whole object instead of references when it is necessary.
+We can specify properties that need to be expanded and the rest of them will be object references.
+The example of use this pattern:
+
+.. code-block:: Java
+
+  @RequestMapping(value = "/orders/{id}", method = RequestMethod.GET)
+  @ResponseBody
+  public OrderDto getOrder(@PathVariable("id") UUID orderId,
+                           @RequestParam(required = false) Set<String> expand) {
+    Order order = orderRepository.findOne(orderId);
+    if (order == null) {
+      throw new OrderNotFoundException(orderId);
+    } else {
+      permissionService.canViewOrder(order);
+      OrderDto orderDto = orderDtoBuilder.build(order);
+      expandDto(orderDto, expand);
+      return orderDto;
+    }
+  }
+
+.. code-block:: Java
+
+  protected void expandDto(Object dto, Set<String> expands) {
+    objReferenceExpander.expandDto(dto, expands);
+  }
+
 Use Database Paging
 --------------------
 
@@ -292,6 +327,8 @@ Summary
   problem, but it can go awry quickly.  Just use lazy loading.
 - During development you can set `environment variables to show what SQL`_ is actually being run by
   Hibernate.
+- Use expand pattern.
+- Replace full DTO with the basic version when it exists and it is possible.
 
 Database JOINs are expensive
 -----------------------------
