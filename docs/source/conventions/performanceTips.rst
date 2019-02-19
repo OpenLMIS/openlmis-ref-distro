@@ -213,6 +213,7 @@ Expand pattern
 
 Using ObjectReference and expand pattern we can reduce the size of a response but with
 the opportunity to include the whole object instead of references when it is necessary.
+
 We can specify properties that need to be expanded and the rest of them will be object references.
 The example of use this pattern:
 
