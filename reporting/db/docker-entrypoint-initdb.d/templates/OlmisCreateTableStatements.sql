@@ -222,7 +222,7 @@ ALTER TABLE requisition_group_program_schedules OWNER TO postgres;
 --
 
 CREATE TABLE supported_programs (
-    active boolean NOT NULL,
+    active boolean,
     startdate date,
     facilityid uuid,
     programid uuid,
@@ -586,9 +586,9 @@ JOIN reporting_dates rd ON f.country = rd.country
 LEFT JOIN supported_programs sp ON sp.facilityid = f.id AND sp.programid::VARCHAR = authorized_reqs.program_id::VARCHAR
 LEFT JOIN requisition_group_members rgm ON rgm.facilityid = f.id
 LEFT JOIN requisition_group_program_schedules rgps ON rgps.requisitionGroupId = rgm.requisitionGroupId
-JOIN facility_access fa ON fa.facility = f.name AND fa.program = authorized_reqs.program_id
-WHERE fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin' OR '{{ current_username() }}' = 'administrator'
-ORDER BY authorized_reqs.processing_period_enddate DESC;
+LEFT JOIN facility_access fa ON fa.facility = authorized_reqs.facility_id::VARCHAR AND fa.program = authorized_reqs.program_id
+WHERE fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin'
+ORDER BY authorized_reqs.processing_period_enddate DESC WITH DATA;
 
 
 ALTER MATERIALIZED VIEW reporting_rate_and_timeliness OWNER TO postgres;
@@ -608,15 +608,15 @@ al.id AS adjustment_lines_id, al.quantity,
 sar.name AS stock_adjustment_reason,
 fa.facility, fa.program, fa.username
 FROM requisitions r
-JOIN requisition_line_item li ON r.id::VARCHAR = li.requisition_id
-JOIN requisitions_status_history sh ON r.id::VARCHAR = sh.requisition_id
-JOIN requisitions_adjustment_lines al ON li.requisition_line_item_id::VARCHAR = al.requisition_line_item_id
-JOIN stock_adjustment_reasons sar ON sar.id::VARCHAR = al.reasonid::VARCHAR
-JOIN facility_access fa ON fa.facility = r.facility_name AND fa.program = r.program_id
-WHERE sh.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED') 
+LEFT JOIN requisition_line_item li ON r.id::VARCHAR = li.requisition_id
+LEFT JOIN requisitions_status_history sh ON r.id::VARCHAR = sh.requisition_id
+LEFT JOIN requisitions_adjustment_lines al ON li.requisition_line_item_id::VARCHAR = al.requisition_line_item_id
+LEFT JOIN stock_adjustment_reasons sar ON sar.id::VARCHAR = al.reasonid::VARCHAR
+LEFT JOIN facility_access fa ON fa.facility = r.facility_name AND fa.program = r.program_id
+WHERE sh.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED')
 AND (fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin' 
 OR '{{ current_username() }}' = 'administrator')
-ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST;
+ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST WITH DATA;
 
 ALTER MATERIALIZED VIEW adjustments OWNER TO postgres;
 
@@ -659,7 +659,7 @@ JOIN requisition_line_item li ON r.id::VARCHAR = li.requisition_id
 JOIN requisitions_status_history sh ON r.id::VARCHAR = sh.requisition_id
 JOIN reporting_dates rd ON r.country_name = rd.country
 JOIN facilities f ON r.facility_id::VARCHAR = f.id::VARCHAR
-JOIN facility_access fa ON fa.facility = f.name AND fa.program = r.program_id
+LEFT JOIN facility_access fa ON fa.facility = f.name AND fa.program = r.program_id
 WHERE sh.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED') AND (fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin' OR '{{ current_username() }}' = 'administrator')
 GROUP BY r.id, r.created_date, r.modified_date, r.emergency_status, r.supplying_facility, 
 r.supervisory_node, r.facility_id, r.facility_code, r.facility_name, r.facilty_active_status, 
@@ -676,6 +676,6 @@ li.max_periods_of_stock, li.calculated_order_quantity, li.requested_quantity, li
 li.packs_to_ship, li.price_per_pack, li.total_cost, li.total_received_quantity,
 status_req_id, req_status, sh.author_id, status_date, fa.facility, fa.program, 
 fa.username, facility_status, rd.due_days, rd.late_days
-ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST;
+ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST WITH DATA;
 
 ALTER MATERIALIZED VIEW stock_status_and_consumption OWNER TO postgres;
