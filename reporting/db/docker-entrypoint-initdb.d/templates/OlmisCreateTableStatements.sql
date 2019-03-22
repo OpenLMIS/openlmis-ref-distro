@@ -587,7 +587,6 @@ LEFT JOIN supported_programs sp ON sp.facilityid = f.id AND sp.programid::VARCHA
 LEFT JOIN requisition_group_members rgm ON rgm.facilityid = f.id
 LEFT JOIN requisition_group_program_schedules rgps ON rgps.requisitionGroupId = rgm.requisitionGroupId
 LEFT JOIN facility_access fa ON fa.facility = authorized_reqs.facility_id::VARCHAR AND fa.program = authorized_reqs.program_id
-WHERE fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin'
 ORDER BY authorized_reqs.processing_period_enddate DESC WITH DATA;
 
 
@@ -612,10 +611,8 @@ LEFT JOIN requisition_line_item li ON r.id::VARCHAR = li.requisition_id
 LEFT JOIN requisitions_status_history sh ON r.id::VARCHAR = sh.requisition_id
 LEFT JOIN requisitions_adjustment_lines al ON li.requisition_line_item_id::VARCHAR = al.requisition_line_item_id
 LEFT JOIN stock_adjustment_reasons sar ON sar.id::VARCHAR = al.reasonid::VARCHAR
-LEFT JOIN facility_access fa ON fa.facility = r.facility_name AND fa.program = r.program_id
+LEFT JOIN facility_access fa ON fa.facility = r.facility_id AND fa.program = r.program_id
 WHERE sh.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED')
-AND (fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin' 
-OR '{{ current_username() }}' = 'administrator')
 ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST WITH DATA;
 
 ALTER MATERIALIZED VIEW adjustments OWNER TO postgres;
@@ -659,8 +656,8 @@ JOIN requisition_line_item li ON r.id::VARCHAR = li.requisition_id
 JOIN requisitions_status_history sh ON r.id::VARCHAR = sh.requisition_id
 JOIN reporting_dates rd ON r.country_name = rd.country
 JOIN facilities f ON r.facility_id::VARCHAR = f.id::VARCHAR
-LEFT JOIN facility_access fa ON fa.facility = f.name AND fa.program = r.program_id
-WHERE sh.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED') AND (fa.username = '{{ current_username() }}' OR '{{ current_username() }}' = 'admin' OR '{{ current_username() }}' = 'administrator')
+LEFT JOIN facility_access fa ON fa.facility = f.id::VARCHAR AND fa.program = r.program_id
+WHERE sh.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED')
 GROUP BY r.id, r.created_date, r.modified_date, r.emergency_status, r.supplying_facility, 
 r.supervisory_node, r.facility_id, r.facility_code, r.facility_name, r.facilty_active_status, 
 r.district_id, r.district_code, r.district_name, r.region_id, r.region_code, r.region_name, 
