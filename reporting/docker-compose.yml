@@ -101,7 +101,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [log, consul]
+    depends_on: [log, consul, db-config-container]
 
   zookeeper:
     image: confluentinc/cp-zookeeper:${OL_ZOOKEEPER_VERSION}
@@ -134,7 +134,8 @@ services:
     depends_on: [log, config-container, zookeeper]
   
   superset:
-    image: amancevice/superset:${OL_SUPERSET_VERSION}
+    build:
+      context: ./superset
     ports:
         - "8088:8088"
     volumes:
@@ -150,7 +151,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [db, nginx]
+    depends_on: [db, log, nginx]
 
 volumes:
   syslog:
