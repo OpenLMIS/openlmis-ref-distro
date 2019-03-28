@@ -1,51 +1,62 @@
 """
 Superset config
 """
-from flask_appbuilder.security.manager import AUTH_OAUTH
+import os
 
-SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:p@ssw0rd@db:5432/open_lmis_reporting'
-SQLALCHEMY_TRACK_MODIFICATIONS = True
-SECRET_KEY = 'thisISaSECRET_1234'
+from flask_appbuilder.const import AUTH_OAUTH, AUTH_DB
 
-AUTH_TYPE = AUTH_OAUTH
+# What is `ona_config`, you ask?
+# It is a module that we create to hold code that makes it possible to make
+# this module (superset_config.py) configurable.  As you can see we are doing
+# an absolute import to get it - this is because for some reason relative
+# imports just will not work.  The name `ona_config` was chosen in hopes that
+# it is a unique enough name that will not conflict with anything else already
+# on the Python path / Python module registry.
+from ona_config.oauth import PROVIDERS, CustomSecurityManager
+from ona_config.utils import get_complex_env_var
 
-OAUTH_PROVIDERS = [
-    {   'name': 'openlmis',
-        'icon': 'fa-sign-in',
-        'token_key':'access_token',
-        'remote_app': {
-            'consumer_key': 'superset',
-            'consumer_secret': 'changeme',
-            'request_token_params': {
-                'scope': 'read write'
-            },
-            'access_token_method': 'POST',
-            'access_token_headers': {
-                'Authorization':'Basic c3VwZXJzZXQ6Y2hhbmdlbWU='
-            },
-            'base_url': 'https://uat.openlmis.org/api/oauth',
-            'access_token_url': 'https://uat.openlmis.org/api/oauth/token?grant_type=authorization_code',
-            'authorize_url': 'https://uat.openlmis.org/api/oauth/authorize?'}
-     }
-]
+
+SQLALCHEMY_DATABASE_URI = os.getenv(
+    "SUPERSET_SQLALCHEMY_DATABASE_URI",
+    "postgresql+psycopg2://superset:superset123@db:5432/superset",
+)
+
+SQLALCHEMY_TRACK_MODIFICATIONS = get_complex_env_var(
+    "SUPERSET_SQLALCHEMY_TRACK_MODIFICATIONS", True)
+
+SECRET_KEY = os.getenv("SUPERSET_SECRET_KEY", "thisISaSECRET_1234")
+
+# Get the Auth type
+SUPERSET_AUTH_TYPE = os.getenv("SUPERSET_AUTH_TYPE", "AUTH_DB")
+if SUPERSET_AUTH_TYPE == 'AUTH_OAUTH':
+    AUTH_TYPE = AUTH_OAUTH
+else:
+    AUTH_TYPE = AUTH_DB
+
+# Get the Oauth Providers
+selected_oauth_providers = get_complex_env_var("SUPERSET_OAUTH_PROVIDERS", [])
+if selected_oauth_providers:
+    OAUTH_PROVIDERS = [PROVIDERS[_] for _ in selected_oauth_providers]
+    CUSTOM_SECURITY_MANAGER = CustomSecurityManager
 
 # The default user self registration role
-AUTH_USER_REGISTRATION_ROLE = "OLMIS Gamma"
+AUTH_USER_REGISTRATION_ROLE = os.getenv(
+    "SUPERSET_AUTH_USER_REGISTRATION_ROLE", "Public"
+)
 
 # Will allow user self registration
-AUTH_USER_REGISTRATION = True
+AUTH_USER_REGISTRATION = get_complex_env_var(
+    "SUPERSET_AUTH_USER_REGISTRATION", True)
 
 # Extract and use X-Forwarded-For/X-Forwarded-Proto headers?
-ENABLE_PROXY_FIX = True
+ENABLE_PROXY_FIX = get_complex_env_var("SUPERSET_ENABLE_PROXY_FIX", True)
 
 # Allow iFrame access from openLMIS running on localhost
-HTTP_HEADERS = {'X-Frame-Options': 'allow-from https://uat.openlmis.org'}
+HTTP_HEADERS = get_complex_env_var(
+    "SUPERSET_HTTP_HEADERS",
+    {"X-Frame-Options": "allow-from https://uat.openlmis.org"})
 
-# CSV Options: key/value pairs that will be passed as argument to DataFrame.to_csv method
+# CSV Options: key/value pairs that will be passed as argument to
+# DataFrame.to_csv method
 # note: index option should not be overridden
-CSV_EXPORT = {
-    'encoding': 'utf-8',
-}
-
-from security import CustomSecurityManager
-CUSTOM_SECURITY_MANAGER = CustomSecurityManager
+CSV_EXPORT = get_complex_env_var("SUPERSET_CSV_EXPORT", {"encoding": "utf-8"})

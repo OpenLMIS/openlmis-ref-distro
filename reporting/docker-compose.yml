@@ -147,10 +147,10 @@ services:
         && superset import_datasources -p /etc/superset/datasources/database.yaml
         && superset import_dashboards -p /etc/superset/dashboards/openlmis_uat_dashboards.json
         && superset init && gunicorn -w 2 --timeout 60 -b 0.0.0.0:8088 --reload --limit-request-line 0 --limit-request-field_size 0 superset:app"
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [db, log, nginx]
 
 volumes:
