@@ -40,3 +40,20 @@ Steps:
 5. In a new terminal:  `./debezium-referencedata-start.sh` to start the
     connector.  Note this should be 1 per Postgres cluster.
 6. (optional) `./debezium-console.sh` to show the events streamed to the topic.
+
+
+## Notes on running Kafka
+
+First, Kafka is not required for running the reporting stack.  This stack is
+a WIP:
+
+1. Kafka was used early on, along with Druid, as part of the DISC indicator work
+    for vaccines.
+1. Kafka and Druid we're removed from the stack, in place of Nifi implementing
+    the entire pipeline delivering into a Postgres data store.
+1. Looking forward, we see Kafka re-entering as a central backbone for moving
+    data:  From services (through Debezium), to intermediary processors to 
+    transform that data for a purpose for reporting or interoperability.
+
+When working with Kafka some of these tips are helpful:
+* On listeners, ports, and networking: https://rmoff.net/2018/08/02/kafka-listeners-explained/
