@@ -63,9 +63,6 @@ services:
 
   nifi:
     image: onaio/nifi:${OL_NIFI_VERSION}
-    ports:
-      - "8080:8080"
-      - "9443:9443"
     volumes:
       - config-volume:/config
       - ./nifi-cache:/tmp/nifi-docker-cache
@@ -131,8 +128,6 @@ services:
   superset:
     build:
       context: ./superset
-    ports:
-        - "8088:8088"
     volumes:
       - config-volume:/config
     command: >
