@@ -85,7 +85,7 @@ services:
     env_file: ../settings.env
     volumes:
         - db-config-volume:/docker-entrypoint-initdb.d
-        - ./dbdata:/var/lib/postgresql/data
+        - dbdata:/var/lib/postgresql/data
     environment:
       - SUPERSET_POSTGRES_USER=${SUPERSET_POSTGRES_USER}
       - SUPERSET_POSTGRES_PASSWORD=${SUPERSET_POSTGRES_PASSWORD}
@@ -151,4 +151,4 @@ volumes:
   db-config-volume:
     external: false
   dbdata:
-    driver: local
+    external: false
