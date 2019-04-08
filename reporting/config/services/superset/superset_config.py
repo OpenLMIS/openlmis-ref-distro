@@ -3,6 +3,8 @@ Superset config
 """
 from flask_appbuilder.security.manager import AUTH_OAUTH
 
+from superset_patchup.oauth import CustomSecurityManager
+
 SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:p@ssw0rd@db:5432/open_lmis_reporting'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 SECRET_KEY = 'thisISaSECRET_1234'
@@ -30,7 +32,7 @@ OAUTH_PROVIDERS = [
 ]
 
 # The default user self registration role
-AUTH_USER_REGISTRATION_ROLE = "OLMIS Gamma"
+AUTH_USER_REGISTRATION_ROLE = "OLMIS_Gamma"
 
 # Will allow user self registration
 AUTH_USER_REGISTRATION = True
@@ -47,5 +49,9 @@ CSV_EXPORT = {
     'encoding': 'utf-8',
 }
 
-from security import CustomSecurityManager
+# Custom security manager
 CUSTOM_SECURITY_MANAGER = CustomSecurityManager
+
+# Add custom roles
+ADD_CUSTOM_ROLES = True
+CUSTOM_ROLES = {'OLMIS_Gamma': {'all_datasource_access'}}
