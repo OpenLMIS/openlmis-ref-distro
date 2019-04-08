@@ -31,13 +31,8 @@ services:
   consul:
     command: -server -bootstrap
     image: gliderlabs/consul-server
-    environment:
-      - CONSUL_PORT=8501
     ports:
-      - "8300"
-      - "8400"
       - "8501:8500"
-      - "53"
     logging:
       driver: syslog
       options:
