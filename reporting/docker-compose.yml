@@ -61,10 +61,10 @@ services:
       && openssl passwd -apr1 $NGINX_BASIC_AUTH_PW >> /etc/nginx/.htpasswd
       && sleep 120
       && /home/run.sh"
-    #logging:
-    #  driver: syslog
-    #  options:
-    #    syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [consul, log, config-container]
 
   nifi:
@@ -146,10 +146,10 @@ services:
         && superset db upgrade
         && superset import_datasources -p /etc/superset/datasources/database.yaml
         && superset init && gunicorn -w 2 --timeout 60 -b 0.0.0.0:8088 --reload --limit-request-line 0 --limit-request-field_size 0 superset:app"
-    #logging:
-    #  driver: syslog
-    #  options:
-    #    syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [db, config-container, nginx]
 
 volumes:
