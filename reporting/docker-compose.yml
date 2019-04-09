@@ -2,12 +2,6 @@ version: "3.3"
 
 services:
   config-container:
-    command: >
-      sh -c "while ! curl -f \"http://consul:8500/v1/agent/self\"; do sleep 10;done
-      && curl -X PUT -H \"Content-Type: application/json\" --data '{\"name\": \"superset-service\", \"address\": \"superset\", \"id\": \"superset1\", \"port\": 8088, \"tags\": [\"openlmis-service\"], \"check\": { \"http\": \"http://superset:8088/login\", \"method\": \"GET\", \"interval\": \"30s\", \"timeout\": \"10s\"}}' http://consul:8500/v1/agent/service/register
-      && curl -X PUT --data '{ \"upstream\": \"superset-service\", \"enable_basic_auth\": false, \"enable_ssl\": ${SUPERSET_ENABLE_SSL}, \"ssl_cert\": \"/config/nginx/tls/${SUPERSET_SSL_CERT}\", \"ssl_key\": \"/config/nginx/tls/${SUPERSET_SSL_KEY}\", \"ssl_cert_chain\": \"/config/nginx/tls/${SUPERSET_SSL_CERT_CHAIN}\"}' http://consul:8500/v1/kv/resources/${SUPERSET_DOMAIN_NAME}
-      && curl -X PUT -H \"Content-Type: application/json\" --data '{\"name\": \"nifi-service\", \"address\": \"nifi\", \"id\": \"nifi1\", \"port\": 8080, \"tags\": [\"openlmis-service\"], \"check\": { \"http\": \"http://nifi:8080\", \"method\": \"GET\", \"interval\": \"30s\", \"timeout\": \"10s\"}}' http://consul:8500/v1/agent/service/register
-      && curl -X PUT --data '{ \"upstream\": \"nifi-service\", \"enable_basic_auth\": true, \"enable_ssl\": ${NIFI_ENABLE_SSL}, \"ssl_cert\": \"/config/nginx/tls/${NIFI_SSL_CERT}\", \"ssl_key\": \"/config/nginx/tls/${NIFI_SSL_KEY}\", \"ssl_cert_chain\": \"/config/nginx/tls/${NIFI_SSL_CERT_CHAIN}\"}' http://consul:8500/v1/kv/resources/${NIFI_DOMAIN_NAME}"
     build:
       context: ./config
     volumes:
@@ -28,38 +22,10 @@ services:
     ports:
       - "${SYSLOG_UDP_PORT}:514/udp"
 
-  consul:
-    command: -server -bootstrap
-    image: gliderlabs/consul-server
+  reverse-proxy:
+    image: traefik
     ports:
-      - "8501:8500"
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [log]
-
-  nginx:
-    image: openlmis/nginx:${OL_NGINX_VERSION}
-    ports:
-      - "${OL_HTTP_PORT:-80}:80"
-      - "${OL_HTTPS_PORT:-443}:443"
-    env_file: ../settings.env
-    environment:
-      NGINX_LOG_DIR: '/var/log/nginx/log'
-    volumes:
-      - config-volume:/config
-    entrypoint: >
-      sh -c "openssl dhparam -dsaparam -out /etc/ssl/certs/dhparam.pem 4096
-      && cp -r /config/nginx/consul-template/* /etc/consul-template/
-      && echo -n '$NGINX_BASIC_AUTH_USER:' >> /etc/nginx/.htpasswd
-      && openssl passwd -apr1 $NGINX_BASIC_AUTH_PW >> /etc/nginx/.htpasswd
-      && /home/run.sh"
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [consul, log, config-container]
+      - "8080:80"
 
   nifi:
     image: onaio/nifi:${OL_NIFI_VERSION}
@@ -72,7 +38,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [log, nginx]
+    depends_on: [log]
 
   db-config-container:
     build:
@@ -93,7 +59,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [log, consul, db-config-container]
+    depends_on: [log, db-config-container]
 
   zookeeper:
     image: confluentinc/cp-zookeeper:${OL_ZOOKEEPER_VERSION}
@@ -141,7 +107,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [db, nginx]
+    depends_on: [db]
 
 volumes:
   syslog:
