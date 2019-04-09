@@ -130,6 +130,8 @@ services:
       context: ./superset
     volumes:
       - config-volume:/config
+    ports:
+      - "${SUPERSET_PORT}:8088"
     command: >
         bash -c "cp -r /config/superset /etc/
         && sleep 30 && fabmanager create-admin --app superset --username ${SUPERSET_ADMIN_USERNAME} --firstname Admin --lastname Admin --email noreply --password ${SUPERSET_ADMIN_PASSWORD}
