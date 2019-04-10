@@ -20,6 +20,14 @@ There are some cases (when running on a dev machine, for instance) where you wou
 docker-compose up --build -d --scale scalyr=0
 ```
 
+## Notes on running locally
+
+* It's easiest to access superset and nifi by leaving `.env` alone, and adding
+    entries to our host's `/etc/hosts` file:
+    ```
+    127.0.0.1   nifi.local superset.local
+    ```
+
 ## Running with Debezium (WIP & Experimental Data Pump)
 
 Debezium is a change data capture platform - it is able to stream changes from
@@ -40,3 +48,20 @@ Steps:
 5. In a new terminal:  `./debezium-referencedata-start.sh` to start the
     connector.  Note this should be 1 per Postgres cluster.
 6. (optional) `./debezium-console.sh` to show the events streamed to the topic.
+
+
+## Notes on running Kafka
+
+First, Kafka is not required for running the reporting stack.  This stack is
+a WIP:
+
+1. Kafka was used early on, along with Druid, as part of the DISC indicator work
+    for vaccines.
+1. Kafka and Druid we're removed from the stack, in place of Nifi implementing
+    the entire pipeline delivering into a Postgres data store.
+1. Looking forward, we see Kafka re-entering as a central backbone for moving
+    data:  From services (streamed using Debezium), to intermediary processors,
+    and then sunk (loaded) into the destination database.
+
+When working with Kafka some of these tips are helpful:
+* On listeners, ports, and networking: https://rmoff.net/2018/08/02/kafka-listeners-explained/

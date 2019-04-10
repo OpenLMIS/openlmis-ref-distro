@@ -31,13 +31,8 @@ services:
   consul:
     command: -server -bootstrap
     image: gliderlabs/consul-server
-    environment:
-      - CONSUL_PORT=8501
     ports:
-      - "8300"
-      - "8400"
-      - "8501:8501"
-      - "53"
+      - "8501:8500"
     logging:
       driver: syslog
       options:
@@ -69,9 +64,6 @@ services:
 
   nifi:
     image: onaio/nifi:${OL_NIFI_VERSION}
-    ports:
-      - "8080:8080"
-      - "9443:9443"
     volumes:
       - config-volume:/config
       - ./nifi-cache:/tmp/nifi-docker-cache
@@ -94,7 +86,7 @@ services:
     env_file: ../settings.env
     volumes:
         - db-config-volume:/docker-entrypoint-initdb.d
-        - ./dbdata:/var/lib/postgresql/data
+        - dbdata:/var/lib/postgresql/data
     environment:
       - SUPERSET_POSTGRES_USER=${SUPERSET_POSTGRES_USER}
       - SUPERSET_POSTGRES_PASSWORD=${SUPERSET_POSTGRES_PASSWORD}
@@ -102,7 +94,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [log, db-config-container, consul]
+    depends_on: [log, consul, db-config-container]
 
   zookeeper:
     image: confluentinc/cp-zookeeper:${OL_ZOOKEEPER_VERSION}
@@ -133,11 +125,10 @@ services:
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [log, config-container, zookeeper]
-  
+
   superset:
-    image: amancevice/superset:${OL_SUPERSET_VERSION}
-    ports:
-        - "8088:8088"
+    build:
+      context: ./superset
     volumes:
       - config-volume:/config
     command: >
@@ -160,4 +151,4 @@ volumes:
   db-config-volume:
     external: false
   dbdata:
-    driver: local
+    external: false

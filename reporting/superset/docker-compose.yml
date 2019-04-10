@@ -1,0 +1,10 @@
+version: '3'
+services:
+  superset:
+    build:
+      context: .
+      args:
+        SUPERSET_VERSION: 0.29.0rc7
+    image: amancevice/superset
+    ports:
+      - 8088:8088
