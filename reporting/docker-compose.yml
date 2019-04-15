@@ -74,6 +74,7 @@ services:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     mem_limit: ${OL_NIFI_MEMORY_LIMIT}
     mem_reservation: ${OL_NIFI_MEMORY_RESERVATION}
+    cpus: ${OL_NIFI_CPU_USAGE}
     depends_on: [log, nginx]
 
   db-config-container:
