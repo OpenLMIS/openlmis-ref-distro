@@ -16,6 +16,7 @@ services:
   scalyr:
     image: openlmis/scalyr
     env_file: ../settings.env
+    restart: always
     volumes:
       - config-volume:/config
       - ${SCALYR_DOCKER_SOCK}:/var/scalyr/docker.sock
@@ -37,6 +38,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    restart: always
     depends_on: [log]
 
   nginx:
@@ -59,6 +61,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    restart: always
     depends_on: [consul, log, config-container]
 
   nifi:
@@ -75,6 +78,7 @@ services:
     mem_limit: ${OL_NIFI_MEMORY_LIMIT}
     mem_reservation: ${OL_NIFI_MEMORY_RESERVATION}
     cpus: ${OL_NIFI_CPU_USAGE}
+    restart: always
     depends_on: [log, nginx]
 
   db-config-container:
@@ -96,6 +100,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    restart: always
     depends_on: [log, consul, db-config-container]
 
   zookeeper:
@@ -108,6 +113,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    restart: always
     depends_on: [log]
 
   kafka:
@@ -126,8 +132,9 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    restart: always
     depends_on: [log, config-container, zookeeper]
-  
+
   superset:
     build:
       context: ./superset
@@ -144,6 +151,7 @@ services:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    restart: always
     depends_on: [db, nginx]
 
 volumes:
