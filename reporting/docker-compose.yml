@@ -1,4 +1,4 @@
-version: "2.4"
+version: "3.3"
 
 services:
   config-container:
@@ -68,13 +68,12 @@ services:
       - ./nifi-cache:/tmp/nifi-docker-cache
     entrypoint: >
       bash -c "/config/nifi/scripts/start.sh ${OL_NIFI_VERSION} ${DB_PASSWORD} ${INVOKEHTTP_PASSWORD}"
+    environment:
+      - NIFI_JVM_HEAP_MAX=${NIFI_JVM_HEAP_MAX}
     logging:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    mem_limit: ${OL_NIFI_MEMORY_LIMIT}
-    mem_reservation: ${OL_NIFI_MEMORY_RESERVATION}
-    cpus: ${OL_NIFI_CPU_USAGE}
     depends_on: [log, nginx]
 
   db-config-container:
