@@ -41,6 +41,7 @@ Links:
 - Communication
    - `Slack <http://openlmis.slack.com>`_
    - `Forum <http://forum.openlmis.org>`_
+   - `_Youtube <https://www.youtube.com/channel/UCivnkD7yEBhOw9FKFZHufGg/`_
 - Development
    - `GitHub <https://github.com/openlmis>`_
    - `DockerHub <https://hub.docker.com/u/openlmis>`_ (Published Docker Images)
@@ -50,6 +51,6 @@ Links:
    - `Code Quality Analysis <http://sonar.openlmis.org>`_ (SonarQube)
    - `CI Server <http://build.openlmis.org>`_ (Jenkins)
    - `CD Server <http://test.openlmis.org>`_
-   - `UAT Server <http://uat.openlmis.org>`_
+   - `UAT Server <http://uat.openlmis.org>`_ (Login: administrator/password)
 
 .. _OpenLMIS.org: http://openlmis.org
