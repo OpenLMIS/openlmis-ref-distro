@@ -41,7 +41,7 @@ Links:
 - Communication
    - `Slack <http://openlmis.slack.com>`_
    - `Forum <http://forum.openlmis.org>`_
-   - `Youtube <https://www.youtube.com/channel/UCivnkD7yEBhOw9FKFZHufGg/`_
+   - `Youtube <https://www.youtube.com/channel/UCivnkD7yEBhOw9FKFZHufGg/>`_
 - Development
    - `GitHub <https://github.com/openlmis>`_
    - `DockerHub <https://hub.docker.com/u/openlmis>`_ (Published Docker Images)
