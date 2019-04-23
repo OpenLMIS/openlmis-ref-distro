@@ -112,7 +112,7 @@ ALTER TABLE lots OWNER TO postgres;
 --
 
 CREATE TABLE orderables (
-    id uuid NOT NULL UNIQUE,
+    id uuid NOT NULL,
     code character varying(255),
     fullproductname character varying(255),
     packroundingthreshold bigint,
