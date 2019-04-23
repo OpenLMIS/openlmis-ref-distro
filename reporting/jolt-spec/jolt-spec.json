@@ -1,0 +1,72 @@
+[
+    {
+      "endpoint": "facilities",
+      "table": "facilities",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","code":"code","name":"name","active":"status","enabled":"enabled","type":{"name":"type"},"operator":{"code":"operator_code","name":"operator_name","id":"operator_id"},"geographicZone":{"name":"district","parent":{"name":"region","parent":{"name":"country"}}},"location":{"coordinates":"location"}}}]
+    },
+    {
+      "endpoint": "idealStockAmounts",
+      "table": "ideal_stock_amounts",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","amount":"amount","facility":{"id":"facilityid"},"commodityType":{"id":"commoditytypeid"},"processingPeriod":{"id":"processingperiodid"}}},{"operation":"default","spec":{"amount":null}}]
+    },
+    {
+      "endpoint": "tradeItems",
+      "table": "trade_items",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","manufacturerOfTradeItem":"manufactureroftradeitem","classifications":{"*":{"classificationSystem":"classificationsystem","classificationId":"classificationid"}}}}]
+    },
+    {
+      "endpoint": "commodityTypes",
+      "table": "commodity_types",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","name":"name","classificationId":"classificationId","classificationSystem":"classificationSystem"}}]
+    },
+    {
+      "endpoint": "orderables",
+      "table": "orderables",
+      "joltspec": [{"operation":"shift","spec":{"programs":{"*":{"programId":"[&1].programid","orderableDisplayCategoryId":"[&1].orderabledisplaydategoryid","orderableCategoryDisplayName":"[&1].orderablecategorydisplayname","orderableCategoryDisplayOrder":"[&1].orderablecategorydisplayorder","active":"[&1].active","fullSupply":"[&1].fullsupply","displayOrder":"[&1].displayorder","dosesPerPatient":"[&1].dosesperpatient","pricePerPack":"[&1].priceperpack","@(2,id)":"[&1].id","@(2,productCode)":"[&1].code","@(2,fullProductName)":"[&1].fullproductname","@(2,packRoundingThreshold)":"[&1].packroundingthreshold","@(2,netContent)":"[&1].netcontent","@(2,roundToZero)":"[&1].roundtozero","@(2,description)":"[&1].description","@(2,identifiers)":{"tradeItem":"[&1].tradeitemid"}}}}},{"operation":"default","spec":{"*":{"packroundingthreshold":null,"netcontent":null,"orderablecategorydisplayorder":null,"displayorder":null,"dosesperpatient":null,"priceperpack":null}}}]
+    },
+    {
+      "endpoint": "processingPeriods",
+      "table": "processing_periods",
+      "joltspec": [{"operation":"shift","spec":{"name":"name","startDate":"startDate","endDate":"endDate","durationInMonths":"durationinmonths","id":"id","processingSchedule":{"id":"processingscheduleid","name":"processingschedulename","code":"processingschedulecode"}}},{"operation":"default","spec":{"durationinmonths":null}}]
+    },
+    {
+      "endpoint": "programs",
+      "table": "programs",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","name":"name","code":"code","description":"description","active":"active","periodsSkippable":"periodsSkippable","skipAuthorization":"skipAuthorization","showNonFullSupplyTab":"showNonFullSupplyTab","enableDatePhysicalStockCountCompleted":"enableDatePhysicalStockCountCompleted"}}]
+    },
+    {
+      "endpoint": "lots",
+      "table": "lots",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","lotCode":"lotCode","active":"active","tradeItemId":"tradeItemId","expirationDate":"expirationDate","manufactureDate":"manufactureDate"}}]
+    },
+    {
+      "endpoint": "rights",
+      "table": "rights",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","name":"name","type":"type","attachments":"attachments"}}]
+    },
+    {
+      "endpoint": "roles",
+      "table": "roles",
+      "joltspec": [{"operation":"shift","spec":{"rights":{"*":{"id":"[&1].rightsid","name":"[&1].rightsname","type":"[&1].rightstype","@(2,description)":"[&1].description","@(2,name)":"[&1].name","@(2,id)":"[&1].id","@(2,count)":"[&1].count"}}}},{"operation":"default","spec":{"*":{"count":null}}}]
+    },
+    {
+      "endpoint": "supervisoryNodes",
+      "table": "supervisorynodes",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","name":"name","code":"code","facility":{"id":"facilityid","name":"facilityname"},"requisitionGroup":{"id":"requisitiongroupid","name":"requisitiongroupname"},"parentNode":{"id":"parentnodeid","name":"parentnodename"}}}]
+    },
+    {
+      "endpoint": "requisitionGroups",
+      "table": "requisitiongroups",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","code":"code","name":"name","supervisoryNode":{"id":"supervisorynodeid","code":"supervisorynodecode","name":"supervisorynodename","facility":{"id":"facilityid"}},"requisitionGroupProgramSchedules":{"*":{"program":{"name":"programname","id":"programid"},"processingSchedule":{"id":"processingscheduleid"},"directDelivery":"directdelivery"}},"memberFacilities":{"*":{"id":"memberfacilitiesid"}}}}]
+    },
+    {
+      "endpoint": "supplyLines",
+      "table": "supplylines",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","description":"description","supervisoryNode":{"id":"supervisorynodeid"},"program":{"id":"programid"},"supplyingFacility":{"id":"supplyingfacilityid"}}}]
+    },
+    {
+      "endpoint": "stockAdjustmentReasons",
+      "table": "stock_adjustment_reasons",
+      "joltspec": [{"operation":"shift","spec":{"id":"id","name":"name","additive":"additive","displayOrder":"displayorder","description":"description","program":{"id":"programid","name":"programname"}}},{"operation":"default","spec":{"displayorder":null}}]
+    }
+  ]
