@@ -1,4 +1,4 @@
-FROM openlmis/dev:3
+FROM alpine:3.8
 
 RUN apk -v --update add \
     python \

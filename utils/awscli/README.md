@@ -1,8 +1,6 @@
 # AWS CLI utility docker image
 
-Wraps the AWS CLI utility - like many other images do.  This has the advantage of being based
-off of the openlmis/dev image (so it's overall larger, however it shares layers with openlmis/dev
-reducing the actual layers downloaded - hopefully).  When/if AWS produces an official CLI image,
+Wraps the AWS CLI utility - like many other images do. When/if AWS produces an official CLI image,
 this should likely be replaced.
 
 ## Usage
