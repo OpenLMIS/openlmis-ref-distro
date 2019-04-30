@@ -1,11 +1,17 @@
 """
 Superset config
 """
+import os
 from flask_appbuilder.security.manager import AUTH_OAUTH
-
 from superset_patchup.oauth import CustomSecurityManager
 
-SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:p@ssw0rd@db:5432/open_lmis_reporting'
+SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://%(username)s:%(password)s@%(host)s:%(port)s/%(database_name)s' %{ 
+    "username": os.environ.get('DATABASE_USERNAME', 'postgres'),
+    "password": os.environ.get('DATABASE_PASSWORD', 'p@ssw0rd'),
+    "host": os.environ.get('DATABASE_HOST', 'db'),
+    "port": os.environ.get('DATABASE_PORT', '5432'),
+    "database_name": os.environ.get('DATABASE_NAME', 'open_lmis_reporting')
+}
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 SECRET_KEY = 'thisISaSECRET_1234'
 
