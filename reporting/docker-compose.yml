@@ -77,27 +77,6 @@ services:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [log, config-container, nginx]
 
-  db-config-container:
-    build:
-      context: ./db
-    volumes:
-      - db-config-volume:/docker-entrypoint-initdb.d
-
-  db:
-    image: openlmis/postgres:${OL_POSTGRES_VERSION}
-    env_file: ../settings.env
-    volumes:
-        - db-config-volume:/docker-entrypoint-initdb.d
-        - dbdata:/var/lib/postgresql/data
-    environment:
-      - SUPERSET_POSTGRES_USER=${SUPERSET_POSTGRES_USER}
-      - SUPERSET_POSTGRES_PASSWORD=${SUPERSET_POSTGRES_PASSWORD}
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [log, consul, db-config-container]
-
   zookeeper:
     image: confluentinc/cp-zookeeper:${OL_ZOOKEEPER_VERSION}
     environment:
@@ -131,27 +110,34 @@ services:
   superset:
     build:
       context: ./superset
+    ports:
+      - "8088:8088"
+    env_file:
+      - ./.env
+    environment:
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_NAME=${DATABASE_NAME}
     volumes:
       - config-volume:/config
+    user: root
     command: >
         bash -c "cp -r /config/superset /etc/
+        && apt-get update
+        && apt-get install -y postgresql-client
+        && psql -v ON_ERROR_STOP=1 --username "$DATABASE_USERNAME" --dbname "${DATABASE_NAME}" < /etc/superset/db/OlmisCreateTableStatements.sql
         && sleep 30 && fabmanager create-admin --app superset --username ${SUPERSET_ADMIN_USERNAME} --firstname Admin --lastname Admin --email noreply --password ${SUPERSET_ADMIN_PASSWORD}
         && superset db upgrade
+        && python3 /etc/superset/substitute_variables.py '/etc/superset/datasources/database.yaml' '/etc/superset/dashboards/openlmis_uat_dashboards.json'
         && superset import_datasources -p /etc/superset/datasources/database.yaml
         && superset import_dashboards -p /etc/superset/dashboards/openlmis_uat_dashboards.json
         && superset init && gunicorn -w 2 --timeout 60 -b 0.0.0.0:8088 --reload --limit-request-line 0 --limit-request-field_size 0 superset:app"
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-    depends_on: [db, config-container, nginx]
+    depends_on: [config-container, nginx]
 
 volumes:
   syslog:
     external: false
   config-volume:
-    external: false
-  db-config-volume:
-    external: false
-  dbdata:
     external: false
