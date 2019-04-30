@@ -122,12 +122,13 @@ importProcessGroups() {
 restartFlows() {
   echo "Starting Flows"
   
-  curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq '.[]|keys[]' | while read key ; 
+  processGroups=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups);
+  echo "$processGroups" | jq '.[]|keys[]' | while read key;
   do
-    processorGroupId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq ".[][$key].component.id" | sed -e 's/^"//' -e 's/"$//')
+    processorGroupId=$(echo "$processGroups" | jq -r ".[][$key].id")
     curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq '.controllerServices|keys[]' | while read key ;
     do
-      controllerServiceId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq ".controllerServices[$key].component.id" | sed -e 's/^"//' -e 's/"$//')
+      controllerServiceId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq -r ".controllerServices[$key].component.id")
       # Enter sensitive values
       curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"0"},"component":{"id":"'"${controllerServiceId}"'","properties":{"Password":"'"$2"'"}}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId} 
       # Enable connector service
@@ -144,7 +145,7 @@ restartFlows() {
         curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${createTokenId}/processors | jq '.[]|keys[]' | while read key ;
         do
           processorName=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${createTokenId}/processors | jq ".processors[$key].component.name" | sed -e 's/^"//' -e 's/"$//')
-          if [ "$processorName" == "InvokeHTTP" ] ;
+          if [ "$processorName" == "Get Access token" ];
           then
             invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${createTokenId}/processors | jq ".processors[$key].component.id" | sed -e 's/^"//' -e 's/"$//')
             versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq ".revision.version" | sed -e 's/^"//' -e 's/"$//')
@@ -158,9 +159,18 @@ restartFlows() {
 
     # Restart flows
     sleep 5 # necessary to ensure all changes have taken effect
+
+    if ["$processGroups" | jq '.processGroups[].component.name' != "Materialized Views"];
     curl -s -X PUT -H 'Content-Type: application/json' -d '{"id":"'"${processorGroupId}"'","state":"RUNNING"}' $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}
-  done 
-  rm file.txt
+    fi
+
+    # start materialized view as the last processor
+    if ["$processGroups" | jq '.processGroups[].component.name' == "Materialized Views"];
+    then sleep 5
+    curl -s -X PUT -H 'Content-Type: application/json' -d '{"id":"'"${processorGroupId}"'","state":"RUNNING"}' $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}
+    fi
+
+  done
 }
 
 getCliPath() {
