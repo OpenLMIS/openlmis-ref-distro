@@ -21,6 +21,16 @@ to be customized without the need for the community to fork the code base:
 Combined these components allow the OpenLMIS community to customize and
 contribute to a shared LMIS.
 
+Interoperability
+=================
+
+Read more on `Interoperability <interop.html>`_.
+
+.. toctree::
+   :maxdepth: 1
+
+   interop
+
 New Service Guidelines
 =======================
 
@@ -74,6 +84,7 @@ needed configuration to produce an OpenLMIS deployment.
 
 
 .. _Architecture: https://openlmis.atlassian.net/wiki/x/IYAKAw
+.. _Interoperability: 
 .. _Bounded Contexts: https://martinfowler.com/bliki/BoundedContext.html
 .. _referential integrity: https://en.wikipedia.org/wiki/Referential_integrity
 .. _transactions: https://en.wikipedia.org/wiki/ACID
