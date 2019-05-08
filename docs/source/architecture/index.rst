@@ -27,7 +27,7 @@ Interoperability
 Read more on `Interoperability <interop.html>`_.
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    interop
 
