@@ -40,14 +40,16 @@ environment file template for new additions.
   Also note that your BASE_URL will not need the port ":8080" that may be in the environment file
   template.
 
-2. Pull all the services, and bring the Reference Distribution up.  Since this is actively
+2. Update api access configs in https://github.com/OpenLMIS/openlmis-ref-distro/blob/master/reporting/.env
+
+3. Pull all the services, and bring the Reference Distribution up.  Since this is actively
 developed, you __should pull the services frequently__.
   ```
   $ docker-compose pull
   $ docker-compose up -d  # drop the -d here to see console messages
   ```
 
-3. When the application is up and running, you should be able to access the Reference Distribution at:
+4. When the application is up and running, you should be able to access the Reference Distribution at:
 
 	```
 	http://<your ip-address>/
@@ -76,7 +78,7 @@ developed, you __should pull the services frequently__.
   If you are configuring a production instance, be sure to secure these accounts ASAP and refer to the Configuration Guide
   for more about the OpenLMIS setup process.
 
-4. To stop the application & cleanup:
+5. To stop the application & cleanup:
 
 	* if you ran `docker-compose up -d`, stop the application with `docker-compose down -v`
 	* if you ran `docker-compose up` _note_ the absence of `-d`, then interupt the application with `Ctrl-C`, and perform cleanup by removing containers.  See
