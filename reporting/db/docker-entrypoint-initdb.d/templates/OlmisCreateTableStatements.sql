@@ -22,11 +22,11 @@ COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial
 --
 
 CREATE TABLE commodity_types (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     name character varying(255),
     classificationsystem character varying(255),
     classificationid character varying(255),
-    parentid uuid
+    parentid varchar
 );
 
 
@@ -37,7 +37,7 @@ ALTER TABLE commodity_types OWNER TO postgres;
 --
 
 CREATE TABLE facilities (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     code character varying(255),
     name character varying(255),
     status boolean,
@@ -62,30 +62,15 @@ CREATE TABLE facilities (
 ALTER TABLE facilities OWNER TO postgres;
 
 --
--- Name: facility_operators; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
-CREATE TABLE facility_operators (
-    id uuid NOT NULL UNIQUE,
-    code text,
-    description text,
-    displayorder integer,
-    name character varying(255)
-);
-
-
-ALTER TABLE facility_operators OWNER TO postgres;
-
---
 -- Name: ideal_stock_amounts; Type: TABLE; Schema: referencedata; Owner: postgres
 --
 
 CREATE TABLE ideal_stock_amounts (
-    id uuid NOT NULL UNIQUE,
-    facilityid uuid,
-    processingperiodid uuid,
+    id varchar NOT NULL UNIQUE,
+    facilityid varchar,
+    processingperiodid varchar,
     amount integer,
-    commoditytypeid uuid
+    commoditytypeid varchar
 );
 
 
@@ -96,11 +81,11 @@ ALTER TABLE ideal_stock_amounts OWNER TO postgres;
 --
 
 CREATE TABLE lots (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     lotcode character varying(255),
     expirationdate date,
     manufacturedate date,
-    tradeitemid uuid,
+    tradeitemid varchar,
     active boolean
 );
 
@@ -112,7 +97,7 @@ ALTER TABLE lots OWNER TO postgres;
 --
 
 CREATE TABLE orderables (
-    id uuid NOT NULL,
+    id varchar NOT NULL,
     code character varying(255),
     fullproductname character varying(255),
     packroundingthreshold bigint,
@@ -140,12 +125,12 @@ ALTER TABLE orderables OWNER TO postgres;
 --
 
 CREATE TABLE processing_periods (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     description text,
     enddate date,
     name character varying(255),
     startdate date,
-    processingscheduleid uuid
+    processingscheduleid varchar
 );
 
 
@@ -156,15 +141,15 @@ ALTER TABLE processing_periods OWNER TO postgres;
 --
 
 CREATE TABLE program_orderables (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     active boolean,
     displayorder integer,
     dosesperpatient integer,
     fullsupply boolean,
     priceperpack numeric(19,2),
-    orderabledisplaycategoryid uuid,
-    orderableid uuid,
-    programid uuid
+    orderabledisplaycategoryid varchar,
+    orderableid varchar,
+    programid varchar
 );
 
 
@@ -175,7 +160,7 @@ ALTER TABLE program_orderables OWNER TO postgres;
 --
 
 CREATE TABLE programs (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     active boolean,
     code character varying(255),
     description text,
@@ -194,8 +179,8 @@ ALTER TABLE programs OWNER TO postgres;
 --
 
 CREATE TABLE requisition_group_members (
-    requisitiongroupid uuid NOT NULL,
-    facilityid uuid
+    requisitiongroupid varchar NOT NULL,
+    facilityid varchar
 );
 
 
@@ -206,12 +191,12 @@ ALTER TABLE requisition_group_members OWNER TO postgres;
 --
 
 CREATE TABLE requisition_group_program_schedules (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     directdelivery boolean,
-    dropofffacilityid uuid,
-    processingscheduleid uuid,
-    programid uuid,
-    requisitiongroupid uuid
+    dropofffacilityid varchar,
+    processingscheduleid varchar,
+    programid varchar,
+    requisitiongroupid varchar
 );
 
 
@@ -224,8 +209,8 @@ ALTER TABLE requisition_group_program_schedules OWNER TO postgres;
 CREATE TABLE supported_programs (
     active boolean,
     startdate date,
-    facilityid uuid,
-    programid uuid,
+    facilityid varchar,
+    programid varchar,
     locallyfulfilled boolean DEFAULT false
 );
 
@@ -233,25 +218,11 @@ CREATE TABLE supported_programs (
 ALTER TABLE supported_programs OWNER TO postgres;
 
 --
--- Name: trade_item_classifications; Type: TABLE; Schema: referencedata; Owner: postgres
---
-
-CREATE TABLE trade_item_classifications (
-    id uuid NOT NULL UNIQUE,
-    classificationsystem character varying(255),
-    classificationid character varying(255),
-    tradeitemid uuid
-);
-
-
-ALTER TABLE trade_item_classifications OWNER TO postgres;
-
---
 -- Name: trade_items; Type: TABLE; Schema: referencedata; Owner: postgres
 --
 
 CREATE TABLE trade_items (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     manufactureroftradeitem character varying(255),
     gtin text
 );
@@ -264,7 +235,7 @@ ALTER TABLE trade_items OWNER TO postgres;
 --
 
 CREATE TABLE rights (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     name character varying(255),
     type character varying(255)
 );
@@ -277,11 +248,11 @@ ALTER TABLE rights OWNER TO postgres;
 --
 
 CREATE TABLE users (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     username character varying(255),
     firstname character varying(255),
     lastname character varying(255),
-    homefacilityid uuid,
+    homefacilityid varchar,
     active boolean,
     loginRestricted boolean
 );
@@ -294,11 +265,11 @@ ALTER TABLE users OWNER TO postgres;
 --
 
 CREATE TABLE roles (
-    id uuid NOT NULL,
+    id varchar NOT NULL,
     name character varying(255),
     description character varying(255),
     rightsname character varying(255),
-    rightsid uuid,
+    rightsid varchar,
     rightstype character varying(255),
     count INT
 );
@@ -311,15 +282,15 @@ ALTER TABLE roles OWNER TO postgres;
 --
 
 CREATE TABLE supervisorynodes (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     name character varying(255),
     code character varying(255),
     facilityname character varying(255),
-    facilityid uuid,
+    facilityid varchar,
     requisitiongroupname character varying(255),
-    requisitiongroupid uuid,
+    requisitiongroupid varchar,
     parentnodename character varying(255),
-    parentnodeid uuid
+    parentnodeid varchar
 );
 
 
@@ -333,8 +304,8 @@ CREATE TABLE requisitiongroups (
     id character varying(255) NOT NULL UNIQUE,
     name character varying(255),
     code character varying(255),
-    facilityid uuid,
-    supervisorynodeid uuid,
+    facilityid varchar,
+    supervisorynodeid varchar,
     supervisorynodename character varying(255),
     supervisorynodecode character varying(255),
     programname character varying(255),
@@ -351,11 +322,11 @@ ALTER TABLE requisitiongroups OWNER TO postgres;
 --
 
 CREATE TABLE supplylines (
-    id uuid NOT NULL UNIQUE,
+    id varchar NOT NULL UNIQUE,
     description character varying(255),
-    supervisorynodeid uuid,
-    programid uuid,
-    supplyingfacilityid uuid
+    supervisorynodeid varchar,
+    programid varchar,
+    supplyingfacilityid varchar
 );
 
 
@@ -366,9 +337,9 @@ ALTER TABLE supplylines OWNER TO postgres;
 --
 
 CREATE TABLE requisitions (
-  id uuid,
-  created_date date,
-  modified_date date,
+  id VARCHAR UNIQUE,
+  created_date timestamp,
+  modified_date timestamp,
   emergency_status boolean,
   supplying_facility varchar,
   supervisory_node varchar,
@@ -411,7 +382,7 @@ ALTER TABLE requisitions OWNER TO postgres;
 --
 
 CREATE TABLE requisition_line_item (
-  requisition_line_item_id uuid,
+  requisition_line_item_id varchar,
   requisition_id varchar,
   orderable_id varchar,
   product_code varchar,
@@ -454,6 +425,7 @@ ALTER TABLE requisitions_status_history OWNER TO postgres;
 --
 
 CREATE TABLE requisitions_adjustment_lines (
+  requisition_id varchar,
   id varchar,
   reasonId varchar,
   quantity int,
