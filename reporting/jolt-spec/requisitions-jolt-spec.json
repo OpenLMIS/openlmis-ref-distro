@@ -1,0 +1,154 @@
+[
+    {
+      "operation": "shift",
+      "spec": {
+        "#requisitions": "[0].table",
+        "#requisitions_adjustment_lines": "[3].table",
+        "id": "[0].data[0].id",
+        "createdDate": "[0].data[0].created_date",
+        "modifiedDate": "[0].data[0].modified_date",
+        "emergency": "[0].data[0].emergency_status",
+        "supplyingFacility": "[0].data[0].supplying_facility",
+        "supervisoryNode": "[0].data[0].supervisory_node",
+        "facility": {
+          "id": "[0].data[0].facility_id",
+          "code": "[0].data[0].facility_code",
+          "name": "[0].data[0].facility_name",
+          "enabled": "[0].data[0].facilty_active_status",
+          "geographicZone": {
+            "id": "[0].data[0].district_id",
+            "code": "[0].data[0].district_code",
+            "name": "[0].data[0].district_name",
+            "parent": {
+              "id": "[0].data[0].region_id",
+              "code": "[0].data[0].region_code",
+              "name": "[0].data[0].region_name",
+              "parent": {
+                "id": "[0].data[0].country_id",
+                "code": "[0].data[0].country_code",
+                "name": "[0].data[0].country_name"
+              }
+            }
+          },
+          "type": {
+            "id": "[0].data[0].facility_type_id",
+            "code": "[0].data[0].facility_type_code",
+            "name": "[0].data[0].facility_type_name"
+          },
+          "operator": {
+            "id": "[0].data[0].facility_operator_id",
+            "code": "[0].data[0].facility_operator_code",
+            "name": "[0].data[0].facility_operator_name"
+          }
+        },
+        "program": {
+          "id": "[0].data[0].program_id",
+          "code": "[0].data[0].program_code",
+          "name": "[0].data[0].program_name",
+          "active": "[0].data[0].program_active_status"
+        },
+        "processingPeriod": {
+          "id": "[0].data[0].processing_period_id",
+          "name": "[0].data[0].processing_period_name",
+          "startDate": "[0].data[0].processing_period_startdate",
+          "endDate": "[0].data[0].processing_period_enddate",
+          "processingSchedule": {
+            "id": "[0].data[0].processing_schedule_id",
+            "code": "[0].data[0].processing_schedule_code",
+            "name": "[0].data[0].processing_schedule_name"
+          }
+        },
+        "requisitionLineItems": {
+          "#requisition_line_item": "[1].table",
+          "*": {
+            "id": "[1].data[&1].requisition_line_item_id",
+            "@(2,id)": "[1].data[&1].requisition_id",
+            "orderable": {
+              "id": "[1].data[&2].orderable_id",
+              "productCode": "[1].data[&2].product_code",
+              "fullProductName": "[1].data[&2].full_product_name",
+              "identifiers": {
+                "tradeItem": "[1].data[&3].trade_item_id"
+              }
+            },
+            "beginningBalance": "[1].data[&1].beginning_balance",
+            "totalConsumedQuantity": "[1].data[&1].total_consumed_quantity",
+            "averageConsumption": "[1].data[&1].average_consumption",
+            "adjustedConsumption": "[1].data[&1].adjusted_consumption",
+            "totalLossesAndAdjustments": "[1].data[&1].total_losses_and_adjustments",
+            "stockOnHand": "[1].data[&1].stock_on_hand",
+            "totalStockoutDays": "[1].data[&1].total_stockout_days",
+            "maxPeriodsOfStock": "[1].data[&1].max_periods_of_stock",
+            "calculatedOrderQuantity": "[1].data[&1].calculated_order_quantity",
+            "requestedQuantity": "[1].data[&1].requested_quantity",
+            "approvedQuantity": "[1].data[&1].approved_quantity",
+            "packsToShip": "[1].data[&1].packs_to_ship",
+            "pricePerPack": "[1].data[&1].price_per_pack",
+            "totalCost": "[1].data[&1].total_cost",
+            "totalReceivedQuantity": "[1].data[&1].total_received_quantity",
+            "stockAdjustments": {
+              "*": {
+                "@": "[3].data[&3][&1]",
+                "@(2,id)": "[3].data.[&3].[&1].requisition_line_item_id",
+                "@(4,id)": "[3].data.[&3].[&1].requisition_id"
+              }
+            }
+          }
+        },
+        "statusChanges": {
+          "#requisitions_status_history": "[2].table",
+          "RELEASED": {
+            "#RELEASED": "[2].data[#2].status",
+            "authorId": "[2].data[#2].author_id",
+            "changeDate": "[2].data[#2].created_date",
+            "@(2,id)": "[2].data[#2].requisition_id"
+          },
+          "SUBMITTED": {
+            "#SUBMITTED": "[2].data[#2].status",
+            "authorId": "[2].data[#2].author_id",
+            "changeDate": "[2].data[#2].created_date",
+            "@(2,id)": "[2].data[#2].requisition_id"
+          },
+          "INITIATED": {
+            "#INITIATED": "[2].data[#2].status",
+            "authorId": "[2].data[#2].author_id",
+            "changeDate": "[2].data[#2].created_date",
+            "@(2,id)": "[2].data[#2].requisition_id"
+          },
+          "APPROVED": {
+            "#APPROVED": "[2].data[#2].status",
+            "authorId": "[2].data[#2].author_id",
+            "changeDate": "[2].data[#2].created_date",
+            "@(2,id)": "[2].data[#2].requisition_id"
+          },
+          "AUTHORIZED": {
+            "#AUTHORIZED": "[2].data[#2].status",
+            "authorId": "[2].data[#2].author_id",
+            "changeDate": "[2].data[#2].created_date",
+            "@(2,id)": "[2].data[#2].requisition_id"
+          }
+        }
+      }
+    },
+    {
+      "operation": "shift",
+      "spec": {
+        "0": "[0]",
+        "1": "[1]",
+        "2": "[2]",
+        "3": {
+          "table": "[3].table",
+          "data": {
+            "*": {
+              "*": {
+                "quantity": {
+                  "@1": "[3].data[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+  

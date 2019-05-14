@@ -125,11 +125,16 @@ restartFlows() {
   curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq '.[]|keys[]' | while read key ; 
   do
     processorGroupId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq -r ".[][$key].component.id")
+    # Get process group version number
+    processGroupVersionNumber=$(curl -s -X GET -H 'Content-Type: application/json' $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/variable-registry | jq -r '.processGroupRevision.version')
+    # Set the global variables
+    curl -X PUT -H 'Content-Type: application/json' $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/variable-registry -d '{"processGroupRevision":{"version":"'"${processGroupVersionNumber}"'"},"variableRegistry":{"variables":[{"variable":{"name":"baseUrl","value":"https://uat.openlmis.org","processGroupId":"'"${processorGroupId}"'"},"canWrite":true},{"variable":{"name":"username","value":"administrator","processGroupId":"'"${processorGroupId}"'"},"canWrite":true},{"variable":{"name":"password","value":"password","processGroupId":"'"${processorGroupId}"'"},"canWrite":true}],"processGroupId":"'"${processorGroupId}"'"}}'
+
     curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq '.controllerServices|keys[]' | while read key ;
     do
       controllerServiceId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq -r ".controllerServices[$key].component.id")
       # Enter sensitive values
-      curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"0"},"component":{"id":"'"${controllerServiceId}"'","properties":{"Password":"'"$2"'"}}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId} 
+      curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"0"},"component":{"id":"'"${controllerServiceId}"'","properties":{"Password":"'"$7"'"}}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId}
       # Enable connector service
       curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"1"},"component":{"id":"'"${controllerServiceId}"'","state":"ENABLED"}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId}
     done
@@ -148,7 +153,7 @@ restartFlows() {
           then
             invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${createTokenId}/processors | jq -r ".processors[$key].component.id")
             versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq -r ".revision.version")
-            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId", "version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Password":"'"$3"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
+            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$5"'","Basic Authentication Password":"'"$6"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
             break  
           fi
         done
