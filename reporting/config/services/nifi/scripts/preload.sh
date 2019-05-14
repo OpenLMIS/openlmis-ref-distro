@@ -168,29 +168,47 @@ restartFlows() {
             invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${checkMeasureId}/processors | jq -r ".processors[$key].component.id")
             versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq -r ".revision.version")
             curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$8"'","Basic Authentication Password":"'"$9"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
+            break
+          fi
+        done
+      elif [ "$searchKey" == "Check MeasureReports" ];
+      then
+        checkMeasureId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/process-groups | jq -r ".processGroups[$key].component.id")
+        curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${checkMeasureId}/processors | jq '.[]|keys[]' | while read key ;
+        do
+          processorName=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${checkMeasureId}/processors | jq -r ".processors[$key].component.name")
+          if [ "$processorName" == "Invoke FHIR token" ] ;
+          then
+            invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${checkMeasureId}/processors | jq -r ".processors[$key].component.id")
+            versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq -r ".revision.version")
+            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$8"'","Basic Authentication Password":"'"$9"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
             break  
           fi
         done
       elif [ "$searchKey" == "Generate products and measure list" ];
       then
-        getProductsKey=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/process-groups | jq -r ".processGroups[$key].component.name")
-
-        if [ "$getProductsKey" == "Get ptoducts"]
-
-          getProductsId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/process-groups | jq -r ".processGroups[$key].component.id")
-          curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${getProductsId}/processors | jq '.[]|keys[]' | while read key ;
-          do
-            processorName=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${getProductsId}/processors | jq -r ".processors[$key].component.name")
-            if [ "$processorName" == "Get Access token" ] ;
-            then
-              invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${getProductsId}/processors | jq -r ".processors[$key].component.id")
-              versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq -r ".revision.version")
-              curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$5"'","Basic Authentication Password":"'"$6"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
-              break  
-            fi
-          done
+        generateProductMeasuresId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/process-groups | jq -r ".processGroups[$key].component.id")
+        curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${generateProductMeasuresId}/process-groups | jq '.[]|keys[]' | while read key ;
+        do
+          searchKey=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${generateProductMeasuresId}/process-groups | jq -r ".processGroups[$key].component.name")
+          if [ "$searchKey" == "Get products" ];
+          then
+            getProductsId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${generateProductMeasuresId}/process-groups | jq -r ".processGroups[$key].component.id")
+            curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${getProductsId}/processors | jq '.[]|keys[]' | while read key ;
+            do
+              processorName=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${getProductsId}/processors | jq -r ".processors[$key].component.name")
+              if [ "$processorName" == "Get access token" ] ;
+              then
+                getAccessTokenId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${getProductsId}/processors | jq -r ".processors[$key].component.id")
+                versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${getAccessTokenId} | jq -r ".revision.version")
+                curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${getAccessTokenId}"'","config":{"properties":{"Basic Authentication Username":"'"$5"'","Basic Authentication Password":"'"$6"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${getAccessTokenId}
+                break
+              fi
+            done
+          fi
+        done
       else
-        break
+        continue
       fi
     done
 
