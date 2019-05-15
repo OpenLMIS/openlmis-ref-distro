@@ -47,6 +47,7 @@ RUN useradd -U -m superset && \
     pip install --no-cache-dir \
         flask-cors==3.0.3 \
         flask-mail==0.9.1 \
+        flask-JWT-Extended==3.18.2 \
         flask-oauth==0.12 \
         flask_oauthlib==0.9.5 \
         requests-oauthlib==1.1.0 \
