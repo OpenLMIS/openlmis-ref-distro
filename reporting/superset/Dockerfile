@@ -4,7 +4,7 @@ FROM python:3.6
 ARG SUPERSET_VERSION=0.29.0rc7
 
 # Superset-patchup (Ketchup) version
-ARG SUPERSET_PATCHUP_VERSION=v0.1.0
+ARG SUPERSET_PATCHUP_VERSION=v0.1.3
 
 # Configure environment
 ENV GUNICORN_BIND=0.0.0.0:8088 \
