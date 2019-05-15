@@ -130,12 +130,24 @@ restartFlows() {
     # Set the global variables
     curl -X PUT -H 'Content-Type: application/json' $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/variable-registry -d '{"processGroupRevision":{"version":"'"${processGroupVersionNumber}"'"},"variableRegistry":{"variables":[{"variable":{"name":"baseUrl","value":"https://uat.openlmis.org","processGroupId":"'"${processorGroupId}"'"},"canWrite":true},{"variable":{"name":"username","value":"administrator","processGroupId":"'"${processorGroupId}"'"},"canWrite":true},{"variable":{"name":"password","value":"password","processGroupId":"'"${processorGroupId}"'"},"canWrite":true}],"processGroupId":"'"${processorGroupId}"'"}}'
 
+    # Enter sensitive values
     curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq '.controllerServices|keys[]' | while read key ;
     do
       controllerServiceId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq -r ".controllerServices[$key].component.id")
-      # Enter sensitive values
-      curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"0"},"component":{"id":"'"${controllerServiceId}"'","properties":{"Password":"'"$7"'"}}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId}
-      # Enable connector service
+      controllerServiceName=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq -r ".controllerServices[$key].component.name")
+
+      if [ "$controllerServiceName" == "DBCPConnectionPool" ];
+      then
+        curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"0"},"component":{"id":"'"${controllerServiceId}"'","properties":{"Password":"'"$7"'"}}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId}
+      else
+        continue
+      fi
+    done
+
+    # Enable connector service
+    curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq '.controllerServices|keys[]' | while read key ;
+    do
+      controllerServiceId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq -r ".controllerServices[$key].component.id")
       curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"1"},"component":{"id":"'"${controllerServiceId}"'","state":"ENABLED"}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId}
     done
 
@@ -187,6 +199,13 @@ restartFlows() {
         done
       elif [ "$searchKey" == "Generate products and measure list" ];
       then
+        curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq '.controllerServices|keys[]' | while read key ;
+        do
+          controllerServiceId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq -r ".controllerServices[$key].component.id")
+          # Enable connector service
+          curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"0"},"component":{"id":"'"${controllerServiceId}"'","state":"ENABLED"}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId}
+        done
+
         generateProductMeasuresId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/process-groups | jq -r ".processGroups[$key].component.id")
         curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${generateProductMeasuresId}/process-groups | jq '.[]|keys[]' | while read key ;
         do
