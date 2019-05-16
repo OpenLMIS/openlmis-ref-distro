@@ -1,5 +1,5 @@
 ====================================
-3.6.0 Release Notes - DATE
+3.6.0 Release Notes - May 16, 2019
 ====================================
 
 Status: Stable
@@ -11,9 +11,7 @@ encouraged to adopt it.
 
 Release Notes
 =============
-The OpenLMIS Community is excited to announce the **3.5.0 release** of OpenLMIS! It is another
-major milestone in the version 3 `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_
-that allows more functionality to be shared among the community of OpenLMIS implementers. This release concludes the work being done as part of the `Gap Project <https://openlmis.atlassian.net/wiki/spaces/OP/pages/105578547/Gap+Analysis+eLMIS+Tanzania+Zambia+and+OpenLMIS+3.x>`_ and continues to add more functionality that reduces the gap in features between different versions of OpenLMIS. The development of the Gap Project features and tasks have been a collaborative effort involving four separate organizations (VillageReach, SolDevelo, JSI, and Ona) and we are thankful to all these participants and their work on the 3.6 release.
+The OpenLMIS Community is excited to announce the **3.6.0 release** of OpenLMIS! It is another major milestone in the version 3 `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_ that allows more functionality to be shared among the community of OpenLMIS implementers. This release concludes the work being done as part of the `Gap Project <https://openlmis.atlassian.net/wiki/spaces/OP/pages/105578547/Gap+Analysis+eLMIS+Tanzania+Zambia+and+OpenLMIS+3.x>`_ and continues adding more functionality to reduce the gap in features between different versions of OpenLMIS. The development of the Gap Project features and tasks have been a collaborative effort involving four separate organizations (VillageReach, SolDevelo, JSI, and Ona) and we are thankful to all these participants for their work on the 3.6 release.
 
 For a full list of features and bug-fixes since 3.5.0, see `OpenLMIS 3.6.0 Jira tickets
 <https://openlmis.atlassian.net/issues/?jql=status%3DDone%20AND%20project%3DOLMIS%20AND%20fixVersion%3D3.6%20and%20type!%3DTest%20and%20type!%3DEpic%20ORDER%20BY%20%22Epic%20Link%22%20asc%2C%20key%20ASC>`_.
@@ -60,11 +58,11 @@ New Features
 ============
 The OpenLMIS community proudly presents the following new features with 3.6.0:
 
-TODO
-
-- New in application reporting metrics, visualizations and tooling! To see a in-depth demo of the reporting tooling and capabilities, please reference the `OpenLMIS YouTube channel <https://www.youtube.com/watch?v=TyG2AmePtHg>`_) for a short video. Please note that the data is for development purposes only and not reflective of real data.
-- Configuring OpenLMIS to support multiple suppliers for one facility based on specific products.
-- New `functional tests <https://github.com/OpenLMIS/openlmis-functional-tests>`_, `testing strategy <http://docs.openlmis.org/en/latest/conventions/testing.html>`_ and process improvements to support the team in releasing faster and moving towards more automatization!
+- **DHIS2 Report Generation** OpenLMIS now supports the automatic generation of certain DHIS2 reports. This is an important first step towards being able to automatically send report data to a DHIS2 server, a feature which will be coming with or before the release of version 3.7.
+- **Multiple Suppliers** Requisitions can be now be split and fulfilled by multiple suppliers. This work was started in version 3.5 and has now been completed with version 3.6.
+- **Notification Improvements** A notification digest, a single notification containing information from multiple individual notifications, can now be sent for certain types of frequent notifications and we have also added the ability to send notifications via SMS as well as email.
+- **Kit Products and Kit Breakdown** Kit products, that is a product which contains other products, can now be defined within the system and treated like any other product. Facilities also have the ability to "unpack" a kit and include the contained items in their local stock.
+- **Requisition Performance Improvements** Some significant work has gone into improving the overall performance of the requisition API's which is something that we will continue to focus on for each subsequent release.
 
 Reference the `3.6 epics <https://openlmis.atlassian.net/issues/?filter=20614&jql=issuetype%20%3D%20Epic%20AND%20status%20in%20(Done%2C%20%22In%20Progress%22)%20and%20fixVersion%20%3D%203.6%20ORDER%20BY%20created%20DESC>`_ for more details.
 
@@ -76,44 +74,26 @@ See `all 3.6 issues tagged 'UIChange' in Jira <https://openlmis.atlassian.net/is
 API Changes
 ===========
 
-TODO
-
-Some APIs have changes to their contracts and/or their request-response data structures. These
-changes impact developers and systems integrating with OpenLMIS:
-
-- Fulfillment Service v8.0.0 - `fulfillment changelog <https://github.com/OpenLMIS/openlmis-fulfillment/blob/master/CHANGELOG.md>`_
-    - Refactored /api/orderFileTemplate API into /api/fileTemplate that persists config for both order and shipment templates.
-    - Updated Transfer properties so that it can also be used to persist transfer properties for shipment files imports.
-- Reference Data Service v12.0.0 - `ref-data changelog <https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
-    - Removed DELETE /api/processingPeriods/{id} endpoint
-    - Removed GET /api/users/{id}/supervisedFacilities endpoint
-    - Changed supervisory node structure
-    - Removed login restricted from the User model
-- Stock Management Service v4.0.0 - `stockmanagement changelog <https://github.com/OpenLMIS/openlmis-stockmanagement-ui/blob/master/CHANGELOG.md>`_
-    - Can't change type or category for stock card line item reason on update.
-- UI Components Service v7.0.0 - `ui-components changelog <https://github.com/OpenLMIS/openlmis-ui-components/blob/master/CHANGELOG.md>`_
-    - Changed syntax for using sort component.
+API changes can be found in each service CHANGELOG.md file, found in the root directory of the service repository.
 
 Performance
 ========================
 
-TODO
-
-Overall, the performance of version 3.5.0 improves upon the 3.4.0 release. Significant improvements have been seen in the requisition submission, authorization, approval, and convert to order processes; with slight regressions in the initial load and initiate requisition processes.
+The performance of version 3.6.0 has some significant performance improvements to previous versions of OpenLMIS, particularly during the login and initiate proceed processes. Most other processes have performance figures that are similar to version 3.5 with the exception of the convert to order processes, which have seen an overall regression.
 
 OpenLMIS conducted manual performance tests of the same user workflows with the same test data we used in testing v3.2.1 to establish that last-mile performance characteristics have been retained at a minimum. For details on the test results and process, please see `this wiki page <https://openlmis.atlassian.net/wiki/spaces/OP/pages/116949318/Performance+Metrics>`_.
 
-The following chart displays the 3.5.0 UI loading times in seconds for 3.3.0, 3.4.0, and 3.5.0 using the same test data.
+The following chart displays the UI loading times in seconds for 3.3, 3.4, 3.5, and 3.6 using the same test data.
 
-.. image:: UI-Performance-3.5.0.png
-    :alt: UI Load Times for 3.4.0 and 3.5.0
+.. image:: UI-Performance-3.6.png
+    :alt: UI Load Times for 3.3 through 3.6
 
 Test Coverage
 =============
 
 SAM TODO
 
-OpenLMIS 3.6.0 was tested using the established OpenLMIS Release Candidate process.  As part of this process, full manual test cycles were executed for each release candidate published. Any critical or blocker bugs found during the release candidate were resolved in a bug fix cycle with a full manual test cycle executed before releasing the final version 3.5.0. Manual tests were conducted using a set of 107 Zephyr tests tracked in Jira and 6 manual tests for reporting. A total of 16 bugs were found during testing. For more details about test executions and bugs found for this release please see `this wiki page <https://openlmis.atlassian.net/wiki/spaces/OP/pages/463110325/3.5+Regression+and+Release+Candidate+Test+Plan>`_.
+OpenLMIS 3.6.0 was tested using the established OpenLMIS Release Candidate process.  As part of this process, full manual test cycles were executed for each release candidate published. Any critical or blocker bugs found during the release candidate were resolved in a bug fix cycle with a full manual test cycle executed before releasing the final version 3.5.0. Manual tests were conducted using a set of 107 Zephyr tests tracked in Jira and 6 manual tests for reporting. A total of 16 bugs were found during testing. For more details about test executions and bugs found for this release please see `the 3.6 Test Plan wiki page <https://openlmis.atlassian.net/wiki/spaces/OP/pages/463110325/3.5+Regression+and+Release+Candidate+Test+Plan>`_.
 
 All Changes by Component
 ========================
@@ -127,32 +107,32 @@ independently; for details see `Versioning and Releasing
 
 TODO
 
-Auth Service 4.1.0
+Auth Service 4.1.2
 ------------------
 
 `Auth CHANGELOG <https://github.com/OpenLMIS/openlmis-auth/blob/master/CHANGELOG.md>`_
 
-CCE Service 1.0.2
+CCE Service 1.0.3
 -----------------
 
 `CCE CHANGELOG <https://github.com/OpenLMIS/openlmis-cce/blob/master/CHANGELOG.md>`_
 
-Fulfillment Service 8.0.0
+Fulfillment Service 8.0.2
 -------------------------
 
 `Fulfillment CHANGELOG <https://github.com/OpenLMIS/openlmis-fulfillment/blob/master/CHANGELOG.md>`_
 
-Notification Service 4.0.1
+Notification Service 4.1.0
 --------------------------
 
 `Notification CHANGELOG <https://github.com/OpenLMIS/openlmis-notification/blob/master/CHANGELOG.md>`_
 
-Reference Data Service 12.0.0
+Reference Data Service 13.0.0
 -----------------------------
 
 `ReferenceData CHANGELOG <https://github.com/OpenLMIS/openlmis-referencedata/blob/master/CHANGELOG.md>`_
 
-Report Service 1.1.2
+Report Service 1.1.3
 --------------------
 
 This service is intended to provide reporting functionality for other components to use. Built-in
@@ -165,17 +145,17 @@ additional reports.
 
 `Report CHANGELOG <https://github.com/OpenLMIS/openlmis-report/blob/master/CHANGELOG.md>`_
 
-Requisition Service 7.1.0
+Requisition Service 8.0.0
 -------------------------
 
 `Requisition CHANGELOG <https://github.com/OpenLMIS/openlmis-requisition/blob/master/CHANGELOG.md>`_
 
-Stock Management 4.0.0
+Stock Management 4.1.0
 ----------------------
 
 `Stock Management CHANGELOG <https://github.com/OpenLMIS/openlmis-stockmanagement/blob/master/CHANGELOG.md>`_
 
-Reference UI 5.1.2
+Reference UI 5.1.4
 ------------------
 
 `The Reference UI <https://github.com/OpenLMIS/openlmis-reference-ui/>`_
@@ -189,7 +169,7 @@ Reference Data-UI 5.5.0
 
 `ReferenceData-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-referencedata-ui/blob/master/CHANGELOG.md>`_
 
-Auth-UI 6.1.3
+Auth-UI 6.2.0
 ~~~~~~~~~~~~~
 
 `Auth-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-auth-ui/blob/master/CHANGELOG.md>`_
@@ -199,17 +179,17 @@ CCE-UI 1.0.2
 
 `CCE-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-cce-ui/blob/master/CHANGELOG.md>`_
 
-Fulfillment-UI 6.0.2
+Fulfillment-UI 6.0.3
 ~~~~~~~~~~~~~~~~~~~~
 
 `Fulfillment-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-fulfillment-ui/blob/master/CHANGELOG.md>`_
 
-Report-UI 5.1.0
+Report-UI 5.2.0
 ~~~~~~~~~~~~~~~
 
 `Report-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-report-ui/blob/master/CHANGELOG.md>`_
 
-Requisition-UI 5.5.0
+Requisition-UI 6.0.0
 ~~~~~~~~~~~~~~~~~~~~
 
 `Requisition-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-requisition-ui/blob/master/CHANGELOG.md>`_
@@ -219,7 +199,7 @@ Stock Management-UI 2.0.2
 
 `Stock Management-UI CHANGELOG <https://github.com/OpenLMIS/openlmis-stockmanagement-ui/blob/master/CHANGELOG.md>`_
 
-UI-Components 7.0.0
+UI-Components 7.1.0
 ~~~~~~~~~~~~~~~~~~~
 
 `UI-Components CHANGELOG <https://github.com/OpenLMIS/openlmis-ui-components/blob/master/CHANGELOG.md>`_
@@ -229,7 +209,7 @@ UI-Layout 5.1.2
 
 `UI-Layout CHANGELOG <https://github.com/OpenLMIS/openlmis-ui-layout/blob/master/CHANGELOG.md>`_
 
-Dev UI 8.1.0
+Dev UI 9.0.0
 ~~~~~~~~~~~~
 
 The `Dev-UI CHANGLOG <https://github.com/OpenLMIS/dev-ui/blob/master/CHANGELOG.md>`_
