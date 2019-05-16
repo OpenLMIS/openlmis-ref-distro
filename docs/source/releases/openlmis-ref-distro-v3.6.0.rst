@@ -91,9 +91,7 @@ The following chart displays the UI loading times in seconds for 3.3, 3.4, 3.5, 
 Test Coverage
 =============
 
-SAM TODO
-
-OpenLMIS 3.6.0 was tested using the established OpenLMIS Release Candidate process.  As part of this process, full manual test cycles were executed for each release candidate published. Any critical or blocker bugs found during the release candidate were resolved in a bug fix cycle with a full manual test cycle executed before releasing the final version 3.5.0. Manual tests were conducted using a set of 107 Zephyr tests tracked in Jira and 6 manual tests for reporting. A total of 16 bugs were found during testing. For more details about test executions and bugs found for this release please see `the 3.6 Test Plan wiki page <https://openlmis.atlassian.net/wiki/spaces/OP/pages/463110325/3.5+Regression+and+Release+Candidate+Test+Plan>`_.
+OpenLMIS 3.6.0 was tested using the established OpenLMIS Release Candidate process.  As part of this process, full manual test cycles were executed for each release candidate published. Any critical or blocker bugs found during the release candidate were resolved in a bug fix cycle with a full manual test cycle executed before releasing the final version 3.6.0. Manual tests were conducted using a set of 99 Zephyr tests tracked in Jira and 7 manual tests for reporting. A total of 18 bugs were found during testing. For more details about test executions and bugs found for this release please see `the 3.6 QA Release and Bug Triage wiki page <https://openlmis.atlassian.net/wiki/spaces/OP/pages/523501646/3.6+QA+Release+Bug+Triage+status>`_.
 
 All Changes by Component
 ========================
