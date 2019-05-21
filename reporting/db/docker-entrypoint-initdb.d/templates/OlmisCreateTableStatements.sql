@@ -18,7 +18,7 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
 
 --
--- Name: commodity_types; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: commodity_types; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE commodity_types (
@@ -30,10 +30,10 @@ CREATE TABLE commodity_types (
 );
 
 
-ALTER TABLE commodity_types OWNER TO postgres;
+ALTER TABLE commodity_types OWNER TO reporting;
 
 --
--- Name: facilities; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: facilities; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE facilities (
@@ -59,7 +59,7 @@ CREATE TABLE facilities (
 );
 
 
-ALTER TABLE facilities OWNER TO postgres;
+ALTER TABLE facilities OWNER TO reporting;
 
 --
 -- Name: ideal_stock_amounts; Type: TABLE; Schema: referencedata; Owner: postgres
@@ -74,10 +74,10 @@ CREATE TABLE ideal_stock_amounts (
 );
 
 
-ALTER TABLE ideal_stock_amounts OWNER TO postgres;
+ALTER TABLE ideal_stock_amounts OWNER TO reporting;
 
 --
--- Name: lots; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: lots; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE lots (
@@ -90,10 +90,10 @@ CREATE TABLE lots (
 );
 
 
-ALTER TABLE lots OWNER TO postgres;
+ALTER TABLE lots OWNER TO reporting;
 
 --
--- Name: orderables; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: orderables; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE orderables (
@@ -118,10 +118,10 @@ CREATE TABLE orderables (
 );
 
 
-ALTER TABLE orderables OWNER TO postgres;
+ALTER TABLE orderables OWNER TO reporting;
 
 --
--- Name: processing_periods; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: processing_periods; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE processing_periods (
@@ -134,10 +134,10 @@ CREATE TABLE processing_periods (
 );
 
 
-ALTER TABLE processing_periods OWNER TO postgres;
+ALTER TABLE processing_periods OWNER TO reporting;
 
 --
--- Name: program_orderables; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: program_orderables; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE program_orderables (
@@ -153,10 +153,10 @@ CREATE TABLE program_orderables (
 );
 
 
-ALTER TABLE program_orderables OWNER TO postgres;
+ALTER TABLE program_orderables OWNER TO reporting;
 
 --
--- Name: programs; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: programs; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE programs (
@@ -172,10 +172,10 @@ CREATE TABLE programs (
 );
 
 
-ALTER TABLE programs OWNER TO postgres;
+ALTER TABLE programs OWNER TO reporting;
 
 --
--- Name: requisition_group_members; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: requisition_group_members; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE requisition_group_members (
@@ -184,10 +184,10 @@ CREATE TABLE requisition_group_members (
 );
 
 
-ALTER TABLE requisition_group_members OWNER TO postgres;
+ALTER TABLE requisition_group_members OWNER TO reporting;
 
 --
--- Name: requisition_group_program_schedules; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: requisition_group_program_schedules; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE requisition_group_program_schedules (
@@ -200,10 +200,10 @@ CREATE TABLE requisition_group_program_schedules (
 );
 
 
-ALTER TABLE requisition_group_program_schedules OWNER TO postgres;
+ALTER TABLE requisition_group_program_schedules OWNER TO reporting;
 
 --
--- Name: supported_programs; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: supported_programs; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE supported_programs (
@@ -215,7 +215,7 @@ CREATE TABLE supported_programs (
 );
 
 
-ALTER TABLE supported_programs OWNER TO postgres;
+ALTER TABLE supported_programs OWNER TO reporting;
 
 --
 -- Name: trade_items; Type: TABLE; Schema: referencedata; Owner: postgres
@@ -228,10 +228,10 @@ CREATE TABLE trade_items (
 );
 
 
-ALTER TABLE trade_items OWNER TO postgres;
+ALTER TABLE trade_items OWNER TO reporting;
 
 --
--- Name: rights; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: rights; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE rights (
@@ -241,10 +241,10 @@ CREATE TABLE rights (
 );
 
 
-ALTER TABLE rights OWNER TO postgres;
+ALTER TABLE rights OWNER TO reporting;
 
 --
--- Name: users; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: users; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE users (
@@ -258,10 +258,10 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE users OWNER TO postgres;
+ALTER TABLE users OWNER TO reporting;
 
 --
--- Name: roles; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: roles; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE roles (
@@ -275,10 +275,10 @@ CREATE TABLE roles (
 );
 
 
-ALTER TABLE roles OWNER TO postgres;
+ALTER TABLE roles OWNER TO reporting;
 
 --
--- Name: supervisorynodes; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: supervisorynodes; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE supervisorynodes (
@@ -294,10 +294,10 @@ CREATE TABLE supervisorynodes (
 );
 
 
-ALTER TABLE supervisorynodes OWNER TO postgres;
+ALTER TABLE supervisorynodes OWNER TO reporting;
 
 --
--- Name: requisitiongroups; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: requisitiongroups; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE requisitiongroups (
@@ -315,10 +315,10 @@ CREATE TABLE requisitiongroups (
 );
 
 
-ALTER TABLE requisitiongroups OWNER TO postgres;
+ALTER TABLE requisitiongroups OWNER TO reporting;
 
 --
--- Name: supplylines; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: supplylines; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE supplylines (
@@ -330,10 +330,10 @@ CREATE TABLE supplylines (
 );
 
 
-ALTER TABLE supplylines OWNER TO postgres;
+ALTER TABLE supplylines OWNER TO reporting;
 
 --
--- Name: requisitions; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: requisitions; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE requisitions (
@@ -375,10 +375,10 @@ CREATE TABLE requisitions (
   processing_schedule_name varchar 
 );
 
-ALTER TABLE requisitions OWNER TO postgres;
+ALTER TABLE requisitions OWNER TO reporting;
 
 --
--- Name: requisition_line_item; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: requisition_line_item; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE requisition_line_item (
@@ -405,10 +405,10 @@ CREATE TABLE requisition_line_item (
   total_received_quantity double precision
 );
 
-ALTER TABLE requisition_line_item OWNER TO postgres;
+ALTER TABLE requisition_line_item OWNER TO reporting;
 
 --
--- Name: requisitions_status_history; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: requisitions_status_history; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE requisitions_status_history (
@@ -418,10 +418,10 @@ CREATE TABLE requisitions_status_history (
   created_date date
 );
 
-ALTER TABLE requisitions_status_history OWNER TO postgres;
+ALTER TABLE requisitions_status_history OWNER TO reporting;
 
 --
--- Name: requisitions_adjustment_lines; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: requisitions_adjustment_lines; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE requisitions_adjustment_lines (
@@ -432,10 +432,10 @@ CREATE TABLE requisitions_adjustment_lines (
   requisition_line_item_id varchar
 );
 
-ALTER TABLE requisitions_adjustment_lines OWNER TO postgres;
+ALTER TABLE requisitions_adjustment_lines OWNER TO reporting;
 
 --
--- Name: sohlineitems; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: sohlineitems; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE sohlineitems (
@@ -466,10 +466,10 @@ CREATE TABLE sohlineitems (
     destination varchar
 );
 
-ALTER TABLE sohlineitems OWNER TO postgres;
+ALTER TABLE sohlineitems OWNER TO reporting;
 
 --
--- Name: facility_access; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: facility_access; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE facility_access (
@@ -478,10 +478,10 @@ CREATE TABLE facility_access (
     program varchar
 );
 
-ALTER TABLE facility_access OWNER TO postgres;
+ALTER TABLE facility_access OWNER TO reporting;
 
 --
--- Name: stock_adjustment_reasons; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: stock_adjustment_reasons; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE stock_adjustment_reasons (
@@ -494,10 +494,10 @@ CREATE TABLE stock_adjustment_reasons (
   programname varchar
 );
 
-ALTER TABLE stock_adjustment_reasons OWNER TO postgres;
+ALTER TABLE stock_adjustment_reasons OWNER TO reporting;
 
 --
--- Name: reporting_dates; Type: TABLE; Schema: referencedata; Owner: postgres
+-- Name: reporting_dates; Type: TABLE; Schema: referencedata; Owner: reporting
 --
 
 CREATE TABLE reporting_dates (
@@ -506,14 +506,14 @@ CREATE TABLE reporting_dates (
   country varchar
 );
 
-ALTER TABLE reporting_dates OWNER TO postgres;
+ALTER TABLE reporting_dates OWNER TO reporting;
 
 -- Insert default values for reporting dates --
 INSERT INTO reporting_dates(due_days, late_days, country) 
     VALUES(14, 7, 'Malawi'), (14, 7, 'Mozambique');
 
 ---
---- Name: reporting_rate_and_timeliness; Type: TABLE; Schema: referencedata; Owner: postgres
+--- Name: reporting_rate_and_timeliness; Type: TABLE; Schema: referencedata; Owner: reporting
 ---
 CREATE MATERIALIZED VIEW reporting_rate_and_timeliness AS
 SELECT f.id, f.name, f.district, f.region, f.country, f.type, f.operator_name, 
@@ -562,10 +562,10 @@ LEFT JOIN facility_access fa ON fa.facility = authorized_reqs.facility_id::VARCH
 ORDER BY authorized_reqs.processing_period_enddate DESC WITH DATA;
 
 
-ALTER MATERIALIZED VIEW reporting_rate_and_timeliness OWNER TO postgres;
+ALTER MATERIALIZED VIEW reporting_rate_and_timeliness OWNER TO reporting;
 
 ---
---- Name: adjustments; Type: TABLE; Schema: referencedata; Owner: postgres
+--- Name: adjustments; Type: TABLE; Schema: referencedata; Owner: reporting
 ---
 CREATE MATERIALIZED VIEW adjustments AS
 SELECT DISTINCT ON (li.requisition_line_item_id) li.requisition_line_item_id, 
@@ -587,11 +587,11 @@ LEFT JOIN facility_access fa ON fa.facility = r.facility_id AND fa.program = r.p
 WHERE sh.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED')
 ORDER BY li.requisition_line_item_id, r.modified_date DESC NULLS LAST WITH DATA;
 
-ALTER MATERIALIZED VIEW adjustments OWNER TO postgres;
+ALTER MATERIALIZED VIEW adjustments OWNER TO reporting;
 
 
 ---
---- Name: stock_status_and_consumption; Type: TABLE; Schema: referencedata; Owner: postgres
+--- Name: stock_status_and_consumption; Type: TABLE; Schema: referencedata; Owner: reporting
 ---
 CREATE MATERIALIZED VIEW stock_status_and_consumption AS
 SELECT li.requisition_line_item_id, r.id, 
@@ -644,4 +644,4 @@ total_losses_and_adjustments, stock_on_hand, total_stockout_days, max_periods_of
 calculated_order_quantity, requested_quantity, approved_quantity, packs_to_ship, 
 price_per_pack, total_cost, total_received_quantity) li ON r.id::VARCHAR = li.requisition_id WITH DATA;
 
-ALTER MATERIALIZED VIEW stock_status_and_consumption OWNER TO postgres;
+ALTER MATERIALIZED VIEW stock_status_and_consumption OWNER TO reporting;
