@@ -18,7 +18,7 @@ reasoning behind some of these choices in regards to enterprise integration.
 * REST APIs over HTTP w/ JSON preferred
 * Authentication is delegated to OAuth2 with bearer tokens
 * Unique identifiers are [UUID][]
-* Date times in [RFC 3339][]
+* Datetimes in [RFC 3339][]
 * Language tags in [ISO 639][]
 * [UTF-8] encoding as default
 
@@ -78,7 +78,7 @@ For this reason we'll be using two terms in the following sections:
   there may be many sources of truth for specific aspects of that entity.  It's
   important to note however that no two or more sources of truth may try to 
   define the same aspect of the entity.
-* Derived data:  Is data which comes-from a source of truth.  It may enhance/add
+* Derived data:  Is data which comes from a source of truth.  It may enhance/add
   to the definition that comes from the source of truth.  e.g. a Master Facility
   List (MFR) may be a source of truth that defines the names and locations of 
   all the facilities.  In OpenLMIS the Facilities we have would be derived from 
@@ -99,12 +99,12 @@ A few examples where OpenLMIS we hope to derive data from:
 
 ### Defining Locations (geographic areas, facilities, store rooms, etc)
 
-OpenLMIS needs to know about the Facilities and Geopgraphic Zones that are apart
-of the supply chain to enable various re-supply workflows: hospitals, clinics, 
-etc. While OpenLMIS needs this information, we believe that the process of 
-uniquely identifying and assigning core attributes (e.g. name, address, etc) of 
-these places works best when the information is curated outside of OpenLMIS,
-and then shared with OpenLMIS.
+OpenLMIS needs to know about the Facilities and Geopgraphic Zones that are a
+part of the supply chain to enable various re-supply workflows: hospitals, 
+clinics, etc. While OpenLMIS needs this information, we believe that the 
+process of uniquely identifying and assigning core attributes (e.g. name, 
+address, etc) of these places works best when the information is curated 
+outside of OpenLMIS, and then shared with OpenLMIS.
 
 The core profile that describes the basic functioning of this is IHE's 
 [mCSD profile][] of which OpenLMIS leverages [Location][] as the source of 
@@ -172,7 +172,7 @@ system_.
 ***
 
 OpenLMIS may also receive [status alerts][] about equipment functionality, which
-is normally sourced from a Remote Temperature Monitoring Device, such as
+is normally sourced from a Remote Temperature Monitoring (RTM) device, such as
 Nexleaf's [ColdTrace][].
 
 [WHO's PQS]: http://apps.who.int/immunization_standards/vaccine_quality/pqs_catalogue/
