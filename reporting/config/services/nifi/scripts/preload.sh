@@ -169,7 +169,7 @@ restartFlows() {
             break  
           fi
         done
-      elif [ "$searchKey" == "Check for Measures" ];
+      elif [ "$searchKey" == "Get Measures" ];
       then
         checkMeasureId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/process-groups | jq -r ".processGroups[$key].component.id")
         curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${checkMeasureId}/processors | jq '.[]|keys[]' | while read key ;
