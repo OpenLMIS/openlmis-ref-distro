@@ -69,8 +69,6 @@ services:
       - ./nifi-cache:/tmp/nifi-docker-cache
     entrypoint: >
       bash -c "/config/nifi/scripts/start.sh ${OL_NIFI_VERSION} ${BASE_URL} ${USERNAME} ${PASSWORD} ${CLIENT_ID} ${CLIENT_SECRET} ${DB_PASSWORD} ${FHIR_ID} ${FHIR_PASSWORD}"
-    environment:
-      - NIFI_JVM_HEAP_MAX=${NIFI_JVM_HEAP_MAX}
     logging:
       driver: syslog
       options:
