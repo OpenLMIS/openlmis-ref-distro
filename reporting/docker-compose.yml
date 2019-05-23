@@ -63,7 +63,7 @@ services:
     depends_on: [consul, log, config-container]
 
   nifi:
-    image: onaio/nifi:${OL_NIFI_VERSION}
+    image: apache/nifi:${OL_NIFI_VERSION}
     volumes:
       - config-volume:/config
       - ./nifi-cache:/tmp/nifi-docker-cache
