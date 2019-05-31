@@ -39,6 +39,10 @@ important compatibility information about a required PostgreSQL extension and da
 For information about upgrade paths from OpenLMIS 1 and 2 to version 3, see the `3.0.0 Release
 Notes <https://openlmis.atlassian.net/wiki/spaces/OP/pages/88670325/3.0.0+Release+-+1+March+2017>`_.
 
+If you are upgrading Stock Management service from version 4.0.1 you need to execute the following queries directly on your OpenLMIS database:
+DELETE FROM stockmanagement.schema_version WHERE version = '20190403110728293';
+DELETE FROM stockmanagement.jasper_templates WHERE id = '288b5739-573b-4ef8-8ea9-1838baf10e22';
+
 Download or View on GitHub
 --------------------------
 
