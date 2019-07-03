@@ -208,12 +208,11 @@ all of these messages to the file `/var/log/messages` of the named volume `syslo
 To read this file, you may mount this filesystem via:
 
 ```shell
-$ docker run -it --rm -v openlmisrefdistro_syslog:/var/log 
-
-
-:3 bash
+docker run -it --rm -v openlmis-ref-distro_syslog:/var/log openlmis/dev:3 bash
 > tail /var/log/messages
 ```
+
+Different versions of docker and different deployment configurations can result in different names of the syslog volume. If `openlmis-ref-distro_nginx-log` doesn't work, run `docker volume ls` to see all volume names.
 
 #### Log format for Services
 
@@ -233,9 +232,11 @@ The `nginx` container runs the nginx and consul-template processes.  These two l
 e.g to see Nginx's access log:
 
 ```shell
-$ docker run -it --rm -v openlmisrefdistro_nginx-log:/var/log/nginx/log openlmis/dev:3 bash
+$ docker run -it --rm -v openlmis-ref-distro_nginx-log:/var/log/nginx/log openlmis/dev:3 bash
 > tail /var/log/nginx/log/access.log
 ```
+
+Different versions of docker and different deployment configurations can result in different names of the syslog volume. If `openlmis-ref-distro_nginx-log` doesn't work, run `docker volume ls` to see all volume names.
 
 With Nginx it's also possible to use Docker's logging so that both logs are accessible via `docker logs <nginx>`.  
 This is owed to the configuration of the official Nginx image.  To use this configuration, change the environment
