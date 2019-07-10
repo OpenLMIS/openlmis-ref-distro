@@ -34,9 +34,9 @@ environment file template for new additions.
   $ cp settings-sample.env settings.env
   ```
 
-  Note that 'localhost' will not work here—-it must be an actual IP address (like aaa.bbb.yyy.zzz).
+  Note that 'localhost' will not work here—-it must be an actual IP address (like aaa.bbb.yyy.zzz) or domain name.
   This is because localhost would be interpreted relative to each container, but providing your
-  workstation's IP address gives an absolute outside location that is reachable from each container.
+  workstation's IP address or domain name gives an absolute outside location that is reachable from each container.
   Also note that your BASE_URL will not need the port ":8080" that may be in the environment file
   template.
 
