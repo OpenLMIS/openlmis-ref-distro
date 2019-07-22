@@ -212,7 +212,7 @@ docker run -it --rm -v openlmis-ref-distro_syslog:/var/log openlmis/dev:3 bash
 > tail /var/log/messages
 ```
 
-Different versions of docker and different deployment configurations can result in different names of the syslog volume. If `openlmis-ref-distro_nginx-log` doesn't work, run `docker volume ls` to see all volume names.
+Different versions of docker and different deployment configurations can result in different names of the syslog volume. If `openlmis-ref-distro_syslog` doesn't work, run `docker volume ls` to see all volume names.
 
 #### Log format for Services
 
