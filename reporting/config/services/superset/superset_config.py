@@ -1,34 +1,55 @@
 """
 Superset config
 """
+import os
+import base64
 from flask_appbuilder.security.manager import AUTH_OAUTH
-
 from superset_patchup.oauth import CustomSecurityManager
 
-SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:p@ssw0rd@db:5432/open_lmis_reporting'
+
+def stringToBase64(s):
+    return base64.b64encode(s.encode('utf-8')).decode('utf-8')
+
+
+def lookup_password(url):
+    return os.environ['POSTGRES_PASSWORD']
+
+
+SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{}:{}@db:5432/open_lmis_reporting'.format(
+    os.environ['POSTGRES_USER'],
+    os.environ['POSTGRES_PASSWORD'])
+
+SQLALCHEMY_CUSTOM_PASSWORD_STORE = lookup_password
+
 SQLALCHEMY_TRACK_MODIFICATIONS = True
-SECRET_KEY = 'thisISaSECRET_1234'
+SECRET_KEY = os.environ['SUPERSET_SECRET_KEY']
+
+OL_SUPERSET_USER = os.environ['OL_SUPERSET_USER']
+OL_SUPERSET_PASSWORD = os.environ['OL_SUPERSET_PASSWORD']
+AUTHORIZATION_HEADER_TOKEN = stringToBase64(
+    '%s:%s' % (OL_SUPERSET_USER, OL_SUPERSET_PASSWORD))
 
 AUTH_TYPE = AUTH_OAUTH
-
 OAUTH_PROVIDERS = [
-    {   'name': 'openlmis',
+    {
+        'name': 'openlmis',
         'icon': 'fa-sign-in',
-        'token_key':'access_token',
+        'token_key': 'access_token',
         'remote_app': {
-            'consumer_key': 'superset',
-            'consumer_secret': 'changeme',
+            'consumer_key': OL_SUPERSET_USER,
+            'consumer_secret': OL_SUPERSET_PASSWORD,
             'request_token_params': {
                 'scope': 'read write'
             },
             'access_token_method': 'POST',
             'access_token_headers': {
-                'Authorization':'Basic c3VwZXJzZXQ6Y2hhbmdlbWU='
+                'Authorization': 'Basic %s' % AUTHORIZATION_HEADER_TOKEN
             },
-            'base_url': 'https://uat.openlmis.org/api/oauth',
-            'access_token_url': 'https://uat.openlmis.org/api/oauth/token?grant_type=authorization_code',
-            'authorize_url': 'https://uat.openlmis.org/api/oauth/authorize?'}
-     }
+            'base_url': '%s/api/oauth' % os.environ['OL_BASE_URL'],
+            'access_token_url': '%s/api/oauth/token?grant_type=authorization_code' % os.environ['OL_BASE_URL'],
+            'authorize_url': '%s/api/oauth/authorize?' % os.environ['OL_BASE_URL']
+        }
+    }
 ]
 
 # The default user self registration role
@@ -41,7 +62,7 @@ AUTH_USER_REGISTRATION = True
 ENABLE_PROXY_FIX = True
 
 # Allow iFrame access from openLMIS running on localhost
-HTTP_HEADERS = {'X-Frame-Options': 'allow-from https://uat.openlmis.org'}
+HTTP_HEADERS = {'X-Frame-Options': 'allow-from %s' % os.environ['OL_BASE_URL']}
 
 # CSV Options: key/value pairs that will be passed as argument to DataFrame.to_csv method
 # note: index option should not be overridden
@@ -51,6 +72,11 @@ CSV_EXPORT = {
 
 # Custom security manager
 CUSTOM_SECURITY_MANAGER = CustomSecurityManager
+ENABLE_CORS = True
+CORS_OPTIONS = {
+    'origins': [os.environ['OL_BASE_URL']],
+    'supports_credentials': True
+}
 
 # Add custom roles
 ADD_CUSTOM_ROLES = True

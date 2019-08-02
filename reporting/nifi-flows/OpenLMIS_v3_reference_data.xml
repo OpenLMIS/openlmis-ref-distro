@@ -2247,7 +2247,7 @@
     </entry>
     <entry>
         <key>jolt-spec</key>
-        <value>${joltspec:unescapeJson()}</value>
+        <value>${'$1':replace('"', '\\\\"')}</value>
     </entry>
     <entry>
         <key>Transform Cache Size</key>
@@ -3735,7 +3735,7 @@ DELETE FROM requisition_group_members; DELETE FROM requisition_group_program_sch
                             </entry>
                             <entry>
 <key>Remote URL</key>
-<value>${baseUrl}/api/${endpoint}?access_token=${access_token}&amp;page=${pageNumber}</value>
+<value>${baseUrl}/api/${endpoint}?access_token=${access_token}&amp;page=${pageNumber}&amp;size=10</value>
                             </entry>
                             <entry>
 <key>SSL Context Service</key>

@@ -3174,7 +3174,7 @@
                             </entry>
                             <entry>
 <key>Remote URL</key>
-<value>${baseUrl}/api/requisitions/search?access_token=${access_token}&amp;modifiedDateFrom=${modified_date}&amp;page=${pageNumber}</value>
+<value>${baseUrl}/api/requisitions/search?access_token=${access_token}&amp;modifiedDateFrom=${modified_date}&amp;page=${pageNumber}&amp;size=10</value>
                             </entry>
                             <entry>
 <key>SSL Context Service</key>
