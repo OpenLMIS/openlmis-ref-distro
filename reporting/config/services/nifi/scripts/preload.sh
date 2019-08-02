@@ -8,6 +8,14 @@ export PROC_GROUPS_DIR="$WORKING_DIR/preload/process-groups"
 export IMPORTED_PROC_GROUPS_DIR="/tmp/nifi-preload/process-groups"
 export NIFI_UP_RETRY_COUNT=240
 
+: ${POSTGRES_PASSWORD:?"Need to set POSTGRES_PASSWORD"}
+: ${AUTH_SERVER_CLIENT_ID:?"Need to set AUTH_SERVER_CLIENT_ID"}
+: ${AUTH_SERVER_CLIENT_SECRET:?"Need to set AUTH_SERVER_CLIENT_SECRET"}
+: ${TRUSTED_HOSTNAME:?"Need to set TRUSTED_HOSTNAME"}
+: ${OL_ADMIN_USERNAME:?"Need to set OL_ADMIN_USERNAME"}
+: ${OL_ADMIN_PASSWORD:?"Need to set OL_ADMIN_PASSWORD"}
+: ${OL_BASE_URL:?"Need to set OL_BASE_URL"}
+
 main() {
   if waitNifiAvailable ${NIFI_UP_RETRY_COUNT}; then
     local subCommand=$1
@@ -128,7 +136,7 @@ restartFlows() {
     # Get process group version number
     processGroupVersionNumber=$(curl -s -X GET -H 'Content-Type: application/json' $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/variable-registry | jq -r '.processGroupRevision.version')
     # Set the global variables
-    curl -X PUT -H 'Content-Type: application/json' $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/variable-registry -d '{"processGroupRevision":{"version":"'"${processGroupVersionNumber}"'"},"variableRegistry":{"variables":[{"variable":{"name":"baseUrl","value":"https://uat.openlmis.org","processGroupId":"'"${processorGroupId}"'"},"canWrite":true},{"variable":{"name":"username","value":"administrator","processGroupId":"'"${processorGroupId}"'"},"canWrite":true},{"variable":{"name":"password","value":"password","processGroupId":"'"${processorGroupId}"'"},"canWrite":true}],"processGroupId":"'"${processorGroupId}"'"}}'
+    curl -X PUT -H 'Content-Type: application/json' $NIFI_BASE_URL/nifi-api/process-groups/${processorGroupId}/variable-registry -d '{"processGroupRevision":{"version":"'"${processGroupVersionNumber}"'"},"variableRegistry":{"variables":[{"variable":{"name":"baseUrl","value":"'$OL_BASE_URL'","processGroupId":"'"${processorGroupId}"'"},"canWrite":true},{"variable":{"name":"username","value":"'$OL_ADMIN_USERNAME'","processGroupId":"'"${processorGroupId}"'"},"canWrite":true},{"variable":{"name":"password","value":"'$OL_ADMIN_PASSWORD'","processGroupId":"'"${processorGroupId}"'"},"canWrite":true}],"processGroupId":"'"${processorGroupId}"'"}}'
 
     # Enter sensitive values
     curl -s -X GET $NIFI_BASE_URL/nifi-api/flow/process-groups/${processorGroupId}/controller-services | jq '.controllerServices|keys[]' | while read key ;
@@ -138,7 +146,7 @@ restartFlows() {
 
       if [ "$controllerServiceName" == "DBCPConnectionPool" ];
       then
-        curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"0"},"component":{"id":"'"${controllerServiceId}"'","properties":{"Password":"'"$7"'"}}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId}
+        curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"random", "version":"0"},"component":{"id":"'"${controllerServiceId}"'","properties":{"Password":"'"$POSTGRES_PASSWORD"'"}}}' $NIFI_BASE_URL/nifi-api/controller-services/${controllerServiceId}
       else
         continue
       fi
@@ -165,7 +173,7 @@ restartFlows() {
           then
             invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${createTokenId}/processors | jq -r ".processors[$key].component.id")
             versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq -r ".revision.version")
-            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$5"'","Basic Authentication Password":"'"$6"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
+            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$AUTH_SERVER_CLIENT_ID"'","Basic Authentication Password":"'"$AUTH_SERVER_CLIENT_SECRET"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
             break  
           fi
         done
@@ -179,7 +187,7 @@ restartFlows() {
           then
             invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${checkMeasureId}/processors | jq -r ".processors[$key].component.id")
             versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq -r ".revision.version")
-            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$8"'","Basic Authentication Password":"'"$9"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
+            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$FHIR_ID"'","Basic Authentication Password":"'"$FHIR_PASSWORD"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
             break
           fi
         done
@@ -193,7 +201,7 @@ restartFlows() {
           then
             invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${checkMeasureId}/processors | jq -r ".processors[$key].component.id")
             versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq -r ".revision.version")
-            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$8"'","Basic Authentication Password":"'"$9"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
+            curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$FHIR_ID"'","Basic Authentication Password":"'"$FHIR_PASSWORD"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
             break  
           fi
         done
@@ -220,7 +228,7 @@ restartFlows() {
               then
                 getAccessTokenId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${getProductsId}/processors | jq -r ".processors[$key].component.id")
                 versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${getAccessTokenId} | jq -r ".revision.version")
-                curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${getAccessTokenId}"'","config":{"properties":{"Basic Authentication Username":"'"$5"'","Basic Authentication Password":"'"$6"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${getAccessTokenId}
+                curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${getAccessTokenId}"'","config":{"properties":{"Basic Authentication Username":"'"$AUTH_SERVER_CLIENT_ID"'","Basic Authentication Password":"'"$AUTH_SERVER_CLIENT_SECRET"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${getAccessTokenId}
                 break
               fi
             done

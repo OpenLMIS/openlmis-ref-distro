@@ -65,3 +65,37 @@ a WIP:
 
 When working with Kafka some of these tips are helpful:
 * On listeners, ports, and networking: https://rmoff.net/2018/08/02/kafka-listeners-explained/
+
+
+## OAuth User for Superset
+
+In order to use user authentication in Superset by an OpenLMIS instance we need to create additional user in OpenLMIS.
+It is the specific user with `authorizedGrantTypes` set to `authorization_code`
+
+Example of a SQL statement creating that user (superset:changeme):
+```
+INSERT INTO auth.oauth_client_details (clientId,authorities,authorizedGrantTypes,clientSecret,"scope")
+VALUES ('superset','TRUSTED_CLIENT','authorization_code','changeme','read,write');
+
+```
+
+Don't forget to set newly created user's credentials in settings.env. Example:
+```
+OL_SUPERSET_USER=superset
+OL_SUPERSET_PASSWORD=changeme
+```
+
+## OpenLMIS user with all permissions for Superset
+
+The ETL process conducted via NiFi requires a user which has all permissions. It should not be a simple admin, because sometime it doesn't has all permissions (eg. for requisitions)
+
+The simplest way to creat that user is using the https://github.com/OpenLMIS/openlmis-refdata-seed tool.
+
+Note: Created user must have an email address.
+
+
+Don't forget to set newly created user's credentials in settings.env. Example:
+```
+OL_ADMIN_USERNAME=administrator
+OL_ADMIN_PASSWORD=password
+```

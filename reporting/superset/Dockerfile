@@ -4,7 +4,10 @@ FROM python:3.6
 ARG SUPERSET_VERSION=0.29.0rc7
 
 # Superset-patchup (Ketchup) version
-ARG SUPERSET_PATCHUP_VERSION=v0.1.3
+ARG SUPERSET_PATCHUP_VERSION=v0.1.4
+
+# Default Superset files dir
+ARG APP_DIR=/usr/local/lib/python3.6/site-packages/superset
 
 # Configure environment
 ENV GUNICORN_BIND=0.0.0.0:8088 \
@@ -18,7 +21,8 @@ ENV GUNICORN_BIND=0.0.0.0:8088 \
     SUPERSET_REPO=apache/incubator-superset \
     SUPERSET_VERSION=${SUPERSET_VERSION} \
     SUPERSET_PATCHUP_VERSION=${SUPERSET_PATCHUP_VERSION} \
-    SUPERSET_HOME=/var/lib/superset
+    SUPERSET_HOME=/var/lib/superset \
+    PYTHONUSERBASE=/home/superset
 ENV GUNICORN_CMD_ARGS="--workers ${GUNICORN_WORKERS} --timeout ${GUNICORN_TIMEOUT} --bind ${GUNICORN_BIND} --limit-request-line ${GUNICORN_LIMIT_REQUEST_LINE} --limit-request-field_size ${GUNICORN_LIMIT_REQUEST_FIELD_SIZE}"
 
 # Create superset user & install dependencies
@@ -42,6 +46,7 @@ RUN useradd -U -m superset && \
     apt-get clean && \
     rm -r /var/lib/apt/lists/* && \
     curl https://raw.githubusercontent.com/${SUPERSET_REPO}/${SUPERSET_VERSION}/requirements.txt -o requirements.txt && \
+    sed -i 's/cryptography==1.9/cryptography==2.4.2/g' requirements.txt && \
     pip install --no-cache-dir -r requirements.txt && \
     rm requirements.txt && \
     pip install --no-cache-dir \
@@ -54,26 +59,57 @@ RUN useradd -U -m superset && \
         gevent==1.2.2 \
         impyla==0.14.0 \
         infi.clickhouse-orm==1.0.2 \
-        mysqlclient==1.3.7 \
-        psycopg2==2.6.1 \
+        psycopg2==2.7.7 \
         pyathena==1.2.5 \
         pybigquery==0.4.10 \
         pyhive==0.5.1 \
         pyldap==2.4.28 \
-        pymssql==2.1.3 \
         redis==2.10.5 \
         sqlalchemy-clickhouse==0.1.5.post0 \
         sqlalchemy-redshift==0.7.1 \
         werkzeug==0.14.1 && \
-    pip install --no-cache-dir git+https://github.com/onaio/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} && \
-    pip install superset==${SUPERSET_VERSION}
+    pip install --no-cache-dir git+https://github.com/onaio/superset-patchup.git@${SUPERSET_PATCHUP_VERSION}
+RUN pip install superset==${SUPERSET_VERSION}
+
+# Node & npm
+ENV NVM_DIR=/usr/local/nvm
+ENV NODE_VERSION=v10.13.0
+
+RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+RUN . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+ENV NODE_PATH=$NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
+ENV PATH=$NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
+
+RUN node -v
+RUN npm -v
+
+# Installing dependecies via npm
+RUN npm install -g yarn
+RUN npm install -g po2json
+
+# Fetching dependecies and first build
+RUN wget -P /tmp https://github.com/apache/incubator-superset/archive/${SUPERSET_VERSION}.zip \
+    && unzip /tmp/${SUPERSET_VERSION}.zip -d /tmp \
+    && cp -r /tmp/incubator-superset-${SUPERSET_VERSION}/superset/assets $APP_DIR \
+    && rm -r /tmp/${SUPERSET_VERSION}.zip /tmp/incubator-superset-${SUPERSET_VERSION}
+RUN cd $APP_DIR/assets && yarn install
+
+# JS building time tweaks
+RUN mkdir -p /home/superset/.cache
+RUN mv /usr/local/share/.cache/yarn /home/superset/.cache
+RUN chown -R superset:superset /home/superset/.cache/yarn
+RUN chown -R superset:superset ${NVM_DIR}
 
 # Configure Filesystem
+RUN chown -R superset:superset ${APP_DIR}
 COPY superset /usr/local/bin
-VOLUME /home/superset \
-       /etc/superset \
+VOLUME /etc/superset \
        /var/lib/superset
-WORKDIR /home/superset
+WORKDIR $APP_DIR
 
 # Deploy application
 EXPOSE 8088
