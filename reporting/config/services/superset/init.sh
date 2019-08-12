@@ -4,9 +4,7 @@ set -e
 
 : ${SUPERSET_ADMIN_USERNAME:?"Need to set SUPERSET_ADMIN_USERNAME"}
 : ${SUPERSET_ADMIN_PASSWORD:?"Need to set SUPERSET_ADMIN_PASSWORD"}
-: ${SUPERSET_VERSION:?"Need to set SUPERSET_VERSION"}
 
-APP_DIR="/usr/local/lib/python3.6/site-packages/superset"
 CONFIG_DIR="/etc/superset"
 
 # App initialization
