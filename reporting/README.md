@@ -87,7 +87,7 @@ OL_SUPERSET_PASSWORD=changeme
 
 ## OpenLMIS user with all permissions for Superset
 
-The ETL process conducted via NiFi requires a user which has all permissions. It should not be a simple admin, because sometime it doesn't has all permissions (eg. for requisitions)
+The ETL process conducted via NiFi requires a user which has all permissions (all program + supervisory node pairs) to read data from all requisitions in the system. It should not be a simple admin, because sometime it doesn't has all permissions (eg. for requisitions)
 
 The simplest way to create that user is using the https://github.com/OpenLMIS/openlmis-refdata-seed tool.
 
@@ -99,3 +99,49 @@ Don't forget to set newly created user's credentials in settings.env. Example:
 OL_ADMIN_USERNAME=administrator
 OL_ADMIN_PASSWORD=password
 ```
+
+## Environment variables
+
+The following environment variables have to be set to sucessfuly run the reporting stack. The sample settings file can be found [here](settings-sample.env). 
+
+### NginX
+* **VIRTUAL_HOST** - The virtual host for the nginx server - nginx will make services available under this host.
+* **NGINX_BASIC_AUTH_USER** and **NGINX_BASIC_AUTH_PW** - for services (like NiFi) that need to be authenticated but currently don't, by themselves, authenticate users
+
+### PostgreSQL Database
+* **POSTGRES_USER** - The database superadmin's username.
+* **POSTGRES_PASSWORD** - The database password that services will use.
+
+### Nifi Service
+* **AUTH_SERVER_CLIENT_ID** and **AUTH_SERVER_CLIENT_SECRET** - InvokeHttp components of Nifi needs to be authorized by credentials of OpenLMIS UI
+* **TRUSTED_HOSTNAME** - InvokeHttp components of Nifi needs to specify trusted hostname
+* **OL_ADMIN_USERNAME** and **OL_ADMIN_PASSWORD** - Nifi needs an OpenLMIS user which has all possible permissions
+* **FHIR_ID** and **FHIR_PASSWORD** - FHIR credentials (leave blank if not used)
+* **NIFI_WEB_HTTP_PORT** - port on which the NiFi server should be available
+* **NIFI_DOMAIN_NAME** - The domain name to use for NiFi
+* **NIFI_SSL_CERT** - The name of the SSL certificate file in services/nginx/tls to use with the NiFi domain
+* **NIFI_SSL_KEY** - The name of the SSL key file in services/nginx/tls to use with the NiFi domain
+* **NIFI_SSL_CERT_CHAIN** - The name of the SSL certificate chain file in services/nginx/tls to use with the NiFi domain
+* **NIFI_ENABLE_SSL** - Whether to enable accessing the NiFi domain securely
+* **NIFI_BEHIND_LOAD_BALANCER** Whether Nifi is behind a load balancer
+* **NIFI_LOAD_BALANCER_REDIRECT_HTTP** - Whether to redirect HTTP traffic on the load balancer to https
+
+
+### Superset Service
+* **OL_BASE_URL** - Superset will be configured with OpenLMIS instance under this URL
+* **SUPERSET_ADMIN_USERNAME** and **SUPERSET_ADMIN_PASSWORD** - Superset webapp credentials - there is the option to sing-in by them when OAUTH provider is disabled
+* **SUPERSET_POSTGRES_USER** and **SUPERSET_POSTGRES_PASSWORD** - Superset Postgres credentials
+* **OL_SUPERSET_USER** and **OL_SUPERSET_PASSWORD** - Superset needs an OpenLMIS user which allows to sign-in via OAUTH
+* **SUPERSET_SECRET_KEY** - Secret key for flask in Superset
+* **OAUTHLIB_INSECURE_TRANSPORT** - Disabling SSL check in Superset service. By default sign-in via OAUTH requires OpenLMIS with HTTPS security
+* **SUPERSET_DOMAIN_NAME** - The domain name to use for Superset
+* **SUPERSET_SSL_CERT** - The name of the SSL certificate file in services/nginx/tls to use with the Superset domain
+* **SUPERSET_SSL_KEY** - The name of the SSL key file in services/nginx/tls to use with the Superset domain
+* **SUPERSET_SSL_CERT_CHAIN** - The name of the SSL certificate chain file in services/nginx/tls to use with the Superset domain
+* **SUPERSET_ENABLE_SSL** - Whether to enable accessing the Superset domain securely
+* **SUPERSET_BEHIND_LOAD_BALANCER** - Whether Superset is behind a load balancer
+* **SUPERSET_LOAD_BALANCER_REDIRECT_HTTP** - Whether to redirect HTTP traffic on the load balancer to https
+* **SUPERSET_WEB_HTTPS_PORT** - port on which the Superset server should be available
+
+### Scalyr
+* **SCALYR_API_KEY** - API key for scalyr service
