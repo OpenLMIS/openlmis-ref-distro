@@ -128,7 +128,7 @@ The following environment variables have to be set to sucessfuly run the reporti
 
 ### Superset Service
 * **OL_BASE_URL** - Superset will be configured with OpenLMIS instance under this URL
-* **SUPERSET_ADMIN_USERNAME** and **SUPERSET_ADMIN_PASSWORD** - Superset webapp credentials - there is the option to sing-in by them when OAUTH provider is disabled
+* **SUPERSET_ADMIN_USERNAME** and **SUPERSET_ADMIN_PASSWORD** - Superset webapp credentials - there is the option to sing-in by them when OAUTH provider is disabled. Because there is currently no way to disable the OAuth provider, the corresponding SUPERSET_ADMIN_USERNAME and PASSWORD values are currently always ignored.
 * **SUPERSET_POSTGRES_USER** and **SUPERSET_POSTGRES_PASSWORD** - Superset Postgres credentials
 * **OL_SUPERSET_USER** and **OL_SUPERSET_PASSWORD** - Superset needs an OpenLMIS user which allows to sign-in via OAUTH
 * **SUPERSET_SECRET_KEY** - Secret key for flask in Superset
