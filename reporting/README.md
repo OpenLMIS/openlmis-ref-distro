@@ -76,7 +76,6 @@ Example of a SQL statement creating that user (superset:changeme):
 ```
 INSERT INTO auth.oauth_client_details (clientId,authorities,authorizedGrantTypes,clientSecret,"scope")
 VALUES ('superset','TRUSTED_CLIENT','authorization_code','changeme','read,write');
-
 ```
 
 Don't forget to set newly created user's credentials in settings.env. Example:
