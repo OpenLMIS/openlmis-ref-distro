@@ -116,6 +116,7 @@ The following environment variables have to be set to sucessfuly run the reporti
 * **TRUSTED_HOSTNAME** - InvokeHttp components of Nifi needs to specify trusted hostname
 * **OL_ADMIN_USERNAME** and **OL_ADMIN_PASSWORD** - Nifi needs an OpenLMIS user which has all possible permissions
 * **FHIR_ID** and **FHIR_PASSWORD** - FHIR credentials (leave blank if not used)
+* **NIFI_WEB_HTTP_HOST** - host on which the NiFi server should be available
 * **NIFI_WEB_HTTP_PORT** - port on which the NiFi server should be available
 * **NIFI_DOMAIN_NAME** - The domain name to use for NiFi
 * **NIFI_SSL_CERT** - The name of the SSL certificate file in services/nginx/tls to use with the NiFi domain
