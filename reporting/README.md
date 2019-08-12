@@ -89,7 +89,7 @@ OL_SUPERSET_PASSWORD=changeme
 
 The ETL process conducted via NiFi requires a user which has all permissions. It should not be a simple admin, because sometime it doesn't has all permissions (eg. for requisitions)
 
-The simplest way to creat that user is using the https://github.com/OpenLMIS/openlmis-refdata-seed tool.
+The simplest way to create that user is using the https://github.com/OpenLMIS/openlmis-refdata-seed tool.
 
 Note: Created user must have an email address.
 
