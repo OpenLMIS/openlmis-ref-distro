@@ -21,8 +21,7 @@ ENV GUNICORN_BIND=0.0.0.0:8088 \
     SUPERSET_REPO=apache/incubator-superset \
     SUPERSET_VERSION=${SUPERSET_VERSION} \
     SUPERSET_PATCHUP_VERSION=${SUPERSET_PATCHUP_VERSION} \
-    SUPERSET_HOME=/var/lib/superset \
-    PYTHONUSERBASE=/home/superset
+    SUPERSET_HOME=/var/lib/superset
 ENV GUNICORN_CMD_ARGS="--workers ${GUNICORN_WORKERS} --timeout ${GUNICORN_TIMEOUT} --bind ${GUNICORN_BIND} --limit-request-line ${GUNICORN_LIMIT_REQUEST_LINE} --limit-request-field_size ${GUNICORN_LIMIT_REQUEST_FIELD_SIZE}"
 
 # Create superset user & install dependencies
@@ -68,48 +67,15 @@ RUN useradd -U -m superset && \
         sqlalchemy-clickhouse==0.1.5.post0 \
         sqlalchemy-redshift==0.7.1 \
         werkzeug==0.14.1 && \
-    pip install --no-cache-dir git+https://github.com/OpenLMIS/superset-patchup.git@${SUPERSET_PATCHUP_VERSION}
-RUN pip install superset==${SUPERSET_VERSION}
-
-# Node & npm
-ENV NVM_DIR=/usr/local/nvm
-ENV NODE_VERSION=v10.13.0
-
-RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
-RUN . $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
-
-ENV NODE_PATH=$NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
-ENV PATH=$NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
-
-RUN node -v
-RUN npm -v
-
-# Installing dependecies via npm
-RUN npm install -g yarn
-RUN npm install -g po2json
-
-# Fetching dependecies and first build
-RUN wget -P /tmp https://github.com/apache/incubator-superset/archive/${SUPERSET_VERSION}.zip \
-    && unzip /tmp/${SUPERSET_VERSION}.zip -d /tmp \
-    && cp -r /tmp/incubator-superset-${SUPERSET_VERSION}/superset/assets $APP_DIR \
-    && rm -r /tmp/${SUPERSET_VERSION}.zip /tmp/incubator-superset-${SUPERSET_VERSION}
-RUN cd $APP_DIR/assets && yarn install
-
-# JS building time tweaks
-RUN mkdir -p /home/superset/.cache
-RUN mv /usr/local/share/.cache/yarn /home/superset/.cache
-RUN chown -R superset:superset /home/superset/.cache/yarn
-RUN chown -R superset:superset ${NVM_DIR}
+    pip install --no-cache-dir git+https://github.com/OpenLMIS/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} && \
+    pip install superset==${SUPERSET_VERSION}
 
 # Configure Filesystem
-RUN chown -R superset:superset ${APP_DIR}
 COPY superset /usr/local/bin
-VOLUME /etc/superset \
+VOLUME /home/superset \
+       /etc/superset \
        /var/lib/superset
-WORKDIR $APP_DIR
+WORKDIR /home/superset
 
 # Deploy application
 EXPOSE 8088
