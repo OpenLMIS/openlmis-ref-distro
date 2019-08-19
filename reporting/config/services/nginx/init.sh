@@ -10,10 +10,6 @@ echo -n "${NGINX_BASIC_AUTH_USER}:" >> /etc/nginx/.htpasswd
 openssl passwd -apr1 ${NGINX_BASIC_AUTH_PW} >> /etc/nginx/.htpasswd
 
 echo "Waiting for consul to be available"
-while ! curl -f "http://consul:8500/v1/agent/self"; do
-    sleep 10;
-done
-
-sleep 60;
+sleep 240;
 
 /home/run.sh
