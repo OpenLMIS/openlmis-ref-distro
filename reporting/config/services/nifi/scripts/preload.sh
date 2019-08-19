@@ -51,7 +51,7 @@ waitNifiAvailable() {
 initialize() {
   createRegClients "$@"
   importProcessGroups "$@"
-  # restartFlows "$@"
+  restartFlows "$@"
 }
 
 createRegClients() {
