@@ -61,7 +61,7 @@ services:
       - config-volume:/config
       - ./nifi-cache:/tmp/nifi-docker-cache
     entrypoint: >
-      bash -c "/config/nifi/scripts/start.sh ${OL_NIFI_VERSION}"
+      bash -xc "/config/nifi/scripts/start.sh ${OL_NIFI_VERSION}"
     environment:
       - NIFI_JVM_HEAP_INIT=${NIFI_JVM_HEAP_INIT}
       - NIFI_JVM_HEAP_MAX=${NIFI_JVM_HEAP_MAX}
