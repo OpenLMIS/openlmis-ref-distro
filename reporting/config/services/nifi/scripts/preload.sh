@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 export NIFI_BASE_URL="http://nifi:8080"
 export WORKING_DIR="/config/nifi/scripts/"
 export REG_CLIENTS_DIR="$WORKING_DIR/preload/registries"
