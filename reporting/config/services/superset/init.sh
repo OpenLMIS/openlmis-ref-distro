@@ -7,6 +7,14 @@ set -e
 
 CONFIG_DIR="/etc/superset"
 
+# wait for postgres
+until PGPASSWORD=$POSTGRES_PASSWORD psql -h "db" -p "5432" -U "$POSTGRES_USER" -d "open_lmis_reporting" -c '\q'; do
+  >&2 echo "Postgres is unavailable - sleeping"
+  sleep 5
+done
+
+>&2 echo "Postgres is up"
+
 # App initialization
 fabmanager create-admin --app superset --username ${SUPERSET_ADMIN_USERNAME} --firstname Admin --lastname Admin --email noreply --password ${SUPERSET_ADMIN_PASSWORD}
 
