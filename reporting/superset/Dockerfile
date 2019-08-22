@@ -4,7 +4,7 @@ FROM python:3.6
 ARG SUPERSET_VERSION=0.29.0rc7
 
 # Superset-patchup (Ketchup) version
-ARG SUPERSET_PATCHUP_VERSION=v0.1.3
+ARG SUPERSET_PATCHUP_VERSION=v0.1.5
 
 # Default Superset files dir
 ARG APP_DIR=/usr/local/lib/python3.6/site-packages/superset
@@ -68,7 +68,7 @@ RUN useradd -U -m superset && \
         sqlalchemy-clickhouse==0.1.5.post0 \
         sqlalchemy-redshift==0.7.1 \
         werkzeug==0.14.1 && \
-    pip install --no-cache-dir git+https://github.com/OpenLMIS/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} && \
+    pip install --no-cache-dir git+https://github.com/onaio/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} && \
     pip install superset==${SUPERSET_VERSION}
 
 # Configure Filesystem
