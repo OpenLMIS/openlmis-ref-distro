@@ -1,17 +1,38 @@
 # OpenLMIS Reporting Stack
 
-Bring up the reporting stack by running:
+## Deploying to a Server
+1. *Prerequisite:* You should first [deploy OpenLMIS](../README.md). OpenLMIS and the reporting stack must run on separate (virtual) machines. Your OpenLMIS instance should have HTTPS enabled to connect to the reporting stack.
 
-```sh
-docker-compose up --build -d
-```
+2. *Prerequisite:* You should have a server with two domain names pointing to it, one for Superset and one for NiFi (e.g. `nifi.foo.openlmis.org` and `superset.foo.openlmis.org`). Ports 80 and 443 should be open on the server.
 
-You might, at times, want to take down the stack including all the created volumes. We recommend you do this if you ever change configurations in either the [./db](./db) or [./config](./config) directories:
+3. Configure OpenLMIS to authenticate with the reporting stack's components. If your OpenLMIS instance is using the `demo-data` spring profile, this is already setup.
+  You need two users in OpenLMIS: one for Superset and one for NiFi. The instructions below describe how to set up these users ("OAuth User for Superset" and "OpenLMIS user with all permissions for Superset").
 
-```sh
-docker-compose down -v
-```
+4. From this directory (`openlmis-ref-distro/reporting/`) on the server, copy and configure your settings.
+  ```
+  $ cp settings-sample.env settings.env
+  ```
+  * Edit `settings.env` to match your setup. You will likely need to change `VIRTUAL_HOST`, `TRUSTED_HOSTNAME`, and `OL_BASE_URL` (to point to OpenLMIS) and `NIFI_DOMAIN_NAME` and `SUPERSET_DOMAIN_NAME` (which should point to the reporting stack).
+  Details on all the environment variables are below.
 
+5. Bring up the reporting stack by running [docker-compose](https://docs.docker.com/compose/) on the server:
+  ```sh
+  docker-compose up --build -d
+  ```
+  * You might, at times, want to take down the stack including all the created volumes. We recommend you do this if you ever change configurations in either the [./db](./db) or [./config](./config) directories:
+
+  ```sh
+  docker-compose down -v
+  ```
+
+6. The Superset webapp should now be running on your server. From your local browser, navigate to your Superset domain. You should be presented with a sign-in screen:
+  <img src="./superset-login.png" alt="Superset sign-in screen, with the first provider button outlined in red" width="300px"/>
+
+7. Click the arrow (outlined in red above) to select OpenLMIS OAuth provider. Then, click the "Sign In" button. Enter the credentials for your OpenLMIS user for Superset. On the next page, approve all the requested permissions. Now, when you navigate to the Superset domain, a dashboard should populate with data from your OpenLMIS instance.
+
+8.  If you have an OpenLMIS user with the proper permissions, you can also log in to OpenLMIS and navigate to `https://<OpenLMIS Domain>/#!/reports/list` and then select a report that uses the reporting stack (e.g. stockouts) to access Superset from OpenLMIS. This will require authorizing Superset by following the on-screen instructions.
+
+9. You should be able to access NiFi by navigating to the `NIFI_DOMAIN_NAME`, if you set it up.
 
 ## OAuth User for Superset
 
@@ -90,15 +111,16 @@ The following environment variables have to be set to sucessfuly run the reporti
 * **SCALYR_API_KEY** - API key for scalyr service
 
 
-## Notes on running locally
+## Running Locally
 
+* While it is possible to run the reporting stack locally, it is not entirely supported, and you cannot run both the reporting stack and OpenLMIS locally at the same time.
 * It's easiest to access superset and nifi by leaving `.env` alone, and adding
     entries to our host's `/etc/hosts` file:
     ```
     127.0.0.1   nifi.local superset.local
     ```
 
-## Running Setup Without Scalyr
+### Running Setup Without Scalyr
 
 There are some cases (when running on a dev machine, for instance) where you would prefer to spin-up the stack without the Scalyr container running. To do that, run docker-compose this way:
 
