@@ -59,7 +59,6 @@ RUN useradd -U -m superset && \
         gevent==1.2.2 \
         impyla==0.14.0 \
         infi.clickhouse-orm==1.0.2 \
-        psycopg2==2.7.7 \
         pyathena==1.2.5 \
         pybigquery==0.4.10 \
         pyhive==0.5.1 \
@@ -68,9 +67,10 @@ RUN useradd -U -m superset && \
         sqlalchemy-clickhouse==0.1.5.post0 \
         sqlalchemy-redshift==0.7.1 \
         werkzeug==0.14.1 && \
+        sqlalchemy==1.2.18 && \
     pip install --no-cache-dir git+https://github.com/onaio/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} && \
     pip install superset==${SUPERSET_VERSION}
-
+RUN pip uninstall -y pandas && pip  install pandas==0.23.4
 # Configure Filesystem
 COPY superset /usr/local/bin
 VOLUME /home/superset \
