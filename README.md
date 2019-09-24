@@ -199,19 +199,25 @@ Most logging is collected by way of rsyslog (in the `log` container) which write
 However not every docker container logs via rsyslog to this named volume.  For these services they log either
 via docker logging or to a file for which a named-volume approach works well.
 
-### Log container
+### Log container. How-to log methods in services when working with Ref-Distro - step-by-step
 
 The `log` container runs rsyslog which Services running in their own containers may forward their logging
 messages to.  This helps centralize all the various Service logging into one location.  This container writes
 all of these messages to the file `/var/log/messages` of the named volume `syslog`.
 
-To read this file, you may mount this filesystem via:
+The steps below work for default settings so you don't have to edit any logback.xml files.
 
+1. Log methods in a service with "DEBUG" level
+2. Build the code with `sudo docker-compose run --service-ports <service-name>` followed by `gradle clean build integrationnTest`
+2. Build an image of the service you're working on with `docker-compose -f docker-compose.builder.yml build image`
+3. Change the service's version to the recently built one in .env file, for example: `OL_REFERENCEDATA_VERSION=latest`
+4. Bring the application up with `docker-compose -f docker-compose.yml up`
+5. Check what is the version of your openlmis/dev image 
+6. To read the file with logs, mount this filesystem via:
 ```shell
-docker run -it --rm -v openlmis-ref-distro_syslog:/var/log openlmis/dev:3 bash
+docker run -it --rm -v openlmis-ref-distro_syslog:/var/log openlmis/dev:<your-image-version> bash
 > tail /var/log/messages
 ```
-
 Different versions of docker and different deployment configurations can result in different names of the syslog volume. If `openlmis-ref-distro_syslog` doesn't work, run `docker volume ls` to see all volume names.
 
 #### Log format for Services
