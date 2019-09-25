@@ -208,7 +208,7 @@ all of these messages to the file `/var/log/messages` of the named volume `syslo
 The steps below work for default settings so you don't have to edit any logback.xml files.
 
 1. Log methods in a service with "DEBUG" level
-2. Build the code with `sudo docker-compose run --service-ports <service-name>` followed by `gradle clean build integrationnTest`
+2. Build the code with `sudo docker-compose run --service-ports <service-name>` followed by `gradle clean build integrationTest`
 2. Build an image of the service you're working on with `docker-compose -f docker-compose.builder.yml build image`
 3. Change the service's version to the recently built one in .env file, for example: `OL_REFERENCEDATA_VERSION=latest`
 4. Bring the application up with `docker-compose -f docker-compose.yml up`
