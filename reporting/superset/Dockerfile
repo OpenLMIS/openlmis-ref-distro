@@ -59,6 +59,7 @@ RUN useradd -U -m superset && \
         gevent==1.2.2 \
         impyla==0.14.0 \
         infi.clickhouse-orm==1.0.2 \
+        psycopg2-binary==2.8.3 \
         pyathena==1.2.5 \
         pybigquery==0.4.10 \
         pyhive==0.5.1 \
