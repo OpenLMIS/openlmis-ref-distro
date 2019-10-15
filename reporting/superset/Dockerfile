@@ -68,10 +68,11 @@ RUN useradd -U -m superset && \
         sqlalchemy-clickhouse==0.1.5.post0 \
         sqlalchemy-redshift==0.7.1 \
         werkzeug==0.14.1 && \
-        sqlalchemy==1.2.18 && \
     pip install --no-cache-dir git+https://github.com/onaio/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} && \
-    pip install superset==${SUPERSET_VERSION}
-RUN pip uninstall -y pandas && pip  install pandas==0.23.4
+    pip install superset==${SUPERSET_VERSION} && \
+    pip uninstall -y sqlalchemy pandas && \
+    pip install sqlalchemy==1.2.18 pandas==0.23.4
+
 # Configure Filesystem
 COPY superset /usr/local/bin
 VOLUME /home/superset \
