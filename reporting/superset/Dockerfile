@@ -21,7 +21,8 @@ ENV GUNICORN_BIND=0.0.0.0:8088 \
     SUPERSET_REPO=apache/incubator-superset \
     SUPERSET_VERSION=${SUPERSET_VERSION} \
     SUPERSET_PATCHUP_VERSION=${SUPERSET_PATCHUP_VERSION} \
-    SUPERSET_HOME=/var/lib/superset
+    SUPERSET_HOME=/var/lib/superset \
+    APP_DIR=${APP_DIR}
 ENV GUNICORN_CMD_ARGS="--workers ${GUNICORN_WORKERS} --timeout ${GUNICORN_TIMEOUT} --bind ${GUNICORN_BIND} --limit-request-line ${GUNICORN_LIMIT_REQUEST_LINE} --limit-request-field_size ${GUNICORN_LIMIT_REQUEST_FIELD_SIZE}"
 
 # Create superset user & install dependencies
@@ -32,6 +33,7 @@ RUN useradd -U -m superset && \
     chown -R superset:superset ${SUPERSET_HOME} && \
     apt-get update && \
     apt-get install -y \
+        rsync \
         build-essential \
         curl \
         default-libmysqlclient-dev \
@@ -73,12 +75,49 @@ RUN useradd -U -m superset && \
     pip uninstall -y sqlalchemy pandas && \
     pip install sqlalchemy==1.2.18 pandas==0.23.4
 
+# Node & npm
+ENV NVM_DIR=/usr/local/nvm
+ENV NODE_VERSION=v10.13.0
+
+RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+RUN . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+ENV NODE_PATH=$NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
+ENV PATH=$NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
+
+RUN node -v
+RUN npm -v
+
+# Installing dependecies via npm
+RUN npm install -g yarn
+RUN npm install -g po2json
+
+# Fetching dependecies and first build
+RUN wget -P /tmp https://github.com/apache/incubator-superset/archive/${SUPERSET_VERSION}.zip \
+    && unzip /tmp/${SUPERSET_VERSION}.zip -d /tmp \
+    && rsync -a \
+        --remove-source-files \
+        --chown=superset:superset \
+        /tmp/incubator-superset-${SUPERSET_VERSION}/superset/assets $APP_DIR \
+    && rm -r /tmp/${SUPERSET_VERSION}.zip
+RUN cd $APP_DIR/assets && yarn install
+
+# JS building time tweaks
+RUN mkdir -p /home/superset/.cache
+RUN rsync -a \
+  --remove-source-files \
+  --chown=superset:superset \
+  /usr/local/share/.cache/yarn /home/superset/.cache
+
 # Configure Filesystem
+RUN find ${APP_DIR} \! -type l -print0 | xargs -0 chown superset:superset
 COPY superset /usr/local/bin
-VOLUME /home/superset \
-       /etc/superset \
+VOLUME /etc/superset \
        /var/lib/superset
-WORKDIR /home/superset
+WORKDIR $APP_DIR
 
 # Deploy application
 EXPOSE 8088
