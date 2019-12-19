@@ -53,7 +53,7 @@ Auth Service works with the Reference Data service to handle role-based access c
 - `Auth Service Design <authServiceDesign.html>`_
 - `Auth Service ERD <erd-auth.html>`_
 - `Live Documentation for Auth API <http://test.openlmis.org/auth/docs/#/default>`_
-- `Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Auth API <http://build.openlmis.org/job/OpenLMIS-auth-pipeline/job/master/291/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Fulfillment Service
@@ -67,7 +67,7 @@ warehouse systems.
 - `Fulfillment Service README <fulfillmentService.html>`_
 - `Fulfillment ERD <erd-fulfillment.html>`_
 - `Live Documentation for Fulfillment API <http://test.openlmis.org/fulfillment/docs/#/default>`_
-- `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Fulfillment API <http://build.openlmis.org/job/OpenLMIS-fulfillment-pipeline/job/master/296/artifact/build/resources/main/api-definition.html>`_
 
 ***********
 CCE Service
@@ -81,7 +81,7 @@ inventory (tracking equipment at locations) and functional status. The catalog c
 - `CCE Service README <cceService.html>`_
 - `CCE ERD <erd-cce.html>`_
 - `Live Documentation for CCE API <http://test.openlmis.org/cce/docs/#/default>`_
-- `Static Documentation for CCE API <http://build.openlmis.org/job/OpenLMIS-cce-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for CCE API <http://build.openlmis.org/job/OpenLMIS-cce-pipeline/job/master/173/artifact/build/resources/main/api-definition.html>`_
 
 *****************
 HAPI FHIR Service
@@ -92,7 +92,7 @@ OpenLMIS facility data in sync with external facility registries through FHIR.
 
 - `HAPI FHIR Service GitHub repo <https://github.com/OpenLMIS/openlmis-hapifhir>`_
 - `HAPI FHIR Service README <hapifhirService.html>`_
-- `Static Documentation for HAPI FHIR API <http://build.openlmis.org/job/OpenLMIS-hapifhir-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for HAPI FHIR API <http://build.openlmis.org/job/OpenLMIS-hapifhir-pipeline/job/master/147/artifact/build/resources/main/api-definition.html>`_
 
 ********************
 Notification Service
@@ -105,7 +105,7 @@ email notifications to users. The Notification Service does not provide a web UI
 - `Notification Service README <notificationService.html>`_
 - `Notification ERD <erd-notification.html>`_
 - `Live Documentation for Notification API <http://test.openlmis.org/notification/docs/#/default>`_
-- `Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Notification API <http://build.openlmis.org/job/OpenLMIS-notification-pipeline/job/master/280/artifact/build/resources/main/api-definition.html>`_
 
 **********************
 Reference Data Service
@@ -121,7 +121,7 @@ or can be added and edited individually using the Reference Data Service APIs.
 - `Reference Data Service README <referencedataService.html>`_
 - `Reference Data ERD <erd-referencedata.html>`_
 - `Live Documentation for Reference Data API <http://test.openlmis.org/referencedata/docs/#/default>`_
-- `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Reference Data API <http://build.openlmis.org/job/OpenLMIS-referencedata-pipeline/job/master/930/artifact/build/resources/main/api-definition.html>`_
 
 ************
 Reference UI
@@ -142,7 +142,7 @@ Coding and Customizing the UI:
 
 - `UI Extension Guide <uiExtensionGuide.html>`_
 - UI :doc:`../conventions/index`
-- `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui-pipeline/job/master/lastSuccessfulBuild/artifact/build/docs/index.html#/api>`_
+- `Javascript Documentation <http://build.openlmis.org/job/OpenLMIS-reference-ui-pipeline/job/master/1481/artifact/build/docs/index.html#/api>`_
 
 UI Repositories:
 
@@ -184,7 +184,7 @@ report storage, generation (including in PDF format), and seeding rights that us
 - `Report Service README <reportService.html>`_
 - `Report ERD <erd-report.html>`_
 - `Live Documentation for Report API <http://test.openlmis.org/report/docs/#/default>`_
-- `Static Documentation for Report API <http://build.openlmis.org/job/OpenLMIS-report-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Report API <http://build.openlmis.org/job/OpenLMIS-report-pipeline/job/master/111/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Requisition Service
@@ -200,7 +200,7 @@ programs and facilities.
 - `Requisition Service README <requisitionService.html>`_
 - `Requisition ERD <erd-requisition.html>`_
 - `Live Documentation for Requisition API <http://test.openlmis.org/requisition/docs/#/default>`_
-- `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Requisition API <http://build.openlmis.org/job/OpenLMIS-requisition-pipeline/job/master/701/artifact/build/resources/main/api-definition.html>`_
 
 ************************
 Stock Management Service
@@ -213,7 +213,7 @@ recording stock transactions over time.
 - `Stock Management Service README <stockmanagementService.html>`_
 - `Stock Management ERD <erd-stockmanagement.html>`_
 - `Live Documentation for Stock Management API <http://test.openlmis.org/stockmanagement/docs/#/default>`_
-- `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-pipeline/job/rel-5.0.1/2/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Diagnostics Service
@@ -223,7 +223,7 @@ The Diagnostics Service provides RESTful API endpoints for checking the system h
 
 - `Diagnostics Service GitHub repo <https://github.com/OpenLMIS/openlmis-diagnostics>`_
 - `Diagnostics Service README <diagnosticsService.html>`_
-- `Static Documentation for Diagnostics API <http://build.openlmis.org/job/OpenLMIS-diagnostics-pipeline/job/master/lastSuccessfulBuild/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Diagnostics API <http://build.openlmis.org/job/OpenLMIS-diagnostics-pipeline/job/master/70/artifact/build/resources/main/api-definition.html>`_
 
 ********************************
 Reporting and Analytics Platform
