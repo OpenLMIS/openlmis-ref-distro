@@ -401,6 +401,7 @@ in these steps - e.g. SNAPSHOT):
    1. **Confirm** Demo v3 has each deployed service. e.g. for the auth service:
       https://demo-v3.openlmis.org/auth check that the **version** is the one chosen.
 1. Navigate to demo-v3.openlmis.org and ensure it works
+1. Activate the released version on ReadTheDocs.io. To do so, log in on ReadTheDocs as a user with admin permissions to the OpenLMIS project, go to versions and find the desired branch under "Activate a version". ReadTheDocs may take a couple of minutes to discover the branch after creating it. Click activate next to the branch name once you find it (you can also use filtering to speed it up).
 
 Once all these steps are completed and verified, the release process is complete. At this point you
 can conduct communication tasks such as sharing the URL and Release Announcement to stakeholders.
