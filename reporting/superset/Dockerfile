@@ -4,7 +4,7 @@ FROM python:3.6
 ARG SUPERSET_VERSION=0.29.0rc7
 
 # Superset-patchup (Ketchup) version
-ARG SUPERSET_PATCHUP_VERSION=v0.1.5
+ARG SUPERSET_PATCHUP_VERSION=v0.1.7
 
 # Default Superset files dir
 ARG APP_DIR=/usr/local/lib/python3.6/site-packages/superset
