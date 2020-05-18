@@ -1,0 +1,115 @@
+version: "3.3"
+
+services:
+  service-configuration:
+    build:
+      context: ./config
+    volumes:
+      - config-volume:/config
+
+  scalyr:
+    image: openlmis/scalyr
+    env_file: settings.env
+    volumes:
+      - config-volume:/config
+      - ${SCALYR_DOCKER_SOCK}:/var/scalyr/docker.sock
+      - syslog:/var/log/reporting
+
+  log:
+    image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
+    volumes:
+      - syslog:/var/log
+    ports:
+      - "${SYSLOG_UDP_PORT}:514/udp"
+
+  nginx:
+    image: openlmisao/nginx-tls:${OL_NGINX_TLS_VERSION}
+    ports:
+      - "${NIFI_WEB_PORT}:${NIFI_WEB_PORT}"
+      - "${SUPERSET_WEB_PORT}:${SUPERSET_WEB_PORT}"
+    env_file: settings.env
+    environment:
+      NGINX_LOG_DIR: '/var/log/nginx/log'
+      NIFI_WEB_PORT: "${NIFI_WEB_PORT}"
+      SUPERSET_WEB_PORT: "${SUPERSET_WEB_PORT}"
+    volumes:
+      - config-volume:/config
+    command: >
+      sh -c "cp -f /config/nginx-nifi/nginx.tmpl /etc/nginx/nginx.tmpl
+      && . /config/nginx-nifi/set-authorization.sh
+      && . /etc/nginx/run_with_template.sh"
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [nifi, superset, log, service-configuration]
+
+  nifi:
+    image: apache/nifi:${OL_NIFI_VERSION}
+    expose:
+      - "8080"
+    volumes:
+      - config-volume:/config
+      - ./nifi-cache:/tmp/nifi-docker-cache
+    entrypoint: >
+      bash -c "/config/nifi/scripts/start.sh ${OL_NIFI_VERSION}"
+    environment:
+      - NIFI_JVM_HEAP_INIT=${NIFI_JVM_HEAP_INIT}
+      - NIFI_JVM_HEAP_MAX=${NIFI_JVM_HEAP_MAX}
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [log, service-configuration]
+    env_file: settings.env
+
+  db-service-configuration:
+    build:
+      context: ./db
+    volumes:
+      - db-config-volume:/docker-entrypoint-initdb.d
+
+  db:
+    image: openlmis/postgres:${OL_POSTGRES_VERSION}
+    env_file: settings.env
+    volumes:
+      - db-config-volume:/docker-entrypoint-initdb.d
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [log, db-service-configuration]
+    env_file: settings.env
+
+  superset:
+    build:
+      context: ./superset
+      args:
+        SUPERSET_VERSION: ${OL_SUPERSET_VERSION}
+        SUPERSET_PATCHUP_VERSION: ${OL_SUPERSET_PATCHUP_VERSION}
+    expose:
+      - "8088"
+    volumes:
+      - config-volume:/config
+    command: >
+      bash -c "cp -r /config/superset /etc/
+      && sh /etc/superset/init.sh"
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [log, db, service-configuration]
+    env_file: settings.env
+
+volumes:
+  syslog:
+    external: false
+  config-volume:
+    external: false
+  db-config-volume:
+    external: false
+  pgdata:
+    external: true

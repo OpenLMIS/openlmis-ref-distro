@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+# Create an admin user
+fabmanager create-admin --app superset $@
+
+# Initialize the database
+superset db upgrade
+
+#load sample data
+superset load_examples
+
+# Create default roles and permissions
+superset init
