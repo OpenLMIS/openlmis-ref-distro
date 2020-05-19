@@ -4,9 +4,7 @@ FROM python:3.6
 ARG SUPERSET_VERSION=0.29.0rc7
 
 # Superset-patchup (Ketchup) version
-# the empty value means the master branch (otherwise it should be a tag value)
-ARG SUPERSET_PATCHUP_VERSION=
-
+ARG SUPERSET_PATCHUP_VERSION=v0.1.7
 # Default Superset files dir
 ARG APP_DIR=/usr/local/lib/python3.6/site-packages/superset
 
@@ -72,6 +70,7 @@ RUN useradd -U -m superset && \
         sqlalchemy-redshift==0.7.1 \
         werkzeug==0.16.1 && \
     pip install --no-cache-dir git+https://github.com/OpenLMIS/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} && \
+    pip uninstall -y apache-superset && \
     pip install superset==${SUPERSET_VERSION} && \
     pip uninstall -y sqlalchemy pandas && \
     pip install sqlalchemy==1.2.18 pandas==0.23.4
