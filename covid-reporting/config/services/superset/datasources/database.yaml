@@ -1,38 +1,4 @@
 databases:
-- allow_csv_upload: true
-  database_name: olmis
-  expose_in_sqllab: true
-  extra: "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {}\r\n}"
-  sqlalchemy_uri: postgresql+psycopg2://OLMIS_DATABASE_USER:XXXXXXXXXXXXXXXX@OLMIS_DATABASE_URL:5432/OLMIS_DATABASE_NAME
-  tables:
-    - columns:
-        - {column_name: district_code, filterable: true, groupby: true, type: TEXT}
-        - {column_name: district_name, filterable: true, groupby: true, type: TEXT, verbose_name: "Munic\xED\
-      pio"}
-        - {column_name: facility_code, filterable: true, groupby: true, type: TEXT}
-        - {column_name: facility_name, filterable: true, groupby: true, type: TEXT, verbose_name: " Institui\xE7\
-      \xE3o"}
-        - {column_name: levelnumber, filterable: true, groupby: true, type: INTEGER}
-        - {column_name: occurreddate, filterable: true, groupby: true, is_dttm: true,
-           type: DATE, verbose_name: Data}
-        - {column_name: product, filterable: true, groupby: true, type: TEXT, verbose_name: Producto}
-        - {column_name: program_code, filterable: true, groupby: true, type: VARCHAR(255)}
-        - {column_name: program_name, filterable: true, groupby: true, type: TEXT}
-        - {column_name: province_code, filterable: true, groupby: true, type: TEXT}
-        - {column_name: province_name, filterable: true, groupby: true, type: TEXT, verbose_name: "Prov\xED\
-      ncia"}
-        - {column_name: quantity, filterable: true, groupby: true, type: INTEGER}
-        - {column_name: reason_name, filterable: true, groupby: true, type: TEXT}
-        - {column_name: reason_type, filterable: true, groupby: true, type: TEXT, verbose_name: Tipo
-                                                                                    de Ajuste}
-        - {column_name: reasoncategory, filterable: true, groupby: true, type: TEXT}
-      main_dttm_col: occurreddate
-      metrics:
-        - {expression: AVG(quantity), metric_name: avg__quantity}
-        - {expression: COUNT(*), metric_name: count, verbose_name: COUNT(*)}
-        - {expression: SUM(quantity), metric_name: sum__quantity}
-      schema: public
-      table_name: stock_adjustments_view
 - database_name: main
   expose_in_sqllab: true
   extra: "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {}\r\n}\r\n"

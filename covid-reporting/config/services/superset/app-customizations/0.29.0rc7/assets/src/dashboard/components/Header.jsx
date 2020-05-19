@@ -119,6 +119,7 @@ class Header extends React.PureComponent {
     });
   }
 
+  // OLMIS-6589: Added support for standalone flag
   isStandalone() {
     const params = window.location.search;
     return params.indexOf("standalone=true") !== -1;
@@ -202,6 +203,7 @@ class Header extends React.PureComponent {
     const popButton = hasUnsavedChanges;
 
     return (
+      // OLMIS-6589: Added support for standalone flag
       <div className="dashboard-header" style={{display: this.isStandalone() ? "none" : "flex"}}>
         <div className="dashboard-component-header header-large">
           <EditableTitle

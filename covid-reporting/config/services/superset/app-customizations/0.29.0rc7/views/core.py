@@ -2955,7 +2955,7 @@ def caravel(url):  # noqa
 
 
 # ---------------------------------------------------------------------
-# API for changing locales without redirection
+# OLMIS-6589: Added API for changing locales without redirection
 class ChangeLocaleView(BaseSupersetView):
     route_base = '/lang/change'
 
