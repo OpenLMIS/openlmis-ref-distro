@@ -1984,7 +1984,7 @@ SELECT f.name
   , ft.name AS type
   , fo.name AS operator_name
   , f.active AS facility_active_status
-  , final_authorized_requisitions.requisition_id
+  , final_authorized_requisitions.requisition_id AS req_id
   , final_authorized_requisitions.facility_id
   , final_authorized_requisitions.program_id
   , final_authorized_requisitions.program_name
@@ -2001,6 +2001,8 @@ SELECT f.name
   , sp.active AS supported_program_active
   , sp.startdate AS supported_program_startdate
   , final_authorized_requisitions.status_change_date
+  , fa.facilityid AS facility
+  , fa.programid AS program
   , fa.username
   , CASE
     WHEN final_authorized_requisitions.status_change_date::DATE <= (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT) 
@@ -2115,6 +2117,8 @@ SELECT rli.id AS requisition_line_item_id
   , sa.id AS adjustment_lines_id
   , sa.quantity AS quantity
   , sar.name AS stock_adjustment_reason
+  , fa.facilityid AS facility
+  , fa.programid AS program
   , fa.username AS username
 FROM kafka_requisitions r
   LEFT JOIN kafka_requisition_line_items rli ON rli.requisitionid = r.id
@@ -2202,10 +2206,10 @@ SELECT li.requisition_line_item_id
   , li.total_received_quantity
   , sc.requisitionid AS status_req_id
   , sc.status AS req_status
-  , sc.authorid
+  , sc.authorid AS author_id
   , sc.createddate AS status_date
-  , fa.facilityid
-  , fa.programid
+  , fa.facilityid AS facility
+  , fa.programid AS program
   , fa.username
   , li.closing_balance
   , li.amc

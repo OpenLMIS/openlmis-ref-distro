@@ -1,0 +1,168 @@
+version: "3.3"
+
+services:
+  config-container:
+    command: /init.sh
+    env_file: settings.env
+    build:
+      context: ./config
+    volumes:
+      - config-volume:/config
+
+  log:
+    image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
+    volumes:
+      - syslog:/var/log
+    ports:
+      - "${SYSLOG_UDP_PORT}:514/udp"
+
+  consul:
+    command: -server -bootstrap
+    image: gliderlabs/consul-server
+    ports:
+      - "8501:8500"
+    depends_on: [log]
+
+  nginx:
+    image: openlmis/nginx:${OL_NGINX_VERSION}
+    ports:
+      - "${OL_HTTP_PORT:-81}:80"
+      - "${OL_HTTPS_PORT:-443}:443"
+    env_file: settings.env
+    environment:
+      NGINX_LOG_DIR: '/var/log/nginx/log'
+    volumes:
+      - config-volume:/config
+    entrypoint: >
+      /bin/sh -c "/config/nginx/init.sh"
+    depends_on: [consul, log, config-container]
+
+  nifi:
+    image: apache/nifi:${OL_NIFI_VERSION}
+    ports:
+      - "8080:8080"
+    volumes:
+      - config-volume:/config
+      - ./nifi-cache:/tmp/nifi-docker-cache
+    entrypoint: >
+      bash -c "/config/nifi/scripts/start.sh ${OL_NIFI_VERSION}"
+    environment:
+      - NIFI_JVM_HEAP_INIT=${NIFI_JVM_HEAP_INIT}
+      - NIFI_JVM_HEAP_MAX=${NIFI_JVM_HEAP_MAX}
+    depends_on: [log, config-container, nginx]
+    env_file: settings.env
+
+  db-service-configuration:
+    build:
+      context: ./db
+    volumes:
+      - db-config-volume:/docker-entrypoint-initdb.d
+
+  db:
+    image: openlmis/postgres:${OL_POSTGRES_VERSION}
+    env_file: settings.env
+    volumes:
+        - db-config-volume:/docker-entrypoint-initdb.d
+    ports:
+      - "${REPORTING_POSTGRES_PORT:-5432}:5432"
+    networks:
+      default:
+        aliases:
+          - reporting-db
+    depends_on: [log, db-service-configuration]
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:${OL_CONFLUENT_VERSION}
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=32181
+      - ZOOKEEPER_TICK_TIME=2000
+      - ZOOKEEPER_SYNC_LIMIT=2
+    depends_on: [log]
+
+  kafka:
+    image: confluentinc/cp-kafka:${OL_CONFLUENT_VERSION}
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:32181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:29092
+      - KAFKA_BROKER_ID=2
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_LOG_CLEANER_ENABLE=true
+    hostname: kafka
+    volumes:
+      - config-volume:/config
+    depends_on: [log, config-container, zookeeper]
+
+  connect:
+    image: openlmis/debezium-connect
+    ports:
+      - 8083:8083
+    networks:
+      - default
+      - openlmis-ref-distro_default
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:29092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+     - HOST_NAME=0.0.0.0
+    depends_on: [kafka]
+
+  connect-reg:
+    image: openlmis/toolbelt
+    env_file: settings.env
+    volumes:
+      - config-volume:/config
+    entrypoint: >
+      bash -c "/config/connect/register.sh"
+    depends_on: [connect]
+
+  kafka-rest:
+    image: confluentinc/cp-kafka-rest:${OL_CONFLUENT_VERSION}
+    environment:
+     - KAFKA_REST_ZOOKEEPER_CONNECT=zookeeper:32181
+     - KAFKA_REST_BOOTSTRAP_SERVERS=PLAINTEXT://kafka:29092
+     - KAFKA_REST_HOST_NAME=kafka-rest
+     - KAFKA_REST_LISTENERS=http://0.0.0.0:8082
+     - KAFKA_REST_CONSUMER_REQUEST_TIMEOUT_MS=30000
+     - KAFKA_REST_ACCESS_CONTROL_ALLOW_METHODS=GET,POST,PUT,DELETE,OPTIONS
+     - KAFKA_REST_ACCESS_CONTROL_ALLOW_ORIGIN=*
+    depends_on: [kafka]
+
+  kafka-topics-ui:
+    image: landoop/kafka-topics-ui
+    hostname: topics_ui
+    ports:
+      - 8000:8000
+    environment:
+      - KAFKA_REST_PROXY_URL=http://kafka-rest:8082
+      - PROXY=true
+      - MAX_BYTES=500000
+    depends_on: [kafka-rest]
+
+  superset:
+    build:
+      context: ./superset
+      args:
+        SUPERSET_VERSION: ${OL_SUPERSET_VERSION}
+        SUPERSET_PATCHUP_VERSION: ${OL_SUPERSET_PATCHUP_VERSION}
+    ports:
+      - "8088:8088"
+    volumes:
+      - config-volume:/config
+    command: >
+        bash -c "cp -r /config/superset /etc/
+        && sh /etc/superset/init.sh"
+    depends_on: [db, config-container, nginx]
+    env_file: settings.env
+
+volumes:
+  syslog:
+    external: false
+  config-volume:
+    external: false
+  db-config-volume:
+    external: false
+
+networks:
+  openlmis-ref-distro_default:
+    external: true
