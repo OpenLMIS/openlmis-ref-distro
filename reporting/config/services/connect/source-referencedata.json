@@ -1,0 +1,26 @@
+{
+    "name": "source-referencedata",
+    "config": {
+      "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+      "tasks.max": "1",
+      "plugin.name": "wal2json",
+      "database.hostname": "olmis-db",
+      "database.port": "5432",
+      "database.user": "postgres",
+      "database.password": "p@ssw0rd",
+      "database.dbname": "open_lmis",
+      "database.server.name": "openlmis",
+      "table.whitelist": "referencedata\\.commodity_types,referencedata\\.geographic_levels,referencedata\\.geographic_zones,referencedata\\.facility_operators,referencedata\\.facility_types,referencedata\\.facilities,referencedata\\.ideal_stock_amounts,referencedata\\.lots,referencedata\\.orderables,referencedata\\.processing_periods,referencedata\\.program_orderables,referencedata\\.programs,referencedata\\.requisition_group_members,referencedata\\.requisition_group_program_schedules,referencedata\\.supported_programs,referencedata\\.trade_items,referencedata\\.rights,referencedata\\.users,referencedata\\.roles,referencedata\\.supervisory_nodes,referencedata\\.requisition_groups,referencedata\\.supply_lines",
+      "database.history.kafka.bootstrap.servers": "kafka:29092",
+      "database.history.kafka.topic": "openlmis",
+      "column.blacklist": "referencedata.facilities.location,referencedata.geographic_zones.boundary",
+      "transforms": "unwrap,route",
+      "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+      "transforms.unwrap.drop.tombstones": "false",
+      "transforms.unwrap.delete.handling.mode": "none",
+      "transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
+      "transforms.route.regex": "([^.]+)\\.([^.]+)\\.([^.]+)",
+      "transforms.route.replacement": "public.kafka_$3"
+    }
+  }
+  
