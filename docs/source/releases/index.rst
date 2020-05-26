@@ -7,6 +7,7 @@ To download a release, please visit `GitHub <https://github.com/OpenLMIS/openlmi
 .. toctree::
    :maxdepth: 1
 
+   openlmis-ref-distro-v3.9.0
    openlmis-ref-distro-v3.8.0
    openlmis-ref-distro-v3.7.0
    openlmis-ref-distro-v3.6.0
