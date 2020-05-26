@@ -81,7 +81,7 @@ OpenLMIS conducted manual performance tests of the same user workflows with the 
 
 The following chart displays the UI loading times in seconds for 3.6, 3.7, 3.8, and 3.9 using the same test data.
 
-.. image:: UI-Performance-3.8.png
+.. image:: UI-Performance-3.9.png
     :alt: UI Load Times for 3.5 through 3.8
 
 Test Coverage
