@@ -1,0 +1,64 @@
+user nginx;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  10000;
+    multi_accept on;
+    use epoll;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] '
+            '"$request" $status $body_bytes_sent '
+            '"$http_referer" "$http_user_agent" "$http_x_forwarded_for" '
+            '$request_time $upstream_connect_time '
+            '$upstream_header_time $upstream_response_time '
+            '$pipe';
+
+    access_log  /var/log/nginx/access.log  main;
+    error_log   /var/log/nginx/error.log   info;
+
+    sendfile        on;
+    tcp_nopush      on;
+    tcp_nodelay     on;
+
+    keepalive_timeout  65;
+
+    gzip  off;
+
+    server {
+        listen ${NIFI_WEB_PORT};
+
+        location / {
+            proxy_pass http://nifi:8080/;
+            proxy_set_header Host $host:$server_port;
+            proxy_set_header X-ProxyScheme "https";
+            proxy_set_header X-ProxyHost ${VIRTUAL_HOST};
+            proxy_set_header X-ProxyPort 443;
+            proxy_set_header X-ProxyContextPath "";
+            auth_basic "Authorization required";
+            auth_basic_user_file /etc/nginx/.htpasswd;
+        }
+    }
+
+    server {
+        listen ${SUPERSET_WEB_PORT};
+        server_name ${VIRTUAL_HOST};
+
+        location / {
+            proxy_pass http://superset:8088/;
+            proxy_set_header Host $host:$server_port;
+            proxy_set_header X-ProxyScheme "http";
+            proxy_set_header X-ProxyHost ${VIRTUAL_HOST};
+            proxy_set_header X-ProxyPort ${SUPERSET_WEB_PORT};
+            proxy_set_header X-ProxyContextPath "";
+        }
+    }
+}

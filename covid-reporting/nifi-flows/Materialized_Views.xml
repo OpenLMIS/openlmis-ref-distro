@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template encoding-version="1.2">
+  <description/>
+  <groupId>31ec81a6-0172-1000-3570-b90ee5d2cce4</groupId>
+  <name>Materialized_Views</name>
+  <snippet>
+    <processGroups>
+      <id>8b5cff80-c797-3bd5-0000-000000000000</id>
+      <parentGroupId>e9929896-7c7f-3ef6-0000-000000000000</parentGroupId>
+      <position>
+        <x>0.0</x>
+        <y>0.0</y>
+      </position>
+      <comments/>
+      <contents>
+        <connections>
+          <id>fc9c0390-e2f1-3ad6-0000-000000000000</id>
+          <parentGroupId>8b5cff80-c797-3bd5-0000-000000000000</parentGroupId>
+          <versionedComponentId>7357b55c-c4e4-3586-9cc4-02f7fdf8e625</versionedComponentId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>8b5cff80-c797-3bd5-0000-000000000000</groupId>
+            <id>975313b4-85df-34c9-0000-000000000000</id>
+            <type>PROCESSOR</type>
+            <versionedComponentId>e1188b50-fd53-3c12-bd75-1983ab9c9521</versionedComponentId>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+          <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+          <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+          <name/>
+          <selectedRelationships>success</selectedRelationships>
+          <source>
+            <groupId>8b5cff80-c797-3bd5-0000-000000000000</groupId>
+            <id>d396866e-0b5b-3180-0000-000000000000</id>
+            <type>PROCESSOR</type>
+            <versionedComponentId>a2266b8c-b53d-36e5-a520-af9965c7716a</versionedComponentId>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <controllerServices>
+          <id>bda33598-c2f7-3faf-0000-000000000000</id>
+          <parentGroupId>8b5cff80-c797-3bd5-0000-000000000000</parentGroupId>
+          <versionedComponentId>4c8f04a4-6026-3ffc-a676-87752f84e7fc</versionedComponentId>
+          <bundle>
+            <artifact>nifi-dbcp-service-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.9.2</version>
+          </bundle>
+          <comments/>
+          <descriptors>
+            <entry>
+              <key>Database Connection URL</key>
+              <value>
+                <name>Database Connection URL</name>
+              </value>
+            </entry>
+            <entry>
+              <key>Database Driver Class Name</key>
+              <value>
+                <name>Database Driver Class Name</name>
+              </value>
+            </entry>
+            <entry>
+              <key>database-driver-locations</key>
+              <value>
+                <name>database-driver-locations</name>
+              </value>
+            </entry>
+            <entry>
+              <key>kerberos-credentials-service</key>
+              <value>
+                <identifiesControllerService>
+                  org.apache.nifi.kerberos.KerberosCredentialsService
+                </identifiesControllerService>
+                <name>kerberos-credentials-service</name>
+              </value>
+            </entry>
+            <entry>
+              <key>Database User</key>
+              <value>
+                <name>Database User</name>
+              </value>
+            </entry>
+            <entry>
+              <key>Password</key>
+              <value>
+                <name>Password</name>
+              </value>
+            </entry>
+            <entry>
+              <key>Max Wait Time</key>
+              <value>
+                <name>Max Wait Time</name>
+              </value>
+            </entry>
+            <entry>
+              <key>Max Total Connections</key>
+              <value>
+                <name>Max Total Connections</name>
+              </value>
+            </entry>
+            <entry>
+              <key>Validation-query</key>
+              <value>
+                <name>Validation-query</name>
+              </value>
+            </entry>
+            <entry>
+              <key>dbcp-min-idle-conns</key>
+              <value>
+                <name>dbcp-min-idle-conns</name>
+              </value>
+            </entry>
+            <entry>
+              <key>dbcp-max-idle-conns</key>
+              <value>
+                <name>dbcp-max-idle-conns</name>
+              </value>
+            </entry>
+            <entry>
+              <key>dbcp-max-conn-lifetime</key>
+              <value>
+                <name>dbcp-max-conn-lifetime</name>
+              </value>
+            </entry>
+            <entry>
+              <key>dbcp-time-between-eviction-runs</key>
+              <value>
+                <name>dbcp-time-between-eviction-runs</name>
+              </value>
+            </entry>
+            <entry>
+              <key>dbcp-min-evictable-idle-time</key>
+              <value>
+                <name>dbcp-min-evictable-idle-time</name>
+              </value>
+            </entry>
+            <entry>
+              <key>dbcp-soft-min-evictable-idle-time</key>
+              <value>
+                <name>dbcp-soft-min-evictable-idle-time</name>
+              </value>
+            </entry>
+          </descriptors>
+          <name>DBCPConnectionPool</name>
+          <persistsState>false</persistsState>
+          <properties>
+            <entry>
+              <key>Database Connection URL</key>
+              <value>jdbc:postgresql://db:5432/open_lmis_reporting</value>
+            </entry>
+            <entry>
+              <key>Database Driver Class Name</key>
+              <value>org.postgresql.Driver</value>
+            </entry>
+            <entry>
+              <key>database-driver-locations</key>
+            </entry>
+            <entry>
+              <key>kerberos-credentials-service</key>
+            </entry>
+            <entry>
+              <key>Database User</key>
+              <value>postgres</value>
+            </entry>
+            <entry>
+              <key>Password</key>
+            </entry>
+            <entry>
+              <key>Max Wait Time</key>
+              <value>500 millis</value>
+            </entry>
+            <entry>
+              <key>Max Total Connections</key>
+              <value>8</value>
+            </entry>
+            <entry>
+              <key>Validation-query</key>
+            </entry>
+            <entry>
+              <key>dbcp-min-idle-conns</key>
+              <value>0</value>
+            </entry>
+            <entry>
+              <key>dbcp-max-idle-conns</key>
+              <value>8</value>
+            </entry>
+            <entry>
+              <key>dbcp-max-conn-lifetime</key>
+              <value>-1</value>
+            </entry>
+            <entry>
+              <key>dbcp-time-between-eviction-runs</key>
+              <value>-1</value>
+            </entry>
+            <entry>
+              <key>dbcp-min-evictable-idle-time</key>
+              <value>30 mins</value>
+            </entry>
+            <entry>
+              <key>dbcp-soft-min-evictable-idle-time</key>
+              <value>-1</value>
+            </entry>
+          </properties>
+          <state>ENABLED</state>
+          <type>org.apache.nifi.dbcp.DBCPConnectionPool</type>
+        </controllerServices>
+        <processors>
+          <id>975313b4-85df-34c9-0000-000000000000</id>
+          <parentGroupId>8b5cff80-c797-3bd5-0000-000000000000</parentGroupId>
+          <position>
+            <x>1052.6364135742188</x>
+            <y>59.09088134765625</y>
+          </position>
+          <versionedComponentId>e1188b50-fd53-3c12-bd75-1983ab9c9521</versionedComponentId>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.9.2</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments/>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>Database Connection Pooling Service</key>
+                <value>
+                  <identifiesControllerService>org.apache.nifi.dbcp.DBCPService</identifiesControllerService>
+                  <name>Database Connection Pooling Service</name>
+                </value>
+              </entry>
+              <entry>
+                <key>sql-pre-query</key>
+                <value>
+                  <name>sql-pre-query</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SQL select query</key>
+                <value>
+                  <name>SQL select query</name>
+                </value>
+              </entry>
+              <entry>
+                <key>sql-post-query</key>
+                <value>
+                  <name>sql-post-query</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Max Wait Time</key>
+                <value>
+                  <name>Max Wait Time</name>
+                </value>
+              </entry>
+              <entry>
+                <key>dbf-normalize</key>
+                <value>
+                  <name>dbf-normalize</name>
+                </value>
+              </entry>
+              <entry>
+                <key>dbf-user-logical-types</key>
+                <value>
+                  <name>dbf-user-logical-types</name>
+                </value>
+              </entry>
+              <entry>
+                <key>compression-format</key>
+                <value>
+                  <name>compression-format</name>
+                </value>
+              </entry>
+              <entry>
+                <key>dbf-default-precision</key>
+                <value>
+                  <name>dbf-default-precision</name>
+                </value>
+              </entry>
+              <entry>
+                <key>dbf-default-scale</key>
+                <value>
+                  <name>dbf-default-scale</name>
+                </value>
+              </entry>
+              <entry>
+                <key>esql-max-rows</key>
+                <value>
+                  <name>esql-max-rows</name>
+                </value>
+              </entry>
+              <entry>
+                <key>esql-output-batch-size</key>
+                <value>
+                  <name>esql-output-batch-size</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>Database Connection Pooling Service</key>
+                <value>bda33598-c2f7-3faf-0000-000000000000</value>
+              </entry>
+              <entry>
+                <key>sql-pre-query</key>
+              </entry>
+              <entry>
+                <key>SQL select query</key>
+                <value>
+                  REFRESH MATERIALIZED VIEW reporting_rate_and_timeliness; REFRESH MATERIALIZED VIEW adjustments; REFRESH MATERIALIZED VIEW stock_status_and_consumption;
+                </value>
+              </entry>
+              <entry>
+                <key>sql-post-query</key>
+              </entry>
+              <entry>
+                <key>Max Wait Time</key>
+                <value>0 seconds</value>
+              </entry>
+              <entry>
+                <key>dbf-normalize</key>
+                <value>false</value>
+              </entry>
+              <entry>
+                <key>dbf-user-logical-types</key>
+                <value>false</value>
+              </entry>
+              <entry>
+                <key>compression-format</key>
+                <value>NONE</value>
+              </entry>
+              <entry>
+                <key>dbf-default-precision</key>
+                <value>10</value>
+              </entry>
+              <entry>
+                <key>dbf-default-scale</key>
+                <value>0</value>
+              </entry>
+              <entry>
+                <key>esql-max-rows</key>
+                <value>0</value>
+              </entry>
+              <entry>
+                <key>esql-output-batch-size</key>
+                <value>0</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <executionNodeRestricted>false</executionNodeRestricted>
+          <name>Refresh Materialized Views</name>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>failure</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <state>RUNNING</state>
+          <style/>
+          <type>org.apache.nifi.processors.standard.ExecuteSQL</type>
+        </processors>
+        <processors>
+          <id>d396866e-0b5b-3180-0000-000000000000</id>
+          <parentGroupId>8b5cff80-c797-3bd5-0000-000000000000</parentGroupId>
+          <position>
+            <x>497.5455322265625</x>
+            <y>79.63633728027344</y>
+          </position>
+          <versionedComponentId>a2266b8c-b53d-36e5-a520-af9965c7716a</versionedComponentId>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.9.2</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments/>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>File Size</key>
+                <value>
+                  <name>File Size</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Batch Size</key>
+                <value>
+                  <name>Batch Size</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Data Format</key>
+                <value>
+                  <name>Data Format</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Unique FlowFiles</key>
+                <value>
+                  <name>Unique FlowFiles</name>
+                </value>
+              </entry>
+              <entry>
+                <key>generate-ff-custom-text</key>
+                <value>
+                  <name>generate-ff-custom-text</name>
+                </value>
+              </entry>
+              <entry>
+                <key>character-set</key>
+                <value>
+                  <name>character-set</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>File Size</key>
+                <value>0B</value>
+              </entry>
+              <entry>
+                <key>Batch Size</key>
+                <value>1</value>
+              </entry>
+              <entry>
+                <key>Data Format</key>
+                <value>Text</value>
+              </entry>
+              <entry>
+                <key>Unique FlowFiles</key>
+                <value>false</value>
+              </entry>
+              <entry>
+                <key>generate-ff-custom-text</key>
+              </entry>
+              <entry>
+                <key>character-set</key>
+                <value>UTF-8</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>1 day</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <executionNodeRestricted>false</executionNodeRestricted>
+          <name>Everyday trigger</name>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <state>RUNNING</state>
+          <style/>
+          <type>
+            org.apache.nifi.processors.standard.GenerateFlowFile
+          </type>
+        </processors>
+      </contents>
+      <name>Materialized Views</name>
+      <variables>
+        <entry>
+          <key>password</key>
+          <value>cWLch3kpkMXtVhZt</value>
+        </entry>
+        <entry>
+          <key>baseUrl</key>
+          <value>https://covid-ref.openlmis.org</value>
+        </entry>
+        <entry>
+          <key>username</key>
+          <value>superset</value>
+        </entry>
+      </variables>
+    </processGroups>
+  </snippet>
+  <timestamp>05/20/2020 13:39:44 UTC</timestamp>
+</template>

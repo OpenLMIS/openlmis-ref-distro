@@ -5,7 +5,6 @@ ARG SUPERSET_VERSION=0.29.0rc7
 
 # Superset-patchup (Ketchup) version
 ARG SUPERSET_PATCHUP_VERSION=v0.1.7
-
 # Default Superset files dir
 ARG APP_DIR=/usr/local/lib/python3.6/site-packages/superset
 
@@ -23,7 +22,9 @@ ENV GUNICORN_BIND=0.0.0.0:8088 \
     SUPERSET_PATCHUP_VERSION=${SUPERSET_PATCHUP_VERSION} \
     SUPERSET_HOME=/var/lib/superset \
     APP_DIR=${APP_DIR}
-ENV GUNICORN_CMD_ARGS="--workers ${GUNICORN_WORKERS} --timeout ${GUNICORN_TIMEOUT} --bind ${GUNICORN_BIND} --limit-request-line ${GUNICORN_LIMIT_REQUEST_LINE} --limit-request-field_size ${GUNICORN_LIMIT_REQUEST_FIELD_SIZE}"
+ENV GUNICORN_CMD_ARGS="--workers ${GUNICORN_WORKERS} --timeout ${GUNICORN_TIMEOUT} --bind ${GUNICORN_BIND} --limit-request-line ${GUNICORN_LIMIT_REQUEST_LINE} --limit-request-field_size ${GUNICORN_LIMIT_REQUEST_FIELD_SIZE} --forwarded-allow-ips='*'"
+
+COPY requirements.txt requirements.txt
 
 # Create superset user & install dependencies
 RUN useradd -U -m superset && \
@@ -47,9 +48,6 @@ RUN useradd -U -m superset && \
         libssl1.0 && \
     apt-get clean && \
     rm -r /var/lib/apt/lists/* && \
-    curl https://raw.githubusercontent.com/${SUPERSET_REPO}/${SUPERSET_VERSION}/requirements.txt -o requirements.txt && \
-    sed -i 's/cryptography==1.9/cryptography==2.6.1/g' requirements.txt && \
-    sed -i 's/markupsafe==1.0/markupsafe==1.1.1/g' requirements.txt && \
     pip install --no-cache-dir -r requirements.txt && \
     rm requirements.txt && \
     pip install --no-cache-dir \
@@ -116,6 +114,7 @@ RUN rsync -a \
 
 # Configure Filesystem
 RUN find ${APP_DIR} \! -type l -print0 | xargs -0 chown superset:superset
+RUN mkdir -p /var/log/superset-logs && chown -R superset:superset /var/log/superset-logs/
 COPY superset /usr/local/bin
 VOLUME /etc/superset \
        /var/lib/superset
