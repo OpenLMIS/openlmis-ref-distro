@@ -508,6 +508,23 @@ CREATE TABLE reporting_dates (
 
 ALTER TABLE reporting_dates OWNER TO postgres;
 
+--
+-- Name: measure_reports; Type: TABLE; Schema: referencedata; Owner: postgres
+--
+
+CREATE TABLE measure_reports (
+  requisition_id VARCHAR NOT NULL,
+  measure_id VARCHAR NOT NULL,
+  program_name VARCHAR NOT NULL,
+  facility_id VARCHAR NOT NULL,
+  period_start_date DATE NOT NULL,
+  period_end_date DATE NOT NULL,
+  status VARCHAR NOT NULL,
+  execution_time TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+ALTER TABLE measure_reports OWNER TO postgres;
+
 -- Insert default values for reporting dates --
 INSERT INTO reporting_dates(due_days, late_days, country)
     VALUES(14, 7, 'Malawi'), (14, 7, 'Mozambique');
