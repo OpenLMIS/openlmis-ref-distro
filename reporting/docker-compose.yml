@@ -124,9 +124,6 @@ services:
     image: openlmis/debezium-connect
     ports:
       - 8083:8083
-    networks:
-      - default
-      - openlmis-ref-distro_default
     environment:
      - BOOTSTRAP_SERVERS=kafka:29092
      - GROUP_ID=1
@@ -194,7 +191,3 @@ volumes:
     external: false
   db-config-volume:
     external: false
-
-networks:
-  openlmis-ref-distro_default:
-    external: true
