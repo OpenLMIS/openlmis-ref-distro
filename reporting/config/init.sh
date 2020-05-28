@@ -10,7 +10,7 @@ set -e
 curl \
   -X PUT \
   -H "Content-Type: application/json" \
-  --data "{\"name\": \"superset-service\", \"address\": \"superset\", \"id\": \"superset1\", \"port\": 8088, \"tags\": [\"openlmis-service\"], \"check\": { \"http\": \"http://superset:8088/login\", \"method\": \"GET\", \"interval\": \"30s\", \"timeout\": \"10s\"}}" \
+  --data "{\"name\": \"superset-service\", \"address\": \"superset\", \"id\": \"superset1\", \"port\": 8088, \"tags\": [\"openlmis-service\"], \"check\": { \"http\": \"http://superset:8088/health\", \"method\": \"GET\", \"interval\": \"30s\", \"timeout\": \"10s\"}}" \
   http://consul:8500/v1/agent/service/register
 
 curl \
