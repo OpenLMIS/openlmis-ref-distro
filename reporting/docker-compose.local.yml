@@ -9,14 +9,6 @@ services:
     volumes:
       - config-volume:/config
 
-  scalyr:
-    image: openlmis/scalyr
-    env_file: settings.env
-    volumes:
-      - config-volume:/config
-      - ${SCALYR_DOCKER_SOCK}:/var/scalyr/docker.sock
-      - syslog:/var/log/reporting
-
   log:
     image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
     volumes:
@@ -29,16 +21,12 @@ services:
     image: gliderlabs/consul-server
     ports:
       - "8501:8500"
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [log]
 
   nginx:
     image: openlmis/nginx:${OL_NGINX_VERSION}
     ports:
-      - "${OL_HTTP_PORT:-80}:80"
+      - "${OL_HTTP_PORT:-81}:80"
       - "${OL_HTTPS_PORT:-443}:443"
     env_file: settings.env
     environment:
@@ -47,10 +35,6 @@ services:
       - config-volume:/config
     entrypoint: >
       /bin/sh -c "/config/nginx/init.sh"
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [consul, log, config-container]
 
   nifi:
@@ -65,10 +49,6 @@ services:
     environment:
       - NIFI_JVM_HEAP_INIT=${NIFI_JVM_HEAP_INIT}
       - NIFI_JVM_HEAP_MAX=${NIFI_JVM_HEAP_MAX}
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [log, config-container, nginx]
     env_file: settings.env
 
@@ -85,10 +65,6 @@ services:
         - db-config-volume:/docker-entrypoint-initdb.d
     ports:
       - "${REPORTING_POSTGRES_PORT:-5432}:5432"
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     networks:
       default:
         aliases:
@@ -101,10 +77,6 @@ services:
       - ZOOKEEPER_CLIENT_PORT=32181
       - ZOOKEEPER_TICK_TIME=2000
       - ZOOKEEPER_SYNC_LIMIT=2
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [log]
 
   kafka:
@@ -124,6 +96,9 @@ services:
     image: openlmis/debezium-connect
     ports:
       - 8083:8083
+    networks:
+      - default
+      - openlmis-ref-distro_default
     environment:
      - BOOTSTRAP_SERVERS=kafka:29092
      - GROUP_ID=1
@@ -177,10 +152,6 @@ services:
     command: >
         bash -c "cp -r /config/superset /etc/
         && sh /etc/superset/init.sh"
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [db, config-container, nginx]
     env_file: settings.env
 
@@ -191,3 +162,7 @@ volumes:
     external: false
   db-config-volume:
     external: false
+
+networks:
+  openlmis-ref-distro_default:
+    external: true

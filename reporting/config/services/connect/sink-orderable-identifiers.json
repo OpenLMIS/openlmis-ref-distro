@@ -1,0 +1,17 @@
+{
+    "name": "sink-orderable-identifiers",
+    "config": {
+      "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+      "tasks.max": "1",
+      "topics": "public.kafka_orderable_identifiers",
+      "connection.url": "jdbc:postgresql://reporting-db:5432/open_lmis_reporting?stringtype=unspecified",
+      "connection.user": "postgres",
+      "connection.password": "p@ssw0rd",
+      "auto.create": "true",
+      "insert.mode": "upsert",
+      "pk.fields": "key,orderableid,orderableversionnumber",
+      "pk.mode": "record_key",
+      "delete.enabled": "true"
+    }
+}
+  
