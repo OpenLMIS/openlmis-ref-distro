@@ -190,6 +190,7 @@ restartFlows() {
           then
             invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${checkMeasureId}/processors | jq -r ".processors[$key].component.id")
             versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq -r ".revision.version")
+            echo "FHIR ID: $FHIR_ID"
             curl -i -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$FHIR_ID"'","Basic Authentication Password":"'"$FHIR_PASSWORD"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
             break
           fi
