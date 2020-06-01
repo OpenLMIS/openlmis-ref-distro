@@ -71,6 +71,20 @@ services:
           - reporting-db
     depends_on: [log, db-service-configuration]
 
+  cron-config:
+    build:
+      context: ./cron
+    volumes:
+      - cron-periodic-volume:/cron/periodic
+
+  cron:
+    image: openlmis/dev:5.1
+    env_file: settings.env
+    command: crond -f -l 8
+    volumes:
+      - cron-periodic-volume:/etc/periodic/:ro
+    depends_on: [log, cron-config]
+
   zookeeper:
     image: confluentinc/cp-zookeeper:${OL_CONFLUENT_VERSION}
     environment:
@@ -161,6 +175,8 @@ volumes:
   config-volume:
     external: false
   db-config-volume:
+    external: false
+  cron-periodic-volume:
     external: false
 
 networks:
