@@ -16,6 +16,7 @@
       "column.blacklist": "referencedata.facilities.location,referencedata.geographic_zones.boundary",
       "slot.name": "dbz_referencedata",
       "time.precision.mode": "connect",
+      "heartbeat.interval.ms": 3000,
       "transforms": "unwrap,route",
       "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
       "transforms.unwrap.drop.tombstones": "false",
