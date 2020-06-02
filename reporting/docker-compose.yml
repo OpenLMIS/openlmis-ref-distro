@@ -107,6 +107,10 @@ services:
     command: crond -f -l 8
     volumes:
       - cron-periodic-volume:/etc/periodic/:ro
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [log, cron-config]
 
   zookeeper:
@@ -132,6 +136,10 @@ services:
     hostname: kafka
     volumes:
       - config-volume:/config
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [log, config-container, zookeeper]
 
   connect:
@@ -144,6 +152,10 @@ services:
      - CONFIG_STORAGE_TOPIC=my_connect_configs
      - OFFSET_STORAGE_TOPIC=my_connect_offsets
      - HOST_NAME=0.0.0.0
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [kafka]
 
   connect-reg:
@@ -153,6 +165,10 @@ services:
       - config-volume:/config
     entrypoint: >
       bash -c "/config/connect/register.sh"
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [connect]
 
   kafka-rest:
@@ -165,6 +181,10 @@ services:
      - KAFKA_REST_CONSUMER_REQUEST_TIMEOUT_MS=30000
      - KAFKA_REST_ACCESS_CONTROL_ALLOW_METHODS=GET,POST,PUT,DELETE,OPTIONS
      - KAFKA_REST_ACCESS_CONTROL_ALLOW_ORIGIN=*
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [kafka]
 
   kafka-topics-ui:
@@ -176,6 +196,10 @@ services:
       - KAFKA_REST_PROXY_URL=http://kafka-rest:8082
       - PROXY=true
       - MAX_BYTES=500000
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [kafka-rest]
 
   superset:

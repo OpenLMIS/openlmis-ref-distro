@@ -31,7 +31,7 @@ export PGPORT=$PORT
 export PGDATABASE=$DB
 export PGUSER=$POSTGRES_USER
 
-echo "CSA Refreshing reporting stack materialized views..."
+echo "Refreshing reporting stack materialized views..."
 psql <<-EOSQL
   REFRESH MATERIALIZED VIEW view_facility_access;
   REFRESH MATERIALIZED VIEW reporting_rate_and_timeliness;
