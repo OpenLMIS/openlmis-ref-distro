@@ -1,11 +1,8 @@
 #!/bin/bash
 
 export NIFI_BASE_URL="http://nifi:8080"
-export WORKING_DIR="/config/nifi/scripts/"
-export REG_CLIENTS_DIR="$WORKING_DIR/preload/registries"
-export IMPORTED_REG_CLIENTS_DIR="/tmp/nifi-preload/registries"
-export PROC_GROUPS_DIR="$WORKING_DIR/preload/process-groups"
-export IMPORTED_PROC_GROUPS_DIR="/tmp/nifi-preload/process-groups"
+export WORKING_DIR="/config/nifi/scripts"
+export TEMPLATES_DIR="$WORKING_DIR/templates"
 export NIFI_UP_RETRY_COUNT=240
 
 : ${POSTGRES_PASSWORD:?"Need to set POSTGRES_PASSWORD"}
@@ -33,14 +30,15 @@ main() {
 }
 
 waitNifiAvailable() {
-  echo "Waiting for NiFi to be available"
+  echo "PRELOAD Waiting for NiFi to be available"
   local maxTries=$1
   local retryCount=1
 
-  while ! curl -f "$NIFI_BASE_URL/nifi"; do
+  while ! curl -s -f "$NIFI_BASE_URL/nifi"; do
     sleep 10
     retryCount=$((retryCount + 1))
     if [[ "$retryCount" -gt "$maxTries" ]]; then
+      echo "PRELOAD ERROR, too many retries waiting for NiFi to be available"
       return 1
     fi
   done
@@ -49,27 +47,29 @@ waitNifiAvailable() {
 }
 
 initialize() {
-  createRegClients "$@"
-  importProcessGroups "$@"
+  uploadAndImportTemplates "$@"
   restartFlows "$@"
 }
 
-createRegClients() {
-  echo "Importing the Registry Clients"
-  local nifiVersion=$1
-  local cliPath=$(getCliPath "$nifiVersion")
+uploadAndImportTemplates() {
+  echo "PRELOAD Uploading and importing templates"
   local returnCode=0
+  local templateCount=0
 
-  mkdir -p $IMPORTED_REG_CLIENTS_DIR
-  for propFile in $REG_CLIENTS_DIR/*.properties; do
-    local filename=$(basename $propFile)
-    if [ -e "$propFile" ] && [ ! -e "$IMPORTED_REG_CLIENTS_DIR/$filename" ]; then
-      echo "Importing registry client defined in $IMPORTED_REG_CLIENTS_DIR/$filename"
-      ${cliPath} nifi create-reg-client -u "${NIFI_BASE_URL}" -p $propFile
+  for templateFile in ${TEMPLATES_DIR}/*.xml; do
+    local filename=$(basename ${templateFile})
+    if [ -e "${templateFile}" ]; then
+      echo "PRELOAD Uploading template defined in ${templateFile}"
+      templateId=$(curl -s $NIFI_BASE_URL/nifi-api/process-groups/root/templates/upload -F template=@${templateFile} | xmlstarlet sel -t -v '/templateEntity/template/id')
+      #echo "PRELOAD templateId = ${templateId}"
 
-      if [ $? -eq 0 ]; then
-        ln -s $propFile $IMPORTED_REG_CLIENTS_DIR/$filename
+      if [ ! "$templateId" == "" ]; then
+        echo "PRELOAD Creating process group by importing template defined in ${templateFile}"
+        local processGroupOffsetY=$((templateCount * 200 + 50))
+        curl -s -X POST -H 'Content-Type: application/json' $NIFI_BASE_URL/nifi-api/process-groups/root/template-instance -d '{"templateId":"'"${templateId}"'","originX":400.0,"originY":"'"${processGroupOffsetY}"'"}' > /dev/null
+        templateCount=$((templateCount + 1))
       else
+        echo "PRELOAD ERROR Uploading template was not successful"
         returnCode=2
       fi
     fi
@@ -78,59 +78,10 @@ createRegClients() {
   return $returnCode
 }
 
-importProcessGroups() {
-  echo "Importing the Process Groups"
-  local nifiVersion=$1
-  local cliPath=$(getCliPath "$nifiVersion")
-  local returnCode=0
-
-  # Get the list of registries and their IDs from NiFi
-  local listCmdOutput=$(${cliPath} nifi list-reg-clients -u "${NIFI_BASE_URL}" | sed '1,3d')
-
-  if [ $? -eq 0 ]; then
-    # Use sed (with a regex) to extract the registry client names and IDs
-    # Example text for regex:
-    #
-    #      1   Some Registry Name   13f84457-0165-1000-23cc-300c3ad387bb   http://some.name:18080
-    #          (capture group 1)               (capture group 2)
-    #
-    local registryNames=($(echo "$listCmdOutput" | sed -r -E "s/^[0-9]+\s+(.*)\s+([0-9a-zA-Z\-]+)\s+.*$/\1/g"))
-    local registryIds=($(echo "$listCmdOutput" | sed -r -E "s/^[0-9]+\s+(.*)\s+([0-9a-zA-Z\-]+)\s+.*$/\2/g"))
-    curRegistryIndex=0
-    while [ ${curRegistryIndex} -lt ${#registryIds[@]} ]; do
-      local registryName="${registryNames[${curRegistryIndex}]}"
-      local registryId="${registryIds[${curRegistryIndex}]}"
-      curRegistryIndex=$[$curRegistryIndex+1]
-
-      if [ -d ${PROC_GROUPS_DIR}/${registryName} ] && [ ! -z "$registryName" ] && [ ! -z "$registryId" ]; then
-        mkdir -p ${IMPORTED_PROC_GROUPS_DIR}/${registryName}
-
-        for propFile in ${PROC_GROUPS_DIR}/${registryName}/*.properties; do
-          local filename=$(basename ${propFile})
-          if [ -e "${propFile}" ] && [ ! -e "${IMPORTED_PROC_GROUPS_DIR}/${registryName}/${filename}" ]; then
-            echo "Importing process group defined in ${IMPORTED_PROC_GROUPS_DIR}/${registryName}/${filename}"
-            ${cliPath} nifi pg-import -u "${NIFI_BASE_URL}" -rcid ${registryId} -p ${propFile}
-
-            if [ $? -eq 0 ]; then
-              ln -s $propFile ${IMPORTED_PROC_GROUPS_DIR}/${registryName}/${filename}
-            else
-              returnCode=2
-            fi
-          fi
-        done
-      fi
-    done
-  else
-    returnCode=1
-  fi
-
-  return $returnCode
-}
-
 restartFlows() {
-  echo "Starting Flows"
-  
-  curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq '.[]|keys[]' | while read key ; 
+  echo "PRELOAD Starting Flows"
+
+  curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq '.[]|keys[]' | while read key ;
   do
     processorGroupId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq -r ".[][$key].component.id")
     # Get process group version number
@@ -174,7 +125,7 @@ restartFlows() {
             invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${createTokenId}/processors | jq -r ".processors[$key].component.id")
             versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq -r ".revision.version")
             curl --trace-ascii /dev/stdout -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$AUTH_SERVER_CLIENT_ID"'","Basic Authentication Password":"'"$AUTH_SERVER_CLIENT_SECRET"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
-            break  
+            break
           fi
         done
       elif [ "$searchKey" == "Get Measures" ];
@@ -202,7 +153,7 @@ restartFlows() {
             invokeHttpId=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/${checkMeasureId}/processors | jq -r ".processors[$key].component.id")
             versionNumber=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId} | jq -r ".revision.version")
             curl --trace-ascii /dev/stdout -X PUT -H 'Content-Type: application/json' -d '{"revision":{"clientId":"randomId","version":"'"${versionNumber}"'"},"component":{"id":"'"${invokeHttpId}"'","config":{"properties":{"Basic Authentication Username":"'"$FHIR_ID"'","Basic Authentication Password":"'"$FHIR_PASSWORD"'"}}}}}' $NIFI_BASE_URL/nifi-api/processors/${invokeHttpId}
-            break  
+            break
           fi
         done
       elif [ "$searchKey" == "Generate products and measure list" ];
@@ -242,7 +193,7 @@ restartFlows() {
     # Restart flows
     sleep 5 # necessary to ensure all changes have taken effect
 
-    # Start all processor groups except 'materialized view' process group. 
+    # Start all processor groups except 'materialized view' process group.
     # Save its id for reference to start it after 3 mins when data has been loaded into the table
     processorGroupName=$(curl -s -X GET $NIFI_BASE_URL/nifi-api/process-groups/root/process-groups | jq -r ".[][$key].component.name")
     if [ "$processorGroupName" == "Materialized Views" ];
@@ -258,11 +209,6 @@ restartFlows() {
   echo ${materializedViewProcessorGroupId}
   curl -s -X PUT -H 'Content-Type: application/json' -d '{"id":"'"${materializedViewProcessorGroupId}"'","state":"RUNNING"}' $NIFI_BASE_URL/nifi-api/flow/process-groups/${materializedViewProcessorGroupId}
   rm tempFileforMatViewId.txt
-}
-
-getCliPath() {
-  local nifiVersion=$1
-  echo "/tmp/nifi-toolkit-${nifiVersion}/bin/cli.sh"
 }
 
 main "$@" &
