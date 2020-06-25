@@ -12,7 +12,8 @@
   ```
   $ cp settings-sample.env settings.env
   ```
-  * Edit `settings.env` to match your setup. You will likely need to change `VIRTUAL_HOST`, `TRUSTED_HOSTNAME`, and `OL_BASE_URL` (to point to OpenLMIS) and `NIFI_DOMAIN_NAME` and `SUPERSET_DOMAIN_NAME` (which should point to the reporting stack).
+  * Edit `settings.env` to match your setup. Despite generating the passwords, you will likely need to change
+   `VIRTUAL_HOST`, `TRUSTED_HOSTNAME`, `OL_BASE_URL` (to point to OpenLMIS) and `NIFI_DOMAIN_NAME` and `SUPERSET_DOMAIN_NAME` (which should point to the reporting stack).
   Details on all the environment variables are below.
 
 5. Bring up the reporting stack by running [docker-compose](https://docs.docker.com/compose/) on the server:
@@ -68,48 +69,8 @@ OL_ADMIN_PASSWORD=password
 
 ## Environment variables
 
-The following environment variables have to be set to sucessfuly run the reporting stack. The sample settings file can be found [here](settings-sample.env).
-
-### NginX
-* **VIRTUAL_HOST** - The virtual host for the nginx server - nginx will make services available under this host.
-* **NGINX_BASIC_AUTH_USER** and **NGINX_BASIC_AUTH_PW** - for services (like NiFi) that need to be authenticated but currently don't, by themselves, authenticate users
-
-### PostgreSQL Database
-* **POSTGRES_USER** - The database superadmin's username.
-* **POSTGRES_PASSWORD** - The database password that services will use.
-
-### Nifi Service
-* **AUTH_SERVER_CLIENT_ID** and **AUTH_SERVER_CLIENT_SECRET** - InvokeHttp components of Nifi needs to be authorized by credentials of OpenLMIS UI
-* **TRUSTED_HOSTNAME** - InvokeHttp components of Nifi needs to specify trusted hostname
-* **OL_ADMIN_USERNAME** and **OL_ADMIN_PASSWORD** - Nifi needs an OpenLMIS user which has all possible permissions
-* **FHIR_ID** and **FHIR_PASSWORD** - FHIR credentials (leave blank if not used)
-* **NIFI_DOMAIN_NAME** - The domain name to use for NiFi
-* **NIFI_SSL_CERT** - The name of the SSL certificate file in services/nginx/tls to use with the NiFi domain
-* **NIFI_SSL_KEY** - The name of the SSL key file in services/nginx/tls to use with the NiFi domain
-* **NIFI_SSL_CERT_CHAIN** - The name of the SSL certificate chain file in services/nginx/tls to use with the NiFi domain
-* **NIFI_ENABLE_SSL** - Whether to enable accessing the NiFi domain securely
-* **NIFI_BEHIND_LOAD_BALANCER** Whether Nifi is behind a load balancer
-* **NIFI_LOAD_BALANCER_REDIRECT_HTTP** - Whether to redirect HTTP traffic on the load balancer to https
-
-
-### Superset Service
-* **OL_BASE_URL** - Superset will be configured with OpenLMIS instance under this URL
-* **SUPERSET_ADMIN_USERNAME** and **SUPERSET_ADMIN_PASSWORD** - Superset webapp credentials - there is the option to sing-in by them when OAUTH provider is disabled. Because there is currently no way to disable the OAuth provider, the corresponding SUPERSET_ADMIN_USERNAME and PASSWORD values are currently always ignored.
-* **SUPERSET_POSTGRES_USER** and **SUPERSET_POSTGRES_PASSWORD** - Superset Postgres credentials
-* **OL_SUPERSET_USER** and **OL_SUPERSET_PASSWORD** - Superset needs an OpenLMIS user which allows to sign-in via OAUTH
-* **SUPERSET_SECRET_KEY** - Secret key for flask in Superset
-* **OAUTHLIB_INSECURE_TRANSPORT** - Disabling SSL check in Superset service. By default sign-in via OAUTH requires OpenLMIS with HTTPS security
-* **SUPERSET_DOMAIN_NAME** - The domain name to use for Superset
-* **SUPERSET_SSL_CERT** - The name of the SSL certificate file in services/nginx/tls to use with the Superset domain
-* **SUPERSET_SSL_KEY** - The name of the SSL key file in services/nginx/tls to use with the Superset domain
-* **SUPERSET_SSL_CERT_CHAIN** - The name of the SSL certificate chain file in services/nginx/tls to use with the Superset domain
-* **SUPERSET_ENABLE_SSL** - Whether to enable accessing the Superset domain securely
-* **SUPERSET_BEHIND_LOAD_BALANCER** - Whether Superset is behind a load balancer
-* **SUPERSET_LOAD_BALANCER_REDIRECT_HTTP** - Whether to redirect HTTP traffic on the load balancer to https
-
-### Scalyr
-* **SCALYR_API_KEY** - API key for scalyr service
-
+The environment variables in `settings.env` have to be set to successfully run the reporting stack.
+The sample settings file can be found [here](settings-sample.env). The sample file contains description of each field.
 
 ## Running Locally
 
