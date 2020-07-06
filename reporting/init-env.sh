@@ -12,8 +12,8 @@
 
 read -p "Provide a path to an OpenLMIS source env file and press enter: " ENV
 read -p "Provide a Virtual Host value for reporting (e.g. covid-ref-report.openlmis.org): " VIRTUAL_HOST_REPORTING
-read -p "Provide username for OpenLMIS user with all possible permissions: " OL_ADMIN_USERNAME
-read -p "Provide password for OpenLMIS user with all possible permissions: " OL_ADMIN_PASSWORD
+read -p "Provide username for an existing OpenLMIS user with all possible permissions: " OL_ADMIN_USERNAME
+read -p "Provide password for an existing OpenLMIS user with all possible permissions: " OL_ADMIN_PASSWORD
 read -p "Provide service-based client ID (leave blank if not used): " FHIR_ID
 read -p "Provide service-based client secret (leave blank if not used): " FHIR_PASSWORD
 
@@ -26,6 +26,13 @@ cp $SETTINGS_SAMPLE_FILE $SETTINGS_FILE
 generateBase64Password() {
   openssl rand -base64 29 | cut -c1-16
 }
+
+# Setting SUPERSET_URL in OpenLMIS env file
+echo "Setting SUPERSET_URL"
+if [[ $(grep -L "SUPERSET_URL" $ENV) ]]; then
+  echo -e '\n# Superset URL \nSUPERSET_URL=' >> $ENV
+fi
+sed -i '' -e "s#^SUPERSET_URL.*#SUPERSET_URL=https://$VIRTUAL_HOST_REPORTING:8088#" $ENV 2>/dev/null || true
 
 # Setting the variables with the inserted values
 echo "Setting OL_ADMIN_USERNAME, OL_ADMIN_PASSWORD, VIRTUAL_HOST, FHIR_ID, FHIR_PASSWORD"
@@ -43,7 +50,7 @@ sed -i '' -e "s#^SUPERSET_POSTGRES_PASSWORD.*#SUPERSET_POSTGRES_PASSWORD=$(gener
 sed -i '' -e "s#^SUPERSET_SECRET_KEY.*#SUPERSET_SECRET_KEY=$(generateBase64Password)#" $SETTINGS_FILE 2>/dev/null || true
 
 # Setting the variables based on the chosen env file
-echo "Setting TRUSTED_HOSTNAME, OL_BASE_URL, AUTH_SERVER_CLIENT_ID, AUTH_SERVER_CLIENT_SECRET, OL_SUPERSET_PASSWORD, SRC_POSTGRES_PASSWORD"
+echo "Setting TRUSTED_HOSTNAME, OL_BASE_URL, AUTH_SERVER_CLIENT_ID, AUTH_SERVER_CLIENT_SECRET, OL_SUPERSET_PASSWORD, SRC_POSTGRES_PASSWORD, SCALYR_API_KEY"
 sed -i '' -e "s#^TRUSTED_HOSTNAME.*#TRUSTED_HOSTNAME=${VIRTUAL_HOST}#" $SETTINGS_FILE 2>/dev/null || true
 sed -i '' -e "s#^OL_BASE_URL.*#OL_BASE_URL=${BASE_URL}#" $SETTINGS_FILE 2>/dev/null || true
 sed -i '' -e "s#^AUTH_SERVER_CLIENT_ID.*#AUTH_SERVER_CLIENT_ID=${AUTH_SERVER_CLIENT_ID}#" $SETTINGS_FILE 2>/dev/null || true
