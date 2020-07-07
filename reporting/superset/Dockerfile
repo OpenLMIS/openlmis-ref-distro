@@ -21,9 +21,12 @@ ENV GUNICORN_BIND=0.0.0.0:8088 \
     SUPERSET_REPO=apache/incubator-superset \
     SUPERSET_VERSION=${SUPERSET_VERSION} \
     SUPERSET_PATCHUP_VERSION=${SUPERSET_PATCHUP_VERSION} \
+    SUPERSET_PATCHUP_REPO=https://github.com/OpenLMIS/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} \
     SUPERSET_HOME=/var/lib/superset \
     APP_DIR=${APP_DIR}
 ENV GUNICORN_CMD_ARGS="--workers ${GUNICORN_WORKERS} --timeout ${GUNICORN_TIMEOUT} --bind ${GUNICORN_BIND} --limit-request-line ${GUNICORN_LIMIT_REQUEST_LINE} --limit-request-field_size ${GUNICORN_LIMIT_REQUEST_FIELD_SIZE}"
+
+COPY requirements.txt requirements.txt
 
 # Create superset user & install dependencies
 RUN useradd -U -m superset && \
@@ -47,9 +50,6 @@ RUN useradd -U -m superset && \
         libssl1.0 && \
     apt-get clean && \
     rm -r /var/lib/apt/lists/* && \
-    curl https://raw.githubusercontent.com/${SUPERSET_REPO}/${SUPERSET_VERSION}/requirements.txt -o requirements.txt && \
-    sed -i 's/cryptography==1.9/cryptography==2.6.1/g' requirements.txt && \
-    sed -i 's/markupsafe==1.0/markupsafe==1.1.1/g' requirements.txt && \
     pip install --no-cache-dir -r requirements.txt && \
     rm requirements.txt && \
     pip install --no-cache-dir \
@@ -71,7 +71,7 @@ RUN useradd -U -m superset && \
         sqlalchemy-clickhouse==0.1.5.post0 \
         sqlalchemy-redshift==0.7.1 \
         werkzeug==0.16.1 && \
-    pip install --no-cache-dir git+https://github.com/OpenLMIS/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} && \
+    pip install --no-cache-dir git+${SUPERSET_PATCHUP_REPO} && \
     pip uninstall -y apache-superset && \
     pip install superset==${SUPERSET_VERSION} && \
     pip uninstall -y sqlalchemy pandas && \
