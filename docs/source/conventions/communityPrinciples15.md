@@ -21,7 +21,7 @@ dependant technologies that are licensed similarly.  Contributions should aspire
 
 * Code and other IP licensed in a compatible license as OpenLMIS.  Strong preference is given to the OpenLMIS license
  for simplicity.
-* Dependencies on third-party libraries / tools should also be open source and freely distributable.
+* Dependencies on third-party libraries / tools should also be [open source](http://opensource.org/osd) and freely distributable.
 
 ### <a name="appropriate"></a>Appropriate
 > OpenLMIS is designed with a focus on users in low resource and capacity environments.  Representatives from these 
