@@ -87,6 +87,21 @@ services:
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
 
+  example-extensions:
+    image: openlmis/openlmis-example-extensions:latest
+    volumes:
+      - 'example-extensions:/extensions'
+
+  example:
+    image: openlmis/example:latest
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'example-extensions:/extensions'
+      - 'service-config:/config'
+    depends_on: [log, example-extensions]
+
   stockmanagement:
     image: openlmis/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
     env_file: settings.env
@@ -172,4 +187,6 @@ volumes:
   consul-template-log:
     external: false
   service-config:
+    external: false
+  example-extensions:
     external: false

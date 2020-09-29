@@ -1,7 +1,0 @@
-version: "3.3"
-services:
-
-  stockmanagement:
-    environment:
-      spring_profiles_active: production
-
