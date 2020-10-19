@@ -1,0 +1,183 @@
+version: "3.3"
+services:
+
+  consul:
+    command: -server -bootstrap
+    image: gliderlabs/consul-server
+    ports:
+      - "8300"
+      - "8400"
+      - "8500:8500"
+      - "53"
+
+  nginx:
+    image: openlmis/nginx:${OL_NGINX_VERSION}
+    ports:
+      - "${OL_HTTP_PORT:-80}:80"
+    env_file: settings.env
+    environment:
+      NGINX_LOG_DIR: '/var/log/nginx/log'
+    volumes:
+      - 'nginx-log:/var/log/nginx/log'
+      - 'consul-template-log:/var/log/consul-template'
+    depends_on: [consul]
+
+  reference-ui:
+    image: openlmis/reference-ui:${OL_REFERENCE_UI_VERSION}
+    env_file: settings.env
+    depends_on: [consul]
+
+  requisition:
+    image: openlmis/requisition:${OL_REQUISITION_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log, db]
+    command: ["/wait-for-postgres.sh", "/run.sh"]
+
+  referencedata:
+    image: openlmis/referencedata:${OL_REFERENCEDATA_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log, db]
+    command: ["/wait-for-postgres.sh", "/run.sh"]
+
+  auth:
+    image: openlmis/auth:${OL_AUTH_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log, db]
+    command: ["/wait-for-postgres.sh", "/run.sh"]
+
+  notification:
+    image: openlmis/notification:${OL_NOTIFICATION_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log, db]
+    command: ["/wait-for-postgres.sh", "/run.sh"]
+
+  fulfillment:
+    image: openlmis/fulfillment:${OL_FULFILLMENT_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log, db]
+    command: ["/wait-for-postgres.sh", "/run.sh"]
+
+  cce:
+    image: openlmis/cce:${OL_CCE_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log, db]
+    command: ["/wait-for-postgres.sh", "/run.sh"]
+
+  example-extensions:
+    image: openlmis/openlmis-example-extensions:0.0.1-SNAPSHOT
+    volumes:
+      - 'example-extensions:/extensions'
+
+  stockmanagement:
+    image: openlmis/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'example-extensions:/extensions'
+      - 'service-config:/config'
+    depends_on: [log, db, example-extensions]
+    command: ["/wait-for-postgres.sh", "/run.sh"]
+
+  report:
+    image: openlmis/report:${OL_REPORT_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log, db]
+    command: ["/wait-for-postgres.sh", "/run.sh"]
+
+  hapifhir:
+    restart: always
+    image: openlmis/hapifhir:${OL_HAPIFHIR_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+      spring_profiles_active: ${spring_profiles_active}
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log, db]
+    command: ["/wait-for-postgres.sh", "/run.sh"]
+
+  diagnostics:
+    image: openlmis/diagnostics:${OL_DIAGNOSTICS_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+      spring_profiles_active: ${spring_profiles_active}
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log]
+
+  db:
+    image: openlmis/postgres:${OL_POSTGRES_VERSION}
+    env_file: settings.env
+    networks:
+      default:
+        aliases:
+          - olmis-db
+    depends_on: [consul]
+
+  log:
+    image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
+    volumes:
+      - 'syslog:/var/log'
+    depends_on:
+      - service-configuration
+      - consul
+
+  service-configuration:
+    build:
+      context: ./config
+    volumes:
+      - service-config:/config
+
+  ftp:
+    image: hauptmedia/proftpd
+    ports:
+      - "${OL_FTP_PORT_21:-21}:21"
+      - "${OL_FTP_PORT_20:-20}:20"
+    env_file: settings.env
+    depends_on: [consul]
+
+  redis:
+    image: redis:3.2.12
+    depends_on: [consul]
+
+volumes:
+  syslog:
+    external: false
+  nginx-log:
+    external: false
+  consul-template-log:
+    external: false
+  service-config:
+    external: false
+  example-extensions:
+    external: false
