@@ -148,7 +148,7 @@ existing screens in the UI application. See the [UI Extension Guide](https://git
  or swapped out to create custom distributions.
 * The Services can be extended using **extension points** in the Java code. The core team is eager to add more
 extension points as they are requested by implementors. For documentation about this extension mechanism, see
-these 3 READMEs: [openlmis-example-extensions README](https://github.com/OpenLMIS/openlmis-example-extensions/blob/master/README.md), [openlmis-example-extension module README](https://github.com/OpenLMIS/openlmis-example-extension/blob/master/README.md), and [openlmis-example service README](https://github.com/OpenLMIS/openlmis-example/blob/master/README.md#extension-points-and-extension-modules).
+these 3 READMEs: [openlmis-example-extensions README](https://github.com/OpenLMIS/openlmis-example-extensions/blob/master/README.md), [openlmis-stockmanagement-validator-extension module README](https://github.com/OpenLMIS/openlmis-stockmanagement-validator-extension/blob/master/README.md), and [openlmis-example service README](https://github.com/OpenLMIS/openlmis-example/blob/master/README.md#extension-points-and-extension-modules).
 * Extra Data allows for clients to add additional data to RESTful resources so that the internal
 storage mechanism inside a Service doesn't need to be changed.
 * Some features may require both API and UI extensions/customizations. The Technical Committee worked on a [Requisition Splitting Extension Scenario](https://openlmis.atlassian.net/wiki/display/OP/Requisition+Splitting+-+Extension+Scenario+Analysis)
