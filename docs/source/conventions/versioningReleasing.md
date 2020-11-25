@@ -301,6 +301,10 @@ codebase is working towards):
 - (If your component, such as the openlmis-service-util library, publishes to Maven, then other
   steps will be needed here.)
 
+**Note:** usually during a release many docker images are built in a short time. It may happen that
+the CI build process fails because of a docker pull rate limit which is 250 per 6 hours. It is a
+limitation of a free version of a dockerhub account.
+
 ### Patch Releasing a Component
 
 1. Create a hotfix branch that includes 'rel-' prefix and the patch version, e.g. 'rel-10.0.1'
