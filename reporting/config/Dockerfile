@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.4
+FROM alpine:3.11
 
 COPY ./services /config
 COPY ./init.sh /init.sh
