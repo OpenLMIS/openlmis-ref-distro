@@ -44,7 +44,7 @@ ijson==2.3                # via tabulator
 isodate==0.6.0
 itsdangerous==0.24        # via flask
 jdcal==1.4                # via openpyxl
-jinja2==2.10              # via flask, flask-babel
+jinja2==2.10.1              # via flask, flask-babel
 jmespath==0.9.3           # via boto3, botocore
 jsonlines==1.2.0          # via tabulator
 jsonschema==2.6.0         # via tableschema
