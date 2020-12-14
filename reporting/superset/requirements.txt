@@ -9,7 +9,7 @@ amqp==2.3.2               # via kombu
 asn1crypto==0.24.0        # via cryptography
 babel==2.6.0              # via flask-babel, flower
 billiard==3.5.0.4         # via celery
-bleach==3.0.2
+bleach==3.1.4
 boto3==1.4.7
 botocore==1.7.48
 cchardet==1.0.0           # via tabulator
