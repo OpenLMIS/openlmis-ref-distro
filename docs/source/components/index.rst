@@ -253,7 +253,7 @@ Druid
 Superset
 --------
 
-`Superset <https://superset.incubator.apache.org/>`_ is the visualization layer of the reporting stack and is used to create self-service dashboards on the data in Druid. It’s very closely integrated with Druid, and will detect the schema for each data source and the data therein. “Dimensions” are akin to columns within a relational database, and “metrics” are calculations performed on those dimensions - e.g. count distinct, sum, min, max. Typically “metrics” are written off of numeric dimensions, with the exception of count distinct. Superset is the UI in which we write JSON queries for Druid to calculate metrics that are more sophisticated than the basic types outlined above.
+`Superset <https://superset.apache.org/>`_ is the visualization layer of the reporting stack and is used to create self-service dashboards on the data in Druid. It’s very closely integrated with Druid, and will detect the schema for each data source and the data therein. “Dimensions” are akin to columns within a relational database, and “metrics” are calculations performed on those dimensions - e.g. count distinct, sum, min, max. Typically “metrics” are written off of numeric dimensions, with the exception of count distinct. Superset is the UI in which we write JSON queries for Druid to calculate metrics that are more sophisticated than the basic types outlined above.
 
 Slices are individual visualizations and can be listed by clicking on the Charts tab along the top. Each slice has a visualization type, a data source, and one or more metrics and dimensions that you want to display. Superset supports the development of custom visualization types if it’s not included in the default list provided by Apache.
 

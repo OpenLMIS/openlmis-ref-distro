@@ -18,7 +18,7 @@ ENV GUNICORN_BIND=0.0.0.0:8088 \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     PYTHONPATH=/etc/superset:/home/superset:$PYTHONPATH \
-    SUPERSET_REPO=apache/incubator-superset \
+    SUPERSET_REPO=apache/superset \
     SUPERSET_VERSION=${SUPERSET_VERSION} \
     SUPERSET_PATCHUP_VERSION=${SUPERSET_PATCHUP_VERSION} \
     SUPERSET_PATCHUP_REPO=https://github.com/OpenLMIS/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} \
@@ -98,12 +98,12 @@ RUN npm install -g yarn
 RUN npm install -g po2json
 
 # Fetching dependecies and first build
-RUN wget -P /tmp https://github.com/apache/incubator-superset/archive/${SUPERSET_VERSION}.zip \
+RUN wget -P /tmp https://github.com/apache/superset/archive/${SUPERSET_VERSION}.zip \
     && unzip /tmp/${SUPERSET_VERSION}.zip -d /tmp \
     && rsync -a \
         --remove-source-files \
         --chown=superset:superset \
-        /tmp/incubator-superset-${SUPERSET_VERSION}/superset/assets $APP_DIR \
+        /tmp/superset-${SUPERSET_VERSION}/superset/assets $APP_DIR \
     && rm -r /tmp/${SUPERSET_VERSION}.zip
 RUN cd $APP_DIR/assets && yarn install
 

@@ -8,7 +8,7 @@ This project is unofficial and not related to Superset or Apache.
 
 Please **only** file issues in this project that are related to Docker and **do** include the Docker commands or compose configuration of your setup when filing issues (be sure to hide any secrets/passwords before submitting).
 
-File issues/bugs with Superset at the [source](https://github.com/apache/incubator-superset/issues).
+File issues/bugs with Superset at the [source](https://github.com/apache/superset/issues).
 
 Please **do not** files issues like "Please include `<some-python-pip>` in the Dockerfile," open a [pull request](https://github.com/amancevice/superset/pulls) for updates/enhancements.
 
@@ -25,7 +25,7 @@ This repo is tagged in parallel with superset. Pulling `amancevice/superset:0.18
 
 ## Configuration
 
-Follow the [instructions](https://superset.incubator.apache.org/installation.html#configuration) provided by Apache Superset for writing your own `superset_config.py`. Place this file in a local directory and mount this directory to `/etc/superset` inside the container. This location is included in the image's `PYTHONPATH`. Mounting this file to a different location is possible, but it will need to be in the `PYTHONPATH`.
+Follow the [instructions](https://superset.apache.org/installation.html#configuration) provided by Apache Superset for writing your own `superset_config.py`. Place this file in a local directory and mount this directory to `/etc/superset` inside the container. This location is included in the image's `PYTHONPATH`. Mounting this file to a different location is possible, but it will need to be in the `PYTHONPATH`.
 
 View the contents of the [`examples`](./examples) directory to see some simple `superset_config.py` samples.
 
