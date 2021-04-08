@@ -101,6 +101,18 @@ services:
     depends_on: [ log, cce ]
     command: [ "/wait-for-postgres.sh", "/run.sh" ]
 
+  common:
+    restart: always
+    image: openlmistz/common:${TZ_COMMON_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+      spring_profiles_active: ${spring_profiles_active}
+    volumes:
+      - 'service-config:/config'
+    depends_on: [ log, db ]
+    command: [ "/wait-for-postgres.sh", "/run.sh" ]
+
   cce:
     image: openlmis/cce:${OL_CCE_VERSION}
     env_file: settings.env
