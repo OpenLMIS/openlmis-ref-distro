@@ -2296,3 +2296,13 @@ FROM kafka_requisitions r
 WITH DATA;
 
 ALTER MATERIALIZED VIEW stock_status_and_consumption OWNER TO postgres;
+
+CREATE MATERIALIZED VIEW facilities AS
+SELECT f.code as code, f.name as name, gz.name as district, ft.name as type, fo.name as operator
+FROM public.kafka_facilities f
+left join public.kafka_geographic_zones gz on gz.id = f.geographiczoneid
+left join public.kafka_facility_types ft on ft.id = f.typeid
+left join public.kafka_facility_operators fo on fo.id = f.operatedbyid
+WITH DATA;
+
+ALTER MATERIALIZED VIEW facilities OWNER TO postgres;
