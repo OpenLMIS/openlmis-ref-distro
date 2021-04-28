@@ -33,7 +33,7 @@
                             "datasource_type": "table",
                             "slice_name": "Facility List",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:32"
+                                "__datetime__": "2021-04-28T07:12:26"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -76,7 +76,7 @@
                             "datasource_type": "table",
                             "slice_name": "All-Time Reporting Timeliness",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -98,7 +98,7 @@
                             "datasource_type": "table",
                             "slice_name": "Reporting Rate and Timeliness",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -115,16 +115,16 @@
                             },
                             "changed_by_fk": 1,
                             "perm": "[main].[stock_status_and_consumption](id:1)",
-                            "description": null,
+                            "description": "",
                             "viz_type": "filter_box",
                             "datasource_type": "table",
                             "slice_name": "Stock Filter",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 29, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 3 years\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [{\"expressionType\": \"SQL\", \"sqlExpression\": \"username = '{{ current_username() }}'\", \"clause\": \"WHERE\", \"subject\": null, \"operator\": null, \"comparator\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_28q84ybogif_baa55jgcghi\"}], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\", \"import_time\": 1619569157}"
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 5, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"No filter\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [{\"expressionType\": \"SQL\", \"sqlExpression\": \"username = '{{ current_username() }}'\", \"clause\": \"WHERE\", \"subject\": null, \"operator\": null, \"comparator\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_28q84ybogif_baa55jgcghi\"}], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}"
                         }
                     },
                     {
@@ -142,7 +142,7 @@
                             "datasource_type": "table",
                             "slice_name": "Stock Status over Time",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -164,7 +164,7 @@
                             "datasource_type": "table",
                             "slice_name": "Stock Status Table",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -207,7 +207,7 @@
                             "datasource_type": "table",
                             "slice_name": "All-Time Reporting Timeliness",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -229,7 +229,7 @@
                             "datasource_type": "table",
                             "slice_name": "Reporting Rate and Timeliness",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -251,7 +251,7 @@
                             "datasource_type": "table",
                             "slice_name": "Adjustments Filter",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -273,7 +273,7 @@
                             "datasource_type": "table",
                             "slice_name": "Adjustment Summary",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -316,7 +316,7 @@
                             "datasource_type": "table",
                             "slice_name": "All-Time Reporting Timeliness",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -338,7 +338,7 @@
                             "datasource_type": "table",
                             "slice_name": "Reporting Rate and Timeliness",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -360,7 +360,7 @@
                             "datasource_type": "table",
                             "slice_name": "Orders Filter",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -382,7 +382,7 @@
                             "datasource_type": "table",
                             "slice_name": "Emergency v. Regular Orders",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -404,7 +404,7 @@
                             "datasource_type": "table",
                             "slice_name": "Total Cost of Orders",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -442,16 +442,16 @@
                             },
                             "changed_by_fk": 1,
                             "perm": "[main].[stock_status_and_consumption](id:1)",
-                            "description": null,
+                            "description": "",
                             "viz_type": "filter_box",
                             "datasource_type": "table",
                             "slice_name": "Stock Filter",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 29, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 3 years\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [{\"expressionType\": \"SQL\", \"sqlExpression\": \"username = '{{ current_username() }}'\", \"clause\": \"WHERE\", \"subject\": null, \"operator\": null, \"comparator\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_28q84ybogif_baa55jgcghi\"}], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\", \"import_time\": 1619569157}"
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 5, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"No filter\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [{\"expressionType\": \"SQL\", \"sqlExpression\": \"username = '{{ current_username() }}'\", \"clause\": \"WHERE\", \"subject\": null, \"operator\": null, \"comparator\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_28q84ybogif_baa55jgcghi\"}], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}"
                         }
                     },
                     {
@@ -469,7 +469,7 @@
                             "datasource_type": "table",
                             "slice_name": "Logistics Summary Report",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -491,7 +491,7 @@
                             "datasource_type": "table",
                             "slice_name": "Consumption Report",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -513,7 +513,7 @@
                             "datasource_type": "table",
                             "slice_name": "Total Adjusted Consumption per Facility",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -556,7 +556,7 @@
                             "datasource_type": "table",
                             "slice_name": "All-Time Reporting Timeliness",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -578,7 +578,7 @@
                             "datasource_type": "table",
                             "slice_name": "Reporting Rate and Timeliness",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -595,16 +595,16 @@
                             },
                             "changed_by_fk": 1,
                             "perm": "[main].[stock_status_and_consumption](id:1)",
-                            "description": null,
+                            "description": "",
                             "viz_type": "filter_box",
                             "datasource_type": "table",
                             "slice_name": "Stock Filter",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 29, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"Last 3 years\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [{\"expressionType\": \"SQL\", \"sqlExpression\": \"username = '{{ current_username() }}'\", \"clause\": \"WHERE\", \"subject\": null, \"operator\": null, \"comparator\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_28q84ybogif_baa55jgcghi\"}], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\", \"import_time\": 1619569157}"
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"filter_box\", \"slice_id\": 5, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": null, \"time_range\": \"No filter\", \"groupby\": [\"program_name\", \"region_name\", \"district_name\", \"processing_period_name\", \"processing_schedule_name\", \"facility_name\", \"facility_type_name\", \"full_product_name\", \"stock_status\"], \"metric\": {\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 48, \"column_name\": \"processing_period_enddate\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": false, \"groupby\": false, \"is_dttm\": true, \"type\": \"DATE\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_processing_period_enddate\"}, \"aggregate\": \"MAX\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"MAX(processing_period_enddate)\", \"optionName\": \"metric_ihqxettg21k_jm402meto1d\"}, \"adhoc_filters\": [{\"expressionType\": \"SQL\", \"sqlExpression\": \"username = '{{ current_username() }}'\", \"clause\": \"WHERE\", \"subject\": null, \"operator\": null, \"comparator\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_28q84ybogif_baa55jgcghi\"}], \"date_filter\": false, \"instant_filtering\": true, \"show_sqla_time_granularity\": false, \"show_sqla_time_column\": false, \"show_druid_time_granularity\": false, \"show_druid_time_origin\": false, \"remote_id\": 5, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}"
                         }
                     },
                     {
@@ -617,16 +617,16 @@
                             },
                             "changed_by_fk": 1,
                             "perm": "[main].[stock_status_and_consumption](id:1)",
-                            "description": null,
+                            "description": "",
                             "viz_type": "line",
                             "datasource_type": "table",
                             "slice_name": "District Stockout Rates over Time",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
-                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"line\", \"slice_id\": 35, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"Last 2 years\", \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 8, \"column_name\": \"combined_stockout\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"INTEGER\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_combined_stockout\"}, \"aggregate\": \"AVG\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"AVG(combined_stockout)\", \"optionName\": \"metric_xbuyamywqjh_vel69x0kb4l\"}], \"adhoc_filters\": [{\"expressionType\": \"SQL\", \"sqlExpression\": \"username = '{{ current_username() }}'\", \"clause\": \"WHERE\", \"subject\": null, \"operator\": null, \"comparator\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_5tzxmpwq1wm_crbgbdync1p\"}], \"groupby\": [\"district_name\"], \"timeseries_limit_metric\": null, \"order_desc\": true, \"contribution\": false, \"row_limit\": 10000, \"color_scheme\": \"bnbColors\", \"show_brush\": \"no\", \"send_time_range\": false, \"show_legend\": true, \"rich_tooltip\": true, \"show_markers\": false, \"line_interpolation\": \"linear\", \"x_axis_label\": \"\", \"bottom_margin\": \"auto\", \"x_ticks_layout\": \"auto\", \"x_axis_format\": \"smart_date\", \"x_axis_showminmax\": false, \"y_axis_label\": \"Stockout Rate\", \"left_margin\": \"auto\", \"y_axis_showminmax\": false, \"y_log_scale\": false, \"y_axis_format\": \".3s\", \"y_axis_bounds\": [null, null], \"rolling_type\": \"None\", \"comparison_type\": \"values\", \"resample_how\": null, \"resample_rule\": null, \"resample_fillmethod\": null, \"annotation_layers\": [{\"name\": \"Benchmark\", \"annotationType\": \"FORMULA\", \"sourceType\": \"\", \"value\": \".85\", \"overrides\": {\"since\": null, \"until\": null}, \"show\": true, \"titleColumn\": \"\", \"descriptionColumns\": [], \"timeColumn\": \"\", \"intervalEndColumn\": \"\", \"color\": \"#ff5a5f\", \"opacity\": \"\", \"style\": \"longDashed\", \"width\": 10, \"showMarkers\": false, \"hideLine\": false}], \"remote_id\": 6, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\", \"import_time\": 1619569157}"
+                            "params": "{\"datasource\": \"1__table\", \"viz_type\": \"line\", \"slice_id\": 6, \"url_params\": {}, \"granularity_sqla\": \"processing_period_enddate\", \"time_grain_sqla\": \"P1M\", \"time_range\": \"No filter\", \"metrics\": [{\"expressionType\": \"SIMPLE\", \"column\": {\"id\": 8, \"column_name\": \"combined_stockout\", \"verbose_name\": null, \"description\": null, \"expression\": \"\", \"filterable\": true, \"groupby\": true, \"is_dttm\": false, \"type\": \"INTEGER\", \"database_expression\": null, \"python_date_format\": null, \"optionName\": \"_col_combined_stockout\"}, \"aggregate\": \"AVG\", \"sqlExpression\": null, \"hasCustomLabel\": false, \"fromFormData\": true, \"label\": \"AVG(combined_stockout)\", \"optionName\": \"metric_xbuyamywqjh_vel69x0kb4l\"}], \"adhoc_filters\": [{\"expressionType\": \"SQL\", \"sqlExpression\": \"username = '{{ current_username() }}'\", \"clause\": \"WHERE\", \"subject\": null, \"operator\": null, \"comparator\": null, \"fromFormData\": true, \"filterOptionName\": \"filter_5tzxmpwq1wm_crbgbdync1p\"}], \"groupby\": [\"district_name\"], \"timeseries_limit_metric\": null, \"order_desc\": true, \"contribution\": false, \"row_limit\": 10000, \"color_scheme\": \"bnbColors\", \"show_brush\": \"no\", \"send_time_range\": false, \"show_legend\": true, \"rich_tooltip\": true, \"show_markers\": false, \"line_interpolation\": \"linear\", \"x_axis_label\": \"\", \"bottom_margin\": \"auto\", \"x_ticks_layout\": \"auto\", \"x_axis_format\": \"smart_date\", \"x_axis_showminmax\": false, \"y_axis_label\": \"Stockout Rate\", \"left_margin\": \"auto\", \"y_axis_showminmax\": false, \"y_log_scale\": false, \"y_axis_format\": \".3s\", \"y_axis_bounds\": [null, null], \"rolling_type\": \"None\", \"comparison_type\": \"values\", \"resample_how\": null, \"resample_rule\": null, \"resample_fillmethod\": null, \"annotation_layers\": [{\"name\": \"Benchmark\", \"annotationType\": \"FORMULA\", \"sourceType\": \"\", \"value\": \".85\", \"overrides\": {\"since\": null, \"until\": null}, \"show\": true, \"titleColumn\": \"\", \"descriptionColumns\": [], \"timeColumn\": \"\", \"intervalEndColumn\": \"\", \"color\": \"#ff5a5f\", \"opacity\": \"\", \"style\": \"longDashed\", \"width\": 10, \"showMarkers\": false, \"hideLine\": false}], \"remote_id\": 6, \"datasource_name\": \"stock_status_and_consumption\", \"schema\": \"stock_status_and_consumption\", \"database_name\": \"main\"}"
                         }
                     }
                 ]
@@ -665,7 +665,7 @@
                             "datasource_type": "table",
                             "slice_name": "Reporting Rate Filter",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -687,7 +687,7 @@
                             "datasource_type": "table",
                             "slice_name": "All-Time Reporting Timeliness",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -709,7 +709,7 @@
                             "datasource_type": "table",
                             "slice_name": "Expected Facilities per Period",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
@@ -731,7 +731,7 @@
                             "datasource_type": "table",
                             "slice_name": "Reporting Rate and Timeliness",
                             "changed_on": {
-                                "__datetime__": "2021-04-28T06:15:33"
+                                "__datetime__": "2021-04-28T07:12:27"
                             },
                             "created_by_fk": null,
                             "cache_timeout": null,
