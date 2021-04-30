@@ -6,7 +6,7 @@
 #
 alembic==1.4.2            # via flask-migrate
 amqp==2.5.2               # via kombu
-apache-superset==0.36.0   # via superset-patchup (setup.py)
+apache-superset==0.37.2   # via superset-patchup (setup.py)
 apispec[yaml]==1.3.3      # via flask-appbuilder
 attrs==19.3.0             # via jsonschema
 babel==2.8.0              # via flask-babel
