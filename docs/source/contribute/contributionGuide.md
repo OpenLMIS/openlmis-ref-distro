@@ -330,10 +330,10 @@ community, than to the OpenLMIS project specifically.
 OpenLMIS' code is licensed under an open source license to enable everyone contributing to the codebase and the
 community to benefit collectively. As such all contributions must:
 
-1. Sign the OpenLMIS' [Contributor Assignment Agreement](olmis-caa) (CAA), this gives the project flexibility.
-   * With approval, a contributor may opt to sign a [Contributor License Agreement](olmis-cla) (CLA), this
+1. Sign the OpenLMIS' [Contributor Assignment Agreement][olmis-caa] (CAA), this gives the project flexibility.
+   * With approval, a contributor may opt to sign a [Contributor License Agreement][olmis-cla] (CLA), this
      allows the contributor to retain copyright, while allowing the project license flexibility.
-2. Submit your signed CAA or CLA to the OpenLMIS Governance Committee.
+2. Submit your signed CAA or CLA to the OpenLMIS Governance Committee (todo: establish governance process).
 3. Mark the appropriate copyright and license header using the OpenLMIS license (see below).
 4. No exceptions.
 
