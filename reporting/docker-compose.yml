@@ -158,18 +158,18 @@ services:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [kafka]
 
-  # connect-reg:
-  #   image: openlmis/toolbelt
-  #   env_file: settings.env
-  #   volumes:
-  #     - config-volume:/config
-  #   entrypoint: >
-  #     bash -c "/config/connect/register.sh"
-  #   logging:
-  #     driver: syslog
-  #     options:
-  #       syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
-  #   depends_on: [connect]
+  connect-reg:
+    image: openlmis/toolbelt
+    env_file: settings.env
+    volumes:
+      - config-volume:/config
+    entrypoint: >
+      bash -c "/config/connect/register.sh"
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [connect]
 
   kafka-rest:
     image: confluentinc/cp-kafka-rest:${OL_CONFLUENT_VERSION}
