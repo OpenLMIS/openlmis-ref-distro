@@ -22,10 +22,10 @@ services:
       - 'consul-template-log:/var/log/consul-template'
     depends_on: [consul]
 
-  tanzania-ui:
-    image: openlmistz/tanzania-ui:${TZ_UI_VERSION}
+  reference-ui:
+    image: openlmis/reference-ui:${OL_REFERENCE_UI_VERSION}
     env_file: settings.env
-    depends_on: [ consul ]
+    depends_on: [consul]
 
   requisition:
     image: openlmis/requisition:${OL_REQUISITION_VERSION}
@@ -76,42 +76,6 @@ services:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
-
-  budget:
-    restart: always
-    image: openlmistz/budget:latest
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml -Dflyway.locations=classpath:db/migration,filesystem:/demo-data'
-      spring_profiles_active: ${spring_profiles_active}
-    volumes:
-      - 'service-config:/config'
-    depends_on: [ log ]
-    command: [ "/wait-for-postgres.sh", "/run.sh" ]
-
-  equipment:
-    restart: always
-    image: openlmistz/equipment:${OL_EQUIPMENT_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-      spring_profiles_active: ${spring_profiles_active}
-    volumes:
-      - 'service-config:/config'
-    depends_on: [ log, cce ]
-    command: [ "/wait-for-postgres.sh", "/run.sh" ]
-
-  common:
-    restart: always
-    image: openlmistz/common:${TZ_COMMON_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-      spring_profiles_active: ${spring_profiles_active}
-    volumes:
-      - 'service-config:/config'
-    depends_on: [ log, db ]
-    command: [ "/wait-for-postgres.sh", "/run.sh" ]
 
   cce:
     image: openlmis/cce:${OL_CCE_VERSION}
