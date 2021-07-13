@@ -83,6 +83,13 @@ developed, you __should pull the services frequently__.
 	* if you ran `docker-compose up -d`, stop the application with `docker-compose down -v`
 	* if you ran `docker-compose up` _note_ the absence of `-d`, then interupt the application with `Ctrl-C`, and perform cleanup by removing containers.  See
 	our [docker cheat sheet](https://openlmis.atlassian.net/wiki/x/PwBIAw) for help on manually removing containers.
+	
+6. To enable unskipping previously skipped requisition line items during approval add this flag in settings.env file
+   
+   ```
+   UNSKIP_REQUISITION_ITEM_WHEN_APPROVING=true
+   
+   ```
 
 ## Demo Data
 
