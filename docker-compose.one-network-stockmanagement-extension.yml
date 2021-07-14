@@ -87,10 +87,10 @@ services:
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
 
-  extensions-config:
-    image: openlmis/one-network-extensions-config:0.0.1-SNAPSHOT
+  stockmanagement-extension-config:
+    image: openlmis/one-network-stockmanagement-extension-config:0.0.1-SNAPSHOT
     volumes:
-      - 'extensions-config:/extensions'
+      - 'stockmanagement-extension-config:/extensions'
       
   stockmanagement:
     image: openlmis/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
@@ -98,9 +98,9 @@ services:
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
     volumes:
-      - 'extensions-config:/extensions'
+      - 'stockmanagement-extension-config:/extensions'
       - 'service-config:/config'
-    depends_on: [log, db, extensions-config]
+    depends_on: [log, db, stockmanagement-extension-config]
     command: ["/wait-for-postgres.sh", "/run.sh"]
 
   report:
@@ -179,5 +179,5 @@ volumes:
     external: false
   service-config:
     external: false
-  extensions-config:
+  stockmanagement-extension-config:
     external: false
