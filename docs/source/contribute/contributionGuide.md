@@ -316,17 +316,52 @@ about how implementations can override UI strings with their own custom messages
 
 ## Licensing
 
-OpenLMIS code is licensed under an open source license to enable everyone contributing to the codebase and the
-community to benefit collectively. As such all contributions have to be licensed using the OpenLMIS license to be
-accepted; no exceptions. Licensing code appropriately is simple:
+---
+**NOTE**
+
+licensing of a contribution here only applies for code that will be owned by the OpenLMIS' owner.  i.e. code that
+lives in an official OpenLMIS Repository (e.g. https://github.com/openlmis or https://gitlab.com/openlmis).  
+Contributions which utilize an extension mechanism, such a new Service that lives outside of an OpenLMIS
+repository do not need to abide to this licensing section, as that contribution is more to the wider open source
+community, than to the OpenLMIS project specifically.
+
+---
+
+OpenLMIS' code is licensed under an open source license to enable everyone contributing to the codebase and the
+community to benefit collectively. As such all contributions must:
+
+1. Sign the OpenLMIS' [Contributor Assignment Agreement][olmis-caa] (CAA), this gives the project flexibility.
+   * With approval, a contributor may opt to sign a [Contributor License Agreement][olmis-cla] (CLA), this
+     allows the contributor to retain copyright, while allowing the project license flexibility.
+2. Submit your signed CAA or CLA to the OpenLMIS Governance Committee (todo: establish governance process).
+3. Mark the appropriate copyright and license header using the OpenLMIS license (see below).
+4. No exceptions.
+
+[olmis-caa]: OpenLMIS-CAA-2021.pdf
+[olmis-cla]: OpenLMIS-CLA-2021.pdf
 
 ### Modifying existing code in a file
 
-* Add your name or your organization's name to the license header. e.g. if it reads `copyright VillageReach`, update it
-to `copyright VillageReach, <insert name here>`
+If you signed a CAA:
+
+* Retain the copyright mark, e.g. `Copyright © 2017 VillageReach`.
 * Update the copyright year to a range. e.g. if it was 2016, update it to read 2016-2017
 
+If you signed a CLA:
+
+* Retain the existing copyright mark, e.g. `Copyright © 2017 VillageReach`, and add your own one line down:  `Copyright © <INSERT YEAR AND COPYRIGHT HOLDER HERE>`.
+* Where `copyright holder` should likely read your organization's name.
+* Where `year` is the current year.
+
 ### Adding new code in a new file
+
+If you signed a CAA:
+
+* Copy the license file header template, [LICENSE-HEADER](https://github.com/OpenLMIS/openlmis-ref-distro/blob/master/LICENSE-HEADER), to the top of the new file.
+* Where it says `Copyright © <INSERT YEAR AND COPYRIGHT HOLDER HERE>`, insert `VillageReach`.
+* Update the copyright year to the current year.
+
+If you signed a CLA:
 
 * Copy the license file header template, [LICENSE-HEADER](https://github.com/OpenLMIS/openlmis-ref-distro/blob/master/LICENSE-HEADER), to the top of the new file.
 * Add the year and your name or your organization's name to the license header. e.g. if it reads `Copyright © <INSERT YEAR AND COPYRIGHT HOLDER HERE>`, update it to `Copyright © 2017 MyOrganization`
