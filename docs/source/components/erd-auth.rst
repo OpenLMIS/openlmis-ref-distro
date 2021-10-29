@@ -5,4 +5,4 @@ Auth ERD
 ERD schema of Auth service:
 
 * `Live ERD <http://ci.openlmis.org/erd-auth/>`_
-* `Zip ERD <http://build.openlmis.org/job/OpenLMIS-auth-pipeline/job/master/346/artifact/erd-auth.zip>`_
+* `Zip ERD <http://build.openlmis.org/job/OpenLMIS-auth-pipeline/job/master/347/artifact/erd-auth.zip>`_
