@@ -1978,10 +1978,10 @@ WHERE facilityid IS NOT NULL AND programid IS NOT NULL AND u.username = 'adminis
 ---
 CREATE MATERIALIZED VIEW reporting_rate_and_timeliness AS
 SELECT f.name
-  , dgz.name AS district
-  , rgz.name AS region
+  , dgz.name AS district_name
+  , rgz.name AS region_name
   , cgz.name AS country
-  , ft.name AS type
+  , ft.name AS facility_type_name
   , fo.name AS operator_name
   , f.active AS facility_active_status
   , final_authorized_requisitions.requisition_id AS req_id
@@ -2004,6 +2004,8 @@ SELECT f.name
   , fa.facilityid AS facility
   , fa.programid AS program
   , fa.username
+  , li.full_product_name
+  , li.stock_status
   , CASE
     WHEN final_authorized_requisitions.status_change_date::DATE <= (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT) 
       AND final_authorized_requisitions.status = 'AUTHORIZED' THEN 'On time'
