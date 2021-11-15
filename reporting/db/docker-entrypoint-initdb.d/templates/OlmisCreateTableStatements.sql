@@ -1978,7 +1978,7 @@ WHERE facilityid IS NOT NULL AND programid IS NOT NULL AND u.username = 'adminis
 ---
 CREATE MATERIALIZED VIEW reporting_rate_and_timeliness AS
 SELECT f.name
-  , dgz.name AS district_name
+  , dgz.name AS district
   , rgz.name AS region
   , cgz.name AS country
   , ft.name AS facility_type_name
