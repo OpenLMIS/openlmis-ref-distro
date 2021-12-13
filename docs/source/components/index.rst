@@ -213,7 +213,7 @@ recording stock transactions over time.
 - `Stock Management Service README <stockmanagementService.html>`_
 - `Stock Management ERD <erd-stockmanagement.html>`_
 - `Live Documentation for Stock Management API <http://test.openlmis.org/stockmanagement/docs/#/default>`_
-- `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-pipeline/job/master/536/artifact/build/resources/main/api-definition.html>`_
+- `Static Documentation for Stock Management API <http://build.openlmis.org/job/OpenLMIS-stockmanagement-pipeline/job/rel-5.1.5/33/artifact/build/resources/main/api-definition.html>`_
 
 *******************
 Diagnostics Service
