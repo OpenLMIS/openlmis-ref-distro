@@ -9,7 +9,7 @@ services:
     env_file: .env
 
   db:
-    image: openlmis/postgres:12-debezium
+    image: openlmis/postgres:9.6-debezium
     ports:
       - "5432"
     env_file: .env
