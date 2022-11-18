@@ -36,16 +36,16 @@ OAUTH_PROVIDERS = [
         'icon': 'fa-sign-in',
         'token_key': 'access_token',
         'remote_app': {
-            'consumer_key': OL_SUPERSET_USER,
-            'consumer_secret': OL_SUPERSET_PASSWORD,
-            'request_token_params': {
+            'client_id': OL_SUPERSET_USER,
+            'client_secret': OL_SUPERSET_PASSWORD,
+            'client_kwargs': {
                 'scope': 'read write'
             },
             'access_token_method': 'POST',
             'access_token_headers': {
                 'Authorization': 'Basic %s' % AUTHORIZATION_HEADER_TOKEN
             },
-            'base_url': '%s/api/oauth' % os.environ['OL_BASE_URL'],
+            'api_base_url': '%s/api/oauth' % os.environ['OL_BASE_URL'],
             'access_token_url': '%s/api/oauth/token?grant_type=authorization_code' % os.environ['OL_BASE_URL'],
             'authorize_url': '%s/api/oauth/authorize?' % os.environ['OL_BASE_URL']
         }

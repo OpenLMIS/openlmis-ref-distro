@@ -3,9 +3,7 @@ set -e
 cd "$(dirname "$0")"
 npm --version
 node --version
-yarn install
+npm ci
 npm run build
 
-# Sync
-rm ../static/assets/dist/*
-cp dist/* ../static/assets/dist/
+cp -r ../superset/static/assets ../static
