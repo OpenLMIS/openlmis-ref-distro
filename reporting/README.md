@@ -35,6 +35,24 @@
 
 9. You should be able to access NiFi by navigating to the `NIFI_DOMAIN_NAME`, if you set it up.
 
+## Upgrading Superset to a new version
+
+Upgrading Superset to new version consist of two steps:
+1. Updating configuration volume with latest Superset configuration and customization files.
+1. Building and starting a new Docker image with the upgraded version.
+
+##### Updating configuration volume
+
+The `./upgrade-superset-config.sh` script can be used to update the configuration volume in one go. 
+It must be executed on the Superset's Docker host system. 
+The scripts starts a 'dummy' container linked ot the config volume, and copies (with override) the new content
+of `./config/services/superset`.
+
+##### Running new Docker image
+
+There are not special considerations. 
+Start and build the Docker image included in this project as described in **Deploying to a Server** section.
+
 ## OAuth User for Superset
 
 In order to use user authentication in Superset by an OpenLMIS instance we need to create additional user in OpenLMIS.
