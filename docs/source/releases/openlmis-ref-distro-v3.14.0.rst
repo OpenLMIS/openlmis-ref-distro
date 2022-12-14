@@ -1,5 +1,5 @@
 ====================================
-3.14.0 Release Notes - August XX, 2022
+3.14.0 Release Notes - October 7, 2022
 ====================================
 
 Status: Stable
@@ -57,9 +57,11 @@ New Features
 ============
 The OpenLMIS community focused on the following work in version 3.14.0:
 
-- **Configuration Export** The configuration data for an OpenLMIS implementation can now be exported, simplifying the process of making changes using the OpenLMIS Seed Tool.
-- **Seed Tool Improvement** The OpenLMIS Seed Tool now supports incremental updates for all configuration metadata, allowing for a simplified round-trip of configuration data, in conjunction with the Configuration Export feature.
-- **Additional In-App Adminstration** Additional administration pages have been added to OpenLMIS: <LIST NEW ADMIN SCREENS HERE>
+- **Seed Tool Improvement** The OpenLMIS Seed Tool now supports incremental updates for all configuration metadata, allowing for a simplified round-trip of configuration data.
+- **Additional In-App Adminstration** Additional administration pages have been added to OpenLMIS: Valid Sources, Valid Destinations
+- **User’s signature added in Proof of Delivery** Generated Proof of Deliveries contain the users signature now.
+- **Additional features in Mobile App** There are new features available in the mobile app, including Adjustment, Receiving and Issuing functioantlities, next to improved Physical Inventory process.
+
 
     Reference the `3.14 epics <https://openlmis.atlassian.net/issues/?filter=20614&jql=issuetype%20%3D%20Epic%20AND%20status%20in%20(Done%2C%20%22In%20Progress%22)%20AND%20fixVersion%20%3D%203.14%20ORDER%20BY%20created%20DESC>`_ for more details.
 
