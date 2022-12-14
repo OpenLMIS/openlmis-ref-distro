@@ -50,7 +50,7 @@ of `./config/services/superset`.
 
 ##### Running new Docker image
 
-There are not special considerations. 
+There are no special considerations. 
 Start and build the Docker image included in this project as described in **Deploying to a Server** section.
 
 ## OAuth User for Superset
