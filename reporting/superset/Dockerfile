@@ -52,7 +52,7 @@ RUN useradd -U -m superset && \
     rm -r /var/lib/apt/lists/* && \
     pip install -I --no-cache-dir -r requirements.txt && \
     rm requirements.txt && \
-    pip install -I --no-cache-dir \
+    pip install --no-cache-dir \
         setuptools==65.6.3 \
         flask-mail==0.9.1 \
         flask-oauth==0.12 \
