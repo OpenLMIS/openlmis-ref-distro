@@ -84,5 +84,6 @@ CUSTOM_ROLES = {'OLMIS_Gamma': {'all_datasource_access'}}
 
 # Enable template processing in SQL - among others for {{current_username()}} macro
 FEATURE_FLAGS = {
-    "ENABLE_TEMPLATE_PROCESSING": True
+    "ENABLE_TEMPLATE_PROCESSING": True,
+    "VERSIONED_EXPORT": True
 }
