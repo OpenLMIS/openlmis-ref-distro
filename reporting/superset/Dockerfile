@@ -23,8 +23,9 @@ ENV GUNICORN_BIND=0.0.0.0:8088 \
     SUPERSET_PATCHUP_VERSION=${SUPERSET_PATCHUP_VERSION} \
     SUPERSET_PATCHUP_REPO=https://github.com/OpenLMIS/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} \
     SUPERSET_HOME=/var/lib/superset \
-    APP_DIR=${APP_DIR}
-ENV GUNICORN_CMD_ARGS="--workers ${GUNICORN_WORKERS} --timeout ${GUNICORN_TIMEOUT} --bind ${GUNICORN_BIND} --limit-request-line ${GUNICORN_LIMIT_REQUEST_LINE} --limit-request-field_size ${GUNICORN_LIMIT_REQUEST_FIELD_SIZE}"
+    APP_DIR=${APP_DIR} \
+    WORKER_CLASS=eventlet
+ENV GUNICORN_CMD_ARGS="--workers ${GUNICORN_WORKERS} -k ${WORKER_CLASS} --timeout ${GUNICORN_TIMEOUT} --bind ${GUNICORN_BIND} --limit-request-line ${GUNICORN_LIMIT_REQUEST_LINE} --limit-request-field_size ${GUNICORN_LIMIT_REQUEST_FIELD_SIZE}"
 
 COPY requirements.txt requirements.txt
 
@@ -68,6 +69,7 @@ RUN useradd -U -m superset && \
         sqlalchemy-bigquery==1.4.4 \
         clickhouse-sqlalchemy==0.1.10 \
         sqlalchemy-redshift==0.8.11 \
+        eventlet==0.24.1 \
         git+${SUPERSET_PATCHUP_REPO} \
         apache-superset==${SUPERSET_VERSION} \
         apache-superset[cors]==${SUPERSET_VERSION} && \
