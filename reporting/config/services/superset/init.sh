@@ -31,4 +31,4 @@ superset import_datasources -p $CONFIG_DIR/datasources/database.yaml &&
 superset import_dashboards -u ${SUPERSET_ADMIN_USERNAME} -p $CONFIG_DIR/dashboards/openlmis_uat_dashboards.zip &&
 superset init &&
 
-gunicorn -w 2 -k eventlet --timeout 60 -b 0.0.0.0:8088 --reload --limit-request-line 0 --limit-request-field_size 0 "superset.app:create_app()"
+gunicorn $GUNICORN_CMD_ARGS "superset.app:create_app()"
