@@ -55,7 +55,7 @@ RUN useradd -U -m superset && \
     pip install --no-cache-dir \
         gunicorn==20.1.0 \
         gevent==22.10.2 \
-        git+https://github.com/pwargulak/superset-patchup.git@feature/OLMIS-7762 \
+        git+${SUPERSET_PATCHUP_REPO} \
         apache-superset==${SUPERSET_VERSION} \
         apache-superset[cors]==${SUPERSET_VERSION} \
         flask-mail==0.9.1 \
