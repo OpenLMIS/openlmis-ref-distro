@@ -5,14 +5,18 @@
 Status: Stable
 ===============
 
-3.12.1 Patch release is recommended for users of OpenLMIS version 3.12.0 because the patch includes a bug fix for invalid pagination on /api/validSources and timeout on /api/validDestinations endpoints.
+3.15.1 Patch release is recommended for users of OpenLMIS version 3.15.0 because the patch includes bugfixes listed below:
+- Chrome API fixes
+- Approve buttons not visible when trying to approve requisition
+- Stock Out Days was not showing the proper values
 
 Patch Release Notes
 ===================
-3.12.1 Patch Release contains the bug fix for
+3.15.1 Patch Release contains the bug fix for
 
-- `OLMIS-7442 <https://openlmis.atlassian.net/browse/OLMIS-7442>`_
-- `OLMIS-7387 <https://openlmis.atlassian.net/browse/OLMIS-7387>`_
+- `OLMIS-7723 <https://openlmis.atlassian.net/browse/OLMIS-7723>`_
+- `OLMIS-7590 <https://openlmis.atlassian.net/browse/OLMIS-7590>`_
+- `OLMIS-7772 <https://openlmis.atlassian.net/browse/OLMIS-7772>`_
 
 For information about future planned releases, see the `Living Product Roadmap
 <https://openlmis.atlassian.net/wiki/display/OP/Living+Product+Roadmap>`_. Pull requests and
@@ -21,13 +25,13 @@ For information about future planned releases, see the `Living Product Roadmap
 Compatibility
 -------------
 
-Compatible with OpenLMIS 3.12.0
+Compatible with OpenLMIS 3.15.0
 
 Download or View on GitHub
 --------------------------
 
-`OpenLMIS Reference Distribution 3.12.1
-<https://github.com/OpenLMIS/openlmis-ref-distro/releases/tag/v3.12.1>`_
+`OpenLMIS Reference Distribution 3.15.1
+<https://github.com/OpenLMIS/openlmis-ref-distro/releases/tag/v3.15.1>`_
 
 Known Bugs
 ==========
@@ -55,16 +59,14 @@ No manual performance testing was conducted for this patch release.
 Test Coverage
 =============
 
-OpenLMIS 3.12.1 was tested using the established OpenLMIS Release Candidate process.
+OpenLMIS 3.15.1 was tested using the established OpenLMIS Release Candidate process.
 
-`Patch Release 3.12 RC1 Testing <https://openlmis.atlassian.net/plugins/servlet/ac/com.soldevelo.apps.test_management_premium/test-cycle-details#!testCycleId=15706>`_
-
-As part of this process, full manual test cycles were executed for each release candidate published. Any critical or blocker bugs found during the release candidate were resolved in a bug fix cycle with a full manual test cycle executed before releasing the final version 3.12.1. For more details about test executions and bugs found for this release please see .
+`Patch Release 3.15 RC1 Testing <https://openlmis.atlassian.net/plugins/servlet/ac/com.soldevelo.apps.test_management_premium/test-cycle-details#!testCycleId=15706>`_
 
 All Changes by Component
 ========================
 
-Version 3.12.1 of the Reference Distribution contains updated versions of the components listed
+Version 3.15.1 of the Reference Distribution contains updated versions of the components listed
 below. The Reference Distribution bundles these component together using Docker to create a complete
 OpenLMIS instance. Each component has its own own public GitHub repository (source code) and
 DockerHub repository (release image). The Reference Distribution and components are versioned
