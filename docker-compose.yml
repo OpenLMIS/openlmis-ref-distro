@@ -107,6 +107,16 @@ services:
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
 
+  buq:
+    image: openlmis/buq:${OL_BUQ_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'service-config:/config'
+    depends_on: [ log, db ]
+    command: [ "/wait-for-postgres.sh", "/run.sh" ]
+
   hapifhir:
     restart: always
     image: openlmis/hapifhir:${OL_HAPIFHIR_VERSION}
