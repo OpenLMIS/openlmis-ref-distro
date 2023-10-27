@@ -97,10 +97,10 @@ services:
       - './logback.xml:/logback.xml'
     depends_on: [log, example-extensions]
 
-  # example-extensions:
-  #   image: openlmis/openlmis-example-extensions:0.0.1-SNAPSHOT
-  #   volumes:
-  #     - 'example-extensions:/extensions'
+  example-extensions:
+    image: openlmis/openlmis-example-extensions:0.0.1-SNAPSHOT
+    volumes:
+      - 'example-extensions:/extensions'
 
   stockmanagement:
     image: openlmis/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
