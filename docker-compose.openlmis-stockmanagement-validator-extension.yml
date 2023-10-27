@@ -87,6 +87,16 @@ services:
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
 
+  example:
+    image: openlmis/template-service:latest
+    env_file: .env
+    environment:
+      JAVA_OPTS: '-Dlogging.config=/logback.xml'
+    volumes:
+      - 'example-extensions:/extensions'
+      - './logback.xml:/logback.xml'
+    depends_on: [log, example-extensions]
+
   example-extensions:
     image: openlmis/openlmis-example-extensions:0.0.1-SNAPSHOT
     volumes:
