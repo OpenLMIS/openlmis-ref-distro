@@ -89,7 +89,7 @@ services:
 
   example:
     image: openlmis/template-service:latest
-    env_file: .env
+    env_file: settings.env
     environment:
       JAVA_OPTS: '-Dlogging.config=/logback.xml'
     volumes:
