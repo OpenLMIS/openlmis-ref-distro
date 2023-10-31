@@ -174,15 +174,15 @@ services:
     image: redis:3.2.12
     depends_on: [consul]
 
-  # example:
-  #   image: openlmis/template-service:latest
-  #   env_file: settings.env
-  #   environment:
-  #     JAVA_OPTS: '-Dlogging.config=/logback.xml'
-  #   volumes:
-  #     - 'example-extensions:/extensions'
-  #     - './logback.xml:/logback.xml'
-  #   depends_on: [log]
+  pointofdelivery:
+    image: openlmis/openlmis/pointofdelivery:latest
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-Dlogging.config=/logback.xml'
+    volumes:
+      - 'pointofdelivery-extensions:/extensions'
+      - './logback.xml:/logback.xml'
+    depends_on: [log]
 
   # example-extensions:
   #   image: openlmis/openlmis-example-extensions:latest
@@ -198,5 +198,5 @@ volumes:
     external: false
   service-config:
     external: false
-  example-extensions:
+  pointofdelivery-extensions:
     external: false
