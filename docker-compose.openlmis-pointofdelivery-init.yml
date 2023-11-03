@@ -174,7 +174,7 @@ services:
     image: redis:3.2.12
     depends_on: [consul]
 
-  pointofdelivery:
+  template-service:
     image: openlmis/template-service:latest
     env_file: settings.env
     environment:
