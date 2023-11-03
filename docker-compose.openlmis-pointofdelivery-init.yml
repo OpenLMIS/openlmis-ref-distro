@@ -178,10 +178,10 @@ services:
     image: openlmis/pointofdelivery:latest
     env_file: settings.env
     environment:
-      JAVA_OPTS: '-Dlogging.config=/logback.xml'
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'pointofdelivery-extensions:/extensions'
-      - './logback.xml:/logback.xml'
+      - 'service-config:/config'
     depends_on: [log]
 
   # example-extensions:
