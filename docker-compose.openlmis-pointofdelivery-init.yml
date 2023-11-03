@@ -175,7 +175,7 @@ services:
     depends_on: [consul]
 
   pointofdelivery:
-    image: openlmis/pointofdelivery:latest
+    image: openlmis/template-service:latest
     env_file: settings.env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
