@@ -42,9 +42,9 @@ urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-ui-compo
 urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-ui-components/v7.2.10/docs/performance.md", "conventions/uiPerformance.md")
 
 # deployment
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16/deploymentTopology.md", "deployment/topology.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16/provision/Provision-single-host.md", "deployment/provisionSingleHost.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16/provision/Provision-swarm-With-ELB.md", "deployment/provisionSwarmWithELB.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16/provision/Provision-swarm-With-Elastic-ip.md", "deployment/provisionSwarmWithElasticIp.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16/provision/RDS-configuration.md", "deployment/rdsConfiguration.md")
-urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16/deployment/README.md", "deployment/demoAndCiJenkins.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16.0/deploymentTopology.md", "deployment/topology.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16.0/provision/Provision-single-host.md", "deployment/provisionSingleHost.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16.0/provision/Provision-swarm-With-ELB.md", "deployment/provisionSwarmWithELB.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16.0/provision/Provision-swarm-With-Elastic-ip.md", "deployment/provisionSwarmWithElasticIp.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16.0/provision/RDS-configuration.md", "deployment/rdsConfiguration.md")
+urllib.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.16.0/deployment/README.md", "deployment/demoAndCiJenkins.md")
