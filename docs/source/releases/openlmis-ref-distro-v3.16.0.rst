@@ -11,7 +11,7 @@ encouraged to adopt it.
 
 Release Notes
 =============
-The OpenLMIS Community is excited to announce the **3.15.0 release** of OpenLMIS! It is another major milestone in the version 3 `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_ that allows more functionality to be shared among the community of OpenLMIS implementers.
+The OpenLMIS Community is excited to announce the **3.16.0 release** of OpenLMIS! It is another major milestone in the version 3 `re-architecture <https://openlmis.atlassian.net/wiki/display/OP/Re-Architecture>`_ that allows more functionality to be shared among the community of OpenLMIS implementers.
 
 For a full list of features and bug-fixes since 3.16.0, see `OpenLMIS 3.16.0 Jira tickets
 <https://openlmis.atlassian.net/issues/?jql=status%20in%20(Done%2C%20DONE)%20AND%20fixVersion%20%3D%203.16%20ORDER%20BY%20%22Epic%20Link%22%20asc%2C%20key%20ASC>`_.
