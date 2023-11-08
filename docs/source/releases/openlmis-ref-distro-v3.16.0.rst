@@ -57,7 +57,7 @@ New Features
 ============
 The OpenLMIS community focused on the following work in version 3.16.0:
 
-**Data import from UI**-Functionality allows users to import system data from UI. Before, if a user wanted to extract system data i.e. names of all currently stocked products, it had to be done by database. Functionality will be assigned to a specific role - Administrator.
+**Data import from UI**-Functionality allows users to import system data from UI. Before, if a user wanted to import system data i.e. names of all currently stocked products, it had to be done by database. Functionality will be assigned to a specific role - Administrator.
 **Bug fixes**
 Chrome API fixes - the most critical part of this patch release. These changes were introduced due to the recent Chrome release which API changes. Now users are able to use OpenLMIS properly on Chrome browser
 Approve buttons not visible when trying to approve requisition - we've fixed the problem with requisition service. There was a problem with the approve button which wasn't visible for users with proper permissions.
@@ -228,8 +228,7 @@ features and writing code and documentation. Please visit our GitHub repos to se
 individual contributors on the OpenLMIS codebase. If anyone who contributed in GitHub is missing,
 please contact the Community Manager.
 
-Thanks to the Malawi implementation team who has continued to contribute a number of changes
-that have global shared benefit.
+
 
 Further Resources
 =================
