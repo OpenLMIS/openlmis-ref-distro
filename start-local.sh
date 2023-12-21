@@ -49,9 +49,8 @@ setEnvByIp
 BOLD=$(tput bold)
 echo "Starting OpenLMIS Ref-Distro on ${BOLD}${HOST_ADDR}"
 docker-compose \
-  -f docker-compose.openlmis-dev.yml \
+  -f docker-compose.openlmis-prod.yml \
   up \
   --build \
   --remove-orphans \
-  --force-recreate \
-  -d
+  --force-recreate
