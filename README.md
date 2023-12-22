@@ -292,3 +292,16 @@ Documentation is built using Sphinx. Documents from other OpenLMIS repositories 
 
 Documentation is available at:
 http://openlmis.readthedocs.io
+
+## Troubleshooting
+
+When connecting locally to the `UAT` database on some networks connections were being cut after short amount of time. In order to 
+resolve it we have added following code to the `.env` file:
+
+```
+spring.datasource.hikari.maxLifetime=180000
+spring.datasource.hikari.idleTimeout=90000
+```
+
+When some requests are throwing `404` errors it is possible that the NGINX_TIMEOUT value has to be adjusted in the `.env` file.
+
