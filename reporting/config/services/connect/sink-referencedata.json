@@ -8,6 +8,7 @@
       "connection.user": "postgres",
       "connection.password": "p@ssw0rd",
       "auto.create": "true",
+      "auto.evolve": "true",
       "insert.mode": "upsert",
       "pk.fields": "id",
       "pk.mode": "record_key",
