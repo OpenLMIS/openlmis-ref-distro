@@ -13,8 +13,9 @@
   $ cp settings-sample.env settings.env
   ```
   * Edit `settings.env` to match your setup. Despite generating the passwords, you will likely need to change
-   `VIRTUAL_HOST`, `TRUSTED_HOSTNAME`, `OL_BASE_URL` (to point to OpenLMIS) and `NIFI_DOMAIN_NAME` and `SUPERSET_DOMAIN_NAME` (which should point to the reporting stack).
+   `VIRTUAL_HOST`,`TRUSTED_HOSTNAME`, `OL_BASE_URL` (to point to OpenLMIS), `NIFI_DOMAIN_NAME` and `SUPERSET_DOMAIN_NAME` (which should point to the reporting stack) and `SUPERSET_URL` to point to the Superset URL.
   Details on all the environment variables are below.
+  * NB: `SUPERSET_URL` in `settings.env` file in OpenLMIS should be updated to the superset URL. 
 
 5. Bring up the reporting stack by running [docker-compose](https://docs.docker.com/compose/) on the server:
   ```sh
