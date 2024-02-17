@@ -61,6 +61,9 @@ RUN useradd -U -m superset && \
         flask-mail==0.9.1 \
         flask-oauth==0.12 \
         flask_oauthlib==0.9.5 && \
+     # Upgrade the packages
+        pip install typing-extensions==4.7.1 --upgrade && \
+        pip install selenium --upgrade && \
     # MarkupSafe, fix missing 'soft_unicode' from 'markupsafe'
     # fix cryptography, flask, werkzeug to last known working versions
     pip install -I --no-cache-dir \
