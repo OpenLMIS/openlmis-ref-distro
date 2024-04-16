@@ -28,7 +28,7 @@ services:
     depends_on: [consul]
 
   requisition:
-    image: openlmis/requisition:${OL_REQUISITION_VERSION}
+    image: elmislesotho/requisition:${OL_REQUISITION_VERSION}
     env_file: settings.env
     environment:
       JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
@@ -89,6 +89,16 @@ services:
 
   stockmanagement:
     image: elmislesotho/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
+    volumes:
+      - 'service-config:/config'
+    depends_on: [log, db]
+    command: ["/wait-for-postgres.sh", "/run.sh"]
+
+  prepacking:
+    image: elmislesotho/prepacking:${OL_PREPACKING_VERSION}
     env_file: settings.env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
