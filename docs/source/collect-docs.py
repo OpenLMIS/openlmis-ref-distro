@@ -42,9 +42,9 @@ urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-ui-components/v7.2.11/docs/performance.md", "conventions/uiPerformance.md")
 
 # deployment
-urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/deploymentTopology.md", "deployment/topology.md")
-urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/provision/Provision-single-host.md", "deployment/provisionSingleHost.md")
-urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/provision/Provision-swarm-With-ELB.md", "deployment/provisionSwarmWithELB.md")
-urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/provision/Provision-swarm-With-Elastic-ip.md", "deployment/provisionSwarmWithElasticIp.md")
-urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/provision/RDS-configuration.md", "deployment/rdsConfiguration.md")
-urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/deployment/README.md", "deployment/demoAndCiJenkins.md")("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/deployment/README.md", "deployment/demoAndCiJenkins.md")
+# urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/deploymentTopology.md", "deployment/topology.md")
+# urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/provision/Provision-single-host.md", "deployment/provisionSingleHost.md")
+# urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/provision/Provision-swarm-With-ELB.md", "deployment/provisionSwarmWithELB.md")
+# urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/provision/Provision-swarm-With-Elastic-ip.md", "deployment/provisionSwarmWithElasticIp.md")
+# urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/provision/RDS-configuration.md", "deployment/rdsConfiguration.md")
+# urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/v3.17.0/deployment/README.md", "deployment/demoAndCiJenkins.md")("https://raw.githubusercontent.com/OpenLMIS/openlmis-deployment/master/deployment/README.md", "deployment/demoAndCiJenkins.md")
