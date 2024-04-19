@@ -354,4 +354,4 @@ texinfo_documents = [
 intersphinx_mapping = {'https://docs.python.org/': None}
 
 exec(open('collect-docs.py')).read()
-exec(open('modify-docs.py').read())
+exec(open('modify-docs.py')).read()
