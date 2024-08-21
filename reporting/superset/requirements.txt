@@ -27,7 +27,7 @@ brotli==1.0.9
     # via flask-compress
 cachelib==0.4.1
     # via apache-superset
-celery==4.2.0
+celery==4.3.0
     # via apache-superset
 cffi==1.14.6
     # via cryptography
