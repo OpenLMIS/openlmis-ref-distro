@@ -51,7 +51,7 @@ RUN useradd -U -m superset && \
         libldap2-dev && \
     apt-get clean && \
     rm -r /var/lib/apt/lists/* && \
-    pip install --upgrade setuptools pip && \
+    pip install --upgrade setuptools "pip<24.1" && \
     pip install --no-cache-dir \
         gunicorn==20.1.0 \
         gevent==22.10.2 \
