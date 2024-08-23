@@ -20,7 +20,7 @@ downloadNifiToolkit() {
   mkdir -p ${downloadDir}
   if ! [[ -e $archivePath ]]; then
     echo "Downloading the NiFi Toolkit archive (${retryCount})."
-    curl -f -o $archivePath http://archive.apache.org/dist/nifi/${nifiVersion}/nifi-toolkit-${nifiVersion}-bin.tar.gz
+    curl -k -f -o $archivePath https://archive.apache.org/dist/nifi/${nifiVersion}/nifi-toolkit-${nifiVersion}-bin.tar.gz
     if [ $? -ne 0 ]; then
       return 1
     fi
