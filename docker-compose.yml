@@ -163,7 +163,7 @@ services:
       - service-config:/config
 
   ftp:
-    image: hauptmedia/proftpd
+    image: driesva/proftpd
     ports:
       - "${OL_FTP_PORT_21:-21}:21"
       - "${OL_FTP_PORT_20:-20}:20"
