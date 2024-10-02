@@ -63,6 +63,7 @@ services:
     entrypoint: >
       bash -c "/config/nifi/scripts/start.sh ${OL_NIFI_VERSION}"
     environment:
+      - JAVA_OPTS=-Xmx1024m
       - NIFI_JVM_HEAP_INIT=${NIFI_JVM_HEAP_INIT}
       - NIFI_JVM_HEAP_MAX=${NIFI_JVM_HEAP_MAX}
     logging:
@@ -128,6 +129,7 @@ services:
   kafka:
     image: confluentinc/cp-kafka:${OL_CONFLUENT_VERSION}
     environment:
+      - JAVA_OPTS=-Xmx1024m
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:32181
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:29092
       - KAFKA_BROKER_ID=2
@@ -147,11 +149,18 @@ services:
     ports:
       - 8083:8083
     environment:
-     - BOOTSTRAP_SERVERS=kafka:29092
-     - GROUP_ID=1
-     - CONFIG_STORAGE_TOPIC=my_connect_configs
-     - OFFSET_STORAGE_TOPIC=my_connect_offsets
-     - HOST_NAME=0.0.0.0
+      - JAVA_OPTS=-Xmx1024m
+      - BOOTSTRAP_SERVERS=kafka:29092
+      - GROUP_ID=1
+      - CONNECT_PRODUCER_REQUEST_TIMEOUT_MS=60000
+      - CONNECT_PRODUCER_DELIVERY_TIMEOUT_MS=120000
+      - CONNECT_CONSUMER_SESSION_TIMEOUT_MS=30000
+      - CONNECT_CONSUMER_HEARTBEAT_INTERVAL_MS=10000
+      - CONNECT_OFFSET_FLUSH_TIMEOUT_MS=60000
+      - CONNECT_OFFSET_FLUSH_INTERVAL_MS=60000
+      - CONFIG_STORAGE_TOPIC=my_connect_configs
+      - OFFSET_STORAGE_TOPIC=my_connect_offsets
+      - HOST_NAME=0.0.0.0
     logging:
       driver: syslog
       options:
@@ -210,6 +219,8 @@ services:
         SUPERSET_PATCHUP_VERSION: ${OL_SUPERSET_PATCHUP_VERSION}
     ports:
       - "8088:8088"
+    environment:
+      - JAVA_OPTS=-Xmx2048m
     volumes:
       - config-volume:/config
     command: >

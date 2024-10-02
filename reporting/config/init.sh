@@ -5,6 +5,9 @@ while ! curl -f "http://consul:8500/v1/agent/self"; do
     sleep 10;
 done
 
+# Wait to ensure cluster leader election
+sleep 10;
+
 set -e
 
 curl \

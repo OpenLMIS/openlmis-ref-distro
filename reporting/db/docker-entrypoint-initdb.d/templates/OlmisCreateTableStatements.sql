@@ -19,15 +19,25 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
 
 --
+-- DROP MATERIALIZED VIEWS
+--
+DROP MATERIALIZED VIEW IF EXISTS stock_adjustments_view;
+DROP MATERIALIZED VIEW IF EXISTS stock_status_and_consumption;
+DROP MATERIALIZED VIEW IF EXISTS adjustments;
+DROP MATERIALIZED VIEW IF EXISTS reporting_rate_and_timeliness;
+DROP MATERIALIZED VIEW IF EXISTS view_facility_access;
+DROP MATERIALIZED VIEW IF EXISTS facilities;
+
+--
 -- Name: commodity_types; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.kafka_commodity_types (
-    id uuid NOT NULL,
-    name character varying(255) NOT NULL,
-    classificationsystem character varying(255) NOT NULL,
-    classificationid character varying(255) NOT NULL,
-    parentid uuid
+                                              id uuid NOT NULL,
+                                              name character varying(255) NOT NULL,
+                                              classificationsystem character varying(255) NOT NULL,
+                                              classificationid character varying(255) NOT NULL,
+                                              parentid uuid
 );
 
 
@@ -38,9 +48,9 @@ ALTER TABLE public.kafka_commodity_types OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_dispensable_attributes (
-    dispensableid uuid NOT NULL,
-    key text NOT NULL,
-    value text NOT NULL
+                                                     dispensableid uuid NOT NULL,
+                                                     key text NOT NULL,
+                                                     value text NOT NULL
 );
 
 
@@ -51,8 +61,8 @@ ALTER TABLE public.kafka_dispensable_attributes OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_dispensables (
-    id uuid NOT NULL,
-    type text DEFAULT 'default'::text NOT NULL
+                                           id uuid NOT NULL,
+                                           type text DEFAULT 'default'::text NOT NULL
 );
 
 
@@ -63,21 +73,21 @@ ALTER TABLE public.kafka_dispensables OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_facilities (
-    id uuid NOT NULL,
-    active boolean NOT NULL,
-    code text NOT NULL,
-    comment text,
-    description text,
-    enabled boolean NOT NULL,
-    godowndate date,
-    golivedate date,
-    name text,
-    openlmisaccessible boolean,
-    geographiczoneid uuid NOT NULL,
-    operatedbyid uuid,
-    typeid uuid NOT NULL,
-    extradata jsonb,
-    location geometry
+                                         id uuid NOT NULL,
+                                         active boolean NOT NULL,
+                                         code text NOT NULL,
+                                         comment text,
+                                         description text,
+                                         enabled boolean NOT NULL,
+                                         godowndate date,
+                                         golivedate date,
+                                         name text,
+                                         openlmisaccessible boolean,
+                                         geographiczoneid uuid NOT NULL,
+                                         operatedbyid uuid,
+                                         typeid uuid NOT NULL,
+                                         extradata jsonb,
+                                         location geometry
 );
 
 
@@ -88,11 +98,11 @@ ALTER TABLE public.kafka_facilities OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_facility_operators (
-    id uuid NOT NULL,
-    code text NOT NULL,
-    description text,
-    displayorder integer,
-    name text
+                                                 id uuid NOT NULL,
+                                                 code text NOT NULL,
+                                                 description text,
+                                                 displayorder integer,
+                                                 name text
 );
 
 
@@ -103,16 +113,16 @@ ALTER TABLE public.kafka_facility_operators OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_facility_type_approved_products (
-    id uuid NOT NULL,
-    versionnumber bigint NOT NULL,
-    orderableid uuid NOT NULL,
-    programid uuid NOT NULL,
-    facilitytypeid uuid NOT NULL,
-    maxperiodsofstock double precision NOT NULL,
-    minperiodsofstock double precision,
-    emergencyorderpoint double precision,
-    active boolean DEFAULT true NOT NULL,
-    lastupdated timestamp with time zone DEFAULT now() NOT NULL
+                                                              id uuid NOT NULL,
+                                                              versionnumber bigint NOT NULL,
+                                                              orderableid uuid NOT NULL,
+                                                              programid uuid NOT NULL,
+                                                              facilitytypeid uuid NOT NULL,
+                                                              maxperiodsofstock double precision NOT NULL,
+                                                              minperiodsofstock double precision,
+                                                              emergencyorderpoint double precision,
+                                                              active boolean DEFAULT true NOT NULL,
+                                                              lastupdated timestamp with time zone DEFAULT now() NOT NULL
 );
 
 
@@ -123,12 +133,13 @@ ALTER TABLE public.kafka_facility_type_approved_products OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_facility_types (
-    id uuid NOT NULL,
-    active boolean,
-    code text NOT NULL,
-    description text,
-    displayorder integer,
-    name text
+                                             id uuid NOT NULL,
+                                             active boolean,
+                                             code text NOT NULL,
+                                             description text,
+                                             displayorder integer,
+                                             name text,
+                                             primaryhealthcare boolean
 );
 
 
@@ -139,10 +150,10 @@ ALTER TABLE public.kafka_facility_types OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_geographic_levels (
-    id uuid NOT NULL,
-    code text NOT NULL,
-    levelnumber integer NOT NULL,
-    name text
+                                                id uuid NOT NULL,
+                                                code text NOT NULL,
+                                                levelnumber integer NOT NULL,
+                                                name text
 );
 
 
@@ -153,16 +164,16 @@ ALTER TABLE public.kafka_geographic_levels OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_geographic_zones (
-    id uuid NOT NULL,
-    catchmentpopulation integer,
-    code text NOT NULL,
-    latitude numeric(8,5),
-    longitude numeric(8,5),
-    name text,
-    levelid uuid NOT NULL,
-    parentid uuid,
-    boundary geometry,
-    extradata jsonb
+                                               id uuid NOT NULL,
+                                               catchmentpopulation integer,
+                                               code text NOT NULL,
+                                               latitude numeric(8,5),
+                                               longitude numeric(8,5),
+                                               name text,
+                                               levelid uuid NOT NULL,
+                                               parentid uuid,
+                                               boundary geometry,
+                                               extradata jsonb
 );
 
 
@@ -173,11 +184,11 @@ ALTER TABLE public.kafka_geographic_zones OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_ideal_stock_amounts (
-    id uuid NOT NULL,
-    facilityid uuid NOT NULL,
-    processingperiodid uuid NOT NULL,
-    amount integer,
-    commoditytypeid uuid NOT NULL
+                                                  id uuid NOT NULL,
+                                                  facilityid uuid NOT NULL,
+                                                  processingperiodid uuid NOT NULL,
+                                                  amount integer,
+                                                  commoditytypeid uuid NOT NULL
 );
 
 
@@ -188,12 +199,12 @@ ALTER TABLE public.kafka_ideal_stock_amounts OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_lots (
-    id uuid NOT NULL,
-    lotcode text NOT NULL,
-    expirationdate date,
-    manufacturedate date,
-    tradeitemid uuid NOT NULL,
-    active boolean NOT NULL
+                                   id uuid NOT NULL,
+                                   lotcode text NOT NULL,
+                                   expirationdate date,
+                                   manufacturedate date,
+                                   tradeitemid uuid NOT NULL,
+                                   active boolean NOT NULL
 );
 
 
@@ -204,12 +215,12 @@ ALTER TABLE public.kafka_lots OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_orderable_children (
-    id uuid NOT NULL,
-    parentid uuid NOT NULL,
-    parentversionnumber bigint NOT NULL,
-    orderableid uuid NOT NULL,
-    orderableversionnumber bigint NOT NULL,
-    quantity bigint NOT NULL
+                                                 id uuid NOT NULL,
+                                                 parentid uuid NOT NULL,
+                                                 parentversionnumber bigint NOT NULL,
+                                                 orderableid uuid NOT NULL,
+                                                 orderableversionnumber bigint NOT NULL,
+                                                 quantity bigint NOT NULL
 );
 
 
@@ -220,10 +231,10 @@ ALTER TABLE public.kafka_orderable_children OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_orderable_display_categories (
-    id uuid NOT NULL,
-    code character varying(255),
-    displayname character varying(255),
-    displayorder integer NOT NULL
+                                                           id uuid NOT NULL,
+                                                           code character varying(255),
+                                                           displayname character varying(255),
+                                                           displayorder integer NOT NULL
 );
 
 
@@ -234,10 +245,10 @@ ALTER TABLE public.kafka_orderable_display_categories OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_orderable_identifiers (
-    key character varying(255) NOT NULL,
-    value character varying(255) NOT NULL,
-    orderableid uuid NOT NULL,
-    orderableversionnumber bigint NOT NULL
+                                                    key character varying(255) NOT NULL,
+                                                    value character varying(255) NOT NULL,
+                                                    orderableid uuid NOT NULL,
+                                                    orderableversionnumber bigint NOT NULL
 );
 
 
@@ -248,23 +259,23 @@ ALTER TABLE public.kafka_orderable_identifiers OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_orderables (
-    id uuid NOT NULL,
-    fullproductname character varying(255),
-    packroundingthreshold bigint NOT NULL,
-    netcontent bigint NOT NULL,
-    code character varying(255),
-    roundtozero boolean NOT NULL,
-    description character varying(255),
-    extradata jsonb,
-    dispensableid uuid NOT NULL,
-    versionnumber bigint NOT NULL,
-    lastupdated timestamp with time zone DEFAULT now() NOT NULL,
-    minimumtemperaturevalue double precision,
-    minimumtemperaturecode character varying(30),
-    maximumtemperaturevalue double precision,
-    maximumtemperaturecode character varying(30),
-    inboxcubedimensionvalue double precision,
-    inboxcubedimensioncode character varying(30)
+                                         id uuid NOT NULL,
+                                         fullproductname character varying(255),
+                                         packroundingthreshold bigint NOT NULL,
+                                         netcontent bigint NOT NULL,
+                                         code character varying(255),
+                                         roundtozero boolean NOT NULL,
+                                         description character varying(255),
+                                         extradata jsonb,
+                                         dispensableid uuid NOT NULL,
+                                         versionnumber bigint NOT NULL,
+                                         lastupdated timestamp with time zone DEFAULT now() NOT NULL,
+                                         minimumtemperaturevalue double precision,
+                                         minimumtemperaturecode character varying(30),
+                                         maximumtemperaturevalue double precision,
+                                         maximumtemperaturecode character varying(30),
+                                         inboxcubedimensionvalue double precision,
+                                         inboxcubedimensioncode character varying(30)
 );
 
 
@@ -275,13 +286,13 @@ ALTER TABLE public.kafka_orderables OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_processing_periods (
-    id uuid NOT NULL,
-    description text,
-    enddate date NOT NULL,
-    name text NOT NULL,
-    startdate date NOT NULL,
-    processingscheduleid uuid NOT NULL,
-    extradata jsonb
+                                                 id uuid NOT NULL,
+                                                 description text,
+                                                 enddate date NOT NULL,
+                                                 name text NOT NULL,
+                                                 startdate date NOT NULL,
+                                                 processingscheduleid uuid NOT NULL,
+                                                 extradata jsonb
 );
 
 
@@ -292,11 +303,11 @@ ALTER TABLE public.kafka_processing_periods OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_processing_schedules (
-    id uuid NOT NULL,
-    code text NOT NULL,
-    description text,
-    modifieddate timestamp with time zone,
-    name text NOT NULL
+                                                   id uuid NOT NULL,
+                                                   code text NOT NULL,
+                                                   description text,
+                                                   modifieddate timestamp with time zone,
+                                                   name text NOT NULL
 );
 
 
@@ -307,16 +318,16 @@ ALTER TABLE public.kafka_processing_schedules OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_program_orderables (
-    id uuid NOT NULL,
-    active boolean NOT NULL,
-    displayorder integer NOT NULL,
-    dosesperpatient integer,
-    fullsupply boolean NOT NULL,
-    priceperpack numeric(19,2),
-    orderabledisplaycategoryid uuid NOT NULL,
-    orderableid uuid NOT NULL,
-    programid uuid NOT NULL,
-    orderableversionnumber bigint NOT NULL
+                                                 id uuid NOT NULL,
+                                                 active boolean NOT NULL,
+                                                 displayorder integer NOT NULL,
+                                                 dosesperpatient integer,
+                                                 fullsupply boolean NOT NULL,
+                                                 priceperpack numeric(19,2),
+                                                 orderabledisplaycategoryid uuid NOT NULL,
+                                                 orderableid uuid NOT NULL,
+                                                 programid uuid NOT NULL,
+                                                 orderableversionnumber bigint NOT NULL
 );
 
 
@@ -327,15 +338,15 @@ ALTER TABLE public.kafka_program_orderables OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_programs (
-    id uuid NOT NULL,
-    active boolean,
-    code character varying(255),
-    description text,
-    name text,
-    periodsskippable boolean NOT NULL,
-    shownonfullsupplytab boolean,
-    enabledatephysicalstockcountcompleted boolean NOT NULL,
-    skipauthorization boolean DEFAULT false
+                                       id uuid NOT NULL,
+                                       active boolean,
+                                       code character varying(255),
+                                       description text,
+                                       name text,
+                                       periodsskippable boolean NOT NULL,
+                                       shownonfullsupplytab boolean,
+                                       enabledatephysicalstockcountcompleted boolean NOT NULL,
+                                       skipauthorization boolean DEFAULT false
 );
 
 
@@ -346,8 +357,8 @@ ALTER TABLE public.kafka_programs OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_requisition_group_members (
-    requisitiongroupid uuid NOT NULL,
-    facilityid uuid NOT NULL
+                                                        requisitiongroupid uuid NOT NULL,
+                                                        facilityid uuid NOT NULL
 );
 
 
@@ -358,12 +369,12 @@ ALTER TABLE public.kafka_requisition_group_members OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_requisition_group_program_schedules (
-    id uuid NOT NULL,
-    directdelivery boolean NOT NULL,
-    dropofffacilityid uuid,
-    processingscheduleid uuid NOT NULL,
-    programid uuid NOT NULL,
-    requisitiongroupid uuid NOT NULL
+                                                                  id uuid NOT NULL,
+                                                                  directdelivery boolean NOT NULL,
+                                                                  dropofffacilityid uuid,
+                                                                  processingscheduleid uuid NOT NULL,
+                                                                  programid uuid NOT NULL,
+                                                                  requisitiongroupid uuid NOT NULL
 );
 
 
@@ -374,11 +385,11 @@ ALTER TABLE public.kafka_requisition_group_program_schedules OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_requisition_groups (
-    id uuid NOT NULL,
-    code text NOT NULL,
-    description text,
-    name text NOT NULL,
-    supervisorynodeid uuid NOT NULL
+                                                 id uuid NOT NULL,
+                                                 code text NOT NULL,
+                                                 description text,
+                                                 name text NOT NULL,
+                                                 supervisorynodeid uuid NOT NULL
 );
 
 
@@ -389,11 +400,11 @@ ALTER TABLE public.kafka_requisition_groups OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_right_assignments (
-    id uuid NOT NULL,
-    rightname text NOT NULL,
-    facilityid uuid,
-    programid uuid,
-    userid uuid NOT NULL
+                                                id uuid NOT NULL,
+                                                rightname text NOT NULL,
+                                                facilityid uuid,
+                                                programid uuid,
+                                                userid uuid NOT NULL
 );
 
 
@@ -404,8 +415,8 @@ ALTER TABLE public.kafka_right_assignments OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_right_attachments (
-    rightid uuid NOT NULL,
-    attachmentid uuid NOT NULL
+                                                rightid uuid NOT NULL,
+                                                attachmentid uuid NOT NULL
 );
 
 
@@ -416,10 +427,10 @@ ALTER TABLE public.kafka_right_attachments OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_rights (
-    id uuid NOT NULL,
-    description text,
-    name text NOT NULL,
-    type text NOT NULL
+                                     id uuid NOT NULL,
+                                     description text,
+                                     name text NOT NULL,
+                                     type text NOT NULL
 );
 
 
@@ -430,13 +441,13 @@ ALTER TABLE public.kafka_rights OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_role_assignments (
-    type character varying(31) NOT NULL,
-    id uuid NOT NULL,
-    roleid uuid,
-    userid uuid,
-    warehouseid uuid,
-    programid uuid,
-    supervisorynodeid uuid
+                                               type character varying(31) NOT NULL,
+                                               id uuid NOT NULL,
+                                               roleid uuid,
+                                               userid uuid,
+                                               warehouseid uuid,
+                                               programid uuid,
+                                               supervisorynodeid uuid
 );
 
 
@@ -447,8 +458,8 @@ ALTER TABLE public.kafka_role_assignments OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_role_rights (
-    roleid uuid NOT NULL,
-    rightid uuid NOT NULL
+                                          roleid uuid NOT NULL,
+                                          rightid uuid NOT NULL
 );
 
 
@@ -459,9 +470,9 @@ ALTER TABLE public.kafka_role_rights OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_roles (
-    id uuid NOT NULL,
-    description text,
-    name text NOT NULL
+                                    id uuid NOT NULL,
+                                    description text,
+                                    name text NOT NULL
 );
 
 
@@ -472,9 +483,9 @@ ALTER TABLE public.kafka_roles OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_service_accounts (
-    id uuid NOT NULL,
-    createdby uuid NOT NULL,
-    createddate timestamp with time zone NOT NULL
+                                               id uuid NOT NULL,
+                                               createdby uuid NOT NULL,
+                                               createddate timestamp with time zone NOT NULL
 );
 
 
@@ -485,14 +496,14 @@ ALTER TABLE public.kafka_service_accounts OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_supervisory_nodes (
-    id uuid NOT NULL,
-    code text NOT NULL,
-    description text,
-    name text NOT NULL,
-    facilityid uuid,
-    parentid uuid,
-    extradata jsonb,
-    partnerid uuid
+                                                id uuid NOT NULL,
+                                                code text NOT NULL,
+                                                description text,
+                                                name text NOT NULL,
+                                                facilityid uuid,
+                                                parentid uuid,
+                                                extradata jsonb,
+                                                partnerid uuid
 );
 
 
@@ -503,11 +514,11 @@ ALTER TABLE public.kafka_supervisory_nodes OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_supply_lines (
-    id uuid NOT NULL,
-    description text,
-    programid uuid NOT NULL,
-    supervisorynodeid uuid NOT NULL,
-    supplyingfacilityid uuid NOT NULL
+                                           id uuid NOT NULL,
+                                           description text,
+                                           programid uuid NOT NULL,
+                                           supervisorynodeid uuid NOT NULL,
+                                           supplyingfacilityid uuid NOT NULL
 );
 
 
@@ -518,8 +529,8 @@ ALTER TABLE public.kafka_supply_lines OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_supply_partner_association_facilities (
-    supplypartnerassociationid uuid NOT NULL,
-    facilityid uuid NOT NULL
+                                                                    supplypartnerassociationid uuid NOT NULL,
+                                                                    facilityid uuid NOT NULL
 );
 
 
@@ -530,9 +541,9 @@ ALTER TABLE public.kafka_supply_partner_association_facilities OWNER TO postgres
 --
 
 CREATE TABLE public.kafka_supply_partner_association_orderables (
-    supplypartnerassociationid uuid NOT NULL,
-    orderableid uuid NOT NULL,
-    orderableversionnumber bigint NOT NULL
+                                                                    supplypartnerassociationid uuid NOT NULL,
+                                                                    orderableid uuid NOT NULL,
+                                                                    orderableversionnumber bigint NOT NULL
 );
 
 
@@ -543,10 +554,10 @@ ALTER TABLE public.kafka_supply_partner_association_orderables OWNER TO postgres
 --
 
 CREATE TABLE public.kafka_supply_partner_associations (
-    id uuid NOT NULL,
-    programid uuid NOT NULL,
-    supervisorynodeid uuid NOT NULL,
-    supplypartnerid uuid NOT NULL
+                                                          id uuid NOT NULL,
+                                                          programid uuid NOT NULL,
+                                                          supervisorynodeid uuid NOT NULL,
+                                                          supplypartnerid uuid NOT NULL
 );
 
 
@@ -557,9 +568,9 @@ ALTER TABLE public.kafka_supply_partner_associations OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_supply_partners (
-    id uuid NOT NULL,
-    name text NOT NULL,
-    code text NOT NULL
+                                              id uuid NOT NULL,
+                                              name text NOT NULL,
+                                              code text NOT NULL
 );
 
 
@@ -570,11 +581,11 @@ ALTER TABLE public.kafka_supply_partners OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_supported_programs (
-    active boolean NOT NULL,
-    startdate date,
-    facilityid uuid NOT NULL,
-    programid uuid NOT NULL,
-    locallyfulfilled boolean DEFAULT false NOT NULL
+                                                 active boolean NOT NULL,
+                                                 startdate date,
+                                                 facilityid uuid NOT NULL,
+                                                 programid uuid NOT NULL,
+                                                 locallyfulfilled boolean DEFAULT false NOT NULL
 );
 
 
@@ -585,14 +596,14 @@ ALTER TABLE public.kafka_supported_programs OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_system_notifications (
-    id uuid NOT NULL,
-    title character varying(255),
-    message text NOT NULL,
-    startdate timestamp with time zone,
-    createddate timestamp with time zone NOT NULL,
-    expirydate timestamp with time zone,
-    active boolean DEFAULT true NOT NULL,
-    authorid uuid NOT NULL
+                                                   id uuid NOT NULL,
+                                                   title character varying(255),
+                                                   message text NOT NULL,
+                                                   startdate timestamp with time zone,
+                                                   createddate timestamp with time zone NOT NULL,
+                                                   expirydate timestamp with time zone,
+                                                   active boolean DEFAULT true NOT NULL,
+                                                   authorid uuid NOT NULL
 );
 
 
@@ -603,10 +614,10 @@ ALTER TABLE public.kafka_system_notifications OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_trade_item_classifications (
-    id uuid NOT NULL,
-    classificationsystem character varying(255) NOT NULL,
-    classificationid character varying(255) NOT NULL,
-    tradeitemid uuid NOT NULL
+                                                         id uuid NOT NULL,
+                                                         classificationsystem character varying(255) NOT NULL,
+                                                         classificationid character varying(255) NOT NULL,
+                                                         tradeitemid uuid NOT NULL
 );
 
 
@@ -617,9 +628,9 @@ ALTER TABLE public.kafka_trade_item_classifications OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_trade_items (
-    id uuid NOT NULL,
-    manufactureroftradeitem character varying(255) NOT NULL,
-    gtin text
+                                          id uuid NOT NULL,
+                                          manufactureroftradeitem character varying(255) NOT NULL,
+                                          gtin text
 );
 
 
@@ -630,19 +641,19 @@ ALTER TABLE public.kafka_trade_items OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_users (
-    id uuid NOT NULL,
-    active boolean DEFAULT false NOT NULL,
-    allownotify boolean DEFAULT true,
-    email character varying(255),
-    extradata jsonb,
-    firstname text NOT NULL,
-    lastname text NOT NULL,
-    timezone character varying(255),
-    username text NOT NULL,
-    verified boolean DEFAULT false NOT NULL,
-    homefacilityid uuid,
-    jobtitle character varying(255),
-    phonenumber character varying(255)
+                                    id uuid NOT NULL,
+                                    active boolean DEFAULT false NOT NULL,
+                                    allownotify boolean DEFAULT true,
+                                    email character varying(255),
+                                    extradata jsonb,
+                                    firstname text NOT NULL,
+                                    lastname text NOT NULL,
+                                    timezone character varying(255),
+                                    username text NOT NULL,
+                                    verified boolean DEFAULT false NOT NULL,
+                                    homefacilityid uuid,
+                                    jobtitle character varying(255),
+                                    phonenumber character varying(255)
 );
 
 
@@ -1353,11 +1364,11 @@ CREATE UNIQUE INDEX unq_username ON public.kafka_users USING btree (lower(userna
 --
 
 CREATE TABLE public.kafka_available_products (
-    requisitionid uuid NOT NULL,
-    orderableid uuid,
-    orderableversionnumber bigint,
-    facilitytypeapprovedproductid uuid,
-    facilitytypeapprovedproductversionnumber bigint
+                                                 requisitionid uuid NOT NULL,
+                                                 orderableid uuid,
+                                                 orderableversionnumber bigint,
+                                                 facilitytypeapprovedproductid uuid,
+                                                 facilitytypeapprovedproductversionnumber bigint
 );
 
 
@@ -1368,10 +1379,10 @@ ALTER TABLE public.kafka_available_products OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_available_requisition_column_options (
-    id uuid NOT NULL,
-    optionlabel character varying(255) NOT NULL,
-    optionname character varying(255) NOT NULL,
-    columnid uuid NOT NULL
+                                                                   id uuid NOT NULL,
+                                                                   optionlabel character varying(255) NOT NULL,
+                                                                   optionname character varying(255) NOT NULL,
+                                                                   columnid uuid NOT NULL
 );
 
 
@@ -1382,8 +1393,8 @@ ALTER TABLE public.kafka_available_requisition_column_options OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_available_requisition_column_sources (
-    columnid uuid NOT NULL,
-    value character varying(255)
+                                                                   columnid uuid NOT NULL,
+                                                                   value character varying(255)
 );
 
 
@@ -1394,17 +1405,17 @@ ALTER TABLE public.kafka_available_requisition_column_sources OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_available_requisition_columns (
-    id uuid NOT NULL,
-    canbechangedbyuser boolean,
-    canchangeorder boolean,
-    columntype character varying(255) NOT NULL,
-    definition text,
-    indicator character varying(255),
-    isdisplayrequired boolean,
-    label character varying(255),
-    mandatory boolean,
-    name character varying(255),
-    supportstag boolean DEFAULT false
+                                                            id uuid NOT NULL,
+                                                            canbechangedbyuser boolean,
+                                                            canchangeorder boolean,
+                                                            columntype character varying(255) NOT NULL,
+                                                            definition text,
+                                                            indicator character varying(255),
+                                                            isdisplayrequired boolean,
+                                                            label character varying(255),
+                                                            mandatory boolean,
+                                                            name character varying(255),
+                                                            supportstag boolean DEFAULT false
 );
 
 
@@ -1415,18 +1426,18 @@ ALTER TABLE public.kafka_available_requisition_columns OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_columns_maps (
-    requisitiontemplateid uuid NOT NULL,
-    requisitioncolumnid uuid NOT NULL,
-    definition text,
-    displayorder integer NOT NULL,
-    indicator character varying(255),
-    isdisplayed boolean,
-    label character varying(255),
-    name character varying(255),
-    requisitioncolumnoptionid uuid,
-    source integer NOT NULL,
-    key character varying(255) NOT NULL,
-    tag character varying(255)
+                                           requisitiontemplateid uuid NOT NULL,
+                                           requisitioncolumnid uuid NOT NULL,
+                                           definition text,
+                                           displayorder integer NOT NULL,
+                                           indicator character varying(255),
+                                           isdisplayed boolean,
+                                           label character varying(255),
+                                           name character varying(255),
+                                           requisitioncolumnoptionid uuid,
+                                           source integer NOT NULL,
+                                           key character varying(255) NOT NULL,
+                                           tag character varying(255)
 );
 
 
@@ -1437,8 +1448,8 @@ ALTER TABLE public.kafka_columns_maps OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_configuration_settings (
-    key character varying(255) NOT NULL,
-    value text NOT NULL
+                                                     key character varying(255) NOT NULL,
+                                                     value text NOT NULL
 );
 
 
@@ -1449,10 +1460,10 @@ ALTER TABLE public.kafka_configuration_settings OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_jasper_template_parameter_dependencies (
-    id uuid NOT NULL,
-    parameterid uuid NOT NULL,
-    dependency text NOT NULL,
-    placeholder text NOT NULL
+                                                                     id uuid NOT NULL,
+                                                                     parameterid uuid NOT NULL,
+                                                                     dependency text NOT NULL,
+                                                                     placeholder text NOT NULL
 );
 
 
@@ -1463,11 +1474,11 @@ ALTER TABLE public.kafka_jasper_template_parameter_dependencies OWNER TO postgre
 --
 
 CREATE TABLE public.kafka_jasper_templates (
-    id uuid NOT NULL,
-    data bytea,
-    description text,
-    name text NOT NULL,
-    type text
+                                               id uuid NOT NULL,
+                                               data bytea,
+                                               description text,
+                                               name text NOT NULL,
+                                               type text
 );
 
 
@@ -1478,8 +1489,8 @@ ALTER TABLE public.kafka_jasper_templates OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_jaspertemplateparameter_options (
-    jaspertemplateparameterid uuid NOT NULL,
-    options character varying(255)
+                                                              jaspertemplateparameterid uuid NOT NULL,
+                                                              options character varying(255)
 );
 
 
@@ -1490,8 +1501,8 @@ ALTER TABLE public.kafka_jaspertemplateparameter_options OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_previous_adjusted_consumptions (
-    requisitionlineitemid uuid NOT NULL,
-    previousadjustedconsumption integer
+                                                             requisitionlineitemid uuid NOT NULL,
+                                                             previousadjustedconsumption integer
 );
 
 
@@ -1502,37 +1513,42 @@ ALTER TABLE public.kafka_previous_adjusted_consumptions OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_requisition_line_items (
-    id uuid NOT NULL,
-    adjustedconsumption integer,
-    approvedquantity integer,
-    averageconsumption integer,
-    beginningbalance integer,
-    calculatedorderquantity integer,
-    maxperiodsofstock numeric(19,2),
-    maximumstockquantity integer,
-    nonfullsupply boolean,
-    numberofnewpatientsadded integer,
-    orderableid uuid,
-    packstoship bigint,
-    priceperpack numeric(19,2),
-    remarks character varying(250),
-    requestedquantity integer,
-    requestedquantityexplanation character varying(255),
-    skipped boolean,
-    stockonhand integer,
-    total integer,
-    totalconsumedquantity integer,
-    totalcost numeric(19,2),
-    totallossesandadjustments integer,
-    totalreceivedquantity integer,
-    totalstockoutdays integer,
-    requisitionid uuid,
-    idealstockamount integer,
-    calculatedorderquantityisa integer,
-    additionalquantityrequired integer,
-    orderableversionnumber bigint,
-    facilitytypeapprovedproductid uuid,
-    facilitytypeapprovedproductversionnumber bigint
+                                                     id uuid NOT NULL,
+                                                     adjustedconsumption integer,
+                                                     approvedquantity integer,
+                                                     averageconsumption integer,
+                                                     beginningbalance integer,
+                                                     calculatedorderquantity integer,
+                                                     maxperiodsofstock numeric(19,2),
+                                                     maximumstockquantity integer,
+                                                     nonfullsupply boolean,
+                                                     numberofnewpatientsadded integer,
+                                                     orderableid uuid,
+                                                     packstoship bigint,
+                                                     priceperpack numeric(19,2),
+                                                     remarks character varying(250),
+                                                     requestedquantity integer,
+                                                     requestedquantityexplanation character varying(255),
+                                                     skipped boolean,
+                                                     stockonhand integer,
+                                                     total integer,
+                                                     totalconsumedquantity integer,
+                                                     totalcost numeric(19,2),
+                                                     totallossesandadjustments integer,
+                                                     totalreceivedquantity integer,
+                                                     totalstockoutdays integer,
+                                                     requisitionid uuid,
+                                                     idealstockamount integer,
+                                                     calculatedorderquantityisa integer,
+                                                     additionalquantityrequired integer,
+                                                     orderableversionnumber bigint,
+                                                     facilitytypeapprovedproductid uuid,
+                                                     facilitytypeapprovedproductversionnumber bigint,
+                                                     numberofpatientsontreatmentnextmonth integer,
+                                                     totalrequirement integer,
+                                                     totalquantityneededbyhf integer,
+                                                     quantitytoissue integer,
+                                                     convertedquantitytoissue integer
 );
 
 
@@ -1543,9 +1559,9 @@ ALTER TABLE public.kafka_requisition_line_items OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_requisition_permission_strings (
-    id uuid NOT NULL,
-    requisitionid uuid NOT NULL,
-    permissionstring text NOT NULL
+                                                             id uuid NOT NULL,
+                                                             requisitionid uuid NOT NULL,
+                                                             permissionstring text NOT NULL
 );
 
 
@@ -1556,10 +1572,10 @@ ALTER TABLE public.kafka_requisition_permission_strings OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_requisition_template_assignments (
-    id uuid NOT NULL,
-    programid uuid NOT NULL,
-    facilitytypeid uuid,
-    templateid uuid NOT NULL
+                                                               id uuid NOT NULL,
+                                                               programid uuid NOT NULL,
+                                                               facilitytypeid uuid,
+                                                               templateid uuid NOT NULL
 );
 
 
@@ -1570,13 +1586,13 @@ ALTER TABLE public.kafka_requisition_template_assignments OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_requisition_templates (
-    id uuid NOT NULL,
-    createddate timestamp with time zone,
-    modifieddate timestamp with time zone,
-    numberofperiodstoaverage integer,
-    populatestockonhandfromstockcards boolean DEFAULT false NOT NULL,
-    archived boolean DEFAULT false NOT NULL,
-    name character varying(255) NOT NULL
+                                                    id uuid NOT NULL,
+                                                    createddate timestamp with time zone,
+                                                    modifieddate timestamp with time zone,
+                                                    numberofperiodstoaverage integer,
+                                                    populatestockonhandfromstockcards boolean DEFAULT false NOT NULL,
+                                                    archived boolean DEFAULT false NOT NULL,
+                                                    name character varying(255) NOT NULL
 );
 
 
@@ -1587,23 +1603,24 @@ ALTER TABLE public.kafka_requisition_templates OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_requisitions (
-    id uuid NOT NULL,
-    createddate timestamp with time zone,
-    modifieddate timestamp with time zone,
-    draftstatusmessage text,
-    emergency boolean NOT NULL,
-    facilityid uuid NOT NULL,
-    numberofmonthsinperiod integer NOT NULL,
-    processingperiodid uuid NOT NULL,
-    programid uuid NOT NULL,
-    status character varying(255) NOT NULL,
-    supervisorynodeid uuid,
-    supplyingfacilityid uuid,
-    templateid uuid NOT NULL,
-    datephysicalstockcountcompleted date,
-    version bigint DEFAULT 0,
-    reportonly boolean,
-    extradata jsonb
+                                           id uuid NOT NULL,
+                                           createddate timestamp with time zone,
+                                           modifieddate timestamp with time zone,
+                                           draftstatusmessage text,
+                                           emergency boolean NOT NULL,
+                                           facilityid uuid NOT NULL,
+                                           numberofmonthsinperiod integer NOT NULL,
+                                           processingperiodid uuid NOT NULL,
+                                           programid uuid NOT NULL,
+                                           status character varying(255) NOT NULL,
+                                           supervisorynodeid uuid,
+                                           supplyingfacilityid uuid,
+                                           templateid uuid NOT NULL,
+                                           datephysicalstockcountcompleted date,
+                                           version bigint DEFAULT 0,
+                                           reportonly boolean,
+                                           extradata jsonb,
+                                           patientsdata text
 );
 
 
@@ -1614,8 +1631,8 @@ ALTER TABLE public.kafka_requisitions OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_requisitions_previous_requisitions (
-    requisitionid uuid NOT NULL,
-    previousrequisitionid uuid NOT NULL
+                                                                 requisitionid uuid NOT NULL,
+                                                                 previousrequisitionid uuid NOT NULL
 );
 
 
@@ -1626,13 +1643,13 @@ ALTER TABLE public.kafka_requisitions_previous_requisitions OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_status_changes (
-    id uuid NOT NULL,
-    createddate timestamp with time zone,
-    modifieddate timestamp with time zone,
-    authorid uuid,
-    status character varying(255) NOT NULL,
-    requisitionid uuid NOT NULL,
-    supervisorynodeid uuid
+                                             id uuid NOT NULL,
+                                             createddate timestamp with time zone,
+                                             modifieddate timestamp with time zone,
+                                             authorid uuid,
+                                             status character varying(255) NOT NULL,
+                                             requisitionid uuid NOT NULL,
+                                             supervisorynodeid uuid
 );
 
 
@@ -1643,16 +1660,16 @@ ALTER TABLE public.kafka_status_changes OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_status_messages (
-    id uuid NOT NULL,
-    createddate timestamp with time zone,
-    modifieddate timestamp with time zone,
-    authorfirstname character varying(255),
-    authorid uuid,
-    authorlastname character varying(255),
-    body text NOT NULL,
-    status character varying(255) NOT NULL,
-    requisitionid uuid NOT NULL,
-    statuschangeid uuid NOT NULL
+                                              id uuid NOT NULL,
+                                              createddate timestamp with time zone,
+                                              modifieddate timestamp with time zone,
+                                              authorfirstname character varying(255),
+                                              authorid uuid,
+                                              authorlastname character varying(255),
+                                              body text NOT NULL,
+                                              status character varying(255) NOT NULL,
+                                              requisitionid uuid NOT NULL,
+                                              statuschangeid uuid NOT NULL
 );
 
 
@@ -1663,15 +1680,15 @@ ALTER TABLE public.kafka_status_messages OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_stock_adjustment_reasons (
-    id uuid NOT NULL,
-    reasonid uuid NOT NULL,
-    description text,
-    isfreetextallowed boolean NOT NULL,
-    name text NOT NULL,
-    reasoncategory text NOT NULL,
-    reasontype text NOT NULL,
-    requisitionid uuid,
-    hidden boolean
+                                                       id uuid NOT NULL,
+                                                       reasonid uuid NOT NULL,
+                                                       description text,
+                                                       isfreetextallowed boolean NOT NULL,
+                                                       name text NOT NULL,
+                                                       reasoncategory text NOT NULL,
+                                                       reasontype text NOT NULL,
+                                                       requisitionid uuid,
+                                                       hidden boolean
 );
 
 
@@ -1682,10 +1699,10 @@ ALTER TABLE public.kafka_stock_adjustment_reasons OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_stock_adjustments (
-    id uuid NOT NULL,
-    quantity integer NOT NULL,
-    reasonid uuid NOT NULL,
-    requisitionlineitemid uuid
+                                                id uuid NOT NULL,
+                                                quantity integer NOT NULL,
+                                                reasonid uuid NOT NULL,
+                                                requisitionlineitemid uuid
 );
 
 
@@ -1696,23 +1713,85 @@ ALTER TABLE public.kafka_stock_adjustments OWNER TO postgres;
 --
 
 CREATE TABLE public.kafka_template_parameters (
-    id uuid NOT NULL,
-    datatype text,
-    defaultvalue text,
-    description text,
-    displayname text,
-    name text,
-    selectexpression text,
-    templateid uuid NOT NULL,
-    selectproperty text,
-    displayproperty text,
-    required boolean,
-    selectmethod text,
-    selectbody text
+                                                  id uuid NOT NULL,
+                                                  datatype text,
+                                                  defaultvalue text,
+                                                  description text,
+                                                  displayname text,
+                                                  name text,
+                                                  selectexpression text,
+                                                  templateid uuid NOT NULL,
+                                                  selectproperty text,
+                                                  displayproperty text,
+                                                  required boolean,
+                                                  selectmethod text,
+                                                  selectbody text
 );
 
 
 ALTER TABLE public.kafka_template_parameters OWNER TO postgres;
+
+--
+-- Name: stock_cards; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.kafka_stock_cards (
+                                          id uuid NOT NULL,
+                                          facilityid uuid NOT NULL,
+                                          lotid uuid,
+                                          orderableid uuid NOT NULL,
+                                          programid uuid NOT NULL,
+                                          origineventid uuid NOT NULL,
+                                          isshowed boolean,
+                                          isactive boolean
+);
+
+
+ALTER TABLE public.kafka_stock_cards OWNER TO postgres;
+
+--
+-- Name: stock_card_line_items; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.kafka_stock_card_line_items (
+                                                    id uuid NOT NULL,
+                                                    destinationfreetext character varying(255),
+                                                    documentnumber character varying(255),
+                                                    occurreddate date NOT NULL,
+                                                    processeddate timestamp with time zone NOT NULL,
+                                                    quantity integer NOT NULL,
+                                                    reasonfreetext character varying(255),
+                                                    signature character varying(255),
+                                                    sourcefreetext character varying(255),
+                                                    userid uuid NOT NULL,
+                                                    destinationid uuid,
+                                                    origineventid uuid NOT NULL,
+                                                    reasonid uuid,
+                                                    sourceid uuid,
+                                                    stockcardid uuid NOT NULL,
+                                                    extradata jsonb
+);
+
+
+ALTER TABLE public.kafka_stock_card_line_items OWNER TO postgres;
+
+
+--
+-- Name: stock_card_line_item_reasons; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.kafka_stock_card_line_item_reasons (
+                                                           id uuid NOT NULL,
+                                                           description text,
+                                                           isfreetextallowed boolean NOT NULL,
+                                                           name text NOT NULL,
+                                                           reasoncategory text NOT NULL,
+                                                           reasontype text NOT NULL
+);
+
+
+ALTER TABLE public.kafka_stock_card_line_item_reasons OWNER TO postgres;
+
 
 --
 -- Name: available_requisition_column_options available_requisition_column_options_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
@@ -1851,6 +1930,30 @@ ALTER TABLE ONLY public.kafka_jasper_templates
 
 
 --
+-- Name: stock_cards stock_cards_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kafka_stock_cards
+    ADD CONSTRAINT stock_cards_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: stock_card_line_items stock_card_line_items_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kafka_stock_card_line_items
+    ADD CONSTRAINT stock_card_line_items_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: stock_card_line_item_reasons stock_card_line_item_reasons_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kafka_stock_card_line_item_reasons
+    ADD CONSTRAINT stock_card_line_item_reasons_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: available_non_full_supply_products_requisitionid_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1944,93 +2047,114 @@ CREATE INDEX status_changes_requisitionid_idx ON public.kafka_status_changes USI
 
 
 --
+-- Name: stock_card_facility_program_orderable; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX stock_card_facility_program_orderable ON public.kafka_stock_cards USING btree
+(facilityid, programid, orderableid) WHERE lotid IS NULL;
+CREATE INDEX stock_card_facility_program_orderable_lotId ON public.kafka_stock_cards USING btree
+(facilityid, programid, orderableid, lotid) WHERE lotid IS NOT NULL;
+
+--
+-- Name: stock_card_line_items_stock_idx; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX stock_card_line_items_stock_idx ON public.kafka_stock_card_line_items USING btree (stockcardid);
+
+
+--
 -- Name: reporting_dates; Type: TABLE; Schema: referencedata; Owner: postgres
 --
 
 CREATE TABLE reporting_dates (
-  due_days int,
-  late_days int,
-  country varchar
+                                 due_days int,
+                                 late_days int,
+                                 country varchar
 );
 
 ALTER TABLE reporting_dates OWNER TO postgres;
 
--- Insert default values for reporting dates --
-INSERT INTO reporting_dates(due_days, late_days, country) 
-    VALUES(14, 7, 'Malawi'), (14, 7, 'Mozambique');
-
+---
+--- Name: view_facility_access; Type: TABLE; Schema: public; Owner: postgres
+---
 
 CREATE MATERIALIZED VIEW view_facility_access AS
-SELECT DISTINCT u.username, facilityid, programid
+SELECT DISTINCT u.username, facilityid, kf.name as facility_name, programid, kp.name as program_name, rightname,
+                dgz.id as district_id, rgz.id as region_id, cgz.id as country_id, ft.id as facility_type_id,
+                dgz.name as district_name, rgz.name as region_name, cgz.name as country_name, ft.name as facility_type_name
 FROM kafka_right_assignments ra
-  LEFT JOIN kafka_users u ON u.id = ra.userid
-WHERE facilityid IS NOT NULL AND programid IS NOT NULL
-UNION
-SELECT DISTINCT 'admin', facilityid, programid
-FROM kafka_right_assignments ra
-  LEFT JOIN kafka_users u ON u.id = ra.userid
-WHERE facilityid IS NOT NULL AND programid IS NOT NULL AND u.username = 'administrator'
-;
+         LEFT JOIN kafka_users u ON u.id = ra.userid
+         LEFT JOIN kafka_facilities kf ON kf.id = ra.facilityid
+         left join kafka_programs kp on kp.id = programid
+         LEFT JOIN kafka_geographic_zones dgz ON dgz.id = kf.geographiczoneid
+         LEFT JOIN kafka_geographic_zones rgz ON rgz.id = dgz.parentid
+         LEFT JOIN kafka_geographic_zones cgz ON cgz.id = rgz.parentid
+         LEFT JOIN kafka_facility_types ft ON ft.id = kf.typeid
+WHERE facilityid IS NOT NULL AND programid IS NOT null
+  AND rightname in ('REQUISITION_VIEW', 'STOCK_CARDS_VIEW')
+    WITH DATA;
 
+ALTER MATERIALIZED VIEW view_facility_access OWNER TO postgres;
 
 ---
 --- Name: reporting_rate_and_timeliness; Type: TABLE; Schema: public; Owner: postgres
 ---
+
 CREATE MATERIALIZED VIEW reporting_rate_and_timeliness AS
 SELECT f.name
-  , dgz.name AS district
-  , rgz.name AS region
-  , cgz.name AS country
-  , ft.name AS facility_type_name
-  , fo.name AS operator_name
-  , f.active AS facility_active_status
-  , final_authorized_requisitions.requisition_id AS req_id
-  , final_authorized_requisitions.facility_id
-  , final_authorized_requisitions.program_id
-  , final_authorized_requisitions.program_name
-  , final_authorized_requisitions.program_active_status
-  , final_authorized_requisitions.processing_period_id
-  , final_authorized_requisitions.processing_period_name
-  , final_authorized_requisitions.processing_schedule_name
-  , final_authorized_requisitions.processing_period_startdate
-  , final_authorized_requisitions.processing_period_enddate
-  , final_authorized_requisitions.emergency_status
-  , final_authorized_requisitions.created_date
-  , final_authorized_requisitions.modified_date
-  , sp.programid AS supported_program
-  , sp.active AS supported_program_active
-  , sp.startdate AS supported_program_startdate
-  , final_authorized_requisitions.status_change_date
-  , fa.facilityid AS facility
-  , fa.programid AS program
-  , fa.username
-  , CASE
-    WHEN final_authorized_requisitions.status_change_date::DATE <= (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT) 
-      AND final_authorized_requisitions.status = 'AUTHORIZED' THEN 'On time'
-    WHEN final_authorized_requisitions.status_change_date::DATE > (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT + rd.late_days::INT) 
+     , dgz.name AS district
+     , rgz.name AS region
+     , cgz.name AS country
+     , ft.name AS facility_type_name
+     , fo.name AS operator_name
+     , f.active AS facility_active_status
+     , final_authorized_requisitions.requisition_id AS req_id
+     , final_authorized_requisitions.facility_id
+     , final_authorized_requisitions.program_id
+     , final_authorized_requisitions.program_name
+     , final_authorized_requisitions.program_active_status
+     , final_authorized_requisitions.processing_period_id
+     , final_authorized_requisitions.processing_period_name
+     , final_authorized_requisitions.processing_schedule_name
+     , final_authorized_requisitions.processing_period_startdate
+     , final_authorized_requisitions.processing_period_enddate
+     , final_authorized_requisitions.emergency_status
+     , final_authorized_requisitions.created_date
+     , final_authorized_requisitions.modified_date
+     , sp.programid AS supported_program
+     , sp.active AS supported_program_active
+     , sp.startdate AS supported_program_startdate
+     , final_authorized_requisitions.status_change_date
+     , fa.facilityid AS facility
+     , fa.programid AS program
+     , fa.username
+     , CASE
+           WHEN final_authorized_requisitions.status_change_date::DATE <= (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT)
+    AND final_authorized_requisitions.status = 'AUTHORIZED' THEN 'On time'
+    WHEN final_authorized_requisitions.status_change_date::DATE > (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT + rd.late_days::INT)
       AND final_authorized_requisitions.status = 'AUTHORIZED' THEN 'Unscheduled'
-    WHEN final_authorized_requisitions.status_change_date::DATE < (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT + rd.late_days::INT) 
-      AND final_authorized_requisitions.status_change_date::DATE >= (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT) 
+    WHEN final_authorized_requisitions.status_change_date::DATE < (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT + rd.late_days::INT)
+      AND final_authorized_requisitions.status_change_date::DATE >= (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT)
       AND final_authorized_requisitions.status = 'AUTHORIZED' THEN 'Late'
     ELSE 'Did not report'
   END AS reporting_timeliness
 FROM kafka_facilities f
-  LEFT JOIN (SELECT ranked_authorized_requisitions.requisition_id
-      , ranked_authorized_requisitions.facility_id
-      , ranked_authorized_requisitions.program_id
-      , ranked_authorized_requisitions.program_name
-      , ranked_authorized_requisitions.program_active_status
-      , ranked_authorized_requisitions.processing_period_id
-      , ranked_authorized_requisitions.processing_period_name
-      , ranked_authorized_requisitions.processing_schedule_name
-      , ranked_authorized_requisitions.processing_period_startdate
-      , ranked_authorized_requisitions.processing_period_enddate
-      , ranked_authorized_requisitions.emergency_status
-      , ranked_authorized_requisitions.created_date
-      , ranked_authorized_requisitions.modified_date
-      , ranked_authorized_requisitions.status
-      , ranked_authorized_requisitions.status_change_date
-      , ranked_authorized_requisitions.rank
+    LEFT JOIN (SELECT ranked_authorized_requisitions.requisition_id
+        , ranked_authorized_requisitions.facility_id
+        , ranked_authorized_requisitions.program_id
+        , ranked_authorized_requisitions.program_name
+        , ranked_authorized_requisitions.program_active_status
+        , ranked_authorized_requisitions.processing_period_id
+        , ranked_authorized_requisitions.processing_period_name
+        , ranked_authorized_requisitions.processing_schedule_name
+        , ranked_authorized_requisitions.processing_period_startdate
+        , ranked_authorized_requisitions.processing_period_enddate
+        , ranked_authorized_requisitions.emergency_status
+        , ranked_authorized_requisitions.created_date
+        , ranked_authorized_requisitions.modified_date
+        , ranked_authorized_requisitions.status
+        , ranked_authorized_requisitions.status_change_date
+        , ranked_authorized_requisitions.rank
     FROM (SELECT authorized_requisitions.requisition_id
         , authorized_requisitions.facility_id
         , authorized_requisitions.program_id
@@ -2047,39 +2171,39 @@ FROM kafka_facilities f
         , authorized_requisitions.status
         , authorized_requisitions.status_change_date
         , rank() OVER (PARTITION BY authorized_requisitions.program_id, authorized_requisitions.facility_id, authorized_requisitions.processing_period_id ORDER BY authorized_requisitions.status_change_date DESC) AS rank
-      FROM (SELECT r.id AS requisition_id
-          , r.facilityid AS facility_id
-          , r.programid AS program_id
-          , p.name AS program_name
-          , p.active AS program_active_status
-          , r.processingperiodid AS processing_period_id
-          , pp.name AS processing_period_name
-          , ps.name AS processing_schedule_name
-          , pp.startdate AS processing_period_startdate
-          , pp.enddate AS processing_period_enddate
-          , r.emergency AS emergency_status
-          , r.createddate AS created_date
-          , r.modifieddate AS modified_date
-          , authorized_status_changes.status
-          , authorized_status_changes.createddate AS status_change_date
-        FROM kafka_requisitions r
-          LEFT JOIN (SELECT sc.requisitionid, sc.status, sc.createddate
-            FROM kafka_status_changes sc
-            WHERE sc.status = 'AUTHORIZED') authorized_status_changes ON authorized_status_changes.requisitionid = r.id
-          LEFT JOIN kafka_programs p ON p.id = r.programid
-          LEFT JOIN kafka_processing_periods pp ON pp.id = r.processingperiodid
-          LEFT JOIN kafka_processing_schedules ps ON ps.id = pp.processingscheduleid
-        ) authorized_requisitions
-      ORDER BY authorized_requisitions.facility_id, authorized_requisitions.processing_period_id, authorized_requisitions.status_change_date DESC) ranked_authorized_requisitions
+    FROM (SELECT r.id AS requisition_id
+        , r.facilityid AS facility_id
+        , r.programid AS program_id
+        , p.name AS program_name
+        , p.active AS program_active_status
+        , r.processingperiodid AS processing_period_id
+        , pp.name AS processing_period_name
+        , ps.name AS processing_schedule_name
+        , pp.startdate AS processing_period_startdate
+        , pp.enddate AS processing_period_enddate
+        , r.emergency AS emergency_status
+        , r.createddate AS created_date
+        , r.modifieddate AS modified_date
+        , authorized_status_changes.status
+        , authorized_status_changes.createddate AS status_change_date
+    FROM kafka_requisitions r
+    LEFT JOIN (SELECT sc.requisitionid, sc.status, sc.createddate
+    FROM kafka_status_changes sc
+    WHERE sc.status = 'AUTHORIZED') authorized_status_changes ON authorized_status_changes.requisitionid = r.id
+    LEFT JOIN kafka_programs p ON p.id = r.programid
+    LEFT JOIN kafka_processing_periods pp ON pp.id = r.processingperiodid
+    LEFT JOIN kafka_processing_schedules ps ON ps.id = pp.processingscheduleid
+    ) authorized_requisitions
+    ORDER BY authorized_requisitions.facility_id, authorized_requisitions.processing_period_id, authorized_requisitions.status_change_date DESC) ranked_authorized_requisitions
     WHERE ranked_authorized_requisitions.rank = 1) final_authorized_requisitions ON f.id = final_authorized_requisitions.facility_id
-  LEFT JOIN kafka_geographic_zones dgz ON dgz.id = f.geographiczoneid
-  LEFT JOIN kafka_geographic_zones rgz ON rgz.id = dgz.parentid
-  LEFT JOIN kafka_geographic_zones cgz ON cgz.id = rgz.parentid
-  LEFT JOIN kafka_facility_types ft ON ft.id = f.typeid
-  LEFT JOIN kafka_facility_operators fo ON fo.id = f.operatedbyid
-  LEFT JOIN reporting_dates rd ON rd.country = cgz.name
-  LEFT JOIN kafka_supported_programs sp ON sp.facilityid = f.id AND sp.programid = final_authorized_requisitions.program_id
-  LEFT JOIN view_facility_access fa ON fa.facilityid = f.id AND fa.programid = final_authorized_requisitions.program_id
+    LEFT JOIN kafka_geographic_zones dgz ON dgz.id = f.geographiczoneid
+    LEFT JOIN kafka_geographic_zones rgz ON rgz.id = dgz.parentid
+    LEFT JOIN kafka_geographic_zones cgz ON cgz.id = rgz.parentid
+    LEFT JOIN kafka_facility_types ft ON ft.id = f.typeid
+    LEFT JOIN kafka_facility_operators fo ON fo.id = f.operatedbyid
+    LEFT JOIN reporting_dates rd ON rd.country = cgz.name
+    LEFT JOIN kafka_supported_programs sp ON sp.facilityid = f.id AND sp.programid = final_authorized_requisitions.program_id
+    LEFT JOIN view_facility_access fa ON fa.facilityid = f.id AND fa.programid = final_authorized_requisitions.program_id AND rightname = 'REQUISITION_VIEW'
 ORDER BY final_authorized_requisitions.processing_period_enddate DESC
 WITH DATA;
 
@@ -2089,57 +2213,54 @@ ALTER MATERIALIZED VIEW reporting_rate_and_timeliness OWNER TO postgres;
 ---
 --- Name: adjustments; Type: TABLE; Schema: public; Owner: postgres
 ---
+
 CREATE MATERIALIZED VIEW adjustments AS
 SELECT rli.id AS requisition_line_item_id
-  , r.id AS requisition_id
-  , r.createddate::DATE AS created_date
+     , r.id AS requisition_id
+     , r.createddate::DATE AS created_date
   , r.modifieddate::DATE AS modified_date
   , r.emergency AS emergency_status
-  , sn.name AS supervisory_node
-  , f.name AS facility_name
-  , ft.name AS facility_type_name
-  , fo.name AS facility_operator_name
-  , f.active AS facilty_active_status
-  , dgz.name AS district_name
-  , rgz.name AS region_name
-  , cgz.name AS country_name
-  , p.name AS program_name
-  , p.active AS program_active_status
-  , pp.name AS processing_period_name
-  , latest_orderables.id AS orderable_id
-  , latest_orderables.code AS product_code
-  , latest_orderables.fullproductname AS full_product_name
-  , oi.value AS trade_item_id
-  , rli.totallossesandadjustments AS total_losses_and_adjustments
-  , final_status_changes.status AS status
-  , final_status_changes.authorid AS author_id
-  , final_status_changes.createddate::DATE AS status_history_created_date
+     , sn.name AS supervisory_node
+     , f.name AS facility_name
+     , ft.name AS facility_type_name
+     , fo.name AS facility_operator_name
+     , f.active AS facilty_active_status
+     , dgz.name AS district_name
+     , rgz.name AS region_name
+     , cgz.name AS country_name
+     , p.name AS program_name
+     , p.active AS program_active_status
+     , pp.name AS processing_period_name
+     , latest_orderables.id AS orderable_id
+     , latest_orderables.code AS product_code
+     , latest_orderables.fullproductname AS full_product_name
+     , oi.value AS trade_item_id
+     , rli.totallossesandadjustments AS total_losses_and_adjustments
+     , final_status_changes.status AS status
+     , final_status_changes.authorid AS author_id
+     , final_status_changes.createddate::DATE AS status_history_created_date
   , sa.id AS adjustment_lines_id
-  , sa.quantity AS quantity
-  , sar.name AS stock_adjustment_reason
-  , fa.facilityid AS facility
-  , fa.programid AS program
-  , fa.username AS username
+     , sa.quantity AS quantity
+     , sar.name AS stock_adjustment_reason
 FROM kafka_requisitions r
-  LEFT JOIN kafka_requisition_line_items rli ON rli.requisitionid = r.id
-  LEFT JOIN kafka_supervisory_nodes sn ON sn.id = r.supervisorynodeid
-  LEFT JOIN kafka_facilities f ON f.id = r.facilityid
-  LEFT JOIN kafka_facility_types ft ON ft.id = f.typeid
-  LEFT JOIN kafka_facility_operators fo ON fo.id = f.operatedbyid
-  LEFT JOIN kafka_geographic_zones dgz ON dgz.id = f.geographiczoneid
-  LEFT JOIN kafka_geographic_zones rgz ON rgz.id = dgz.parentid
-  LEFT JOIN kafka_geographic_zones cgz ON cgz.id = rgz.parentid
-  LEFT JOIN kafka_programs p ON p.id = r.programid
-  LEFT JOIN kafka_processing_periods pp ON pp.id = r.processingperiodid
-  LEFT JOIN (SELECT DISTINCT ON (id) id, code, fullproductname, versionnumber FROM kafka_orderables ORDER BY id, versionnumber DESC) latest_orderables ON latest_orderables.id = rli.orderableid AND latest_orderables.versionnumber = rli.orderableversionnumber
-  LEFT JOIN kafka_orderable_identifiers oi ON oi.orderableid = latest_orderables.id AND oi.orderableversionnumber = latest_orderables.versionnumber AND oi.key = 'tradeItem'
-  LEFT JOIN (SELECT DISTINCT ON (requisitionid) id, requisitionid, status, authorid, createddate FROM kafka_status_changes ORDER BY requisitionid, createddate DESC) final_status_changes ON final_status_changes.requisitionid = r.id
-  LEFT JOIN kafka_stock_adjustments sa ON sa.requisitionlineitemid = rli.id
-  LEFT JOIN kafka_stock_adjustment_reasons sar ON sar.id = sa.reasonid AND sar.requisitionid = r.id
-  LEFT JOIN view_facility_access fa ON fa.facilityid = r.facilityid AND fa.programid = r.programid
+         LEFT JOIN kafka_requisition_line_items rli ON rli.requisitionid = r.id
+         LEFT JOIN kafka_supervisory_nodes sn ON sn.id = r.supervisorynodeid
+         LEFT JOIN kafka_facilities f ON f.id = r.facilityid
+         LEFT JOIN kafka_facility_types ft ON ft.id = f.typeid
+         LEFT JOIN kafka_facility_operators fo ON fo.id = f.operatedbyid
+         LEFT JOIN kafka_geographic_zones dgz ON dgz.id = f.geographiczoneid
+         LEFT JOIN kafka_geographic_zones rgz ON rgz.id = dgz.parentid
+         LEFT JOIN kafka_geographic_zones cgz ON cgz.id = rgz.parentid
+         LEFT JOIN kafka_programs p ON p.id = r.programid
+         LEFT JOIN kafka_processing_periods pp ON pp.id = r.processingperiodid
+         LEFT JOIN (SELECT DISTINCT ON (id) id, code, fullproductname, versionnumber FROM kafka_orderables ORDER BY id, versionnumber DESC) latest_orderables ON latest_orderables.id = rli.orderableid AND latest_orderables.versionnumber = rli.orderableversionnumber
+         LEFT JOIN kafka_orderable_identifiers oi ON oi.orderableid = latest_orderables.id AND oi.orderableversionnumber = latest_orderables.versionnumber AND oi.key = 'tradeItem'
+         LEFT JOIN (SELECT DISTINCT ON (requisitionid) id, requisitionid, status, authorid, createddate FROM kafka_status_changes ORDER BY requisitionid, createddate DESC) final_status_changes ON final_status_changes.requisitionid = r.id
+         LEFT JOIN kafka_stock_adjustments sa ON sa.requisitionlineitemid = rli.id
+         LEFT JOIN kafka_stock_adjustment_reasons sar ON sar.reasonid = sa.reasonid AND sar.requisitionid = r.id
 WHERE final_status_changes.status NOT IN ('SKIPPED', 'INITIATED', 'SUBMITTED')
-ORDER BY rli.id, fa.username, r.modifieddate DESC NULLS LAST
-WITH DATA;
+ORDER BY rli.id, r.modifieddate DESC NULLS LAST
+    WITH DATA;
 
 ALTER MATERIALIZED VIEW adjustments OWNER TO postgres;
 
@@ -2147,162 +2268,197 @@ ALTER MATERIALIZED VIEW adjustments OWNER TO postgres;
 ---
 --- Name: stock_status_and_consumption; Type: TABLE; Schema: public; Owner: postgres
 ---
+
 CREATE MATERIALIZED VIEW stock_status_and_consumption AS
 SELECT li.requisition_line_item_id
-  , r.id
-  , r.createddate AS req_created_date
-  , r.modifieddate AS modified_date
-  , r.emergency AS emergency_status
-  , r.supplyingfacilityid AS supplying_facility
-  , r.supervisorynodeid AS supervisory_node
-  , r.facilityid AS facility_id
-  , f.code AS facility_code
-  , f.name AS facility_name
-  , f.active AS facilty_active_status
-  , dgz.id AS district_id
-  , dgz.code AS district_code
-  , dgz.name AS district_name
-  , rgz.id AS region_id
-  , rgz.code AS region_code
-  , rgz.name AS region_name
-  , cgz.id AS country_id
-  , cgz.code AS country_code
-  , cgz.name AS country_name
-  , ft.id AS facility_type_id
-  , ft.code AS facility_type_code
-  , ft.name AS facility_type_name
-  , fo.id AS facility_operator_id
-  , fo.code AS facility_operator_code
-  , fo.name AS facility_operator_name
-  , p.id AS program_id
-  , p.code AS program_code
-  , p.name AS program_name
-  , p.active AS program_active_status
-  , pp.id AS processing_period_id
-  , pp.name AS processing_period_name
-  , pp.startdate AS processing_period_startdate
-  , pp.enddate AS processing_period_enddate
-  , ps.id AS processing_schedule_id
-  , ps.code AS processing_schedule_code
-  , ps.name AS processing_schedule_name
-  , li.requisition_id AS li_req_id
-  , li.orderable_id
-  , li.product_code
-  , li.full_product_name
-  , li.trade_item_id
-  , li.beginning_balance
-  , li.total_consumed_quantity
-  , li.average_consumption
-  , li.total_losses_and_adjustments
-  , li.stock_on_hand
-  , li.total_stockout_days
-  , li.max_periods_of_stock
-  , li.calculated_order_quantity
-  , li.requested_quantity
-  , li.approved_quantity
-  , li.packs_to_ship
-  , li.price_per_pack
-  , li.total_cost
-  , li.total_received_quantity
-  , sc.requisitionid AS status_req_id
-  , sc.status AS req_status
-  , sc.authorid AS author_id
-  , sc.createddate AS status_date
-  , fa.facilityid AS facility
-  , fa.programid AS program
-  , fa.username
-  , li.closing_balance
-  , li.amc
-  , li.consumption
-  , li.adjusted_consumption
-  , li.order_quantity
-  , f.enabled as facility_status
-  , rd.due_days
-  , rd.late_days
-  , li.combined_stockout
-  , li.stock_status
-FROM kafka_requisitions r 
-  LEFT JOIN kafka_status_changes sc ON sc.requisitionid = r.id
-  LEFT JOIN kafka_facilities f ON f.id = r.facilityid
-  LEFT JOIN kafka_geographic_zones dgz ON dgz.id = f.geographiczoneid
-  LEFT JOIN kafka_geographic_zones rgz ON rgz.id = dgz.parentid
-  LEFT JOIN kafka_geographic_zones cgz ON cgz.id = rgz.parentid
-  LEFT JOIN kafka_facility_types ft ON ft.id = f.typeid
-  LEFT JOIN kafka_facility_operators fo ON fo.id = f.operatedbyid
-  LEFT JOIN kafka_programs p ON p.id = r.programid
-  LEFT JOIN kafka_processing_periods pp ON pp.id = r.processingperiodid
-  LEFT JOIN kafka_processing_schedules ps ON ps.id = pp.processingscheduleid
-  LEFT JOIN reporting_dates rd ON rd.country = cgz.name
-  LEFT JOIN view_facility_access fa ON fa.facilityid = f.id AND fa.programid = r.programid
-  LEFT JOIN (SELECT DISTINCT ON (rli.id) rli.id AS requisition_line_item_id
-      , requisitionid AS requisition_id
-      , rli.orderableid AS orderable_id
-      , latest_orderables.code AS product_code
-      , latest_orderables.fullproductname AS full_product_name
-      , oi.value AS trade_item_id
-      , beginningbalance AS beginning_balance
-      , totalconsumedquantity AS total_consumed_quantity
-      , averageconsumption AS average_consumption
-      , totallossesandadjustments AS total_losses_and_adjustments
-      , stockonhand AS stock_on_hand
-      , totalstockoutdays AS total_stockout_days
-      , maxperiodsofstock AS max_periods_of_stock
-      , calculatedorderquantity AS calculated_order_quantity
-      , requestedquantity AS requested_quantity
-      , approvedquantity AS approved_quantity
-      , packstoship AS packs_to_ship
-      , priceperpack AS price_per_pack
-      , totalcost AS total_cost
-      , totalreceivedquantity AS total_received_quantity
-      , SUM(stockonhand) AS closing_balance
-      , SUM(averageconsumption) AS amc
-      , SUM(totalconsumedquantity) AS consumption
-      , SUM(adjustedconsumption) AS adjusted_consumption
-      , SUM(approvedquantity) AS order_quantity
-      , CASE 
-        WHEN (SUM(stockonhand) = 0 OR SUM(totalstockoutdays) > 0 OR SUM(beginningbalance) = 0 OR SUM(maxperiodsofstock) = 0) THEN 1
-        ELSE 0 
-      END as combined_stockout
-      , CASE
-        WHEN SUM(maxperiodsofstock) > 6 THEN 'Overstocked'
-        WHEN SUM(maxperiodsofstock) < 3 AND (SUM(stockonhand) = 0 OR SUM(totalstockoutdays) > 0 OR SUM(beginningbalance) = 0 OR SUM(maxperiodsofstock) = 0) THEN 'Stocked Out'
-        WHEN SUM(maxperiodsofstock) < 3 AND SUM(maxperiodsofstock) > 0 AND NOT(SUM(stockonhand) = 0 OR SUM(totalstockoutdays) > 0 OR SUM(beginningbalance) = 0 OR SUM(maxperiodsofstock) = 0) THEN 'Understocked'
-        WHEN SUM(maxperiodsofstock) = 0 AND NOT(SUM(stockonhand) = 0 OR SUM(totalstockoutdays) > 0 OR SUM(beginningbalance) = 0 OR SUM(maxperiodsofstock) = 0) THEN 'Unknown'
-        ELSE 'Adequately stocked'
-      END as stock_status
-    FROM kafka_requisition_line_items rli
-      LEFT JOIN (SELECT DISTINCT ON (id) id, code, fullproductname, versionnumber FROM kafka_orderables ORDER BY id, versionnumber DESC) latest_orderables ON latest_orderables.id = rli.orderableid AND latest_orderables.versionnumber = rli.orderableversionnumber
-      LEFT JOIN kafka_orderable_identifiers oi ON oi.orderableid = latest_orderables.id AND oi.orderableversionnumber = latest_orderables.versionnumber AND oi.key = 'tradeItem'
-    GROUP BY rli.id
-      , requisitionid
-      , rli.orderableid
-      , latest_orderables.code
-      , latest_orderables.fullproductname
-      , oi.value
-      , beginningbalance
-      , totalconsumedquantity
-      , averageconsumption
-      , totallossesandadjustments
-      , stockonhand
-      , totalstockoutdays
-      , maxperiodsofstock
-      , calculatedorderquantity
-      , requestedquantity
-      , approvedquantity
-      , packstoship
-      , priceperpack
-      , totalcost
-      , totalreceivedquantity) li ON li.requisition_id = r.id
-WITH DATA;
+     , r.id
+     , r.createddate AS req_created_date
+     , r.modifieddate AS modified_date
+     , r.emergency AS emergency_status
+     , r.supplyingfacilityid AS supplying_facility
+     , r.supervisorynodeid AS supervisory_node
+     , r.facilityid AS facility_id
+     , r.status AS req_status
+     , f.code AS facility_code
+     , f.name AS facility_name
+     , f.active AS facilty_active_status
+     , dgz.id AS district_id
+     , dgz.code AS district_code
+     , dgz.name AS district_name
+     , rgz.id AS region_id
+     , rgz.code AS region_code
+     , rgz.name AS region_name
+     , cgz.id AS country_id
+     , cgz.code AS country_code
+     , cgz.name AS country_name
+     , ft.id AS facility_type_id
+     , ft.code AS facility_type_code
+     , ft.name AS facility_type_name
+     , fo.id AS facility_operator_id
+     , fo.code AS facility_operator_code
+     , fo.name AS facility_operator_name
+     , p.id AS program_id
+     , p.code AS program_code
+     , p.name AS program_name
+     , p.active AS program_active_status
+     , pp.id AS processing_period_id
+     , pp.name AS processing_period_name
+     , pp.startdate AS processing_period_startdate
+     , pp.enddate AS processing_period_enddate
+     , ps.id AS processing_schedule_id
+     , ps.code AS processing_schedule_code
+     , ps.name AS processing_schedule_name
+     , li.requisition_id AS li_req_id
+     , li.orderable_id
+     , li.product_code
+     , li.full_product_name
+     , li.trade_item_id
+     , li.beginning_balance
+     , li.total_consumed_quantity
+     , li.average_consumption
+     , li.total_losses_and_adjustments
+     , li.stock_on_hand
+     , li.total_stockout_days
+     , li.max_periods_of_stock
+     , li.calculated_order_quantity
+     , li.requested_quantity
+     , li.approved_quantity
+     , li.packs_to_ship
+     , li.price_per_pack
+     , li.total_cost
+     , li.total_received_quantity
+     , li.closing_balance
+     , li.amc
+     , li.consumption
+     , li.adjusted_consumption
+     , li.order_quantity
+     , f.enabled as facility_status
+     , rd.due_days
+     , rd.late_days
+     , li.combined_stockout
+     , li.stock_status
+FROM kafka_requisitions r
+         LEFT JOIN kafka_facilities f ON f.id = r.facilityid
+         LEFT JOIN kafka_geographic_zones dgz ON dgz.id = f.geographiczoneid
+         LEFT JOIN kafka_geographic_zones rgz ON rgz.id = dgz.parentid
+         LEFT JOIN kafka_geographic_zones cgz ON cgz.id = rgz.parentid
+         LEFT JOIN kafka_facility_types ft ON ft.id = f.typeid
+         LEFT JOIN kafka_facility_operators fo ON fo.id = f.operatedbyid
+         LEFT JOIN kafka_programs p ON p.id = r.programid
+         LEFT JOIN kafka_processing_periods pp ON pp.id = r.processingperiodid
+         LEFT JOIN kafka_processing_schedules ps ON ps.id = pp.processingscheduleid
+         LEFT JOIN reporting_dates rd ON rd.country = cgz.name
+         LEFT JOIN (SELECT DISTINCT ON (rli.id) rli.id AS requisition_line_item_id
+    , requisitionid AS requisition_id
+    , rli.orderableid AS orderable_id
+    , latest_orderables.code AS product_code
+    , latest_orderables.fullproductname AS full_product_name
+    , oi.value AS trade_item_id
+    , beginningbalance AS beginning_balance
+    , totalconsumedquantity AS total_consumed_quantity
+    , averageconsumption AS average_consumption
+    , totallossesandadjustments AS total_losses_and_adjustments
+    , stockonhand AS stock_on_hand
+    , totalstockoutdays AS total_stockout_days
+    , maxperiodsofstock AS max_periods_of_stock
+    , calculatedorderquantity AS calculated_order_quantity
+    , requestedquantity AS requested_quantity
+    , approvedquantity AS approved_quantity
+    , packstoship AS packs_to_ship
+    , priceperpack AS price_per_pack
+    , totalcost AS total_cost
+    , totalreceivedquantity AS total_received_quantity
+    , SUM(stockonhand) AS closing_balance
+    , SUM(averageconsumption) AS amc
+    , SUM(totalconsumedquantity) AS consumption
+    , SUM(adjustedconsumption) AS adjusted_consumption
+    , SUM(approvedquantity) AS order_quantity
+    , CASE
+    WHEN (SUM(stockonhand) = 0 OR SUM(totalstockoutdays) > 0 OR SUM(beginningbalance) = 0 OR SUM(maxperiodsofstock) = 0) THEN 1
+    ELSE 0
+    END as combined_stockout
+    , CASE
+    WHEN SUM(maxperiodsofstock) > 6 THEN 'Overstocked'
+    WHEN SUM(maxperiodsofstock) < 3 AND (SUM(stockonhand) = 0 OR SUM(totalstockoutdays) > 0 OR SUM(beginningbalance) = 0 OR SUM(maxperiodsofstock) = 0) THEN 'Stocked Out'
+    WHEN SUM(maxperiodsofstock) < 3 AND SUM(maxperiodsofstock) > 0 AND NOT(SUM(stockonhand) = 0 OR SUM(totalstockoutdays) > 0 OR SUM(beginningbalance) = 0 OR SUM(maxperiodsofstock) = 0) THEN 'Understocked'
+    WHEN SUM(maxperiodsofstock) = 0 AND NOT(SUM(stockonhand) = 0 OR SUM(totalstockoutdays) > 0 OR SUM(beginningbalance) = 0 OR SUM(maxperiodsofstock) = 0) THEN 'Unknown'
+    ELSE 'Adequately stocked'
+    END as stock_status
+                    FROM kafka_requisition_line_items rli
+                        LEFT JOIN (SELECT DISTINCT ON (id) id, code, fullproductname, versionnumber FROM kafka_orderables ORDER BY id, versionnumber DESC) latest_orderables ON latest_orderables.id = rli.orderableid AND latest_orderables.versionnumber = rli.orderableversionnumber
+                        LEFT JOIN kafka_orderable_identifiers oi ON oi.orderableid = latest_orderables.id AND oi.orderableversionnumber = latest_orderables.versionnumber AND oi.key = 'tradeItem'
+                    GROUP BY rli.id
+                            , requisitionid
+                            , rli.orderableid
+                            , latest_orderables.code
+                            , latest_orderables.fullproductname
+                            , oi.value
+                            , beginningbalance
+                            , totalconsumedquantity
+                            , averageconsumption
+                            , totallossesandadjustments
+                            , stockonhand
+                            , totalstockoutdays
+                            , maxperiodsofstock
+                            , calculatedorderquantity
+                            , requestedquantity
+                            , approvedquantity
+                            , packstoship
+                            , priceperpack
+                            , totalcost
+                            , totalreceivedquantity) li ON li.requisition_id = r.id
+    WITH DATA;
 
 ALTER MATERIALIZED VIEW stock_status_and_consumption OWNER TO postgres;
 
 CREATE MATERIALIZED VIEW facilities AS
 SELECT f.code as code, f.name as name, gz.name as district, ft.name as type, fo.name as operator_name
 FROM public.kafka_facilities f
-left join public.kafka_geographic_zones gz on gz.id = f.geographiczoneid
-left join public.kafka_facility_types ft on ft.id = f.typeid
-left join public.kafka_facility_operators fo on fo.id = f.operatedbyid
-WITH DATA;
+         left join public.kafka_geographic_zones gz on gz.id = f.geographiczoneid
+         left join public.kafka_facility_types ft on ft.id = f.typeid
+         left join public.kafka_facility_operators fo on fo.id = f.operatedbyid
+    WITH DATA;
 
 ALTER MATERIALIZED VIEW facilities OWNER TO postgres;
+
+---
+--- Name: stock_adjustments_view; Type: TABLE; Schema: public; Owner: postgres
+---
+
+CREATE MATERIALIZED VIEW stock_adjustments_view AS
+SELECT DISTINCT line_item.id
+              , product.code AS product_code
+              , product.fullproductname AS product_name
+              , lot.lotcode AS lot_code
+              , lot.expirationdate
+              , line_item.quantity
+              , reason.name AS reason_name
+              , line_item.occurreddate
+              , reason.reasoncategory
+              , program.id AS program_id
+              , program.name AS program_name
+              , program.code AS program_code
+              , facility.id AS facility_id
+              , facility.name AS facility_name
+              , district.id AS district_id
+              , district.name AS district_name
+              , region.id AS region_id
+              , region.name AS region_name
+              , country.id AS country_id
+              , country.name AS country_name
+              , facility_type.id AS facility_type_id
+              , facility_type.name AS facility_type_name
+FROM kafka_stock_cards card
+         LEFT JOIN kafka_stock_card_line_items line_item ON card.id = line_item.stockcardid
+         LEFT JOIN kafka_stock_card_line_item_reasons reason ON line_item.reasonid = reason.id
+         LEFT JOIN kafka_orderables product ON card.orderableid::text = product.id::text
+LEFT JOIN kafka_lots lot ON card.lotid::text = lot.id::text
+    LEFT JOIN kafka_programs program ON card.programid::text = program.id::text
+    LEFT JOIN kafka_facilities facility ON card.facilityid::text = facility.id::text
+    LEFT JOIN kafka_geographic_zones district ON district.id::text = facility.geographiczoneid::text
+    LEFT JOIN kafka_geographic_zones region ON region.id::text = district.parentid::text
+    LEFT JOIN kafka_geographic_zones country ON country.id::text = region.parentid::text
+    LEFT JOIN kafka_facility_types facility_type ON facility_type.id::text = facility.typeid::text
+WITH DATA;
+
+ALTER MATERIALIZED VIEW stock_adjustments_view OWNER TO postgres;
