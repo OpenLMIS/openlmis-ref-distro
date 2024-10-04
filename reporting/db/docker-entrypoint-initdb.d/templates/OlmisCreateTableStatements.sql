@@ -2079,18 +2079,22 @@ ALTER TABLE reporting_dates OWNER TO postgres;
 ---
 
 CREATE MATERIALIZED VIEW view_facility_access AS
-SELECT DISTINCT u.username, facilityid, kf.name as facility_name, programid, kp.name as program_name, rightname,
+SELECT DISTINCT u.username, ra.facilityid, f.name as facility_name, ra.programid, p.name as program_name, rightname,
                 dgz.id as district_id, rgz.id as region_id, cgz.id as country_id, ft.id as facility_type_id,
-                dgz.name as district_name, rgz.name as region_name, cgz.name as country_name, ft.name as facility_type_name
+                dgz.name as district_name, rgz.name as region_name, cgz.name as country_name, ft.name as facility_type_name,
+                sn.id as supervisory_node_id, sn.name as supervisory_node
 FROM kafka_right_assignments ra
          LEFT JOIN kafka_users u ON u.id = ra.userid
-         LEFT JOIN kafka_facilities kf ON kf.id = ra.facilityid
-         left join kafka_programs kp on kp.id = programid
-         LEFT JOIN kafka_geographic_zones dgz ON dgz.id = kf.geographiczoneid
+         LEFT JOIN kafka_facilities f ON f.id = ra.facilityid
+         LEFT JOIN kafka_programs p on p.id = ra.programid
+         LEFT JOIN kafka_geographic_zones dgz ON dgz.id = f.geographiczoneid
          LEFT JOIN kafka_geographic_zones rgz ON rgz.id = dgz.parentid
          LEFT JOIN kafka_geographic_zones cgz ON cgz.id = rgz.parentid
-         LEFT JOIN kafka_facility_types ft ON ft.id = kf.typeid
-WHERE facilityid IS NOT NULL AND programid IS NOT null
+         LEFT JOIN kafka_facility_types ft ON ft.id = f.typeid
+         LEFT JOIN kafka_requisition_group_members rgm ON rgm.facilityid = f.id 
+         LEFT JOIN kafka_requisition_groups rg on rg.id = rgm.requisitiongroupid 
+         LEFT JOIN kafka_supervisory_nodes sn ON sn.facilityid = f.id AND rightname in ('REQUISITION_VIEW')
+WHERE ra.facilityid IS NOT NULL AND ra.programid IS NOT null
   AND rightname in ('REQUISITION_VIEW', 'STOCK_CARDS_VIEW')
     WITH DATA;
 
@@ -2125,9 +2129,6 @@ SELECT f.name
      , sp.active AS supported_program_active
      , sp.startdate AS supported_program_startdate
      , final_authorized_requisitions.status_change_date
-     , fa.facilityid AS facility
-     , fa.programid AS program
-     , fa.username
      , CASE
            WHEN final_authorized_requisitions.status_change_date::DATE <= (final_authorized_requisitions.processing_period_enddate::DATE + rd.due_days::INT)
     AND final_authorized_requisitions.status = 'AUTHORIZED' THEN 'On time'
@@ -2138,6 +2139,7 @@ SELECT f.name
       AND final_authorized_requisitions.status = 'AUTHORIZED' THEN 'Late'
     ELSE 'Did not report'
   END AS reporting_timeliness
+     , final_authorized_requisitions.supervisory_node_id
 FROM kafka_facilities f
     LEFT JOIN (SELECT ranked_authorized_requisitions.requisition_id
         , ranked_authorized_requisitions.facility_id
@@ -2155,6 +2157,7 @@ FROM kafka_facilities f
         , ranked_authorized_requisitions.status
         , ranked_authorized_requisitions.status_change_date
         , ranked_authorized_requisitions.rank
+        , ranked_authorized_requisitions.supervisory_node_id
     FROM (SELECT authorized_requisitions.requisition_id
         , authorized_requisitions.facility_id
         , authorized_requisitions.program_id
@@ -2171,6 +2174,7 @@ FROM kafka_facilities f
         , authorized_requisitions.status
         , authorized_requisitions.status_change_date
         , rank() OVER (PARTITION BY authorized_requisitions.program_id, authorized_requisitions.facility_id, authorized_requisitions.processing_period_id ORDER BY authorized_requisitions.status_change_date DESC) AS rank
+        , authorized_requisitions.supervisory_node_id
     FROM (SELECT r.id AS requisition_id
         , r.facilityid AS facility_id
         , r.programid AS program_id
@@ -2186,6 +2190,7 @@ FROM kafka_facilities f
         , r.modifieddate AS modified_date
         , authorized_status_changes.status
         , authorized_status_changes.createddate AS status_change_date
+        , r.supervisorynodeid AS supervisory_node_id
     FROM kafka_requisitions r
     LEFT JOIN (SELECT sc.requisitionid, sc.status, sc.createddate
     FROM kafka_status_changes sc
@@ -2203,7 +2208,6 @@ FROM kafka_facilities f
     LEFT JOIN kafka_facility_operators fo ON fo.id = f.operatedbyid
     LEFT JOIN reporting_dates rd ON rd.country = cgz.name
     LEFT JOIN kafka_supported_programs sp ON sp.facilityid = f.id AND sp.programid = final_authorized_requisitions.program_id
-    LEFT JOIN view_facility_access fa ON fa.facilityid = f.id AND fa.programid = final_authorized_requisitions.program_id AND rightname = 'REQUISITION_VIEW'
 ORDER BY final_authorized_requisitions.processing_period_enddate DESC
 WITH DATA;
 
