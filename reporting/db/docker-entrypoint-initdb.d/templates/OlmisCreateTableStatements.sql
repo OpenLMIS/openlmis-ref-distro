@@ -2140,6 +2140,7 @@ SELECT f.name
     ELSE 'Did not report'
   END AS reporting_timeliness
      , final_authorized_requisitions.supervisory_node_id
+     , sn.name AS supervisory_node
 FROM kafka_facilities f
     LEFT JOIN (SELECT ranked_authorized_requisitions.requisition_id
         , ranked_authorized_requisitions.facility_id
@@ -2208,6 +2209,7 @@ FROM kafka_facilities f
     LEFT JOIN kafka_facility_operators fo ON fo.id = f.operatedbyid
     LEFT JOIN reporting_dates rd ON rd.country = cgz.name
     LEFT JOIN kafka_supported_programs sp ON sp.facilityid = f.id AND sp.programid = final_authorized_requisitions.program_id
+    LEFT JOIN kafka_supervisory_nodes sn ON sn.id = final_authorized_requisitions.supervisory_node_id
 ORDER BY final_authorized_requisitions.processing_period_enddate DESC
 WITH DATA;
 
