@@ -26,6 +26,8 @@ services:
     image: openlmis/reference-ui:${OL_REFERENCE_UI_VERSION}
     env_file: settings.env
     depends_on: [consul]
+    mem_limit: '1.3G'
+    cpus: 2
 
   requisition:
     image: openlmis/requisition:${OL_REQUISITION_VERSION}
@@ -36,6 +38,8 @@ services:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
+    mem_limit: '1.3G'
+    cpus: 2
 
   referencedata:
     image: openlmis/referencedata:${OL_REFERENCEDATA_VERSION}
@@ -46,6 +50,8 @@ services:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
+    mem_limit: '1.3G'
+    cpus: 2
 
   auth:
     image: openlmis/auth:${OL_AUTH_VERSION}
@@ -56,6 +62,8 @@ services:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
+    mem_limit: '0.7G'
+    cpus: 2
 
   notification:
     image: openlmis/notification:${OL_NOTIFICATION_VERSION}
@@ -66,6 +74,8 @@ services:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
+    mem_limit: '0.7G'
+    cpus: 2
 
   fulfillment:
     image: openlmis/fulfillment:${OL_FULFILLMENT_VERSION}
@@ -76,6 +86,8 @@ services:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
+    mem_limit: '0.7G'
+    cpus: 2
 
   cce:
     image: openlmis/cce:${OL_CCE_VERSION}
@@ -86,6 +98,8 @@ services:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
+    mem_limit: '0.7G'
+    cpus: 2
 
   stockmanagement:
     image: openlmis/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
@@ -96,6 +110,8 @@ services:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
+    mem_limit: '0.7G'
+    cpus: 2
 
   report:
     image: openlmis/report:${OL_REPORT_VERSION}
@@ -106,6 +122,8 @@ services:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
+    mem_limit: '0.7G'
+    cpus: 2
 
   buq:
     image: openlmis/buq:${OL_BUQ_VERSION}
@@ -116,6 +134,8 @@ services:
       - 'service-config:/config'
     depends_on: [ log, db ]
     command: [ "/wait-for-postgres.sh", "/run.sh" ]
+    mem_limit: '1.3G'
+    cpus: 2
 
   hapifhir:
     restart: always
@@ -128,7 +148,9 @@ services:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
-    
+    mem_limit: '0.7G'
+    cpus: 2
+
   diagnostics:
     image: openlmis/diagnostics:${OL_DIAGNOSTICS_VERSION}
     env_file: settings.env
@@ -138,6 +160,8 @@ services:
     volumes:
       - 'service-config:/config'
     depends_on: [log]
+    mem_limit: '0.7G'
+    cpus: 2
 
   dhis2-integration:
     image: openlmis/dhis2-integration:${OL_DHIS2_INTEGRATION}
@@ -148,15 +172,20 @@ services:
     volumes:
       - 'service-config:/config'
     depends_on: [log]
+    mem_limit: '0.7G'
+    cpus: 2
 
   db:
     image: openlmis/postgres:${OL_POSTGRES_VERSION}
+    command: postgres -c 'max_connections=1000'
     env_file: settings.env
     networks:
       default:
         aliases:
           - olmis-db
     depends_on: [consul]
+    mem_limit: '1.3G'
+    cpus: 4
 
   log:
     image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
