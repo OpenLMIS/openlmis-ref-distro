@@ -1,0 +1,17 @@
+services:
+  dhis2-postgres:
+    image: debezium/postgres:${OL_POSTGRES_VERSION}
+    env_file: settings.env
+    volumes:
+      - ./config/db/dhis2.sql:/docker-entrypoint-initdb.d/dhis2.sql
+
+  dhis2:
+    image: dhis2/core:${OL_DHIS2_VERSION}
+    env_file: settings.env
+    volumes:
+      - ./config/dhis2/dhis.conf:/opt/dhis2/dhis.conf
+    environment:
+      - WAIT_FOR_DB_CONTAINER=dhis2-postgres:5432 -t 0
+    ports:
+      - "80:8080"
+    depends_on: [dhis2-postgres]
