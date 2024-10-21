@@ -6162,6 +6162,9 @@ COPY public.axis (axisid, dimensionalitem, axis) FROM stdin;
 
 COPY public.categories_categoryoptions (categoryid, sort_order, categoryoptionid) FROM stdin;
 23	1	22
+84	2	81
+84	1	82
+84	3	83
 \.
 
 
@@ -6170,7 +6173,8 @@ COPY public.categories_categoryoptions (categoryid, sort_order, categoryoptionid
 --
 
 COPY public.categorycombo (categorycomboid, uid, code, created, lastupdated, lastupdatedby, name, datadimensiontype, skiptotal, userid, publicaccess, translations, sharing) FROM stdin;
-24	bjDvmb4bfuf	default	2024-10-21 15:44:56.903	2024-10-21 15:44:56.904	\N	default	DISAGGREGATION	f	\N	\N	[]	{"users": {}, "public": "rw------", "external": false, "userGroups": {}}
+24	bjDvmb4bfuf	default	2024-10-21 15:44:56.903	2024-10-21 17:16:28.392	1	default	DISAGGREGATION	f	\N	\N	[]	{"users": {}, "public": "rw------", "external": false, "userGroups": {}}
+92	RqdLDCOaZNx	\N	2024-10-21 17:16:52.379	2024-10-21 17:16:52.402	1	Requisition	DISAGGREGATION	t	1	\N	[]	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}
 \.
 
 
@@ -6180,6 +6184,7 @@ COPY public.categorycombo (categorycomboid, uid, code, created, lastupdated, las
 
 COPY public.categorycombos_categories (categoryid, sort_order, categorycomboid) FROM stdin;
 23	1	24
+84	1	92
 \.
 
 
@@ -6189,6 +6194,9 @@ COPY public.categorycombos_categories (categoryid, sort_order, categorycomboid) 
 
 COPY public.categorycombos_optioncombos (categoryoptioncomboid, categorycomboid) FROM stdin;
 25	24
+93	92
+94	92
+95	92
 \.
 
 
@@ -6213,6 +6221,15 @@ COPY public.categorydimension_items (categorydimensionid, sort_order, categoryop
 --
 
 COPY public.categoryoption_organisationunits (organisationunitid, categoryoptionid) FROM stdin;
+69	81
+67	81
+68	81
+69	82
+67	82
+68	82
+69	83
+67	83
+68	83
 \.
 
 
@@ -6222,6 +6239,9 @@ COPY public.categoryoption_organisationunits (organisationunitid, categoryoption
 
 COPY public.categoryoptioncombo (categoryoptioncomboid, uid, code, created, lastupdated, lastupdatedby, name, ignoreapproval, translations, attributevalues) FROM stdin;
 25	HllvX50cXC0	default	2024-10-21 15:44:56.903	2024-10-21 15:44:56.904	\N	default	f	[]	{}
+93	QwPsuYrQwGO	\N	2024-10-21 17:16:52.397	2024-10-21 17:16:52.397	1	Closing Balance	f	[]	{}
+94	KlZO1SwbglH	\N	2024-10-21 17:16:52.4	2024-10-21 17:16:52.4	1	Opening Balance	f	[]	{}
+95	vKIH88ieyDo	\N	2024-10-21 17:16:52.401	2024-10-21 17:16:52.401	1	Received	f	[]	{}
 \.
 
 
@@ -6231,6 +6251,9 @@ COPY public.categoryoptioncombo (categoryoptioncomboid, uid, code, created, last
 
 COPY public.categoryoptioncombos_categoryoptions (categoryoptioncomboid, categoryoptionid) FROM stdin;
 25	22
+93	83
+94	81
+95	82
 \.
 
 
@@ -6416,9 +6439,9 @@ COPY public.datadimensionitem (datadimensionitemid, indicatorid, dataelementid, 
 --
 
 COPY public.dataelement (dataelementid, uid, code, created, lastupdated, lastupdatedby, name, shortname, description, formname, style, valuetype, domaintype, aggregationtype, categorycomboid, url, zeroissignificant, optionsetid, commentoptionsetid, userid, publicaccess, fieldmask, translations, attributevalues, sharing, valuetypeoptions) FROM stdin;
-70	RkJvBfKDu6z	BCG	2024-10-21 15:47:32.21	2024-10-21 15:47:32.21	1	BCG	BCG	\N	\N	\N	NUMBER	AGGREGATE	SUM	24	\N	t	\N	\N	1	\N	\N	[]	{}	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}	\N
-71	TKGKvcwuR7v	\N	2024-10-21 15:48:17.549	2024-10-21 15:48:17.549	1	IPV	IPV	\N	\N	\N	NUMBER	AGGREGATE	SUM	24	\N	t	\N	\N	1	\N	\N	[]	{}	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}	\N
-72	S7sI7yDpm0t	PCV-10	2024-10-21 15:48:29.824	2024-10-21 15:48:29.824	1	PCV-10	PCV-10	\N	\N	\N	NUMBER	AGGREGATE	SUM	24	\N	f	\N	\N	1	\N	\N	[]	{}	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}	\N
+71	TKGKvcwuR7v	\N	2024-10-21 15:48:17.549	2024-10-21 17:18:35.234	1	IPV	IPV	\N	\N	\N	NUMBER	AGGREGATE	SUM	92	\N	t	\N	\N	1	\N	\N	[]	{}	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}	\N
+70	RkJvBfKDu6z	BCG	2024-10-21 15:47:32.21	2024-10-21 17:18:41.024	1	BCG	BCG	\N	\N	\N	NUMBER	AGGREGATE	SUM	92	\N	t	\N	\N	1	\N	\N	[]	{}	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}	\N
+72	S7sI7yDpm0t	PCV-10	2024-10-21 15:48:29.824	2024-10-21 17:18:48.421	1	PCV-10	PCV-10	\N	\N	\N	NUMBER	AGGREGATE	SUM	92	\N	f	\N	\N	1	\N	\N	[]	{}	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}	\N
 \.
 
 
@@ -6435,7 +6458,8 @@ COPY public.dataelementaggregationlevels (dataelementid, sort_order, aggregation
 --
 
 COPY public.dataelementcategory (categoryid, uid, code, created, lastupdated, lastupdatedby, name, datadimensiontype, datadimension, userid, publicaccess, translations, attributevalues, sharing, shortname) FROM stdin;
-23	GLevLNI9wkl	default	2024-10-21 15:44:56.902	2024-10-21 15:44:56.922	\N	default	DISAGGREGATION	f	\N	\N	[]	{}	{"users": {}, "public": "rw------", "external": false, "userGroups": {}}	default
+23	GLevLNI9wkl	default	2024-10-21 15:44:56.902	2024-10-21 17:10:41.845	\N	default	DISAGGREGATION	f	\N	\N	[]	{}	{"users": {}, "public": "rw------", "external": false, "userGroups": {}}	default
+84	YIn2MS580Gb	\N	2024-10-21 17:13:34.292	2024-10-21 17:18:13.784	1	Requisition	DISAGGREGATION	t	1	\N	[]	{}	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}	Requisition
 \.
 
 
@@ -6445,6 +6469,9 @@ COPY public.dataelementcategory (categoryid, uid, code, created, lastupdated, la
 
 COPY public.dataelementcategoryoption (categoryoptionid, uid, code, created, lastupdated, lastupdatedby, name, shortname, startdate, enddate, style, userid, publicaccess, translations, formname, attributevalues, sharing, description) FROM stdin;
 22	xYerKDKCefk	default	2024-10-21 15:44:56.901	2024-10-21 15:44:56.904	\N	default	\N	\N	\N	\N	\N	\N	[]	\N	{}	{"users": {}, "public": "rwrw----", "external": false, "userGroups": {}}	\N
+81	RuqOVG4Ydq2	\N	2024-10-21 17:11:39.157	2024-10-21 17:11:39.157	1	Opening Balance	\N	\N	\N	\N	1	\N	[]	\N	{}	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}	\N
+82	BBa1bHYWB52	\N	2024-10-21 17:11:47.103	2024-10-21 17:11:47.103	1	Received	\N	\N	\N	\N	1	\N	[]	\N	{}	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}	\N
+83	M6oAJUQg59x	\N	2024-10-21 17:11:55.083	2024-10-21 17:11:55.083	1	Closing Balance	\N	\N	\N	\N	1	\N	[]	\N	{}	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}	\N
 \.
 
 
@@ -6533,7 +6560,7 @@ COPY public.datainputperiod (datainputperiodid, periodid, openingdate, closingda
 --
 
 COPY public.dataset (datasetid, uid, code, created, lastupdated, lastupdatedby, name, shortname, description, formname, style, periodtypeid, categorycomboid, mobile, version, expirydays, timelydays, notifycompletinguser, workflowid, openfutureperiods, fieldcombinationrequired, validcompleteonly, novaluerequirescomment, skipoffline, dataelementdecoration, renderastabs, renderhorizontally, compulsoryfieldscompleteonly, userid, publicaccess, dataentryform, notificationrecipients, translations, attributevalues, openperiodsaftercoenddate, sharing) FROM stdin;
-73	Xzt6RhN5y71	\N	2024-10-21 15:49:07.934	2024-10-21 15:49:14.04	1	Vaccines Demo	\N	\N	\N	\N	10	24	f	1	0	15	f	\N	0	f	f	f	f	f	f	f	f	1	\N	\N	\N	[]	{}	0	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}
+73	Xzt6RhN5y71	\N	2024-10-21 15:49:07.934	2024-10-21 17:19:36.875	1	Vaccines Demo	\N	\N	\N	\N	10	24	f	4	0	15	f	\N	0	f	f	f	f	f	f	f	f	1	\N	\N	\N	[]	{}	0	{"owner": "M5zQapPyTZI", "users": {}, "public": "rw------", "external": false, "userGroups": {}}
 \.
 
 
@@ -6542,9 +6569,9 @@ COPY public.dataset (datasetid, uid, code, created, lastupdated, lastupdatedby, 
 --
 
 COPY public.datasetelement (datasetelementid, datasetid, dataelementid, categorycomboid) FROM stdin;
-77	73	72	\N
-78	73	70	\N
-79	73	71	\N
+96	73	71	\N
+97	73	72	\N
+98	73	70	\N
 \.
 
 
@@ -6628,9 +6655,6 @@ COPY public.datastatisticsevent (eventid, eventtype, "timestamp", username, favo
 --
 
 COPY public.datavalue (dataelementid, periodid, sourceid, categoryoptioncomboid, attributeoptioncomboid, value, storedby, created, lastupdated, comment, followup, deleted) FROM stdin;
-70	80	68	25	25	\N	admin	2024-10-21 15:49:30.827	2024-10-21 15:49:40.759	\N	f	t
-71	80	68	25	25	\N	admin	2024-10-21 15:49:31.216	2024-10-21 15:49:41.273	\N	f	t
-72	80	68	25	25	\N	admin	2024-10-21 15:49:31.556	2024-10-21 15:49:41.746	\N	f	t
 \.
 
 
@@ -6650,6 +6674,10 @@ COPY public.datavalueaudit (datavalueauditid, dataelementid, periodid, organisat
 --
 
 COPY public.deletedobject (deletedobjectid, klass, uid, code, deleted_at, deleted_by) FROM stdin;
+1	CategoryOptionCombo	qjr6EfVe6Tm	\N	2024-10-21 17:16:28.429	admin
+2	CategoryOptionCombo	joB7FrunmTV	\N	2024-10-21 17:16:28.435	admin
+3	CategoryOptionCombo	lZolsCT5z1R	\N	2024-10-21 17:16:28.442	admin
+4	CategoryCombo	pTo2JJbQ37H	\N	2024-10-21 17:16:28.444	admin
 \.
 
 
@@ -7401,14 +7429,14 @@ COPY public.interpretationcomment (interpretationcommentid, uid, lastupdated, co
 --
 
 COPY public.jobconfiguration (jobconfigurationid, uid, code, created, lastupdated, lastupdatedby, name, cronexpression, lastexecuted, lastruntimeexecution, nextexecutiontime, enabled, leaderonlyjob, jsonbjobparameters, jobtype, jobstatus, lastexecutedstatus, delay) FROM stdin;
-55	pd6O228pqr0	\N	2024-10-21 15:44:57.009	2024-10-21 15:44:57.009	\N	File resource clean up	0 0 2 ? * *	\N	\N	\N	t	f	\N	FILE_RESOURCE_CLEANUP	SCHEDULED	NOT_STARTED	\N
-56	BFa3jDsbtdO	\N	2024-10-21 15:44:57.041	2024-10-21 15:44:57.041	\N	Data statistics	0 0 2 ? * *	\N	\N	\N	t	f	\N	DATA_STATISTICS	SCHEDULED	NOT_STARTED	\N
-57	Js3vHn2AVuG	\N	2024-10-21 15:44:57.053	2024-10-21 15:44:57.053	\N	Validation result notification	0 0 7 ? * *	\N	\N	\N	t	f	\N	VALIDATION_RESULTS_NOTIFICATION	SCHEDULED	NOT_STARTED	\N
-58	sHMedQF7VYa	\N	2024-10-21 15:44:57.062	2024-10-21 15:44:57.062	\N	Credentials expiry alert	0 0 2 ? * *	\N	\N	\N	t	f	\N	CREDENTIALS_EXPIRY_ALERT	SCHEDULED	NOT_STARTED	\N
-59	fUWM1At1TUx	\N	2024-10-21 15:44:57.071	2024-10-21 15:44:57.071	\N	User account expiry alert	0 0 2 ? * *	\N	\N	\N	t	f	\N	ACCOUNT_EXPIRY_ALERT	SCHEDULED	NOT_STARTED	\N
-60	YvAwAmrqAtN	\N	2024-10-21 15:44:57.082	2024-10-21 15:44:57.082	\N	Dataset notification	0 0 2 ? * *	\N	\N	\N	t	f	\N	DATA_SET_NOTIFICATION	SCHEDULED	NOT_STARTED	\N
-61	uwWCT2BMmlq	\N	2024-10-21 15:44:57.091	2024-10-21 15:44:57.091	\N	Remove expired or used reserved values	0 0 2 ? * *	\N	\N	\N	t	f	\N	REMOVE_USED_OR_EXPIRED_RESERVED_VALUES	SCHEDULED	NOT_STARTED	\N
-62	vt21671bgno	\N	2024-10-21 15:44:57.101	2024-10-21 15:44:57.101	\N	System version update check notification	8 27 3 ? * *	\N	\N	\N	t	f	\N	SYSTEM_VERSION_UPDATE_CHECK	SCHEDULED	NOT_STARTED	\N
+55	pd6O228pqr0	\N	2024-10-21 15:44:57.009	2024-10-21 17:10:42.137	\N	File resource clean up	0 0 2 ? * *	\N	\N	\N	t	f	\N	FILE_RESOURCE_CLEANUP	SCHEDULED	NOT_STARTED	\N
+56	BFa3jDsbtdO	\N	2024-10-21 15:44:57.041	2024-10-21 17:10:42.184	\N	Data statistics	0 0 2 ? * *	\N	\N	\N	t	f	\N	DATA_STATISTICS	SCHEDULED	NOT_STARTED	\N
+57	Js3vHn2AVuG	\N	2024-10-21 15:44:57.053	2024-10-21 17:10:42.196	\N	Validation result notification	0 0 7 ? * *	\N	\N	\N	t	f	\N	VALIDATION_RESULTS_NOTIFICATION	SCHEDULED	NOT_STARTED	\N
+58	sHMedQF7VYa	\N	2024-10-21 15:44:57.062	2024-10-21 17:10:42.21	\N	Credentials expiry alert	0 0 2 ? * *	\N	\N	\N	t	f	\N	CREDENTIALS_EXPIRY_ALERT	SCHEDULED	NOT_STARTED	\N
+59	fUWM1At1TUx	\N	2024-10-21 15:44:57.071	2024-10-21 17:10:42.222	\N	User account expiry alert	0 0 2 ? * *	\N	\N	\N	t	f	\N	ACCOUNT_EXPIRY_ALERT	SCHEDULED	NOT_STARTED	\N
+60	YvAwAmrqAtN	\N	2024-10-21 15:44:57.082	2024-10-21 17:10:42.236	\N	Dataset notification	0 0 2 ? * *	\N	\N	\N	t	f	\N	DATA_SET_NOTIFICATION	SCHEDULED	NOT_STARTED	\N
+61	uwWCT2BMmlq	\N	2024-10-21 15:44:57.091	2024-10-21 17:10:42.25	\N	Remove expired or used reserved values	0 0 2 ? * *	\N	\N	\N	t	f	\N	REMOVE_USED_OR_EXPIRED_RESERVED_VALUES	SCHEDULED	NOT_STARTED	\N
+62	vt21671bgno	\N	2024-10-21 15:44:57.101	2024-10-21 17:10:42.262	\N	System version update check notification	8 27 3 ? * *	\N	\N	\N	t	f	\N	SYSTEM_VERSION_UPDATE_CHECK	SCHEDULED	NOT_STARTED	\N
 \.
 
 
@@ -8563,7 +8591,7 @@ COPY public.usergroupmembers (userid, usergroupid) FROM stdin;
 --
 
 COPY public.userinfo (userinfoid, uid, code, lastupdated, created, surname, firstname, email, phonenumber, jobtitle, introduction, gender, birthday, nationality, employer, education, interests, languages, welcomemessage, lastcheckedinterpretations, whatsapp, skype, facebookmessenger, telegram, twitter, avatar, attributevalues, dataviewmaxorgunitlevel, lastupdatedby, creatoruserid, username, password, secret, twofa, externalauth, openid, ldapid, passwordlastupdated, lastlogin, restoretoken, restoreexpiry, selfregistered, invitation, disabled, uuid, accountexpiry, idtoken) FROM stdin;
-1	M5zQapPyTZI	admin	2024-10-21 15:47:50.649	2024-10-21 15:44:56.573	admin	admin	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	{}	\N	1	1	admin	$2a$10$24YHRJhuK.6vqTYAnp3XX.6xXhQDZIDOzRPp45GDX.DZaVJRy5Ysy	\N	f	f	\N	\N	2024-10-21 15:44:56.64	2024-10-21 15:45:05.463	\N	\N	f	f	f	6507f586-f154-4ec1-a25e-d7aa51de5216	\N	\N
+1	M5zQapPyTZI	admin	2024-10-21 17:14:05.998	2024-10-21 15:44:56.573	admin	admin	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	{}	\N	1	1	admin	$2a$10$24YHRJhuK.6vqTYAnp3XX.6xXhQDZIDOzRPp45GDX.DZaVJRy5Ysy	7ZNG64IEKSAUVQCX	f	f	\N	\N	2024-10-21 15:44:56.64	2024-10-21 17:11:08.547	\N	\N	f	f	f	6507f586-f154-4ec1-a25e-d7aa51de5216	\N	\N
 \.
 
 
@@ -8908,14 +8936,14 @@ SELECT pg_catalog.setval('public.datavalueaudit_sequence', 3, true);
 -- Name: deletedobject_sequence; Type: SEQUENCE SET; Schema: public; Owner: dhis
 --
 
-SELECT pg_catalog.setval('public.deletedobject_sequence', 1, false);
+SELECT pg_catalog.setval('public.deletedobject_sequence', 4, true);
 
 
 --
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: dhis
 --
 
-SELECT pg_catalog.setval('public.hibernate_sequence', 80, true);
+SELECT pg_catalog.setval('public.hibernate_sequence', 98, true);
 
 
 --
