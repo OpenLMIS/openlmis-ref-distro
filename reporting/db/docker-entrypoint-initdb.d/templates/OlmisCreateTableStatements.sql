@@ -1575,7 +1575,8 @@ CREATE TABLE public.kafka_requisition_template_assignments (
                                                                id uuid NOT NULL,
                                                                programid uuid NOT NULL,
                                                                facilitytypeid uuid,
-                                                               templateid uuid NOT NULL
+                                                               templateid uuid NOT NULL,
+                                                               requisitionreportonly boolean DEFAULT false
 );
 
 
@@ -1592,7 +1593,10 @@ CREATE TABLE public.kafka_requisition_templates (
                                                     numberofperiodstoaverage integer,
                                                     populatestockonhandfromstockcards boolean DEFAULT false NOT NULL,
                                                     archived boolean DEFAULT false NOT NULL,
-                                                    name character varying(255) NOT NULL
+                                                    name character varying(255) NOT NULL,
+                                                    rejectionreasonwindowvisible boolean DEFAULT false,
+                                                    requisitionreportingonly boolean DEFAULT false,
+                                                    patientstabenabled boolean DEFAULT false
 );
 
 
