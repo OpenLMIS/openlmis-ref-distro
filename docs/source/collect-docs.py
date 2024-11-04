@@ -1,4 +1,5 @@
-import urllib.request
+
+import urllib
 
 #components
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillment/v9.0.6/README.md", "components/fulfillmentService.md")
