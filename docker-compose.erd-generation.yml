@@ -15,6 +15,6 @@ services:
     env_file: .env
 
   log:
-    image: openlmis/rsyslog:1
+    image: openlmis/rsyslog:2
     volumes:
       - '../logs/${OL_SERVICE_NAME}:/var/log'
