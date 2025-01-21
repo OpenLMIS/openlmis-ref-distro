@@ -11,14 +11,12 @@ services:
       - "53"
 
   nginx:
-    #image: openlmis/nginx:${OL_NGINX_VERSION}
-    image: elmislesotho/nginx:${OL_NGINX_VERSION}
+    image: openlmis/nginx:${OL_NGINX_VERSION}
     ports:
       - "${OL_HTTP_PORT:-80}:80"
     env_file: settings.env
     environment:
       NGINX_LOG_DIR: '/var/log/nginx/log'
-      NGINX_TIMEOUT: '300s'
     volumes:
       - 'nginx-log:/var/log/nginx/log'
       - 'consul-template-log:/var/log/consul-template'
@@ -33,48 +31,24 @@ services:
     image: elmislesotho/requisition:${OL_REQUISITION_VERSION}
     env_file: settings.env
     environment:
-      #JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
-      JAVA_OPTS: >
-        -server
-        -Xms1024m
-        -Xmx3072m
-        -XX:+UseG1GC
-        -XX:MetaspaceSize=128m
-        -XX:MaxMetaspaceSize=256m
-        -Xss512k
-        -XX:+PrintGCDetails
-        -XX:+PrintGCDateStamps
-        -Xloggc:/var/log/requisition/gc.log
-        -Dlogging.config=/config/log/logback.xml
+      JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
 
   referencedata:
-    image: elmislesotho/referencedata:${OL_REFERENCEDATA_VERSION}
+    image: openlmis/referencedata:${OL_REFERENCEDATA_VERSION}
     env_file: settings.env
     environment:
-      #JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
-      JAVA_OPTS: >
-        -server
-        -Xms1024m
-        -Xmx3072m
-        -XX:+UseG1GC
-        -XX:MetaspaceSize=128m
-        -XX:MaxMetaspaceSize=256m
-        -Xss512k
-        -XX:+PrintGCDetails
-        -XX:+PrintGCDateStamps
-        -Xloggc:/var/log/referencedata/gc.log
-        -Dlogging.config=/config/log/logback.xml
+      JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
     depends_on: [log, db]
     command: ["/wait-for-postgres.sh", "/run.sh"]
 
   auth:
-    image: elmislesotho/auth:${OL_AUTH_VERSION}
+    image: openlmis/auth:${OL_AUTH_VERSION}
     env_file: settings.env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
@@ -94,7 +68,7 @@ services:
     command: ["/wait-for-postgres.sh", "/run.sh"]
 
   fulfillment:
-    image: elmislesotho/fulfillment:${OL_FULFILLMENT_VERSION}
+    image: openlmis/fulfillment:${OL_FULFILLMENT_VERSION}
     env_file: settings.env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
@@ -117,19 +91,7 @@ services:
     image: elmislesotho/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
     env_file: settings.env
     environment:
-      #JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-      JAVA_OPTS: >
-        -server
-        -Xms1024m
-        -Xmx3072m
-        -XX:+UseG1GC
-        -XX:MetaspaceSize=128m
-        -XX:MaxMetaspaceSize=256m
-        -Xss512k
-        -XX:+PrintGCDetails
-        -XX:+PrintGCDateStamps
-        -Xloggc:/var/log/stockmanagement/gc.log
-        -Dlogging.config=/config/log/logback.xml
+      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
     volumes:
       - 'service-config:/config'
     depends_on: [log, db]
