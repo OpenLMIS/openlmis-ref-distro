@@ -1,0 +1,18 @@
+{
+    "name": "sink-stockevents",
+    "config": {
+      "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+      "tasks.max": "1",
+      "topics": "public.kafka_stock_events,public.kafka_stock_event_line_items",
+      "connection.url": "jdbc:postgresql://reporting-db:5432/open_lmis_reporting?stringtype=unspecified",
+      "connection.user": "postgres",
+      "connection.password": "p@ssw0rd",
+      "auto.create": "true",
+      "auto.evolve": "true",
+      "insert.mode": "upsert",
+      "pk.fields": "id",
+      "pk.mode": "record_key",
+      "delete.enabled": "true"
+    }
+}
+  

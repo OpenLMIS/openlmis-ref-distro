@@ -112,7 +112,7 @@ services:
       - 8083:8083
     networks:
       - default
-      - openlmis-ref-distro_default
+      - lesotho-ref-distro_default
     environment:
      - BOOTSTRAP_SERVERS=kafka:29092
      - GROUP_ID=1
@@ -180,5 +180,5 @@ volumes:
     external: false
 
 networks:
-  openlmis-ref-distro_default:
+  lesotho-ref-distro_default:
     external: true

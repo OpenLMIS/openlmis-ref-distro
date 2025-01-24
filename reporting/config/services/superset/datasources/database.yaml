@@ -1039,3 +1039,13 @@ databases:
     - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
     schema: public
     table_name: kafka_commodity_types
+  - columns:
+    - {column_name: processeddate, is_dttm: true, type: TIMESTAMP WITH TIME ZONE}
+    - {column_name: facilityid, type: UUID}
+    - {column_name: id, type: UUID}
+    - {column_name: programid, type: UUID}
+    main_dttm_col: processeddate
+    metrics:
+    - {expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*)}
+    schema: public
+    table_name: kafka_stock_events
