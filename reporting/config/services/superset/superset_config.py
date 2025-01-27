@@ -54,7 +54,7 @@ OAUTH_PROVIDERS = [
 ]
 
 # Set URL scheme for superset-patchup redirect URLs
-PREFERRED_URL_SCHEME = "https"
+PREFERRED_URL_SCHEME = "http"
 
 # The default user self registration role
 AUTH_USER_REGISTRATION_ROLE = "OLMIS_Gamma"
