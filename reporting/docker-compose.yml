@@ -152,6 +152,7 @@ services:
      - CONFIG_STORAGE_TOPIC=my_connect_configs
      - OFFSET_STORAGE_TOPIC=my_connect_offsets
      - HOST_NAME=0.0.0.0
+     - KAFKA_HEAP_OPTS=-Xms512M -Xmx4G
     logging:
       driver: syslog
       options:
@@ -196,11 +197,26 @@ services:
       - KAFKA_REST_PROXY_URL=http://kafka-rest:8082
       - PROXY=true
       - MAX_BYTES=500000
+      - CADDY_AUTOHTTPS=off  # Disable automatic HTTPS and DNS
     logging:
       driver: syslog
       options:
         syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
     depends_on: [kafka-rest]
+
+  akhq:
+    image: tchiotludo/akhq:latest
+    ports:
+      - 8089:8080
+    environment:
+      - AKHQ_CONFIGURATION=/app/config/application.yml
+    volumes:
+      - ./config/services/akhq/akhq.yml:/app/config/application.yml
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:${SYSLOG_UDP_PORT}"
+    depends_on: [kafka]
 
   superset:
     build:

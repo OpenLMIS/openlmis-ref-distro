@@ -1,0 +1,27 @@
+akhq:
+  connections:
+    kafka:
+      properties:
+        bootstrap.servers: "kafka:29092"
+  server:
+    access-log: false
+  security:
+    default-group: reader
+    groups:
+      admin:
+        roles:
+          - topic/read
+          - topic/insert
+          - topic/delete
+          - group/read
+          - group/delete
+          - group/offsets
+          - node/read
+          - node/config/update
+  # Authentication (optional, but recommended)
+  authentication:
+    basic:
+      - username: admin
+        password: admin
+        groups:
+          - admin
