@@ -164,7 +164,7 @@ services:
     cpus: 2
 
   dhis2-integration:
-    image: openlmis/dhis2-integration:${OL_DHIS2_INTEGRATION}
+    image: openlmis/dhis2-integration:${OL_DHIS2INTEGRATION_VERSION}
     env_file: settings.env
     environment:
       JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
