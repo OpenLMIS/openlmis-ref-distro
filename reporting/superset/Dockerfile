@@ -59,6 +59,7 @@ RUN useradd -U -m superset && \
         git+${SUPERSET_PATCHUP_REPO} \
         apache-superset==${SUPERSET_VERSION} \
         apache-superset[cors]==${SUPERSET_VERSION} \
+        flask-migrate==3.1.0 \
         flask-mail==0.9.1 \
         flask-oauth==0.12 \
         flask_oauthlib==0.9.5 && \
