@@ -6,6 +6,8 @@ import base64
 from flask_appbuilder.security.manager import AUTH_OAUTH
 from superset_patchup.oauth import CustomSecurityManager
 
+import logging
+logging.warning("Sanity check: Using custom superset_config.py")
 
 def stringToBase64(s):
     return base64.b64encode(s.encode('utf-8')).decode('utf-8')
@@ -15,7 +17,12 @@ def lookup_password(url):
     return os.environ['POSTGRES_PASSWORD']
 
 
-SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{}:{}@db:5432/open_lmis_reporting'.format(
+# SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{}:{}@db:5432/open_lmis_reporting'.format(
+#     os.environ['POSTGRES_USER'],
+#     os.environ['POSTGRES_PASSWORD'])
+
+
+SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{}:{}@10.255.100.97:5433/open_lmis_reporting'.format(
     os.environ['POSTGRES_USER'],
     os.environ['POSTGRES_PASSWORD'])
 

@@ -38,4 +38,7 @@ psql <<-EOSQL
   REFRESH MATERIALIZED VIEW adjustments;
   REFRESH MATERIALIZED VIEW stock_status_and_consumption;
   REFRESH MATERIALIZED VIEW facilities;
+  REFRESH MATERIALIZED VIEW expired_products;
+  REFRESH MATERIALIZED VIEW stock_card_summaries;
+  REFRESH MATERIALIZED VIEW stock_card_summaries_with_prices;
 EOSQL

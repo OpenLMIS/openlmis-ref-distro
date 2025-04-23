@@ -1,5 +1,5 @@
 {
-    "name": "source-stockevents",
+    "name": "source-stockmanagement",
     "config": {
       "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
       "tasks.max": "1",
@@ -10,10 +10,10 @@
       "database.password": "p@ssw0rd",
       "database.dbname": "open_lmis",
       "database.server.name": "openlmis",
-      "table.whitelist": "stockmanagement\\.stock_events,stockmanagement\\.stock_event_line_items",
+      "table.whitelist": "stockmanagement\\.stock_events,stockmanagement\\.stock_event_line_items,stockmanagement\\.stock_cards,stockmanagement\\.stock_card_line_items,stockmanagement\\.stock_card_line_item_reasons",
       "database.history.kafka.bootstrap.servers": "kafka:29092",
       "database.history.kafka.topic": "openlmis",
-      "slot.name": "dbz_stockevents",
+      "slot.name": "dbz_stockmanagement",
       "heartbeat.interval.ms": 3000,
       "heartbeat.action.query": "CREATE TABLE IF NOT EXISTS debezium_heartbeat (id SERIAL PRIMARY KEY, ts TIMESTAMPTZ); INSERT INTO debezium_heartbeat (id, ts) VALUES (1, NOW()) ON CONFLICT(id) DO UPDATE SET ts=NOW();",
       "transforms": "unwrap,route",
