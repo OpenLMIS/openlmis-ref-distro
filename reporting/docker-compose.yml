@@ -95,6 +95,16 @@ services:
           - reporting-db
     depends_on: [log, db-service-configuration]
 
+  db-on-host-init:
+    image: postgres:14
+    volumes:
+      - ./db-on-host-init:/db-on-host-init
+    env_file: settings.env
+    command: ["/bin/bash", "-c", "/db-on-host-init/reporting-db-on-host.sh"]
+    depends_on: [log]
+    restart: "no"
+
+
   cron-config:
     build:
       context: ./cron
