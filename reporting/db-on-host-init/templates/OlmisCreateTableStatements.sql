@@ -6,6 +6,9 @@
 -- Last Updated 19 May 2020
 --
 
+--- On error (e.g. Table already exists) continue with the next statement
+\set ON_ERROR_STOP off
+
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: 
 --
