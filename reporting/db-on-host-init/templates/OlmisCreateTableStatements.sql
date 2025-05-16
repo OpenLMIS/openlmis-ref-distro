@@ -6,6 +6,9 @@
 -- Last Updated 19 May 2020
 --
 
+--- On error (e.g. Table already exists) continue with the next statement
+\set ON_ERROR_STOP off
+
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: 
 --
@@ -667,8 +670,8 @@ CREATE TABLE public.kafka_stock_card_line_items (
     stockcardid uuid NOT NULL,
     quantity integer NOT NULL,
     reasonid uuid,
-    -- occurreddate date NOT NULL,
-    -- processeddate timestamp without time zone NOT NULL,
+    occurreddate date NOT NULL,
+    processeddate timestamp without time zone NOT NULL,
     destinationfreetext character varying(255),
     documentnumber character varying(255),
     reasonfreetext character varying(255),

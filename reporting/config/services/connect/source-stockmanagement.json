@@ -14,6 +14,7 @@
       "database.history.kafka.bootstrap.servers": "kafka:29092",
       "database.history.kafka.topic": "openlmis",
       "slot.name": "dbz_stockmanagement",
+      "time.precision.mode": "connect",
       "heartbeat.interval.ms": 3000,
       "heartbeat.action.query": "CREATE TABLE IF NOT EXISTS debezium_heartbeat (id SERIAL PRIMARY KEY, ts TIMESTAMPTZ); INSERT INTO debezium_heartbeat (id, ts) VALUES (1, NOW()) ON CONFLICT(id) DO UPDATE SET ts=NOW();",
       "transforms": "unwrap,route",

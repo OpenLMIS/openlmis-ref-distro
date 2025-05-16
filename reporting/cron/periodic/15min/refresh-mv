@@ -32,13 +32,31 @@ export PGDATABASE=$DB
 export PGUSER=$POSTGRES_USER
 
 echo "Refreshing reporting stack materialized views..."
+
 psql <<-EOSQL
+  \echo 'Refreshing view_facility_access...'
   REFRESH MATERIALIZED VIEW view_facility_access;
+
+  \echo 'Refreshing reporting_rate_and_timeliness...'
   REFRESH MATERIALIZED VIEW reporting_rate_and_timeliness;
+
+  \echo 'Refreshing adjustments...'
   REFRESH MATERIALIZED VIEW adjustments;
+
+  \echo 'Refreshing stock_status_and_consumption...'
   REFRESH MATERIALIZED VIEW stock_status_and_consumption;
+
+  \echo 'Refreshing facilities...'
   REFRESH MATERIALIZED VIEW facilities;
+
+  \echo 'Refreshing expired_products...'
   REFRESH MATERIALIZED VIEW expired_products;
+
+  \echo 'Refreshing stock_card_summaries...'
   REFRESH MATERIALIZED VIEW stock_card_summaries;
+
+  \echo 'Refreshing stock_card_summaries_with_prices...'
   REFRESH MATERIALIZED VIEW stock_card_summaries_with_prices;
 EOSQL
+
+echo "Materialized view refresh complete."

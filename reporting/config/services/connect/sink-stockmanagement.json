@@ -12,7 +12,11 @@
       "insert.mode": "upsert",
       "pk.fields": "id",
       "pk.mode": "record_key",
-      "delete.enabled": "true"
+      "delete.enabled": "true",
+      "transforms": "TimestampConverter",
+      "transforms.TimestampConverter.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+      "transforms.TimestampConverter.target.type": "Timestamp",
+      "transforms.TimestampConverter.field": "processeddate"
     }
 }
   
