@@ -1,0 +1,12 @@
+dev.superset.elmis.gov.ls {
+  # Let Caddy auto-manage TLS for this hostname
+  tls admin@elmis.gov.ls
+
+  # Bypass Nginx—direct to Superset container:
+  reverse_proxy superset:8088 {
+    header_up Host {host}
+    header_up X-Forwarded-Proto {scheme}
+    header_up X-Real-IP {remote}
+    header_up X-Forwarded-For {remote}
+  }
+}

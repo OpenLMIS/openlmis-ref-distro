@@ -37,9 +37,11 @@ services:
 
   nginx:
     image: openlmis/nginx:${OL_NGINX_VERSION}
-    ports:
-      - "${OL_HTTP_PORT:-80}:80"
-      - "${OL_HTTPS_PORT:-443}:443"
+    #free up ports 80 and 443 for caddy
+    #ports:
+      # - "${OL_HTTP_PORT:-80}:80"
+      # - "${OL_HTTPS_PORT:-443}:443"
+      # bind HTTP only on localhost:8080
     env_file: settings.env
     environment:
       NGINX_LOG_DIR: '/var/log/nginx/log'
@@ -248,6 +250,19 @@ services:
     depends_on: [db, config-container, nginx]
     env_file: settings.env
 
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"    # public HTTP
+      - "443:443"  # public HTTPS
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - default
+
 volumes:
   syslog:
     external: false
@@ -256,4 +271,8 @@ volumes:
   db-config-volume:
     external: false
   cron-periodic-volume:
+    external: false
+  caddy_data:
+    external: false
+  caddy_config:
     external: false
