@@ -15,7 +15,7 @@
   * Edit `settings.env` to match your setup. Despite generating the passwords, you will likely need to change
    `VIRTUAL_HOST`,`TRUSTED_HOSTNAME`, `OL_BASE_URL` (to point to OpenLMIS), `NIFI_DOMAIN_NAME` and `SUPERSET_DOMAIN_NAME` (which should point to the reporting stack) and `SUPERSET_URL` to point to the Superset URL.
   Details on all the environment variables are below.
-  * NB: `SUPERSET_URL` in `settings.env` file in OpenLMIS should be updated to the superset URL. 
+  * NB: `SUPERSET_URL` in `settings.env` file in OpenLMIS should be updated to the superset URL.
 
 5. Bring up the reporting stack by running [docker-compose](https://docs.docker.com/compose/) on the server:
   ```sh
@@ -44,14 +44,14 @@ Upgrading Superset to new version consist of two steps:
 
 ##### Updating configuration volume
 
-The `./upgrade-superset-config.sh` script can be used to update the configuration volume in one go. 
-It must be executed on the Superset's Docker host system. 
+The `./upgrade-superset-config.sh` script can be used to update the configuration volume in one go.
+It must be executed on the Superset's Docker host system.
 The scripts starts a 'dummy' container linked ot the config volume, and copies (with override) the new content
 of `./config/services/superset`.
 
 ##### Running new Docker image
 
-There are no special considerations. 
+There are no special considerations.
 Start and build the Docker image included in this project as described in **Deploying to a Server** section.
 
 ## OAuth User for Superset
@@ -61,8 +61,8 @@ It is the specific user with `authorizedGrantTypes` set to `authorization_code`
 
 Example of a SQL statement creating that user (superset:changeme):
 ```
-INSERT INTO auth.oauth_client_details (clientId,authorities,authorizedGrantTypes,clientSecret,"scope")
-VALUES ('superset','TRUSTED_CLIENT','authorization_code','changeme','read,write');
+INSERT INTO auth.oauth_client_details (clientId,authorities,authorizedGrantTypes,clientSecret,redirecturi,"scope")
+VALUES ('superset','TRUSTED_CLIENT','authorization_code','changeme','https://MyURL/oauth-authorized/openlmis','read,write');
 ```
 
 Don't forget to set newly created user's credentials in settings.env. Example:
