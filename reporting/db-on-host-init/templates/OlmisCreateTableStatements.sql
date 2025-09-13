@@ -2731,3 +2731,74 @@ ORDER BY sbc.facility_name, sbc.product_name, sbc.stock_on_hand DESC
 WITH DATA;
 
 ALTER MATERIALIZED VIEW data_verification OWNER TO postgres;
+
+DROP MATERIALIZED VIEW IF EXISTS dqa;
+CREATE MATERIALIZED VIEW dqa AS
+
+SELECT 
+       fac.name "Facility",
+       dis.name "District",
+       facty.name "Facility Type",
+       facop.name "Ownership",
+       prog.name AS "Program",
+       ord.fullproductname "Product", 
+       lots.lotcode "Batch Number" ,
+       stcli.quantity, -- "Quantity",
+       NULL AS isphysicalinventory,
+       stclir.name AS "Reason", 
+       stclir.reasontype,
+       stcli.occurreddate
+       
+FROM kafka_stock_card_line_items stcli
+LEFT JOIN kafka_stock_card_line_item_reasons stclir ON stcli.reasonid = stclir.id
+LEFT JOIN kafka_stock_cards stc ON stcli.stockcardid = stc.id 
+LEFT JOIN kafka_orderables ord ON stc.orderableid = ord.id  
+LEFT JOIN kafka_lots lots ON stc.lotid = lots.id
+LEFT JOIN kafka_program_orderables po ON ord.id = po.orderableid 
+LEFT JOIN kafka_programs prog ON po.programid = prog.id
+LEFT JOIN kafka_facilities fac ON stc.facilityid = fac.id
+LEFT JOIN kafka_facility_types facty ON fac.typeid = facty.id 
+LEFT JOIN kafka_facility_operators facop ON fac.operatedbyid = facop.id
+LEFT JOIN kafka_geographic_zones zone_fac ON zone_fac.id = fac.geographiczoneid
+LEFT JOIN kafka_geographic_zones dis ON zone_fac.parentid = dis.id  -- dis for district
+WHERE facty.id IN ('0fbe2b5c-bd2b-46af-ba7f-63c14add59c7', --Hospital
+                      '1096849c-84cd-4a94-8a7a-25d9f6e3911b') -- Health Centre
+      AND stclir.name IS NOT NULL
+
+UNION 
+
+SELECT 
+       fac.name "Facility",
+       dis.name "District",
+       facty.name "Facility Type",
+       facop.name "Ownership",
+       prog.name AS "Program",
+       ord.fullproductname "Product", 
+       lots.lotcode "Batch Number" ,
+      -- stcli.quantity AS "Line Item Qauntity", 
+       pili.quantity, --  AS "Quantity",
+       stcli.extradata ->> 'physicalInventoryType' AS isphysicalinventory,
+       stclir.name AS "Reason", 
+       stclir.reasontype,
+       stcli.occurreddate
+       
+FROM kafka_stock_card_line_items stcli
+LEFT JOIN kafka_physical_inventory_line_item_adjustments pili ON pili.stockcardlineitemid::uuid = stcli.id
+LEFT JOIN kafka_stock_card_line_item_reasons stclir ON pili.reasonid::uuid = stclir.id
+LEFT JOIN kafka_stock_cards stc ON stcli.stockcardid = stc.id 
+LEFT JOIN kafka_orderables ord ON stc.orderableid = ord.id  
+LEFT JOIN kafka_lots lots ON stc.lotid = lots.id
+LEFT JOIN kafka_program_orderables po ON ord.id = po.orderableid 
+LEFT JOIN kafka_programs prog ON po.programid = prog.id
+LEFT JOIN kafka_facilities fac ON stc.facilityid = fac.id
+LEFT JOIN kafka_facility_types facty ON fac.typeid = facty.id 
+LEFT JOIN kafka_facility_operators facop ON fac.operatedbyid = facop.id
+LEFT JOIN kafka_geographic_zones zone_fac ON zone_fac.id = fac.geographiczoneid
+LEFT JOIN kafka_geographic_zones dis ON zone_fac.parentid = dis.id  -- dis for district
+WHERE facty.id IN ('0fbe2b5c-bd2b-46af-ba7f-63c14add59c7', --Hospital
+                      '1096849c-84cd-4a94-8a7a-25d9f6e3911b') -- Health Centre
+      AND stcli.extradata ? 'physicalInventoryType'
+
+WITH DATA;
+
+ALTER MATERIALIZED VIEW dqa OWNER TO postgres;
