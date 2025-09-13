@@ -63,6 +63,9 @@ psql <<-EOSQL
 
   \echo 'Refreshing dqa'
   REFRESH MATERIALIZED VIEW dqa;
+
+  \echo 'Refreshing redistribution'
+  REFRESH MATERIALIZED VIEW redistribution;
 EOSQL
 
 echo "Materialized view refresh complete."

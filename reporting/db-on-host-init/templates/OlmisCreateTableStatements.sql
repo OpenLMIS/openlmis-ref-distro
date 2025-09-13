@@ -2802,3 +2802,51 @@ WHERE facty.id IN ('0fbe2b5c-bd2b-46af-ba7f-63c14add59c7', --Hospital
 WITH DATA;
 
 ALTER MATERIALIZED VIEW dqa OWNER TO postgres;
+
+
+
+DROP MATERIALIZED VIEW IF EXISTS redistribution;
+CREATE MATERIALIZED VIEW redistribution AS
+
+SELECT 
+       issufac.name AS "Issuing Facility",
+       issudis.name AS "Issuing District",
+       issufacty.name AS "Issuing Facility Type",
+       issufacop.name AS "Issuing Facility Ownership",
+       prog.name AS "Program",
+       ord.fullproductname "Product", 
+       lots.lotcode "Batch Number" ,
+       stcli.quantity "Quantity",
+      -- stclir.name AS "Reason", 
+       stcli.occurreddate AS "Date Received",
+       fac.name "Receiving Facility",
+       dis.name "District",
+       facty.name "Facility Type",
+       facop.name "Ownership"
+       
+FROM kafka_stock_card_line_items stcli
+LEFT JOIN kafka_stock_card_line_item_reasons stclir ON stcli.reasonid = stclir.id
+LEFT JOIN kafka_stock_cards stc ON stcli.stockcardid = stc.id 
+LEFT JOIN kafka_orderables ord ON stc.orderableid = ord.id  
+LEFT JOIN kafka_lots lots ON stc.lotid = lots.id
+LEFT JOIN kafka_program_orderables po ON ord.id = po.orderableid 
+LEFT JOIN kafka_programs prog ON po.programid = prog.id
+LEFT JOIN kafka_facilities fac ON stc.facilityid = fac.id
+LEFT JOIN kafka_facility_types facty ON fac.typeid = facty.id 
+LEFT JOIN kafka_facility_operators facop ON fac.operatedbyid = facop.id
+LEFT JOIN kafka_geographic_zones zone_fac ON zone_fac.id = fac.geographiczoneid
+LEFT JOIN kafka_geographic_zones dis ON zone_fac.parentid = dis.id  -- dis for district
+LEFT JOIN kafka_nodes no ON stcli.sourceid = CAST(no.id AS uuid)
+LEFT JOIN kafka_facilities issufac ON CAST(no.referenceid AS uuid) = issufac.id
+LEFT JOIN kafka_geographic_zones zone_issufac ON zone_issufac.id = issufac.geographiczoneid 
+LEFT JOIN kafka_geographic_zones issudis ON zone_issufac.parentid = issudis.id
+LEFT JOIN kafka_facility_types issufacty ON issufac.typeid = issufacty.id 
+LEFT JOIN kafka_facility_operators issufacop ON issufac.operatedbyid = issufacop.id
+
+WHERE stclir.id  = 'e3fc3cf3-da18-44b0-a220-77c985202e06' -- Transfer IN
+      AND facty.id IN ('0fbe2b5c-bd2b-46af-ba7f-63c14add59c7', --Hospital
+                      '1096849c-84cd-4a94-8a7a-25d9f6e3911b') -- Health Centre
+      AND stcli.sourceid IS NOT NULL
+
+WITH DATA;
+ALTER MATERIALIZED VIEW redistribution OWNER TO postgres;
