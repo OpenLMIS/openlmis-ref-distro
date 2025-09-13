@@ -57,6 +57,9 @@ psql <<-EOSQL
 
   \echo 'Refreshing stock_card_summaries_with_prices...'
   REFRESH MATERIALIZED VIEW stock_card_summaries_with_prices;
+
+  \echo 'Refreshing data_verification'
+  REFRESH MATERIALIZED VIEW data_verification;
 EOSQL
 
 echo "Materialized view refresh complete."
