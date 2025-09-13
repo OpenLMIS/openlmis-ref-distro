@@ -10,7 +10,7 @@
       "database.password": "p@ssw0rd",
       "database.dbname": "open_lmis",
       "database.server.name": "openlmis",
-      "table.whitelist": "stockmanagement\\.nodes,stockmanagement\\.stock_events,stockmanagement\\.stock_event_line_items,stockmanagement\\.stock_cards,stockmanagement\\.stock_card_line_items,stockmanagement\\.stock_card_line_item_reasons",
+      "table.whitelist": "stockmanagement\\.nodes,stockmanagement\\.stock_events,stockmanagement\\.stock_event_line_items,stockmanagement\\.stock_cards,stockmanagement\\.stock_card_line_items,stockmanagement\\.stock_card_line_item_reasons, stockmanagement\\.physical_inventories, stockmanagement\\.physical_inventory_line_item_adjustments, stockmanagement\\.physical_inventory_line_items",
       "database.history.kafka.bootstrap.servers": "kafka:29092",
       "database.history.kafka.topic": "openlmis",
       "slot.name": "dbz_stockmanagement",

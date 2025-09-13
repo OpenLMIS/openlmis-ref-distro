@@ -2620,3 +2620,114 @@ LEFT JOIN latest_prices lp ON
 WITH DATA;
 
 ALTER MATERIALIZED VIEW stock_card_summaries_with_prices OWNER TO postgres;
+
+DROP MATERIALIZED VIEW IF EXISTS data_verification;
+CREATE MATERIALIZED VIEW data_verification AS
+
+WITH stock_by_card AS (
+    -- Step 1: Calculate both stock on hand and receipts per stockcard
+    SELECT 
+        stc.id AS stockcardid,
+        fac.name AS facility_name,
+        fac.code AS facility_code,
+        LEFT(fac.code, 4) AS facility_prefix,
+        facty.name AS facility_type,
+        facop.name AS facility_operator,
+        ord.fullproductname AS product_name,
+        ord.netcontent AS pack_size,
+        prog.name AS program,
+        odc.displayname AS category,
+        geoz.name AS geographic_zone,
+        dis.name AS district,
+        SUM(
+            CASE 
+                WHEN COALESCE(stclire.reasontype, 'CREDIT') = 'CREDIT' THEN stcli.quantity
+                WHEN stclire.reasontype = 'DEBIT' THEN -stcli.quantity
+                ELSE 0
+            END
+        ) AS stock_on_hand,
+        SUM(
+            CASE 
+                WHEN stclire.name = 'Receipts' AND no_fac.code  = 'NDSO' THEN stcli.quantity 
+                ELSE 0
+            END
+        ) AS sum_of_receipts,
+        SUM(
+            CASE 
+                WHEN stclire.name = 'Transfer Out' THEN stcli.quantity 
+                ELSE 0
+            END
+        ) AS sum_of_transfer_out,
+        SUM(
+            CASE 
+                WHEN stclire.name = 'Expired' THEN stcli.quantity 
+                ELSE 0
+            END
+        ) AS sum_expired,
+        SUM(
+            CASE 
+                WHEN stclire.name = 'Transfer In' THEN stcli.quantity 
+                ELSE 0
+            END
+        ) AS sum_tranfer_in
+    FROM kafka_stock_card_line_items stcli
+    LEFT JOIN kafka_stock_card_line_item_reasons stclire ON stcli.reasonid = stclire.id
+    LEFT JOIN kafka_stock_cards stc ON stcli.stockcardid = stc.id
+    LEFT JOIN kafka_facilities fac ON stc.facilityid = fac.id
+    LEFT JOIN kafka_facility_types facty ON fac.typeid = facty.id
+    LEFT JOIN kafka_facility_operators facop ON fac.operatedbyid = facop.id
+    LEFT JOIN kafka_orderables ord ON stc.orderableid = ord.id
+    LEFT JOIN kafka_programs prog ON stc.programid = prog.id
+    LEFT JOIN kafka_program_orderables prog_o ON ord.id = prog_o.orderableid
+    LEFT JOIN kafka_orderable_display_categories odc ON odc.id = prog_o.orderabledisplaycategoryid
+    LEFT JOIN kafka_geographic_zones geoz ON geoz.id = fac.geographiczoneid
+    LEFT JOIN kafka_nodes no ON CAST(no.id AS uuid) = stcli.sourceid
+    LEFT JOIN kafka_facilities no_fac ON no_fac.id = CAST(no.referenceid AS uuid)
+    LEFT JOIN kafka_geographic_zones Zone_fac ON zone_fac.id = fac.geographiczoneid
+    LEFT JOIN kafka_geographic_zones dis ON zone_fac.parentid = dis.id
+    GROUP BY 
+        stc.id,
+        fac.name, fac.code, facty.name, facop.name,
+        ord.fullproductname, ord.netcontent,
+        prog.name, odc.displayname, geoz.name,dis.name
+),
+total_by_group AS (
+    -- Step 2: Sum both stock and receipts per (first 4 letters of Facility Code + Product Name)
+    SELECT 
+        facility_prefix,
+        product_name,
+        SUM(stock_on_hand) AS total_stock_on_hand,
+        SUM(sum_of_receipts) AS total_receipts_per_product,
+        SUM(sum_of_transfer_out) AS total_transfer_out,
+        SUM(sum_expired) AS total_expired,
+        SUM(sum_tranfer_in) AS total_transfer_in
+    FROM stock_by_card
+    GROUP BY facility_prefix, product_name
+)
+-- Final result: combine per-stockcard data with group totals
+SELECT DISTINCT ON (sbc.facility_name, sbc.product_name)
+    sbc.district AS "District",
+    sbc.geographic_zone AS "Facility Name",
+    sbc.facility_code AS "Facility Code",
+    sbc.facility_type AS "Facility Type",
+    sbc.facility_operator AS "Facility Operator",
+    sbc.product_name AS "Product Name",
+    sbc.pack_size AS "Pack Size",
+    sbc.program AS "Program",
+    -- sbc.category AS "Categories",
+    -- tbg.total_stock_on_hand AS "Total Stock on Hand",
+    tbg.total_receipts_per_product AS "Receipts",
+    tbg.total_transfer_in AS "Transfer In",
+    tbg.total_transfer_out AS "Transfer Out",
+    tbg.total_expired AS "Expired",
+    tbg.total_stock_on_hand AS "Total Stock on Hand"
+FROM stock_by_card sbc
+JOIN total_by_group tbg
+    ON sbc.facility_prefix = tbg.facility_prefix
+    AND sbc.product_name = tbg.product_name
+WHERE LENGTH(sbc.facility_code) = 5
+ORDER BY sbc.facility_name, sbc.product_name, sbc.stock_on_hand DESC
+
+WITH DATA;
+
+ALTER MATERIALIZED VIEW data_verification OWNER TO postgres;
