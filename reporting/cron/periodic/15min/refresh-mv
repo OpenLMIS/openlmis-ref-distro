@@ -60,6 +60,22 @@ psql <<-EOSQL
 
   \echo 'Refreshing data_verification'
   REFRESH MATERIALIZED VIEW data_verification;
+
+  \echo 'Refreshing dqa'
+  REFRESH MATERIALIZED VIEW dqa;
+
+  \echo 'Refreshing redistribution'
+  REFRESH MATERIALIZED VIEW redistribution;
+
+  \echo 'Refreshing stockouts'
+  REFRESH MATERIALIZED VIEW stockouts;
+
+  \echo 'Refreshing priduct_loss'
+  REFRESH MATERIALIZED VIEW product_loss;
+
+  \echo 'Refreshing emergency_orders'
+  REFRESH MATERIALIZED VIEW emergency_orders;
+
 EOSQL
 
 echo "Materialized view refresh complete."
