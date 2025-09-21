@@ -70,7 +70,7 @@ psql <<-EOSQL
   \echo 'Refreshing stockouts'
   REFRESH MATERIALIZED VIEW stockouts;
 
-  \echo 'Refreshing priduct_loss'
+  \echo 'Refreshing product_loss'
   REFRESH MATERIALIZED VIEW product_loss;
 
   \echo 'Refreshing emergency_orders'
