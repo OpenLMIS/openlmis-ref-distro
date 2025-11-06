@@ -2747,7 +2747,8 @@ SELECT
        NULL AS isphysicalinventory,
        stclir.name AS "Reason", 
        stclir.reasontype,
-       stcli.occurreddate
+       stcli.occurreddate,
+       fa.username
        
 FROM kafka_stock_card_line_items stcli
 LEFT JOIN kafka_stock_card_line_item_reasons stclir ON stcli.reasonid = stclir.id
@@ -2761,6 +2762,7 @@ LEFT JOIN kafka_facility_types facty ON fac.typeid = facty.id
 LEFT JOIN kafka_facility_operators facop ON fac.operatedbyid = facop.id
 LEFT JOIN kafka_geographic_zones zone_fac ON zone_fac.id = fac.geographiczoneid
 LEFT JOIN kafka_geographic_zones dis ON zone_fac.parentid = dis.id  -- dis for district
+LEFT JOIN view_facility_access fa ON fa.facilityid = fac.id
 WHERE facty.id IN ('0fbe2b5c-bd2b-46af-ba7f-63c14add59c7', --Hospital
                       '1096849c-84cd-4a94-8a7a-25d9f6e3911b') -- Health Centre
       AND stclir.name IS NOT NULL
@@ -2780,7 +2782,8 @@ SELECT
        stcli.extradata ->> 'physicalInventoryType' AS isphysicalinventory,
        stclir.name AS "Reason", 
        stclir.reasontype,
-       stcli.occurreddate
+       stcli.occurreddate,
+       fa.username
        
 FROM kafka_stock_card_line_items stcli
 LEFT JOIN kafka_physical_inventory_line_item_adjustments pili ON pili.stockcardlineitemid::uuid = stcli.id
@@ -2795,6 +2798,7 @@ LEFT JOIN kafka_facility_types facty ON fac.typeid = facty.id
 LEFT JOIN kafka_facility_operators facop ON fac.operatedbyid = facop.id
 LEFT JOIN kafka_geographic_zones zone_fac ON zone_fac.id = fac.geographiczoneid
 LEFT JOIN kafka_geographic_zones dis ON zone_fac.parentid = dis.id  -- dis for district
+LEFT JOIN view_facility_access fa ON fa.facilityid = fac.id
 WHERE facty.id IN ('0fbe2b5c-bd2b-46af-ba7f-63c14add59c7', --Hospital
                       '1096849c-84cd-4a94-8a7a-25d9f6e3911b') -- Health Centre
       AND stcli.extradata ? 'physicalInventoryType'
@@ -2822,7 +2826,8 @@ SELECT
        fac.name "Receiving Facility",
        dis.name "District",
        facty.name "Facility Type",
-       facop.name "Ownership"
+       facop.name "Ownership",
+       fa.username
        
 FROM kafka_stock_card_line_items stcli
 LEFT JOIN kafka_stock_card_line_item_reasons stclir ON stcli.reasonid = stclir.id
@@ -2842,6 +2847,7 @@ LEFT JOIN kafka_geographic_zones zone_issufac ON zone_issufac.id = issufac.geogr
 LEFT JOIN kafka_geographic_zones issudis ON zone_issufac.parentid = issudis.id
 LEFT JOIN kafka_facility_types issufacty ON issufac.typeid = issufacty.id 
 LEFT JOIN kafka_facility_operators issufacop ON issufac.operatedbyid = issufacop.id
+LEFT JOIN view_facility_access fa ON fa.facilityid = fac.id
 
 WHERE stclir.id  = 'e3fc3cf3-da18-44b0-a220-77c985202e06' -- Transfer IN
       AND facty.id IN ('0fbe2b5c-bd2b-46af-ba7f-63c14add59c7', --Hospital
@@ -2968,7 +2974,9 @@ SELECT
        lots.lotcode "Batch Number" ,
        stcli.quantity "Quantity",
        stclir.name AS "Reason", 
-       stcli.occurreddate 
+       stcli.occurreddate,
+       fa.username
+
 FROM kafka_stock_card_line_items stcli
 LEFT JOIN kafka_stock_card_line_item_reasons stclir ON stcli.reasonid = stclir.id
 LEFT JOIN kafka_stock_cards stc ON stcli.stockcardid = stc.id 
@@ -2981,6 +2989,7 @@ LEFT JOIN kafka_facility_types facty ON fac.typeid = facty.id
 LEFT JOIN kafka_facility_operators facop ON fac.operatedbyid = facop.id
 LEFT JOIN kafka_geographic_zones zone_fac ON zone_fac.id = fac.geographiczoneid
 LEFT JOIN kafka_geographic_zones dis ON zone_fac.parentid = dis.id  -- dis for district
+LEFT JOIN view_facility_access fa ON fa.facilityid = fac.id
 WHERE stclir.id IN ('97e3140e-8432-4541-8347-d3a0d84954b4',-- Damaged
                    'dca931d1-aaf9-47ba-9609-fb98fb421b4c', -- Expiry
                    '58c07b26-6ca0-4d4f-9a7d-c5a8e126927d', -- Damage
@@ -3011,7 +3020,8 @@ prog.name AS program,
 period.name AS "Reporting Period",
 ord.fullproductname,
 reqli.requestedquantity as "Quantity Requested",
-req.status
+req.status,
+fa.username
 from  kafka_requisitions req
 LEFT JOIN kafka_facilities fac ON req.facilityid = fac.id
 LEFT JOIN kafka_facility_types facty ON fac.typeid = facty.id
@@ -3025,6 +3035,7 @@ LEFT JOIN kafka_geographic_zones dis ON zone_fac.parentid = dis.id
 LEFT JOIN kafka_processing_periods period ON req.processingperiodid  = period.id
 LEFT JOIN kafka_requisition_line_items reqli ON req.id = reqli.requisitionid 
 LEFT JOIN kafka_orderables ord ON reqli.orderableid = ord.id
+LEFT JOIN view_facility_access fa ON fa.facilityid = fac.id
 WHERE req.emergency  = 'true' -- Pull Only Emergency kafka_requisitions 
 AND req.status in ('APPROVED');--, 'SUBMITTED','RELEASED', 'IN_APPROVAL');
 
