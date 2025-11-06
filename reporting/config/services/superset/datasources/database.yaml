@@ -1068,6 +1068,7 @@ databases:
     - {column_name: quantity, type: DOUBLE PRECISION, sum: true, avg: true}
     - {column_name: Reason, filterable: true, groupby: true, type: TEXT}
     - {column_name: reasontype, filterable: true, groupby: true, type: TEXT}
+    - {column_name: username, filterable: true, groupby: true, type: TEXT}
     - {column_name: debit_or_credit,expression: "CASE WHEN reasontype = 'CREDIT' THEN quantity   WHEN reasontype = 'DEBIT' THEN -quantity ELSE 0 END", type: DOUBLE PRECISION}
     main_dttm_col: occurreddate
     metrics:
@@ -1104,6 +1105,7 @@ databases:
     - { column_name: fullproductname, filterable: true, groupby: true, type: TEXT }
     - { column_name: "Quantity Requested", type: DOUBLE PRECISION, sum: true, avg: true }
     - { column_name: status, filterable: true, groupby: true, type: TEXT }
+    - {column_name: username, filterable: true, groupby: true, type: TEXT}
     metrics:
     - { expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*) }
     schema: public
@@ -1123,6 +1125,7 @@ databases:
     - { column_name: District, filterable: true, groupby: true, type: TEXT }
     - { column_name: "Facility Type", filterable: true, groupby: true, type: TEXT }
     - { column_name: Ownership, filterable: true, groupby: true, type: TEXT }
+    - {column_name: username, filterable: true, groupby: true, type: TEXT}
     main_dttm_col: "Date Received"
     metrics:
     - { expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*) }
@@ -1139,6 +1142,7 @@ databases:
     - { column_name: "Batch Number", filterable: true, groupby: true, type: TEXT }
     - { column_name: Quantity, type: DOUBLE PRECISION, sum: true, avg: true }
     - { column_name: Reason, filterable: true, groupby: true, type: TEXT }
+    - {column_name: username, filterable: true, groupby: true, type: TEXT}
     main_dttm_col: occurreddate
     metrics:
     - { expression: COUNT(*), metric_name: count, metric_type: count, verbose_name: COUNT(*) }
