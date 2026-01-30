@@ -1,5 +1,9 @@
-FROM alpine:3.11
+FROM alpine:3.21
 
-COPY log/logback.xml /config/log/logback.xml
+WORKDIR /stage
 
-CMD /bin/true
+COPY log/ ./log/
+
+RUN chmod -R 644 ./log
+
+CMD ["sh", "-c", "cp -a /stage/. /config/"]

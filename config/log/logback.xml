@@ -1,50 +1,29 @@
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
-    <appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
+    <appender name="SYSLOG_INTERNAL" class="ch.qos.logback.classic.net.SyslogAppender">
         <syslogHost>log</syslogHost>
+        <port>514</port>
         <facility>LOCAL0</facility>
-        <suffixPattern>[%15.15thread] %level %logger %msg</suffixPattern>
+        <suffixPattern>[%15.15thread] %level %logger{36} %msg</suffixPattern>
     </appender>
 
-    <logger name="org.openlmis.auth" level="DEBUG" additivity="false">
-        <appender-ref ref="SYSLOG"/>
-    </logger>
+    <appender name="SYSLOG" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SYSLOG_INTERNAL" />
+        <queueSize>500</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <includeCallerData>false</includeCallerData>
+    </appender>
 
-    <logger name="org.openlmis.cce" level="DEBUG" additivity="false">
-        <appender-ref ref="SYSLOG"/>
-    </logger>
+<!--    <logger name="org.openlmis" level="DEBUG" additivity="false">-->
+<!--        <appender-ref ref="SYSLOG"/>-->
+<!--        <appender-ref ref="CONSOLE"/>-->
+<!--    </logger>-->
 
-    <logger name="org.openlmis.fulfillment" level="DEBUG" additivity="false">
-        <appender-ref ref="SYSLOG"/>
-    </logger>
-
-    <logger name="org.openlmis.notification" level="DEBUG" additivity="false">
-        <appender-ref ref="SYSLOG"/>
-    </logger>
-
-    <logger name="org.openlmis.referencedata" level="DEBUG" additivity="false">
-        <appender-ref ref="SYSLOG"/>
-    </logger>
-
-    <logger name="org.openlmis.report" level="DEBUG" additivity="false">
-        <appender-ref ref="SYSLOG"/>
-    </logger>
-
-    <logger name="org.openlmis.requisition" level="DEBUG" additivity="false">
-        <appender-ref ref="SYSLOG"/>
-    </logger>
-
-    <logger name="org.openlmis.stockmanagement" level="DEBUG" additivity="false">
-        <appender-ref ref="SYSLOG"/>
-    </logger>
-
-    <logger name="org.openlmis.buq" level="DEBUG" additivity="false">
-        <appender-ref ref="SYSLOG"/>
-    </logger>
-
-    <!-- Define the root logger log level -->
     <root level="WARN">
         <appender-ref ref="SYSLOG"/>
+        <appender-ref ref="CONSOLE"/>
     </root>
+
 </configuration>
