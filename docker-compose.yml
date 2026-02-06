@@ -1,8 +1,4 @@
 services:
-  # ----------------------------------------------------------------
-  # 1. CORE INFRASTRUCTURE
-  # ----------------------------------------------------------------
-
   service-configuration:
     build:
       context: ./config
@@ -15,10 +11,10 @@ services:
     environment:
       CONSUL_BIND_INTERFACE: eth0
     ports:
-     - "8300:8300"     # Server RPC (Internal)
-     - "8500:8500"     # HTTP API & Web UI
-     - "8600:8600/tcp" # DNS (Replaces port 53)
-     - "8600:8600/udp" # DNS (Replaces port 53)
+     - "8300:8300"
+     - "8500:8500"
+     - "8600:8600/tcp"
+     - "8600:8600/udp"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8500/v1/status/leader"]
       interval: 30s
@@ -50,10 +46,6 @@ services:
     depends_on:
       consul:
         condition: service_healthy
-
-  # ----------------------------------------------------------------
-  # 2. WEB & INTERFACE LAYERS
-  # ----------------------------------------------------------------
 
   nginx:
     image: openlmis/nginx:${OL_NGINX_VERSION}
@@ -102,10 +94,6 @@ services:
     depends_on:
       consul:
         condition: service_healthy
-
-  # ----------------------------------------------------------------
-  # 3. BACKEND APPLICATIONS
-  # ----------------------------------------------------------------
 
   requisition:
     image: openlmis/requisition:${OL_REQUISITION_VERSION}
@@ -332,7 +320,6 @@ services:
         condition: service_started
 
   hapifhir:
-    restart: always
     image: openlmis/hapifhir:${OL_HAPIFHIR_VERSION}
     env_file: settings.env
     environment:
@@ -341,7 +328,6 @@ services:
         -Xmx512m
         -Djava.security.egd=file:/dev/./urandom
         -Dlogging.config=/config/log/logback.xml
-      spring_profiles_active: ${spring_profiles_active}
     volumes:
       - service-config:/config:ro
     depends_on:
@@ -396,9 +382,6 @@ services:
       db:
         condition: service_started
 
-# ----------------------------------------------------------------
-# GLOBAL VOLUMES
-# ----------------------------------------------------------------
 volumes:
   service-config:
   syslog:
