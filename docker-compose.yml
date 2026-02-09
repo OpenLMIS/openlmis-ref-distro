@@ -1,14 +1,53 @@
-version: "3.3"
 services:
+  service-configuration:
+    build:
+      context: ./config
+    volumes:
+      - service-config:/config
 
   consul:
-    command: -server -bootstrap
-    image: gliderlabs/consul-server
+    image: hashicorp/consul:${OL_CONSUL_VERSION}
+    command: agent -server -bootstrap-expect=1 -ui -client=0.0.0.0
+    environment:
+      CONSUL_BIND_INTERFACE: eth0
     ports:
-      - "8300"
-      - "8400"
-      - "8500:8500"
-      - "53"
+     - "8300:8300"
+     - "8500:8500"
+     - "8600:8600/tcp"
+     - "8600:8600/udp"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8500/v1/status/leader"]
+      interval: 30s
+      timeout: 5s
+      retries: 10
+
+  db:
+    image: openlmis/postgres:${OL_POSTGRES_VERSION}
+    command: postgres -c 'max_connections=500'
+    env_file: settings.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - olmis-db:/var/lib/postgresql/data
+    depends_on:
+      consul:
+        condition: service_healthy
+
+  log:
+    image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
+    volumes:
+      - syslog:/var/log
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+
+  redis:
+    image: redis:3.2.12
+    depends_on:
+      consul:
+        condition: service_healthy
 
   nginx:
     image: openlmis/nginx:${OL_NGINX_VERSION}
@@ -18,188 +57,35 @@ services:
     environment:
       NGINX_LOG_DIR: '/var/log/nginx/log'
     volumes:
-      - 'nginx-log:/var/log/nginx/log'
-      - 'consul-template-log:/var/log/consul-template'
-    depends_on: [consul]
+      - nginx-log:/var/log/nginx/log
+      - consul-template-log:/var/log/consul-template
+    depends_on:
+      consul:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 20000
+        hard: 40000
 
   reference-ui:
     image: openlmis/reference-ui:${OL_REFERENCE_UI_VERSION}
     env_file: settings.env
-    depends_on: [consul]
-    mem_limit: '1.3G'
-    cpus: 2
-
-  requisition:
-    image: openlmis/requisition:${OL_REQUISITION_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/wait-for-postgres.sh", "/run.sh"]
-    mem_limit: '1.3G'
-    cpus: 2
-
-  referencedata:
-    image: openlmis/referencedata:${OL_REFERENCEDATA_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/wait-for-postgres.sh", "/run.sh"]
-    mem_limit: '1.3G'
-    cpus: 2
-
-  auth:
-    image: openlmis/auth:${OL_AUTH_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/wait-for-postgres.sh", "/run.sh"]
-    mem_limit: '0.7G'
-    cpus: 2
-
-  notification:
-    image: openlmis/notification:${OL_NOTIFICATION_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/wait-for-postgres.sh", "/run.sh"]
-    mem_limit: '0.7G'
-    cpus: 2
-
-  fulfillment:
-    image: openlmis/fulfillment:${OL_FULFILLMENT_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/wait-for-postgres.sh", "/run.sh"]
-    mem_limit: '0.7G'
-    cpus: 2
-
-  cce:
-    image: openlmis/cce:${OL_CCE_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/wait-for-postgres.sh", "/run.sh"]
-    mem_limit: '0.7G'
-    cpus: 2
-
-  stockmanagement:
-    image: openlmis/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/wait-for-postgres.sh", "/run.sh"]
-    mem_limit: '0.7G'
-    cpus: 2
-
-  report:
-    image: openlmis/report:${OL_REPORT_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/wait-for-postgres.sh", "/run.sh"]
-    mem_limit: '0.7G'
-    cpus: 2
-
-  buq:
-    image: openlmis/buq:${OL_BUQ_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx1024m -Dlogging.config=/config/log/logback.xml'
-    volumes:
-      - 'service-config:/config'
-    depends_on: [ log, db ]
-    command: [ "/wait-for-postgres.sh", "/run.sh" ]
-    mem_limit: '1.3G'
-    cpus: 2
-
-  hapifhir:
-    restart: always
-    image: openlmis/hapifhir:${OL_HAPIFHIR_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-      spring_profiles_active: ${spring_profiles_active}
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log, db]
-    command: ["/wait-for-postgres.sh", "/run.sh"]
-    mem_limit: '0.7G'
-    cpus: 2
-
-  diagnostics:
-    image: openlmis/diagnostics:${OL_DIAGNOSTICS_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-      spring_profiles_active: ${spring_profiles_active}
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log]
-    mem_limit: '0.7G'
-    cpus: 2
-
-  dhis2-integration:
-    image: openlmis/dhis2-integration:${OL_DHIS2INTEGRATION_VERSION}
-    env_file: settings.env
-    environment:
-      JAVA_OPTS: '-server -Xmx512m -Dlogging.config=/config/log/logback.xml'
-      spring_profiles_active: ${spring_profiles_active}
-    volumes:
-      - 'service-config:/config'
-    depends_on: [log]
-    mem_limit: '0.7G'
-    cpus: 2
-
-  db:
-    image: openlmis/postgres:${OL_POSTGRES_VERSION}
-    command: postgres -c 'max_connections=1000'
-    env_file: settings.env
-    networks:
-      default:
-        aliases:
-          - olmis-db
-    depends_on: [consul]
-    mem_limit: '1.3G'
-    cpus: 4
-
-  log:
-    image: openlmis/rsyslog:${OL_RSYSLOG_VERSION}
-    volumes:
-      - 'syslog:/var/log'
     depends_on:
-      - service-configuration
-      - consul
-
-  service-configuration:
-    build:
-      context: ./config
-    volumes:
-      - service-config:/config
+      consul:
+        condition: service_healthy
+      # Services from which data is being taken during logging in
+      referencedata:
+        condition: service_healthy
+      auth:
+        condition: service_healthy
+      notification:
+        condition: service_healthy
+      report:
+        condition: service_healthy
+      fulfillment:
+        condition: service_healthy
+      stockmanagement:
+        condition: service_healthy
 
   ftp:
     image: driesva/proftpd
@@ -207,18 +93,300 @@ services:
       - "${OL_FTP_PORT_21:-21}:21"
       - "${OL_FTP_PORT_20:-20}:20"
     env_file: settings.env
-    depends_on: [consul]
+    depends_on:
+      consul:
+        condition: service_healthy
 
-  redis:
-    image: redis:3.2.12
-    depends_on: [consul]
+  requisition:
+    image: openlmis/requisition:${OL_REQUISITION_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms1024m
+        -Xmx1024m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+    healthcheck:
+      test: "wget --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 30s
+      timeout: 5s
+      retries: 10
+
+  referencedata:
+    image: openlmis/referencedata:${OL_REFERENCEDATA_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms1024m
+        -Xmx1024m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+    healthcheck:
+      test: "wget --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 30s
+      timeout: 5s
+      retries: 10
+
+  auth:
+    image: openlmis/auth:${OL_AUTH_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+    healthcheck:
+      test: "wget --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 30s
+      timeout: 5s
+      retries: 10
+
+  notification:
+    image: openlmis/notification:${OL_NOTIFICATION_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+    healthcheck:
+      test: "wget --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 30s
+      timeout: 5s
+      retries: 10
+
+  fulfillment:
+    image: openlmis/fulfillment:${OL_FULFILLMENT_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+    healthcheck:
+      test: "wget --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 30s
+      timeout: 5s
+      retries: 10
+
+  stockmanagement:
+    image: openlmis/stockmanagement:${OL_STOCKMANAGEMENT_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+    healthcheck:
+      test: "wget --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 30s
+      timeout: 5s
+      retries: 10
+
+  report:
+    image: openlmis/report:${OL_REPORT_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+    healthcheck:
+      test: "wget --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 30s
+      timeout: 5s
+      retries: 10
+
+  cce:
+    image: openlmis/cce:${OL_CCE_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+
+  buq:
+    image: openlmis/buq:${OL_BUQ_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+
+  hapifhir:
+    image: openlmis/hapifhir:${OL_HAPIFHIR_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+
+  diagnostics:
+    image: openlmis/diagnostics:${OL_DIAGNOSTICS_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
+
+  dhis2-integration:
+    image: openlmis/dhis2-integration:${OL_DHIS2INTEGRATION_VERSION}
+    env_file: settings.env
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+    volumes:
+      - service-config:/config:ro
+    depends_on:
+      service-configuration:
+        condition: service_completed_successfully
+      consul:
+        condition: service_healthy
+      log:
+        condition: service_started
+      db:
+        condition: service_started
 
 volumes:
-  syslog:
-    external: false
-  nginx-log:
-    external: false
-  consul-template-log:
-    external: false
   service-config:
-    external: false
+  syslog:
+  nginx-log:
+  consul-template-log:
+  olmis-db:
