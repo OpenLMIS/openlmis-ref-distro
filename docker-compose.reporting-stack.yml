@@ -1,0 +1,51 @@
+# =============================================================================
+# Reporting Stack Integration Overlay
+# =============================================================================
+# Configures the OpenLMIS database for CDC and provides a shared network
+# for the reporting-stack platform to connect to.
+#
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.reporting-stack.yml up -d
+#
+# This overlay:
+#   1. Creates a 'reporting-shared' network (auto-managed by Compose)
+#   2. Attaches the DB to it with alias 'olmis-db'
+#   3. Runs a one-shot init container that configures the DB for CDC
+# =============================================================================
+
+networks:
+  # Shared network for reporting-stack platform connectivity.
+  # The reporting-stack's kafka-connect service joins this as external.
+  # Using explicit 'name' ensures a stable, project-prefix-free network name.
+  reporting-shared:
+    name: reporting-shared
+    driver: bridge
+
+services:
+  db:
+    networks:
+      default:
+      reporting-shared:
+        aliases:
+          - olmis-db
+
+  # One-shot container that waits for the DB and OpenLMIS Flyway migrations
+  # to complete, then runs the idempotent CDC initialization SQL.
+  reporting-stack-init:
+    image: postgres:14-alpine
+    depends_on:
+      db:
+        condition: service_started
+    networks:
+      - default
+    environment:
+      PGHOST: db
+      PGPORT: "5432"
+      PGDATABASE: open_lmis
+      PGUSER: postgres
+      PGPASSWORD: p@ssw0rd
+    volumes:
+      - ./reporting-stack/init-db.sql:/init-db.sql:ro
+      - ./reporting-stack/wait-and-init.sh:/wait-and-init.sh:ro
+    entrypoint: ["bash", "/wait-and-init.sh"]
+    restart: "no"
