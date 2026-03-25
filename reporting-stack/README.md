@@ -12,6 +12,8 @@ The `docker-compose.reporting-stack.yml` overlay:
 
 Everything is automated — no manual SQL or network commands needed.
 
+**Resource requirements:** The full OpenLMIS stack consumes ~28GB RAM. When running both stacks together, set `KAFKA_HEAP_OPTS: "-Xms256m -Xmx512m"` on kafka-connect in the reporting-stack to avoid OOM.
+
 ## Usage
 
 ### Start ref-distro with reporting-stack support

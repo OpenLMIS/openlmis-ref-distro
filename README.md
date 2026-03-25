@@ -40,9 +40,7 @@ environment file template for new additions.
   Also note that your BASE_URL will not need the port ":8080" that may be in the environment file
   template.
 
-2. Update api access configs in https://github.com/OpenLMIS/openlmis-ref-distro/blob/master/reporting/.env
-
-3. Pull all the services, and bring the Reference Distribution up.  Since this is actively
+2. Pull all the services, and bring the Reference Distribution up.  Since this is actively
 developed, you __should pull the services frequently__.
   ```
   $ docker-compose pull
