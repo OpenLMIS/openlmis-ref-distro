@@ -1,0 +1,56 @@
+# =============================================================================
+# Reporting Stack Dev Profile
+# =============================================================================
+# Lightweight overlay for developing/testing the reporting stack.
+# Disables non-essential OLMIS services and reduces Java heap to free memory
+# for the reporting stack (Kafka, ClickHouse, Kafka Connect, etc.).
+#
+# Usage:
+#   docker compose -f docker-compose.yml \
+#     -f docker-compose.reporting-stack.yml \
+#     -f docker-compose.reporting-dev.yml \
+#     up -d
+#
+# Keeps:  db, consul, nginx, redis, log, auth, referencedata, requisition,
+#         notification, report, fulfillment, stockmanagement, reference-ui
+# Drops:  cce, buq, hapifhir, diagnostics, dhis2-integration, ftp
+#
+# Expected memory savings: ~2 GB vs full stack
+# =============================================================================
+
+services:
+  # --- Disable non-essential services ---
+  cce:
+    profiles: [full]
+
+  buq:
+    profiles: [full]
+
+  hapifhir:
+    profiles: [full]
+
+  diagnostics:
+    profiles: [full]
+
+  dhis2-integration:
+    profiles: [full]
+
+  ftp:
+    profiles: [full]
+
+  # --- Reduce Java heap for dev ---
+  referencedata:
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml
+
+  requisition:
+    environment:
+      JAVA_OPTS: >-
+        -Xms512m
+        -Xmx512m
+        -Djava.security.egd=file:/dev/./urandom
+        -Dlogging.config=/config/log/logback.xml

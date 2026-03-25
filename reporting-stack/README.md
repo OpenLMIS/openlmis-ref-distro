@@ -28,6 +28,28 @@ docker compose -f docker-compose.yml -f docker-compose.reporting-stack.yml up -d
 > docker compose -f docker-compose.yml -f docker-compose.reporting-stack.yml up -d
 > ```
 
+### Dev profile (recommended for reporting-stack development)
+
+The full OLMIS stack + reporting stack can exceed available memory. Use the dev profile to disable non-essential OLMIS services and reduce Java heap sizes:
+
+```bash
+docker compose -f docker-compose.yml \
+  -f docker-compose.reporting-stack.yml \
+  -f docker-compose.reporting-dev.yml \
+  up -d
+```
+
+This keeps the services needed for UI login and CDC testing (db, auth, referencedata, requisition, notification, report, fulfillment, stockmanagement, reference-ui) and disables the rest (cce, buq, hapifhir, diagnostics, dhis2-integration, ftp). Saves ~2 GB vs the full stack.
+
+To start the disabled services for a specific session, use the `full` profile:
+
+```bash
+docker compose -f docker-compose.yml \
+  -f docker-compose.reporting-stack.yml \
+  -f docker-compose.reporting-dev.yml \
+  --profile full up -d
+```
+
 The init container will:
 - Wait for PostgreSQL to accept connections
 - Wait for OpenLMIS Flyway migrations to create the target tables
