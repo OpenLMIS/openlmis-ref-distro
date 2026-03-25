@@ -40,9 +40,15 @@ In the reporting-stack repository:
 cp .env.example .env
 # Set: SOURCE_PG_HOST=olmis-db  SOURCE_PG_USER=postgres  SOURCE_PG_PASSWORD=p@ssw0rd
 make up
-make step1
-make register-connector
-make step2
+make setup
+```
+
+`make setup` is idempotent — it registers the connector, initializes ClickHouse, and runs all verification steps. To verify individual layers manually:
+
+```bash
+make verify-services    # Kafka, Connect, Apicurio, Kafka UI, ClickHouse
+make verify-cdc         # Debezium connector + CDC topics
+make verify-ingestion   # ClickHouse raw landing has data
 ```
 
 ## Re-running the init
