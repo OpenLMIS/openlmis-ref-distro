@@ -12,6 +12,12 @@
 
 -- 1. Publication: list of tables whose changes Debezium will capture.
 --    Add or remove tables here as needed.
+--
+--    Two-step approach for idempotency:
+--    a) CREATE if it doesn't exist (first run)
+--    b) SET TABLE always (handles tables dropped and recreated by Flyway
+--       in demo/refresh-db mode — PostgreSQL silently removes recreated
+--       tables from publications)
 DO $$
 BEGIN
   IF NOT EXISTS (SELECT 1 FROM pg_publication WHERE pubname = 'dbz_publication') THEN
@@ -23,9 +29,18 @@ BEGIN
       requisition.requisition_line_items;
     RAISE NOTICE 'Created publication dbz_publication';
   ELSE
-    RAISE NOTICE 'Publication dbz_publication already exists';
+    RAISE NOTICE 'Publication dbz_publication already exists — ensuring tables are included';
   END IF;
 END $$;
+
+-- Always re-set the table list. This is a no-op if the tables are already
+-- correct, and fixes the publication if tables were dropped/recreated.
+ALTER PUBLICATION dbz_publication SET TABLE
+  referencedata.facilities,
+  referencedata.programs,
+  referencedata.geographic_zones,
+  requisition.requisitions,
+  requisition.requisition_line_items;
 
 -- 2. Heartbeat table: Debezium writes to this periodically to advance the
 --    replication slot, preventing WAL accumulation during idle periods.
