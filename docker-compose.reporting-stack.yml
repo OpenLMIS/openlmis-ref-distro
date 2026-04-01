@@ -29,13 +29,19 @@ services:
         aliases:
           - olmis-db
 
-  # One-shot container that waits for the DB and OpenLMIS Flyway migrations
-  # to complete, then runs the idempotent CDC initialization SQL.
+  # One-shot container that configures the DB for CDC.
+  # Must wait for referencedata + requisition to be healthy (Flyway + refresh-db
+  # complete) — otherwise refresh-db drops/recreates tables AFTER the publication
+  # is set, silently removing them from CDC.
   reporting-stack-init:
     image: postgres:14-alpine
     depends_on:
       db:
         condition: service_started
+      referencedata:
+        condition: service_healthy
+      requisition:
+        condition: service_healthy
     networks:
       - default
     environment:
