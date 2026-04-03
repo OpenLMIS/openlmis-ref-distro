@@ -4,3 +4,4 @@ build/
 *.iml
 *.pyc
 settings.env
+erd-output/
