@@ -25,8 +25,16 @@ BEGIN
       referencedata.facilities,
       referencedata.programs,
       referencedata.geographic_zones,
+      referencedata.orderables,
+      referencedata.processing_periods,
+      referencedata.processing_schedules,
+      referencedata.facility_types,
+      referencedata.supported_programs,
+      referencedata.requisition_group_members,
+      referencedata.requisition_group_program_schedules,
       requisition.requisitions,
-      requisition.requisition_line_items;
+      requisition.requisition_line_items,
+      requisition.status_changes;
     RAISE NOTICE 'Created publication dbz_publication';
   ELSE
     RAISE NOTICE 'Publication dbz_publication already exists — ensuring tables are included';
@@ -39,8 +47,16 @@ ALTER PUBLICATION dbz_publication SET TABLE
   referencedata.facilities,
   referencedata.programs,
   referencedata.geographic_zones,
+  referencedata.orderables,
+  referencedata.processing_periods,
+  referencedata.processing_schedules,
+  referencedata.facility_types,
+  referencedata.supported_programs,
+  referencedata.requisition_group_members,
+  referencedata.requisition_group_program_schedules,
   requisition.requisitions,
-  requisition.requisition_line_items;
+  requisition.requisition_line_items,
+  requisition.status_changes;
 
 -- 2. Heartbeat table: Debezium writes to this periodically to advance the
 --    replication slot, preventing WAL accumulation during idle periods.
