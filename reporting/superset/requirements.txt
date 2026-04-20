@@ -180,7 +180,7 @@ pyarrow==5.0.0
     # via apache-superset
 pycparser==2.20
     # via cffi
-pyjwt==1.7.1
+pyjwt==2.4.0
     # via
     #   apache-superset
     #   flask-appbuilder
