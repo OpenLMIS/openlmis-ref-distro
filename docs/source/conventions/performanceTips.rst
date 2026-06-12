@@ -115,10 +115,10 @@ From the top of the stack down:
    sometimes uncover hidden issues.
 #. Service's Profiler statements:  these logging statements from Java code are treated like all
    other Java logging statements and are channeled through our centralised :code:`Rsyslog` container 
-   to be aggregated and written to disk (and later picked up by log monitoring service - Scalyr).
+   to be aggregated and written to disk (and later picked up by the log monitoring service).
 #. Database: queries take time, transactions can block, etc.  Database logs can uncover both the 
    time specific queries take as well as the actual SQL that's being run in the database.  These 
-   logs are typically sourced and monitored through the RDS service (and Scalyr).
+   logs are typically sourced and monitored through the RDS service.
 
 Lets look at an example of a call seen by Nginx and the Profiler.
 
