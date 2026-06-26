@@ -98,11 +98,3 @@ The sample settings file can be found [here](settings-sample.env). The sample fi
     ```
     127.0.0.1   nifi.local superset.local
     ```
-
-### Running Setup Without Scalyr
-
-There are some cases (when running on a dev machine, for instance) where you would prefer to spin-up the stack without the Scalyr container running. To do that, run docker-compose this way:
-
-```sh
-docker-compose up --build -d --scale scalyr=0
-```
