@@ -1,16 +1,16 @@
 import urllib
 
 #components
-urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillment/v9.4.0/README.md", "components/fulfillmentService.md")
+urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-fulfillment/v9.4.1/README.md", "components/fulfillmentService.md")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-dhis2-integration/v1.2.0/README.md", "components/dhis2IntegrationService.md")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-buq/v1.2.0/README.md", "components/buqService.md")
-urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-requisition/v8.7.0/README.md",  "components/requisitionService.md")
+urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-requisition/v8.7.1/README.md",  "components/requisitionService.md")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth/v4.5.0/README.md", "components/authService.md")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-auth/v4.5.0/DESIGN.md", "components/authServiceDesign.md")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-cce/v1.5.0/README.md", "components/cceService.md")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-notification/v4.5.0/README.md", "components/notificationService.md")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-referencedata/v15.7.0/README.md", "components/referencedataService.md")
-urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-stockmanagement/v5.4.0/README.md", "components/stockmanagementService.md")
+urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-stockmanagement/v5.4.1/README.md", "components/stockmanagementService.md")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-report/v1.6.0/README.md", "components/reportService.md")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-hapifhir/v2.2.0/README.md", "components/hapifhirService.md")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/OpenLMIS/openlmis-diagnostics/v1.1.5/README.md", "components/diagnosticsService.md")
