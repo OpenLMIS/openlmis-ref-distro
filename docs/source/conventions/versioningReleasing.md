@@ -19,9 +19,11 @@ and UI components.
 All OpenLMIS source code is available on GitHub, and the components have separate repositories.
 Releases are tagged on GitHub for all components as well as the ref-distro. Releases of some
 components, such as the service components and UI components, are also published to [Docker
-Hub](https://hub.docker.com/u/openlmis/) as versioned docker images. In addition, we publish
-releases of the [service utility library](https://github.com/OpenLMIS/openlmis-service-util) to
-Maven. Moreover, release builds are kept on Jenkins forever by default.
+Hub](https://hub.docker.com/u/openlmis/) as versioned docker images. The fulfillment, requisition,
+stockmanagement, referencedata and dhis2-integration services also publish their release jars to
+Maven Central (see Publishing Service Jars to Maven Central below), and we publish releases of the
+[service utility library](https://github.com/OpenLMIS/openlmis-service-util) to Maven. Moreover,
+release builds are kept on Jenkins forever by default.
 
 ## Release Process
 
@@ -298,8 +300,9 @@ codebase is working towards):
   - Similar to the previous steps, see the lines under "services:" and change its version to the new
     snapshot.
   - You do not need to tag this repo. It will be used by Jenkins for subsequent contract test runs.
-- (If your component, such as the openlmis-service-util library, publishes to Maven, then other
-  steps will be needed here.)
+- Services that publish to Maven Central do it from their own release build; see Publishing Service
+  Jars to Maven Central below. (If your component, such as the openlmis-service-util library,
+  publishes to Maven in another way, then other steps will be needed here.)
 
 **Note:** usually during a release many docker images are built in a short time. It may happen that
 the CI build process fails because of a docker pull rate limit which is 250 per 6 hours. It is a
@@ -317,6 +320,29 @@ ref-distro release, e.g. 'v3.3.0'.
 5. If all passes, remove SNAPSHOT suffix from the **serviceVersion** property.
 6. Verify that the patch release is available on docker hub.
 
+
+### Publishing Service Jars to Maven Central
+
+The fulfillment, requisition, stockmanagement, referencedata and dhis2-integration services publish
+their jars to Maven Central under the `org.openlmis` group. Extension modules compile against the
+`-exec` jar, because the main jar is the Spring Boot executable. The logic is in each service's
+`publishing.gradle`, which is the same file in all of them, and `build.sh` runs it after the build:
+
+- A `-SNAPSHOT` version is deployed to the Central snapshots repository from any branch.
+- A release, a bare X.Y.Z version built on master, opens a staging repository for that build only,
+  uploads to it and hands it to the Central Portal, which publishes it once it passes validation.
+  No manual step in the Portal is needed.
+- Release candidates (-RCn), other pre-release versions and releases built on any other branch,
+  including rel- branches, upload nothing. A patch release built only on a rel- branch is therefore
+  not published to Maven Central.
+- If publishing fails, the Docker image is still built and pushed. The Jenkins build ends UNSTABLE
+  at the "Check Maven publish" stage, and the Build stage log shows the error.
+
+After releasing a service, check that the version is on Maven Central, e.g.
+https://repo1.maven.org/maven2/org/openlmis/openlmis-fulfillment/ (it can take up to an hour to
+appear). Deployments and their validation errors are listed at
+https://central.sonatype.com/publishing/deployments (OpenLMIS Sonatype account). Re-running a
+release build skips publishing once the version is on Maven Central.
 
 ### Releasing the Reference Distribution (openlmis-ref-distro)
 
