@@ -28,7 +28,7 @@ Compatibility
 =============
 **Consul registration**: services are no longer removed from Consul after 10 minutes in the critical state. An instance that failed its health check stays listed, reported as critical, until it recovers or the container is restarted.
 
-All other changes to OpenLMIS 3.x remain backwards-compatible. Any changes to data or schemas are accompanied by automated migrations from previous versions back to version 3.0.1.
+All other changes are backwards-compatible with 3.20.0 and 3.20.1. This release contains no database schema changes or data migrations; the only data change is the supplying-facility stock on hand column (hidden) added to the demo requisition templates, which affects only instances that load demo data.
 
 All Changes by Component
 ========================
