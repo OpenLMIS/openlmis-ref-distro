@@ -257,6 +257,10 @@ variable `NGINX_LOG_DIR` to `NGINX_LOG_DIR=/var/log/nginx`.
 
 If using the postgres container, the logging is accessible via:  `docker logs openlmisrefdistro_db_1`.
 
+#### Upgrading an existing database to PostgreSQL 17
+
+Since `OL_POSTGRES_VERSION=17` in [.env](.env) the `db` container runs `openlmis/postgres:17`. It refuses a data directory initialised by an older major version (`database files are incompatible with server` in `docker logs`), so an instance whose `olmis-db` volume was created by `openlmis/postgres:14-debezium` does not start after `docker-compose pull && docker-compose up -d` until the data is upgraded. Take a backup, then follow the "Upgrading PostgreSQL 14 → 17" section of the [OpenLMIS/postgres README](https://github.com/OpenLMIS/postgres#readme) (path A: `pg_upgrade` with the `openlmis/postgres-upgrade:14-to-17` helper image into a new volume, seconds on a demo-data database; RDS and the other paths are described there too). A throwaway instance can simply recreate the volume: `docker-compose down -v`. The reporting stack, if attached, must be detached before and re-attached after the upgrade (same README, "Detaching and re-attaching the reporting stack"). The image ships only the built-in `pgoutput` decoder: the legacy `reporting/` stack (NiFi, Debezium 1.5, `plugin.name=wal2json`) does not work against it.
+
 ## Cleaning the Database
 
 Sometimes it's useful to drop the database completely, for this there is a script included that
