@@ -34,7 +34,7 @@ services:
   # complete) — otherwise refresh-db drops/recreates tables AFTER the publication
   # is set, silently removing them from CDC.
   reporting-stack-init:
-    image: postgres:14-alpine
+    image: postgres:17-alpine
     depends_on:
       db:
         condition: service_started
