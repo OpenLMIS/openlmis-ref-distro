@@ -106,7 +106,7 @@ docker exec -i openlmis-ref-distro-db-1 psql -U postgres -d open_lmis \
 - **Replication role** on the `postgres` user
 - **WAL retention limit** `max_slot_wal_keep_size = 2GB` — prevents disk exhaustion if the reporting stack goes down (see below)
 
-To capture additional tables, edit `init-db.sql` and re-run.
+To capture additional tables, edit `init-db.sql` and re-run. `init-db.sql` is authoritative: the init container runs on every `docker-compose up` with this overlay and sets the publication back to its list (`ALTER PUBLICATION … SET TABLE`), so a table added with `ALTER PUBLICATION … ADD TABLE` alone silently drops out of CDC on the next start. Keep the list in sync with the platform's `SOURCE_PG_TABLE_ALLOWLIST` (the platform's `.env.example` also lists `referencedata.program_orderables`, which this file does not).
 
 ## WAL retention safety
 
