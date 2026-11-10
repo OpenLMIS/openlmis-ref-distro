@@ -13,6 +13,8 @@
 
 -- 1. Heartbeat table: Debezium writes to this periodically to advance the
 --    replication slot, preventing WAL accumulation during idle periods.
+--    It must be in the publication: from PostgreSQL 15 on, pgoutput skips transactions
+--    that touch no published table, so a heartbeat outside it no longer advances the slot.
 CREATE TABLE IF NOT EXISTS public.reporting_heartbeat (
   id  INT PRIMARY KEY DEFAULT 1,
   ts  TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -45,6 +47,7 @@ BEGIN
   IF NOT EXISTS (SELECT 1 FROM pg_publication WHERE pubname = 'dbz_publication') THEN
     CREATE PUBLICATION dbz_publication FOR TABLE
       public.debezium_signal,
+      public.reporting_heartbeat,
       referencedata.facilities,
       referencedata.programs,
       referencedata.geographic_zones,
@@ -70,6 +73,7 @@ END $$;
 -- correct, and fixes the publication if tables were dropped/recreated.
 ALTER PUBLICATION dbz_publication SET TABLE
   public.debezium_signal,
+  public.reporting_heartbeat,
   referencedata.facilities,
   referencedata.programs,
   referencedata.geographic_zones,
