@@ -91,13 +91,25 @@ developed, you __should pull the services frequently__.
 
 ## Demo Data
 
-It's possible to load demo data using an environment variable. This variable is
-called `spring.profiles.active`.  When this environment has as one of it's 
-values `demo-data`, then the demo data for the service will be loaded.  This 
-variable may be set in the settings.env file or in your shell with:
+It's possible to load test data using an environment variable. This variable is
+called `spring.profiles.active`, and it may be set in the settings.env file or in
+your shell. Every service reads the same data profiles, so one value in
+settings.env sets the data of the whole system:
+
+| Profile                | Loads                                                              |
+|------------------------|--------------------------------------------------------------------|
+| `base-data`            | Only the setup every other profile needs                           |
+| `demo-data`            | `base-data` and the curated demo data                              |
+| `performance-data`     | `base-data` and the generated volume for performance testing       |
+| `functional-test-data` | `base-data` and data for functional tests (not with `demo-data`)   |
+| `edge-case-data`       | `base-data` and edge cases                                         |
+
+Each profile loads `base-data` first, so `demo-data,performance-data` loads both
+on top of it. The data is loaded into an empty database only, so do not combine
+these profiles with `production`.
 
 ```shell
-$ export spring_profiles_active=demo-data
+$ export spring_profiles_active=demo-data,refresh-db
 $ docker-compose up -d
 ```
 
